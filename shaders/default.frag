@@ -4,7 +4,7 @@ varying lowp vec3 vFragPosition;
 varying lowp vec2 vUV;
 
 #ifdef USE_TEXTURE 
-	uniform lowp sampler2D texture;
+    uniform lowp sampler2D texture;
 #endif
 
 include[chunks/Material.glsl]
@@ -12,11 +12,11 @@ include[chunks/LightPhong.glsl]
 
 void main()
 {
-	#ifdef USE_LIGHT
-    	gl_FragColor = vec4(computeLights(uCameraPosition), 1.0);
+    #ifdef USE_LIGHT
+        gl_FragColor = vec4(computeLights(uCameraPosition), 1.0);
     #elif defined USE_TEXTURE
-    	gl_FragColor = texture2D(texture, vUV) * vColor;
+        gl_FragColor = texture2D(texture, vUV) * vColor;
     #else
-    	gl_FragColor = vColor * vec4(material.ambient, 1.0);
-	#endif
+        gl_FragColor = vColor * vec4(material.ambient, 1.0);
+    #endif
 }

@@ -14,9 +14,9 @@ varying lowp vec3 vNormal;
 
 void main()
 {
-    gl_Position 	= (uCamera * uModel) * aPosition;
-    vFragPosition 	= vec3(uModel * vec4(aPosition.xyz, 1.0));
-    vColor 			= aColor;
-    vUV         	= aTexCoord;
-    vNormal     	= mat3(uModelNormal) * aNormal;
+    gl_Position     = (uCamera * uModel) * aPosition;
+    vFragPosition   = vec3(uModel * vec4(aPosition.xyz, 1.0));
+    vColor          = aColor;
+    vUV             = aTexCoord;
+    vNormal         = mat3(uModelNormal) * aNormal;
 }
