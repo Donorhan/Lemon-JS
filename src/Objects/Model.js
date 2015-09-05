@@ -34,7 +34,7 @@ Lemon.Model.prototype.update = function( deltaTime, parentUpdated )
 
     // Update meshes.
     for( var i = 0; i < this.meshes.length; i++ )
-    	this.meshes[i].computeTransformationMatrix(this.getTransformationMatrix(), updated);
+        this.meshes[i].computeTransformationMatrix(this.getTransformationMatrix(), updated);
 
     return updated;
 };
@@ -46,7 +46,7 @@ Lemon.Model.prototype.update = function( deltaTime, parentUpdated )
 Lemon.Model.prototype.draw = function( renderTarget )
 {
     for( var i = 0; i < this.meshes.length; i++ )
-		this.meshes[i].draw(renderTarget);
+        this.meshes[i].draw(renderTarget);
 };
 
 /**

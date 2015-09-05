@@ -21,7 +21,7 @@ camera.setViewport(0, 0, renderer.getSize()[0], renderer.getSize()[1]);
 // Create a scene where we can add sprites, lights, objects, ….
 var scene = new Lemon.Scene(); 
 
-// Load default shader with texture and light support.
+// Load default shader with light support.
 Lemon.ProgramLibrary.load('DefaultShader', 'default.vert', 'default.frag', ['USE_LIGHT']);
 
 // Now we can create our first cube.

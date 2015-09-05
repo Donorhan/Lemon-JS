@@ -11,10 +11,10 @@ varying vec2 vUV;
 
 void main()
 {
-    gl_Position 	= (uCamera * uModel) * aPosition;
-    gl_Position.x	= gl_Position.x + cos(time + gl_Position.x) / 5.0;
-    gl_Position.y	= gl_Position.y + sin(time + gl_Position.y) / 5.0;
-    gl_Position.z	= gl_Position.z + cos(time + gl_Position.z) / 100.0;
-    vColor 			= aColor;
-    vUV        		= aTexCoord;
+    gl_Position     = (uCamera * uModel) * aPosition;
+    gl_Position.x   = gl_Position.x + cos(time + gl_Position.x) / 5.0;
+    gl_Position.y   = gl_Position.y + sin(time + gl_Position.y) / 5.0;
+    gl_Position.z   = gl_Position.z + cos(time + gl_Position.z) / 100.0;
+    vColor          = aColor;
+    vUV             = aTexCoord;
 }

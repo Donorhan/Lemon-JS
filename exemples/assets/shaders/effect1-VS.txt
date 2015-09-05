@@ -11,6 +11,6 @@ varying vec2 vUV;
 void main ()
 {
     gl_Position = aPosition;
-    vColor 		= aColor;
+    vColor      = aColor;
     vUV         = aTexCoord;
 }

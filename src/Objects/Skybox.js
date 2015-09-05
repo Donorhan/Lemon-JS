@@ -73,5 +73,5 @@ Lemon.Skybox.prototype.getCustomProgram = function()
  */
 Lemon.Skybox.prototype.getTexture = function()
 {
-	return this.texture;
+    return this.texture;
 };

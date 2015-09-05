@@ -75,7 +75,7 @@ Lemon.Pass.prototype.add = function( name, type, value )
     }
 
     // … otherwise we create a new one.
-	this.parameters.push(new Lemon.PassParameter(name, type, value));
+    this.parameters.push(new Lemon.PassParameter(name, type, value));
 };
 
 /**

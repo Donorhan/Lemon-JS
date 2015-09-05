@@ -57,5 +57,5 @@ Lemon.Private.TextureInterface.prototype.isSmoothed = function() { return false;
  */
 Lemon.Private.TextureInterface.prototype.useMipmap = function( value ) 
 { 
-	this.mipmap = value;
+    this.mipmap = value;
 };

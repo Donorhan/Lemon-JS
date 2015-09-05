@@ -274,7 +274,7 @@ Lemon.Transformable.prototype.getPosition = function()
  */
 Lemon.Transformable.prototype.getRotation = function() 
 {
-	throw '\'getRotation\' is not implemented for now …';
+    throw '\'getRotation\' is not implemented for now …';
 };
 
 /**

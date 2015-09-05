@@ -3,12 +3,12 @@ varying mediump vec2 vUV;
 uniform mediump float time;
 
 void main()
-{	
-	lowp vec4 color;
-	color.r = sin(vUV.x + time / 50.0);
-	color.g = sin(vUV.y + (time * 10.0) / 50.0);
-	color.b = cos(vUV.x + (time * 30.0) / 50.0);
-	color.a = 1.0;
+{   
+    lowp vec4 color;
+    color.r = sin(vUV.x + time / 50.0);
+    color.g = sin(vUV.y + (time * 10.0) / 50.0);
+    color.b = cos(vUV.x + (time * 30.0) / 50.0);
+    color.a = 1.0;
 
     gl_FragColor = color;
 }

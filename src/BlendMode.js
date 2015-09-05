@@ -51,7 +51,7 @@ Lemon.BlendMode = function( mode )
     this.colorEquation = Lemon.BlendMode.Equation.Add;
 
     if( mode )
-    	this.setMode(mode);
+        this.setMode(mode);
 };
 
 /**
@@ -88,50 +88,50 @@ Lemon.BlendMode.Equation = { Add: 0, Subtract: 1 };
  */
 Lemon.BlendMode.prototype.setMode = function( mode ) 
 {
-	switch(mode)
-	{
-		case Lemon.BlendMode.Mode.Alpha:
-		{
-			this.colorSourceFactor 		= Lemon.BlendMode.Factor.SourceAlpha;
-			this.colorDestinationFactor = Lemon.BlendMode.Factor.OneMinusSourceAlpha;
-			this.colorEquation			= Lemon.BlendMode.Equation.Add;
-			this.alphaSourceFactor 		= Lemon.BlendMode.Factor.One;
-			this.alphaDestinationFactor = Lemon.BlendMode.Factor.OneMinusSourceAlpha;
-			this.alphaEquation 			= Lemon.BlendMode.Equation.Add;
-			break;
-		}
-		case Lemon.BlendMode.Mode.Add:
-		{
-			this.colorSourceFactor 		= Lemon.BlendMode.Factor.SourceAlpha;
-			this.colorDestinationFactor = Lemon.BlendMode.Factor.One;
-			this.colorEquation			= Lemon.BlendMode.Equation.Add;
-			this.alphaSourceFactor 		= Lemon.BlendMode.Factor.One;
-			this.alphaDestinationFactor = Lemon.BlendMode.Factor.One;
-			this.alphaEquation 			= Lemon.BlendMode.Equation.Add;
-			break;
-		}
-		case Lemon.BlendMode.Mode.Multiply:
-		{
-			this.colorSourceFactor 		= Lemon.BlendMode.Factor.DestinationColor;
-			this.colorDestinationFactor = Lemon.BlendMode.Factor.One;
-			this.colorEquation			= Lemon.BlendMode.Equation.Add;
-    		this.alphaSourceFactor 		= Lemon.BlendMode.Factor.One;
-    		this.alphaDestinationFactor = Lemon.BlendMode.Factor.OneMinusSourceAlpha;
-   			this.alphaEquation 			= Lemon.BlendMode.Equation.Add;
-			break;
-		}
-		default:
-		case Lemon.BlendMode.Mode.None:
-		{
-			this.colorSourceFactor 		= Lemon.BlendMode.Factor.One;
-			this.colorDestinationFactor = Lemon.BlendMode.Factor.Zero;
-			this.colorEquation			= Lemon.BlendMode.Equation.Add;
-    		this.alphaSourceFactor 		= Lemon.BlendMode.Factor.One;
-    		this.alphaDestinationFactor = Lemon.BlendMode.Factor.OneMinusSourceAlpha;
-   			this.alphaEquation 			= Lemon.BlendMode.Equation.Add;
-			break;
-		}
-	}
+    switch(mode)
+    {
+        case Lemon.BlendMode.Mode.Alpha:
+        {
+            this.colorSourceFactor      = Lemon.BlendMode.Factor.SourceAlpha;
+            this.colorDestinationFactor = Lemon.BlendMode.Factor.OneMinusSourceAlpha;
+            this.colorEquation          = Lemon.BlendMode.Equation.Add;
+            this.alphaSourceFactor      = Lemon.BlendMode.Factor.One;
+            this.alphaDestinationFactor = Lemon.BlendMode.Factor.OneMinusSourceAlpha;
+            this.alphaEquation          = Lemon.BlendMode.Equation.Add;
+            break;
+        }
+        case Lemon.BlendMode.Mode.Add:
+        {
+            this.colorSourceFactor      = Lemon.BlendMode.Factor.SourceAlpha;
+            this.colorDestinationFactor = Lemon.BlendMode.Factor.One;
+            this.colorEquation          = Lemon.BlendMode.Equation.Add;
+            this.alphaSourceFactor      = Lemon.BlendMode.Factor.One;
+            this.alphaDestinationFactor = Lemon.BlendMode.Factor.One;
+            this.alphaEquation          = Lemon.BlendMode.Equation.Add;
+            break;
+        }
+        case Lemon.BlendMode.Mode.Multiply:
+        {
+            this.colorSourceFactor      = Lemon.BlendMode.Factor.DestinationColor;
+            this.colorDestinationFactor = Lemon.BlendMode.Factor.One;
+            this.colorEquation          = Lemon.BlendMode.Equation.Add;
+            this.alphaSourceFactor      = Lemon.BlendMode.Factor.One;
+            this.alphaDestinationFactor = Lemon.BlendMode.Factor.OneMinusSourceAlpha;
+            this.alphaEquation          = Lemon.BlendMode.Equation.Add;
+            break;
+        }
+        default:
+        case Lemon.BlendMode.Mode.None:
+        {
+            this.colorSourceFactor      = Lemon.BlendMode.Factor.One;
+            this.colorDestinationFactor = Lemon.BlendMode.Factor.Zero;
+            this.colorEquation          = Lemon.BlendMode.Equation.Add;
+            this.alphaSourceFactor      = Lemon.BlendMode.Factor.One;
+            this.alphaDestinationFactor = Lemon.BlendMode.Factor.OneMinusSourceAlpha;
+            this.alphaEquation          = Lemon.BlendMode.Equation.Add;
+            break;
+        }
+    }
 };
 
 /**
