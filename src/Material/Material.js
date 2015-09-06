@@ -24,8 +24,28 @@ Lemon.Material = function()
     */
     this.techniques = [];
   
-    //< Add a default technique and pass.
+    //< Add a default technique.
     this.createTechnique();
+};
+
+/**
+ * Shortcut to create common materials.
+ * @return {Lemon.Material} A Material instance.
+ */
+Lemon.Material.create = function( name ) 
+{
+    var material = new Lemon.Material();
+    var pass = material.createPass();
+
+    if( name == 'default' )
+    {
+        pass.add("material.ambient", Lemon.Type.Float, [0.0, 0.0, 0.0]);
+        pass.add("material.diffuse", Lemon.Type.Float, [0.55, 0.55, 0.55]);
+        pass.add("material.specular", Lemon.Type.Float, [0.7, 0.7, 0.7]);
+        pass.add("material.shininess", Lemon.Type.Float, 38.4);
+    }
+
+    return material;
 };
 
 /**

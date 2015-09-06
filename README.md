@@ -26,7 +26,7 @@ Lemon.ProgramLibrary.load('DefaultShader', 'default.vert', 'default.frag', ['USE
 
 // Now we can create our first cube.
 var cube = new Lemon.Mesh();
-cube.setMaterial(Material::create('default'));
+cube.setMaterial(Lemon.Material.create('default'));
 cube.setGeometry(Lemon.Geometry.createCube(0.5, 0.5, 0.5));
 cube.setProgram(Lemon.ProgramLibrary.get('DefaultShader'));
 scene.add(cube);
