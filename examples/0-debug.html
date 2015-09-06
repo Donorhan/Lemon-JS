@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Lemon - Debug</title>
+        <meta charset="utf-8">
+        <link rel="stylesheet" type="text/css" href="./assets/styles/common.css" />
+        <script src="../libs/closure-library/closure/goog/base.js"></script>
+        <script src="../build/deps.js"></script>
+        <link href='http://fonts.googleapis.com/css?family=Oswald:700,400' rel='stylesheet' type='text/css'>
+    </head>
+    <body>
+
+        <div id="wrapper">
+            <div id="simulation"></div>
+            <div id="footer">
+                <h1><span>00 |</span> Debug</h1>
+                <p>Dirty code, dirty bugs.</p>
+            </div>
+        </div>
+
+        <script>
+
+            goog.require('Lemon.Camera');
+            goog.require('Lemon.Color');
+            goog.require('Lemon.PostEffect');
+            goog.require('Lemon.Material');
+            goog.require('Lemon.Model');
+            goog.require('Lemon.Mesh');
+            goog.require('Lemon.PointLight');
+            goog.require('Lemon.Program');
+            goog.require('Lemon.RenderCanvas');
+            goog.require('Lemon.Scene');
+            goog.require('Lemon.Skybox');
+            goog.require('Lemon.Sprite');
+            goog.require('Lemon.Texture');
+            goog.require('Lemon.TextureVideo');
+            goog.require('Lemon.Transformable');
+            goog.require('Lemon.ProgramLibrary');
+
+            window.onload = function()
+            {
+                // Load texture for tests.
+                var lemonTexture = new Lemon.Texture();
+                lemonTexture.loadFromFile("./assets/images/box.jpg");
+
+                var scene = new Lemon.Scene();
+
+                // Tests.
+                var light6 = new Lemon.SpotLight();
+                light6.setAmbientColor(255, 255,255);
+                light6.setDiffuseColor(255, 255, 255);
+                light6.setSpecularColor(255, 255, 255);
+                light6.setPosition(0, 3, 0);
+                light6.setDirection(0, -1, 0);
+                scene.add(light6);
+
+                // Test program library.
+                Lemon.ProgramLibrary.load("PhongShader", 'default.vert', 'default.frag', ["USE_TEXTURE", "USE_LIGHT"]);
+                Lemon.ProgramLibrary.load("PhongShader-withoutTexture", 'default.vert', 'default.frag', ["USE_LIGHT"]);
+
+                // Create a cube.
+                {
+                    var cubeGeometry = Lemon.Geometry.createCube(0.5, 0.5, 0.5);
+
+                    var mesh = new Lemon.Mesh();
+                    mesh.setPosition(2, 1, 0);
+                    mesh.setMaterial(Lemon.Material.create('default'));
+                    mesh.setGeometry(cubeGeometry);
+                    mesh.setProgram(Lemon.ProgramLibrary.get("PhongShader-withoutTexture"));
+                    scene.add(mesh);
+                }
+
+                // Create a quad.
+                {
+                    var quadGeometry = Lemon.Geometry.createRectangle(15.0, 15.0);
+
+                    var material = new Lemon.Material();
+                    var pass     = material.createPass();
+                    pass.drawingMode = Lemon.DrawingMode.TrianglesStrip;
+                    pass.add("material.ambient", Lemon.Type.Float, [0.0, 0.0, 0.0]);
+                    pass.add("material.diffuse", Lemon.Type.Float, [0.55, 0.55, 0.55]);
+                    pass.add("material.specular", Lemon.Type.Float, [0.7, 0.7, 0.7]);
+                    pass.add("material.shininess", Lemon.Type.Float, 38.4);
+
+                    var quad = new Lemon.Mesh();
+                    quad.setRotation(-90, 0, 0);
+                    quad.setMaterial(material);
+                    quad.setProgram(Lemon.ProgramLibrary.get("PhongShader-withoutTexture"));
+                    quad.setGeometry(quadGeometry);
+                    scene.add(quad);
+                }
+
+                // Test 3D model.
+                var model = new Lemon.Model();
+                model.loadFromFile('./assets/models/lee-perry-smith/model.json');
+                model.setPosition(0, 2, 0);
+                model.setScale(5, 5, 5);
+                model.setRotation(-90, 0, 0);
+                scene.add(model);
+
+                var renderer = new Lemon.RenderCanvas("simulation");
+
+                var canvas = document.getElementById('simulation');
+                var camera = new Lemon.Camera(Lemon.Camera.Type.Perspective);
+                camera.move(0, 2, 3.5);
+                camera.lookAt(0, 2, 0);
+                camera.setViewport(0, 0, canvas.offsetWidth, canvas.offsetHeight);
+
+                // Draw the scene.
+                var previous = 0;
+                var diff     = 0;
+
+                function mainLoop( timestamp )
+                {
+                    requestAnimationFrame(mainLoop);
+
+                    // Calculate elapsed time between two frames.
+                    diff     = timestamp - previous;
+                    previous = timestamp;
+
+                    // Logic.
+                    scene.update(0.0);
+
+                    // Start drawing scene.
+                    renderer.clear(new Lemon.Color(0, 0, 0));
+                    renderer.render(scene, camera);
+                    renderer.display();
+
+                }
+                requestAnimationFrame(mainLoop);
+            };
+
+        </script>
+
+    </body>
+</html>

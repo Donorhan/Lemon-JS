@@ -1,0 +1,16 @@
+uniform mat4 uCamera;
+uniform mat4 uModel;
+
+attribute vec4 aPosition;
+attribute vec4 aColor;
+attribute vec2 aTexCoord;
+
+varying vec4 vColor;
+varying vec2 vUV;
+
+void main ()
+{
+    gl_Position = aPosition;
+    vColor      = aColor;
+    vUV         = aTexCoord;
+}

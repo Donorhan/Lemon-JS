@@ -592,6 +592,10 @@ Lemon.RenderAPI.WebGL.prototype.setIndexBuffer = function( buffer )
  */
 Lemon.RenderAPI.WebGL.prototype.setGeometry = function( geometry ) 
 {
+    // Ensure valid format is present.
+    if( !geometry.getVertexFormat() )
+        return;
+
     // Set vertex format to use.
     this.setVertexFormat(geometry.getVertexFormat());
 
