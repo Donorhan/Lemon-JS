@@ -22,8 +22,10 @@ Lemon.Material = function()
     * @type {Array.<Array.<Lemon.Pass>>}
     * @private
     */
-    this.techniques    = [];
-    this.techniques[0] = [];  ///< Add a default technique.
+    this.techniques = [];
+  
+    //< Add a default technique and pass.
+    this.createTechnique();
 };
 
 /**
@@ -37,6 +39,16 @@ Lemon.Material.prototype.createPass = function( techniqueIndex )
     this.techniques[(techniqueIndex || 0)].push(pass);
 
     return pass;
+};
+
+/**
+ * Create a new technique.
+ * @return {number} The technique index.
+ */
+Lemon.Material.prototype.createTechnique = function() 
+{
+    this.techniques.push([]);
+    return this.techniques.length - 1;
 };
 
 /**
