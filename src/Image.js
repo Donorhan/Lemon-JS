@@ -55,14 +55,13 @@ Lemon.Image.Status = { Unload: 0, Loading: 1, Loaded: 2 };
  */
 Lemon.Image.prototype.loadFromFile = function( path ) 
 {
-    var _this = this;
     this.data.onload = function() 
     {
-        _this.status = Lemon.Image.Status.Loaded;
-        _this.width  = _this.data.width;
-        _this.height = _this.data.height;
-        _this.pixels = null;
-    };
+        this.status = Lemon.Image.Status.Loaded;
+        this.width  = this.data.width;
+        this.height = this.data.height;
+        this.pixels = null;
+    }.bind(this);
     this.data.src = path;
 };
 

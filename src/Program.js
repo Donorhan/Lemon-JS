@@ -86,19 +86,17 @@ Lemon.Program.Element = function( location, name, type, size )
  */
 Lemon.Program.prototype.loadFromFiles = function( vertexFile, fragmentFile ) 
 {
-    var _this = this;
-
     // Vertex file.
     Lemon.Loaders.FileLoader.load(vertexFile, function( status, data )
     {
-        _this.sources[0] = data;
-    });
+        this.sources[0] = data;
+    }.bind(this));
 
     // Fragment file.
     Lemon.Loaders.FileLoader.load(fragmentFile, function( status, data )
     {
-        _this.sources[1] = data;
-    });
+        this.sources[1] = data;
+    }.bind(this));
 };
 
 /**

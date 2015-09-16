@@ -27,11 +27,10 @@ goog.inherits(Lemon.TextureVideo, Lemon.Private.TextureInterface);
 Lemon.TextureVideo.prototype.loadFromFile = function( path ) 
 {
     // Detect when video is ready.
-    var _this = this;
     this.data.addEventListener('canplaythrough', function()
     {
-        _this.ready = true;
-    }, true);
+        this.ready = true;
+    }.bind(this), true);
 
     // Load;
     this.data.preload   = 'auto';
