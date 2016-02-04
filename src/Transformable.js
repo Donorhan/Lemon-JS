@@ -1,66 +1,72 @@
 goog.provide('Lemon.Transformable');
-goog.require('goog.math');
-goog.require('goog.vec.Mat4');
-goog.require('goog.vec.Quaternion');
 
 /**
- * Transformable: Manage matrix's transformations.
+ * Transformable: Manage matrix's transformations
+ *
  * @constructor
  * @author Donovan ORHAN <dono.orhan@gmail.com>
  */
-Lemon.Transformable = function() 
+Lemon.Transformable = function ()
 {
     /**
-    * The result matrix.
-    * @type {goog.vec.Mat4.Float32}
+    * The result matrix
+    *
+    * @type {mat4}
     * @private
     */
-    this.matrix = goog.vec.Mat4.createFloat32Identity();
+    this.matrix = mat4.create();
 
     /**
-    * The normal matrix: inverse and transpose the transformation matrix.
-    * @type {goog.vec.Mat4.Float32}
+    * The normal matrix: inverse and transpose the transformation matrix
+    *
+    * @type {mat4}
     * @private
     */
-    this.normalMatrix = goog.vec.Mat4.createFloat32Identity();
+    this.normalMatrix = mat4.create();
 
     /**
-    * Origin, useful to apply rotation relatively to a point in space.
-    * @type {goog.vec.Vec3.Float32}
+    * Origin, useful to apply rotation relatively to a point in space
+    *
+    * @type {vec3}
     * @private
     */
-    this.origin = goog.vec.Vec3.createFloat32();
+    this.origin = vec3.create();
 
     /**
-    * Position.
-    * @type {goog.vec.Vec3.Float32}
+    * Position
+    *
+    * @type {vec3}
     * @private
     */
-    this.position = goog.vec.Vec3.createFloat32();
+    this.position = vec3.create();
 
     /**
-    * Rotation.
-    * @type {goog.vec.Quaternion.Float32}
+    * Rotation
+    *
+    * @type {quat}
     * @private
     */
-    this.rotation = goog.vec.Quaternion.createFloat32();
+    this.rotation = quat.create();
 
     /**
-    * Matrix with rotation data.
-    * @type {goog.vec.Mat4.Float32}
+    * Matrix with rotation data
+    *
+    * @type {mat4}
     * @private
     */
-    this.rotationMatrix = goog.vec.Mat4.createFloat32Identity();
+    this.rotationMatrix = mat4.create();
 
     /**
-    * Scale.
-    * @type {goog.vec.Vec3.Float32}
+    * Scale
+    *
+    * @type {vec3}
     * @private
     */
-    this.scale = goog.vec.Vec3.createFloat32FromValues(1.0, 1.0, 1.0);
+    this.scale = vec3.fromValues(1.0, 1.0, 1.0);
 
     /**
-    * Indicate if the matrix/cache need to be updated.
+    * Indicate if the matrix/cache need to be updated
+    *
     * @type {boolean}
     * @private
     */
@@ -68,38 +74,39 @@ Lemon.Transformable = function()
 };
 
 /**
- * Look at the given position.
- * @param {Array.<number>|Float32Array|Float64Array} position An array with value for each axis.
- * @param {Array.<number>|Float32Array|Float64Array=} up An array with value for each axis.
+ * Look at the given position
+ *
+ * @param {Array.<number>|Float32Array|Float64Array} position An array with value for each axis
+ * @param {Array.<number>|Float32Array|Float64Array=} up An array with value for each axis
  */
-Lemon.Transformable.prototype.lookAt = function( position, up ) 
+Lemon.Transformable.prototype.lookAt = function (position, up) 
 {
     // Default values.
     position = position || [0, 0, 0];
     up       = up       || [0, 1, 0];
 
-    // Useful variables.
-    var xAxis = goog.vec.Vec3.createFloat32();
-    var yAxis = goog.vec.Vec3.createFloat32();
-    var zAxis = goog.vec.Vec3.createFloat32();
+    // Useful variables
+    var xAxis = vec3.create();
+    var yAxis = vec3.create();
+    var zAxis = vec3.create();
 
-    // Compute rotation on z-axis.
-    goog.vec.Vec3.subtract(position, this.position, zAxis);
-    goog.vec.Vec3.normalize(zAxis, zAxis);
+    // Compute rotation on z-axis
+    vec3.subtract(zAxis, position, this.position);
+    vec3.normalize(zAxis, zAxis);
 
-    // Compute rotation on z-axis.
-    goog.vec.Vec3.subtract(position, this.position, zAxis);
-    goog.vec.Vec3.normalize(zAxis, zAxis);
+    // Compute rotation on z-axis
+    vec3.subtract(zAxis, position, this.position);
+    vec3.normalize(zAxis, zAxis);
 
-    // Compute rotation on x-axis.
-    goog.vec.Vec3.cross(up, zAxis, xAxis);
-    goog.vec.Vec3.normalize(xAxis, xAxis);
+    // Compute rotation on x-axis
+    vec3.cross(xAxis, up, zAxis);
+    vec3.normalize(xAxis, xAxis);
 
-    // Compute rotation on y-axis.
-    goog.vec.Vec3.cross(zAxis, xAxis, yAxis);
+    // Compute rotation on y-axis
+    vec3.cross(yAxis, zAxis, xAxis);
 
-    // Compute rotation matrix.
-    var matrix = goog.vec.Mat4.createFloat32Identity();
+    // Compute rotation matrix
+    var matrix = mat4.create();
     matrix[0]  = xAxis[0];
     matrix[1]  = xAxis[1];
     matrix[2]  = xAxis[2];
@@ -120,58 +127,66 @@ Lemon.Transformable.prototype.lookAt = function( position, up )
     matrix[14] = 0;
     matrix[15] = 1;
 
-    // Send result.
+    // Send result
     this.setRotationFromMatrix(matrix);
 };
 
 /**
- * Set origin.
- * @param {number} x Origin on X.
- * @param {number} y Origin on Y.
- * @param {number} z Origin on Z.
+ * Set origin
+ *
+ * @param {number} x Origin on X
+ * @param {number} y Origin on Y
+ * @param {number} z Origin on Z
  */
-Lemon.Transformable.prototype.setOrigin = function( x, y, z ) 
+Lemon.Transformable.prototype.setOrigin = function (x, y, z) 
 {
-    goog.vec.Vec3.setFromValues(this.origin, x, y, z);
+    vec3.set(this.origin, x, y, z);
     this.needTransformUpdate = true;
 };
 
 /**
- * Set position.
- * @param {number} x Position on X.
- * @param {number} y Position on Y.
- * @param {number} z Position on Z.
+ * Set position
+ *
+ * @param {number} x Position on X
+ * @param {number} y Position on Y
+ * @param {number} z Position on Z
  */
-Lemon.Transformable.prototype.setPosition = function( x, y, z ) 
+Lemon.Transformable.prototype.setPosition = function (x, y, z) 
 {
-    goog.vec.Vec3.setFromValues(this.position, x, y, z);
+    vec3.set(this.position, x, y, z);
     this.needTransformUpdate = true;
 };
 
 /**
- * Set rotation using values in degrees.
- * @param {number} x Rotation on X in degrees.
- * @param {number} y Rotation on Y in degrees.
- * @param {number} z Rotation on Z in degrees.
+ * Set rotation using values in degrees
+ *
+ * @param {number} x Rotation on X in degrees
+ * @param {number} y Rotation on Y in degrees
+ * @param {number} z Rotation on Z in degrees
  */
-Lemon.Transformable.prototype.setRotation = function( x, y, z ) 
+Lemon.Transformable.prototype.setRotation = function (x, y, z) 
 {
-    goog.vec.Mat4.makeIdentity(this.rotationMatrix);
-    goog.vec.Mat4.rotateX(this.rotationMatrix, goog.math.toRadians(x));
-    goog.vec.Mat4.rotateY(this.rotationMatrix, goog.math.toRadians(y));
-    goog.vec.Mat4.rotateZ(this.rotationMatrix, goog.math.toRadians(z));
-    goog.vec.Quaternion.fromRotationMatrix4(this.rotationMatrix, this.rotation);
+    // Compute rotation matrix
+    mat4.identity(this.rotationMatrix);
+    mat4.rotateX(this.rotationMatrix, this.rotationMatrix, glMatrix.toRadian(x));
+    mat4.rotateY(this.rotationMatrix, this.rotationMatrix, glMatrix.toRadian(y));
+    mat4.rotateZ(this.rotationMatrix, this.rotationMatrix, glMatrix.toRadian(z));
+
+    // Compute quaterion
+    var m3 = mat3.create();
+    mat3.fromMat4(m3, this.rotationMatrix);
+    quat.fromMat3(this.rotation, m3);
 
     this.needTransformUpdate = true;
 };
 
 /**
  * Set rotation from a quaternion.
- * @param {goog.vec.Quaternion.Float32} quaternion A quaternion.
+ * @param {quat} quaternion A quaternion.
  */
-Lemon.Transformable.prototype.setRotationFromQuaternion = function( quaternion ) 
+Lemon.Transformable.prototype.setRotationFromQuaternion = function (quaternion) 
 {
-    goog.vec.Quaternion.toRotationMatrix4(quaternion, this.rotationMatrix);
+    mat4.fromQuat(this.rotationMatrix, quaternion);
 
     this.rotation               = quaternion;
     this.needTransformUpdate    = true;
@@ -179,52 +194,55 @@ Lemon.Transformable.prototype.setRotationFromQuaternion = function( quaternion )
 
 /**
  * Set rotation from a rotation matrix.
- * @param {goog.vec.Mat4.Float32} matrix A Matrix.
+ * @param {mat4} matrix A Matrix.
  */
-Lemon.Transformable.prototype.setRotationFromMatrix = function( matrix ) 
+Lemon.Transformable.prototype.setRotationFromMatrix = function (matrix) 
 {
-    goog.vec.Quaternion.fromRotationMatrix4(matrix, this.rotation);
+    quat.fromMat3(this.rotation, matrix);
 
     this.rotationMatrix         = matrix;
     this.needTransformUpdate    = true;
 };
 
 /**
- * Set scale.
- * @param {number} x Position on X.
- * @param {number} y Position on Y.
- * @param {number} z Position on Z.
+ * Set scale
+ *
+ * @param {number} x Position on X
+ * @param {number} y Position on Y
+ * @param {number} z Position on Z
  */
-Lemon.Transformable.prototype.setScale = function( x, y, z ) 
+Lemon.Transformable.prototype.setScale = function (x, y, z) 
 {
-    goog.vec.Vec3.setFromValues(this.scale, x, y, z);
+    vec3.set(this.scale, x, y, z);
     this.needTransformUpdate = true;
 };
 
 /**
- * Update matrix.
- * @param {?goog.vec.Mat4.Float32} parentMatrix Parent transformable's matrix.
- * @param {boolean} forceUpdate True to force an update.
- * @return {boolean} True if the matrix have been updated, otherwise false.
+ * Update matrix
+ *
+ * @param {?mat4} parentMatrix Parent transformable's matrix
+ * @param {boolean} forceUpdate True to force an update
+ * @return {boolean} True if the matrix have been updated, otherwise false
  */
-Lemon.Transformable.prototype.computeTransformationMatrix = function( parentMatrix, forceUpdate )
+Lemon.Transformable.prototype.computeTransformationMatrix = function (parentMatrix, forceUpdate)
 {
-    // Avoid useless updates.
-    if( !forceUpdate && !this.needTransformUpdate )
+    // Avoid useless updates
+    if (!forceUpdate && !this.needTransformUpdate)
         return false;
 
-    // Compute matrix.
-    goog.vec.Mat4.makeTranslate(this.matrix, this.position[0], this.position[1], this.position[2]);
-    goog.vec.Mat4.multMat(this.matrix, this.rotationMatrix, this.matrix );
-    goog.vec.Mat4.scale(this.matrix, this.scale[0], this.scale[1], this.scale[2]);
+    // Compute matrix
+    mat4.identity(this.matrix);
+    mat4.translate(this.matrix, this.matrix, this.position);
+    mat4.multiply(this.matrix, this.matrix, this.rotationMatrix);
+    mat4.scale(this.matrix, this.matrix, this.scale);
 
-    // Apply parent's transformations.
-    if( parentMatrix )
-        goog.vec.Mat4.multMat(parentMatrix, this.matrix, this.matrix );
+    // Apply parent's transformations
+    if (parentMatrix)
+        mat4.multiply(this.matrix, parentMatrix, this.matrix);
 
-    // Compute inverse matrix.
-    goog.vec.Mat4.invert(this.matrix, this.normalMatrix);
-    goog.vec.Mat4.transpose(this.normalMatrix, this.normalMatrix);
+    // Compute inverse matrix
+    mat4.invert(this.normalMatrix, this.matrix);
+    mat4.transpose(this.normalMatrix, this.normalMatrix);
 
     this.needTransformUpdate = false;
 
@@ -232,56 +250,62 @@ Lemon.Transformable.prototype.computeTransformationMatrix = function( parentMatr
 };
 
 /**
- * Return computed matrix.
- * @return {goog.vec.Mat4.Float32} A reference to the object's matrix.
+ * Return computed matrix
+ *
+ * @return {mat4} A reference to the object's matrix
  */
-Lemon.Transformable.prototype.getTransformationMatrix = function()
+Lemon.Transformable.prototype.getTransformationMatrix = function ()
 {
     return this.matrix;
 };
 
 /**
- * Return computed normal matrix.
- * @return {goog.vec.Mat4.Float32} A matrix.
+ * Return computed normal matrix
+ *
+ * @return {mat4} A matrix
  */
-Lemon.Transformable.prototype.getNormalMatrix = function()
+Lemon.Transformable.prototype.getNormalMatrix = function ()
 {
     return this.normalMatrix;
 };
 
 /**
- * Return the origin.
- * @return {goog.vec.Vec3.Float32} A vector with the value for each axis.
+ * Return the origin
+ *
+ * @return {vec3} A vector with the value for each axis
  */
-Lemon.Transformable.prototype.getOrigin = function() 
+Lemon.Transformable.prototype.getOrigin = function () 
 {
     return this.origin;
 };
 
 /**
- * Return relative position.
- * @return {goog.vec.Vec3.Float32} A vector with the value for each axis.
+ * Return relative position
+ *
+ * @return {vec3} A vector with the value for each axis
  */
-Lemon.Transformable.prototype.getPosition = function() 
+Lemon.Transformable.prototype.getPosition = function () 
 {
     return this.position;
 };
 
 /**
- * Return the rotation in degrees.
- * @return {Array.<number>} A vector with the value for each axis in degrees.
- * @todo Implement this function.
+ * Return the rotation in degrees
+ *
+ * @return {Array.<number>} A vector with the value for each axis in degrees
+ * @todo Implement this function
  */
-Lemon.Transformable.prototype.getRotation = function() 
+Lemon.Transformable.prototype.getRotation = function () 
 {
     throw '\'getRotation\' is not implemented for now …';
 };
 
 /**
- * Return the scale.
- * @return {goog.vec.Vec3.Float32} A vector with the value for each axis.
+ * Return the scale
+ *
+ * @return {vec3} A vector with the value for each axis
  */
-Lemon.Transformable.prototype.getScale = function() 
+Lemon.Transformable.prototype.getScale = function () 
 {
     return this.scale;
 };
