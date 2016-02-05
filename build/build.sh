@@ -7,6 +7,7 @@ java -jar ../libs/closure-compiler.jar \
     --only_closure_dependencies\
     --summary_detail_level 3 \
     --process_closure_primitives true \
+    --externs=../libs/gl-matrix-extern.js \
     --closure_entry_point="Lemon.Sprite"\
     --closure_entry_point="Lemon.Mesh"\
     --closure_entry_point="Lemon.Scene"\
