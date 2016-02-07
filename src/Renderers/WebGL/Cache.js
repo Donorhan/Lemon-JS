@@ -1,95 +1,111 @@
-goog.provide('Lemon.WebGL.Cache');
-goog.require('Lemon.Light');
+import {Color} from '../../Color.js';
 
 /**
- * Cache for WebGL API.
- * @constructor.
+ * Cache for WebGL API
+ *
  * @author Donovan ORHAN <dono.orhan@gmail.com>
  */
-Lemon.WebGL.Cache = function() 
+export class Cache
 {
-
     /**
-    * Active vertex format.
-    * @type {Lemon.Color}
-    * @public
-    */
-    this.clearColor = new Lemon.Color(1, 1, 1, 255);
+     * Constructor
+     */
+    constructor()
+    {
+        /**
+         * Active vertex format
+         *
+         * @type {Color}
+         * @public
+         */
+        this.clearColor = new Color(1, 1, 1, 255);
 
-    /**
-    * Active program.
-    * @type {Lemon.Program}
-    * @public
-    */
-    this.program = null;
+        /**
+         * Active program
+         *
+         * @type {Program}
+         * @public
+         */
+        this.program = null;
 
-    /**
-    * Active texture.
-    * @type {Lemon.Private.TextureInterface|Lemon.TextureCube}
-    * @public
-    */
-    this.texture = null;
+        /**
+         * Active texture
+         *
+         * @type {TextureInterface|TextureCube}
+         * @public
+         */
+        this.texture = null;
 
-    /**
-    * Active vertex format.
-    * @type {Lemon.VertexFormat}
-    * @public
-    */
-    this.vertexFormat = null;
+        /**
+         * Active vertex format
+         *
+         * @type {VertexFormat}
+         * @public
+         */
+        this.vertexFormat = null;
 
-    /**
-    * Array with lights to send to the programs.
-    * @type {Array.<Lemon.Light>}
-    * @public
-    */
-    this.lights = [];
+        /**
+         * Array with lights to send to the programs
+         *
+         * @type {Array.<Light>}
+         * @public
+         */
+        this.lights = [];
 
-    /**
-    * Lights positions.
-    * @type {Array.<number>}
-    * @public
-    */
-    this.lightsAmbient = [];
+        /**
+         * Lights positions
+         *
+         * @type {Array.<number>}
+         * @public
+         */
+        this.lightsAmbient = [];
 
-    /**
-    * Lights positions.
-    * @type {Array.<number>}
-    * @public
-    */
-    this.lightsDiffuse = [];
+        /**
+         * Lights positions
+         *
+         * @type {Array.<number>}
+         * @public
+         */
+        this.lightsDiffuse = [];
 
-    /**
-    * Lights data: constant, linear and quadratic data.
-    * @type {Array.<number>}
-    * @public
-    */
-    this.lightsData = [];
+        /**
+         * Lights data: constant, linear and quadratic data
+         *
+         * @type {Array.<number>}
+         * @public
+         */
+        this.lightsData = [];
 
-    /**
-    * Lights positions.
-    * @type {Array.<number>}
-    * @public
-    */
-    this.lightsDirection = [];
+        /**
+         * Lights directions
+         *
+         * @type {Array.<number>}
+         * @public
+         */
+        this.lightsDirection = [];
 
-    /**
-    * Lights positions.
-    * @type {Array.<number>}
-    * @public
-    */
-    this.lightsPosition = [];
+        /**
+         * Lights positions
+         *
+         * @type {Array.<number>}
+         * @public
+         */
+        this.lightsPosition = [];
 
-    /**
-    * Lights positions.
-    * @type {Array.<number>}
-    * @public
-    */
-    this.lightsSpecular = [];
+        /**
+         * Lights positions
+         *
+         * @type {Array.<number>}
+         * @public
+         */
+        this.lightsSpecular = [];
 
-    /**
-    * Lights type.
-    * @type {Array.<number>}
-    * @public
-    */
-    this.lightsType = [];
-};
+        /**
+         * Lights type
+         *
+         * @type {Array.<number>}
+         * @public
+         */
+        this.lightsType = [];
+    }
+}

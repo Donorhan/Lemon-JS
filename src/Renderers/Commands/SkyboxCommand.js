@@ -1,124 +1,147 @@
-goog.provide('Lemon.SkyboxCommand');
-goog.require('Lemon.Geometry');
-goog.require('Lemon.Program');
-goog.require('Lemon.RenderCommand');
-goog.require('Lemon.Type');
+import {DepthFunction, DrawingMode} from '../../StateBlock.js';
+import {Geometry} from '../../Geometry.js';
+import {Program} from '../../Program.js';
+import {RenderCommand} from './RenderCommand.js';
+import {TextureCube} from '../../Textures/TextureCube.js';
+import {Type} from '../../Types.js';
+let glMatrix = require('gl-matrix');
 
 /**
- * Draw Skyboxes.
- * @constructor
- * @extends {Lemon.RenderCommand}
- * @param {Lemon.Skybox} skybox A Skybox instance.
+ * Draw Skyboxes
+ *
+ * @extends {RenderCommand}
  */
-Lemon.SkyboxCommand = function( skybox )
+export class SkyboxCommand extends RenderCommand
 {
-    Lemon.RenderCommand.call(this);
+    /**
+     * Constructor
+     *
+     * @param {Skybox} skybox A Skybox instance
+     */
+    constructor(skybox)
+    {
+        super();
+
+        /**
+         * The Skybox instance to draw
+         *
+         * @type {Skybox}
+         * @private
+         */
+        this.skybox = skybox;
+    }
 
     /**
-    * The Skybox instance to draw.
-    * @type {Lemon.Skybox}
-    * @private
-    */
-    this.skybox = skybox;
-};
-goog.inherits(Lemon.SkyboxCommand, Lemon.RenderCommand);
-
-/**
-* Default geometry for skybox rendering.
-* @type {Lemon.Geometry}
-* @private
-*/
-Lemon.SkyboxCommand.sharedGeometry = Lemon.Geometry.createCube(0.5, 0.5, 0.5);
-
-/**
-* Default program for skybox rendering.
-* @type {Lemon.Program}
-* @private
-*/
-Lemon.SkyboxCommand.sharedProgram = new Lemon.Program();
-
-/**
- * Execute the command.
- * @param {Lemon.RenderAPI} renderAPI RenderAPI instance used to process the commands.
- */
-Lemon.SkyboxCommand.prototype.execute = function( renderAPI ) 
-{
-    var texture = this.skybox.getTexture();
-    if( !texture || !texture.isReady() )
-        return;
-
-    // Use custom or default program.
-    var program = this.skybox.getCustomProgram();
-    if( !program )
+     * Execute the command
+     *
+     * @param {RenderAPI} renderAPI RenderAPI instance used to process the commands
+     */
+    execute(renderAPI) 
     {
-        if( Lemon.SkyboxCommand.isDefaultProgramLoaded() )
-            program = Lemon.SkyboxCommand.sharedProgram;
-        else
+        let texture = this.skybox.getTexture();
+        if (!texture || !texture.isReady())
             return;
+
+        // Use custom or default program.
+        let program = this.skybox.getCustomProgram();
+        if (!program)
+        {
+            if (SkyboxCommand.isDefaultProgramLoaded())
+                program = SkyboxCommand.sharedProgram;
+            else
+                return;
+        }
+
+        // Program
+        let programCode = renderAPI.setProgram(program);
+        if (programCode == -1)
+            return;
+
+        // Must send/update shared uniforms
+        if (programCode == 1)
+        {
+            renderAPI.setUniform(program, 'projection', Type.Matrix, renderAPI.getActiveCamera().getProjectionMatrix());
+
+            // Tip: Remove last row and col from the matrix to get an infinite Skybox
+            let viewMatrix = renderAPI.getActiveCamera().getViewMatrix();
+            let m = glMatrix.mat3.fromMat4([], viewMatrix);
+
+            function toMat4(mat)
+            {
+                let result = glMatrix.mat4.create();
+                result[15] = 1; result[14] = 0; result[13] = 0; result[12] = 0;
+                result[11] = 0; result[10] = mat[8]; result[9] = mat[7]; result[8] = mat[6];
+                result[7] = 0; result[6] = mat[5]; result[5] = mat[4]; result[4] = mat[3];
+                result[3] = 0; result[2] = mat[2]; result[1] = mat[1]; result[0] = mat[0];
+
+                return result;
+            }
+
+            renderAPI.setUniform(program, 'view', Type.Matrix, toMat4(m));
+        }
+
+        // Send uniforms
+        renderAPI.setUniform(program, 'uModel', Type.Matrix, this.skybox.getTransformationMatrix());
+
+        // States and apparence
+        renderAPI.setDepthState(false, false, DepthFunction.Less);
+        renderAPI.bindTextureCube(0, texture);
+
+        // Bind geometry
+        renderAPI.setGeometry(SkyboxCommand.sharedGeometry);
+
+        // Draw object
+        renderAPI.drawIndexedPrimitives(DrawingMode.Triangles, 0, SkyboxCommand.sharedGeometry.getIndexCount());
     }
 
-    // Program.
-    var programCode = renderAPI.setProgram(program);
-    if( programCode == -1 )
-        return;
-
-    // Must send/update shared uniforms.
-    if( programCode == 1 )
+    /**
+     * Check if the default program is ready, otherwise the function load it
+     *
+     * @return {boolean} Return true if the default program is loaded
+     */
+    static isDefaultProgramLoaded() 
     {
-        renderAPI.setUniform(program, 'projection', Lemon.Type.Matrix, renderAPI.getActiveCamera().getProjectionMatrix());
+        if (SkyboxCommand.sharedProgram.isReady())
+            return true;
 
-        // Tip: Remove last row and col from the matrix to get a realistic skybox.
-        var viewMatrix = goog.vec.Mat4.createFloat32FromArray(renderAPI.getActiveCamera().getViewMatrix());        
-        goog.vec.Mat4.setRowValues(viewMatrix, 3, 0, 0, 0, 1);
-        goog.vec.Mat4.setColumnValues(viewMatrix, 3, 0, 0, 0, 1);
-        renderAPI.setUniform(program, 'view', Lemon.Type.Matrix, viewMatrix);
-    }
-
-    // Send uniforms.
-    renderAPI.setUniform(program, 'uModel', Lemon.Type.Matrix, this.skybox.getTransformationMatrix());
-
-    // States and apparence.
-    renderAPI.setDepthState(false, false, Lemon.DepthFunction.Less);
-    renderAPI.bindTextureCube(0, texture);
-
-    // Bind geometry.
-    renderAPI.setGeometry(Lemon.SkyboxCommand.sharedGeometry);
-
-    // Draw object.
-    renderAPI.drawIndexedPrimitives(Lemon.DrawingMode.Triangles, 0, Lemon.SkyboxCommand.sharedGeometry.getIndexCount()); 
-};
-
-/**
- * Check if the default program is ready, otherwise the function load it.
- * @return {boolean} Return true if the default program is loaded.
- */
-Lemon.SkyboxCommand.isDefaultProgramLoaded = function() 
-{
-    // Everything is ok?
-    if( Lemon.SkyboxCommand.sharedProgram.isReady() )
-        return true;
-
-    var vertexShader =  'uniform mat4 projection;' +
-                        'uniform mat4 view;' +
-                        'uniform mat4 uModel;' +
-                        'attribute vec4 aPosition;' +
-                        'attribute vec4 aColor;' +
-                        'varying vec4 vColor;' +
-                        'varying vec4 vUV;' +
-                        'void main() {' +
-                            'gl_Position = projection * view * aPosition;'+
-                            'vColor      = aColor;'+
-                            'vUV         = aPosition;' +
-                        '}';
-
-    var fragmentShader =    'uniform lowp samplerCube skybox;' +
-                            'varying lowp vec4 vColor;' +
-                            'varying mediump vec4 vUV;' +
-                            'void main() {'+
-                                'gl_FragColor = textureCube(skybox, vUV.xyz) * vColor;' +
+        let vertexShader =  'uniform mat4 projection;' +
+                            'uniform mat4 view;' +
+                            'uniform mat4 uModel;' +
+                            'attribute vec4 aPosition;' +
+                            'attribute vec4 aColor;' +
+                            'varying vec4 vColor;' +
+                            'varying vec4 vUV;' +
+                            'void main() {' +
+                                'gl_Position = projection * view * aPosition;'+
+                                'vColor      = aColor;'+
+                                'vUV         = aPosition;' +
                             '}';
 
-    Lemon.SkyboxCommand.sharedProgram.loadFromData(vertexShader, fragmentShader);
+        let fragmentShader =    'uniform lowp samplerCube skybox;' +
+                                'varying lowp vec4 vColor;' +
+                                'varying mediump vec4 vUV;' +
+                                'void main() {'+
+                                    'gl_FragColor = textureCube(skybox, vUV.xyz) * vColor;' +
+                                '}';
 
-    return false;
-};
+        SkyboxCommand.sharedProgram.loadFromData(vertexShader, fragmentShader);
+
+        return false;
+    }
+}
+
+/**
+ * Default geometry for skybox rendering
+ *
+ * @type {Geometry}
+ * @private
+ */
+SkyboxCommand.sharedGeometry = Geometry.createCube(0.5, 0.5, 0.5);
+
+/**
+ * Default program for skybox rendering
+ *
+ * @type {Program}
+ * @private
+ */
+SkyboxCommand.sharedProgram = new Program();

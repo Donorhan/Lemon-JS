@@ -1,57 +1,66 @@
-goog.provide('Lemon.PointLight');
-goog.require('Lemon.Light');
+import {Light} from './Light.js';
 
 /**
- * A point light.
- * @constructor
- * @extends {Lemon.Light}
+ * A point light
+ *
+ * @extends {Light}
  * @author Donovan ORHAN <dono.orhan@gmail.com>
  */
-Lemon.PointLight = function()
+export class PointLight extends Light
 {
-    Lemon.Light.call(this);
+    /**
+     * Constructor
+     */
+    constructor()
+    {
+        super();
+
+        /**
+         * Constant value
+         *
+         * @type {number}
+         * @private
+         */
+        this.constant = 1.0;
+
+        /**
+         * Lieanr value
+         *
+         * @type {number}
+         * @private
+         */
+        this.linear = 0.09;
+
+        /**
+         * Quadratic value
+         *
+         * @type {number}
+         * @private
+         */
+        this.quadratic = 0.032;
+    }
 
     /**
-    * Constant.
-    * @type {number}
-    * @private
-    */
-    this.constant = 1.0;
+     * Set point light's values
+     *
+     * @param {number} constant The constant value
+     * @param {number} linear The linear value
+     * @param {number} quadratic The quadratic value
+     */
+    setValues(constant, linear, quadratic) 
+    {
+        this.constant   = constant;
+        this.linear     = linear;
+        this.quadratic  = quadratic;
+    }
 
     /**
-    * Constant.
-    * @type {number}
-    * @private
-    */
-    this.linear = 0.09;
-
-    /**
-    * Constant.
-    * @type {number}
-    * @private
-    */
-    this.quadratic = 0.032;
-};
-goog.inherits(Lemon.PointLight, Lemon.Light);
-
-/**
- * Set point light's values.
- * @param {number} constant The constant value.
- * @param {number} linear The linear value.
- * @param {number} quadratic The quadratic value.
- */
-Lemon.PointLight.prototype.setValues = function( constant, linear, quadratic ) 
-{
-    this.constant   = constant;
-    this.linear     = linear;
-    this.quadratic  = quadratic;
-};
-
-/**
- * Get values.
- * @return {Array.<number>} An array with constant, linear and quadratic values.
- */
-Lemon.PointLight.prototype.getValues = function() 
-{
-    return [this.constant, this.linear, this.quadratic];
-};
+     * Get values
+     *
+     * @return {Array.<number>} An array with constant, linear and quadratic values
+     */
+    getValues() 
+    {
+        return [this.constant, this.linear, this.quadratic];
+    }
+}

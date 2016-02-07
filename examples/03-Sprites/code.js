@@ -13,10 +13,9 @@ function init()
     // Create a scene where you can add sprites, lights, objects, ….
     scene = new Lemon.Scene();
 
-    // Our first model!
+    // Sprites
     {
-        var texture = new Lemon.Texture();
-        texture.loadFromFile('../assets/images/box.jpg');
+        var texture = new Lemon.Texture('../assets/images/box.jpg');
 
         var angle = Math.PI / 3.0;
         var radius = 2;
@@ -41,7 +40,6 @@ function loop( deltatime )
     // Update logic.
     rotation += 0.001 * deltatime;
     camera.move(Math.cos(rotation) * 4, 4, 6);
-
 
     // Ask sprite to look at camera.
     var viewMatrix = camera.getViewMatrix();

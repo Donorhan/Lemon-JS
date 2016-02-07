@@ -1,118 +1,138 @@
-goog.provide('Lemon.Texture');
-goog.require('Lemon.Image');
-goog.require('Lemon.Private.TextureInterface');
+import {TextureInterface} from './TextureInterface.js';
+import {Img as Image} from '../Image.js';
 
 /**
- * A texture.
- * @constructor
- * @extends {Lemon.Private.TextureInterface}
+ * A texture
+ *
+ * @extends {TextureInterface}
  * @author Donovan ORHAN <dono.orhan@gmail.com>
  */
-Lemon.Texture = function() 
+export class Texture extends TextureInterface
 {
-    Lemon.Private.TextureInterface.call(this);
+    /**
+     * Constructor
+     *
+     * @param {string} path Path to the texture file
+     */
+    constructor(path = '')
+    {
+        super()
+
+        /**
+         * Image instance
+         *
+         * @type {Image}
+         * @private
+         */
+        this.image = null;
+
+        /**
+         * Repeat the texture
+         *
+         * @type {boolean}
+         * @private
+         */
+        this.repeat = true;
+
+        /**
+         * Smooth the texture
+         *
+         * @type {boolean}
+         * @private
+         */
+        this.smooth = true;
+
+        if (path.length)
+            this.loadFromFile(path);
+    }
 
     /**
-    * Image instance.
-    * @type {Lemon.Image}
-    * @private
-    */
-    this.image = null;
+     * Load texture from a file
+     *
+     * @param {string} path Path to the texture file
+     */
+    loadFromFile(path)
+    {
+        this.image = new Image();
+        this.image.loadFromFile(path);
+    }
 
     /**
-    * Repeat the texture.
-    * @type {boolean}
-    * @private
-    */
-    this.repeat = true;
+     * Load texture from an Image
+     *
+     * @param {Image} image An Image instance
+     */
+    loadFromImage(image)
+    {
+        this.image = image;
+    }
 
     /**
-    * Smooth the texture.
-    * @type {boolean}
-    * @private
-    */
-    this.smooth = true;
-};
-goog.inherits(Lemon.Texture, Lemon.Private.TextureInterface);
+     * Repeat the texture
+     *
+     * @param {boolean} value True to repeat, otherwise false
+     */
+    setRepeated(value)
+    {
+        this.repeat = value;
+    }
 
-/**
- * Load texture from a file.
- * @param {string} path Path to the texture file.
- */
-Lemon.Texture.prototype.loadFromFile = function( path ) 
-{
-    this.image = new Lemon.Image();
-    this.image.loadFromFile(path);
-};
+    /**
+     * Smooth the texture
+     *
+     * @param {boolean} value True to smooth, otherwise false
+     */
+    setSmooth(value)
+    {
+        this.smooth = value;
+    }
 
-/**
- * Load texture from an Image.
- * @param {Lemon.Image} image An Image instance.
- */
-Lemon.Texture.prototype.loadFromImage = function( image ) 
-{
-    this.image = image;
-};
+    /**
+     * Get image instance
+     *
+     * @return {?Image} An Image instance
+     */
+    getImage()
+    {
+        return this.image;
+    }
 
-/**
- * Repeat the texture.
- * @param {boolean} value True to repeat, otherwise false.
- */
-Lemon.Texture.prototype.setRepeated = function( value ) 
-{
-    this.repeat = value;
-};
+    /**
+     * Indicate if texture is ready
+     *
+     * @return {boolean} True if the texture is ready to be use
+     */
+    isReady()
+    {
+        if (!this.image)
+            return false;
 
-/**
- * Smooth the texture.
- * @param {boolean} value True to smooth, otherwise false.
- */
-Lemon.Texture.prototype.setSmooth = function( value ) 
-{
-    this.smooth = value;
-};
+        let textureSize = this.image.getSize();
+        if (textureSize[0] === 0 || textureSize[1] === 0)
+            return false;
 
-/**
- * Get image instance.
- * @return {?Lemon.Image} An Image instance.
- */
-Lemon.Texture.prototype.getImage = function() 
-{
-    return this.image;
-};
+        return true;
+    }
 
-/**
- * Indicate if texture is ready.
- * @return {boolean} True if the texture is ready to be use.
- */
-Lemon.Texture.prototype.isReady = function() 
-{
-    if( !this.image )
-        return false;
+    /**
+     * Indicate if the texture is repeated
+     *
+     * @return {boolean} True if the texture is repeated
+     * @override
+     */
+    isRepeated()
+    {
+        return this.repeat;
+    }
 
-    var textureSize = this.image.getSize();
-    if( textureSize[0] === 0 || textureSize[1] === 0 )
-        return false;
-
-    return true;
-};
-
-/**
- * Indicate if the texture is repeated.
- * @return {boolean} True if the texture is repeated.
- * @override
- */
-Lemon.Texture.prototype.isRepeated = function() 
-{ 
-    return this.repeat;
-};
-
-/**
- * Indicate if the texture is smoothed.
- * @return {boolean} True if the texture is smoothed.
- * @override
- */
-Lemon.Texture.prototype.isSmoothed = function() 
-{ 
-    return this.smooth; 
-};
+    /**
+     * Indicate if the texture is smoothed
+     *
+     * @return {boolean} True if the texture is smoothed
+     * @override
+     */
+    isSmoothed()
+    {
+        return this.smooth;
+    }
+}

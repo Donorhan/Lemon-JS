@@ -1,176 +1,425 @@
-goog.provide('Lemon.DepthFunction');
-goog.provide('Lemon.FaceCulling');
-goog.provide('Lemon.StateBlock');
-goog.provide('Lemon.StencilFunction');
-goog.provide('Lemon.StencilOperation');
-goog.require('Lemon.BlendMode');
+import {BlendMode} from './BlendMode.js';
 
 /**
- * A rendering state.
- * @constructor
+ * A rendering state
+ *
  * @author Donovan ORHAN <dono.orhan@gmail.com>
  */
-Lemon.StateBlock = function() 
+export class StateBlock
 {
     /**
-    * Blend mode.
-    * @type {Lemon.BlendMode}
-    * @public
-    */
-    this.blendMode = new Lemon.BlendMode();
+     * Constructor
+     */
+    constructor()
+    {
+        /**
+         * Blend mode
+         *
+         * @type {BlendMode}
+         * @public
+         */
+        this.blendMode = new BlendMode();
+
+        /**
+         * Depth function to use
+         *
+         * @type {DepthFunction}
+         * @default {DepthFunction.Less}
+         * @public
+         */
+        this.depthFunction = DepthFunction.Less;
+
+        /**
+         * Indicate if we want to write in the depth buffer
+         *
+         * @type {boolean}
+         * @default {true}
+         * @public
+         */
+        this.depthWrite = true;
+
+        /**
+         * Indicate if we want to test pixels with values in the depth buffer
+         *
+         * @type {boolean}
+         * @default {true}
+         * @public
+         */
+        this.depthTest = true;
+
+        /**
+         * Drawing mode
+         *
+         * @type {DrawingMode}
+         * @default {DrawingMode.Triangles}
+         * @public
+         */
+        this.drawingMode = DrawingMode.Triangles;
+
+        /**
+         * Face culling
+         *
+         * @type {FaceCulling}
+         * @default {FaceCulling.Back}
+         * @public
+         */
+        this.faceCulling = FaceCulling.Back;
+
+        /**
+         * Stencil function to use
+         *
+         * @type {StencilFunction}
+         * @default {StencilFunction.Less}
+         * @public
+         */
+        this.stencilFunction = StencilFunction.Less;
+
+        /**
+         * Stencil reference value
+         *
+         * @type {number}
+         * @default {0}
+         * @public
+         */
+        this.stencilReference = 0;
+
+        /**
+         * Stencil mask value
+         *
+         * @type {number}
+         * @default {255}
+         * @public
+         */
+        this.stencilMask = 255;
+
+        /**
+         * Indicate if stencil test is active
+         *
+         * @type {boolean}
+         * @default {false}
+         * @public
+         */
+        this.stencilTest = false;
+
+        /**
+         * Value to write in the stencil buffer when stencil is active
+         *
+         * @type {number}
+         * @default {0xFF}
+         * @public
+         */
+        this.stencilWrite = 0xFF;
+
+        /**
+         * Operation to execute when stencil test failed
+         *
+         * @type {StencilOperation}
+         * @default {StencilOperation.Keep}
+         * @public
+         */
+        this.stencilTestFail = StencilOperation.Keep;
+
+        /**
+         * Operation to execute when stencil test failed using depth buffer
+         *
+         * @type {StencilOperation}
+         * @default {StencilOperation.Keep}
+         * @public
+         */
+        this.stencilDepthTestFail = StencilOperation.Keep;
+
+        /**
+         * Operation to execute when stencil test is a success
+         *
+         * @type {StencilOperation}
+         * @default {StencilOperation.Keep}
+         * @public
+         */
+        this.stencilSuccess = StencilOperation.Keep;
+    }
 
     /**
-    * Depth function to use.
-    * @type {Lemon.DepthFunction}
-    * @default {Lemon.DepthFunction.Less}
-    * @public
-    */
-    this.depthFunction = Lemon.DepthFunction.Less;
-
-    /**
-    * Indicate if we want to write in the depth buffer.
-    * @type {boolean}
-    * @default {true}
-    * @public
-    */
-    this.depthWrite = true;
-
-    /**
-    * Indicate if we want to test pixels with values in the depth buffer.
-    * @type {boolean}
-    * @default {true}
-    * @public
-    */
-    this.depthTest = true;
-
-    /**
-    * Drawing mode.
-    * @type {Lemon.DrawingMode}
-    * @default {Lemon.DrawingMode.Triangles}
-    * @public
-    */
-    this.drawingMode = Lemon.DrawingMode.Triangles;
-
-    /**
-    * Face culling.
-    * @type {Lemon.FaceCulling}
-    * @default {Lemon.FaceCulling.Back}
-    * @public
-    */
-    this.faceCulling = Lemon.FaceCulling.Back;
-
-    /**
-    * Stencil function to use.
-    * @type {Lemon.StencilFunction}
-    * @default {Lemon.StencilFunction.Less}
-    * @public
-    */
-    this.stencilFunction = Lemon.StencilFunction.Less;
-
-    /**
-    * Stencil reference value. 
-    * @type {number}
-    * @default {0}
-    * @public
-    */
-    this.stencilReference = 0;
-
-    /**
-    * Stencil mask value. 
-    * @type {number}
-    * @default {255}
-    * @public
-    */
-    this.stencilMask = 255;
-
-    /**
-    * Indicate if stencil test is actif.
-    * @type {boolean}
-    * @default {false}
-    * @public
-    */
-    this.stencilTest = false;
-
-    /**
-    * Value to write in the stencil buffer when stencil is actif. 
-    * @type {number}
-    * @default {0xFF}
-    * @public
-    */
-    this.stencilWrite = 0xFF;
-
-    /**
-    * Operation to execute when stencil test failed. 
-    * @type {Lemon.StencilOperation}
-    * @default {Lemon.StencilOperation.Keep}
-    * @public
-    */
-    this.stencilTestFail = Lemon.StencilOperation.Keep;
-
-    /**
-    * Operation to execute when stencil test failed using depth buffer. 
-    * @type {Lemon.StencilOperation}
-    * @default {Lemon.StencilOperation.Keep}
-    * @public
-    */
-    this.stencilDepthTestFail = Lemon.StencilOperation.Keep;
-
-    /**
-    * Operation to execute when stencil test is a success. 
-    * @type {Lemon.StencilOperation}
-    * @default {Lemon.StencilOperation.Keep}
-    * @public
-    */
-    this.stencilSuccess = Lemon.StencilOperation.Keep;
-};
+     * Check if the given StateBlock instance is equal to this one
+     *
+     * @param {StateBlock} state A StateBlock instance
+     * @return {boolean} True if the two states are equals, otherwise false
+     */
+    isEqual(state)
+    {
+        return (this.blendMode.isEqual(state.blendMode)                     &&
+                this.depthFunction          == state.depthFunction          &&
+                this.depthWrite             == state.depthWrite             &&
+                this.depthTest              == state.depthTest              &&
+                this.stencilFunction        == state.stencilFunction        &&
+                this.stencilReference       == state.stencilReference       &&
+                this.stencilMask            == state.stencilMask            &&
+                this.stencilTest            == state.stencilTest            &&
+                this.stencilWrite           == state.stencilWrite           &&
+                this.stencilTestFail        == state.stencilTestFail        &&
+                this.stencilDepthTestFail   == state.stencilDepthTestFail   &&
+                this.stencilSuccess         == state.stencilSuccess );
+    }
+}
 
 /**
- * Depth functions.
- * @enum {number}
+ * Depth function to use
  */
-Lemon.DepthFunction = { Never: 0, Less: 1, Equal: 2, LessEqual: 3, Greater: 4, NotEqual: 5, GreaterEqual: 6, Always: 7 };
+export class DepthFunction {}
 
 /**
-* Drawing modes.
-* @enum {number}
+ * Never
+ *
+ * @type {number}
+ */
+DepthFunction.Never = 0;
+
+/**
+ * Less
+ *
+ * @type {number}
+ */
+DepthFunction.Less = 1;
+
+/**
+ * Equal
+ *
+ * @type {number}
+ */
+DepthFunction.Equal = 2;
+
+/**
+ * LessEqual
+ *
+ * @type {number}
+ */
+DepthFunction.LessEqual = 3;
+
+/**
+ * Greater
+ *
+ * @type {number}
+ */
+DepthFunction.Greater = 4;
+
+/**
+ * NotEqual
+ *
+ * @type {number}
+ */
+DepthFunction.NotEqual = 5;
+
+/**
+ * GreaterEqual
+ *
+ * @type {number}
+ */
+DepthFunction.GreaterEqual = 6;
+
+/**
+ * Always
+ *
+ * @type {number}
+ */
+DepthFunction.Always = 7;
+
+/**
+* Drawing modes
 */
-Lemon.DrawingMode = { Points: 0, Lines: 1, LinesStrip: 2, LinesLoop: 3, Triangles: 4, TrianglesStrip: 5, TrianglesFan: 6 };
+export class DrawingMode {}
 
 /**
- * Blend factors.
- * @enum {number}
+ * Draw as points
+ *
+ * @type {number}
  */
-Lemon.FaceCulling = { Back: 0, Front: 1, None: 2 };
+DrawingMode.Points = 0;
 
 /**
- * Stencil functions.
- * @enum {number}
+ * Draw as lines
+ *
+ * @type {number}
  */
-Lemon.StencilFunction = { Never: 0, Less: 1, Equal: 2, LessEqual: 3, Greater: 4, NotEqual: 5, GreaterEqual: 6, Always: 7 };
+DrawingMode.Lines = 1;
 
 /**
- * Stencil operations.
- * @enum {number}
+ * Draw as lines strip
+ *
+ * @type {number}
  */
-Lemon.StencilOperation = { Keep: 0, Zero: 1, Replace: 2, Increment: 3, Decrement: 4, Invert: 5, IncrementWrap: 6, DecrementWrap: 7 };
+DrawingMode.LinesStrip = 2;
 
 /**
- * Check if the given StateBlock instance is equal to this one.
- * @param {Lemon.StateBlock} state A StateBlock instance.
- * @return {boolean} True if the two states are equals, otherwise false.
+ * Draw as lines loop
+ *
+ * @type {number}
  */
-Lemon.StateBlock.prototype.isEqual = function( state ) 
-{
-    return (this.blendMode.isEqual(state.blendMode)                     &&
-            this.depthFunction          == state.depthFunction          && 
-            this.depthWrite             == state.depthWrite             &&
-            this.depthTest              == state.depthTest              &&
-            this.stencilFunction        == state.stencilFunction        &&
-            this.stencilReference       == state.stencilReference       &&
-            this.stencilMask            == state.stencilMask            &&
-            this.stencilTest            == state.stencilTest            &&
-            this.stencilWrite           == state.stencilWrite           &&
-            this.stencilTestFail        == state.stencilTestFail        &&
-            this.stencilDepthTestFail   == state.stencilDepthTestFail   &&
-            this.stencilSuccess         == state.stencilSuccess );
-};
+DrawingMode.LinesLoop = 3;
+
+/**
+ * Draw as triangles
+ *
+ * @type {number}
+ */
+DrawingMode.Triangles = 4;
+
+/**
+ * Draw as triangles strip
+ *
+ * @type {number}
+ */
+DrawingMode.TrianglesStrip = 5;
+
+/**
+ * Draw as triangles fan
+ *
+ * @type {number}
+ */
+DrawingMode.TrianglesFan = 6;
+
+/**
+ * Face culling
+ */
+export class FaceCulling {}
+
+/**
+ * Don't draw back face
+ *
+ * @type {number}
+ */
+FaceCulling.Back = 0;
+
+/**
+ * Don't draw front face
+ *
+ * @type {number}
+ */
+FaceCulling.Front = 1;
+
+/**
+ * Draw both faces, disable face culling
+ *
+ * @type {number}
+ */
+FaceCulling.None = 2;
+
+/**
+ * Stencil functions
+ */
+export class StencilFunction {}
+
+/**
+ * Never
+ *
+ * @type {number}
+ */
+StencilFunction.Never = 0;
+
+/**
+ * Less
+ *
+ * @type {number}
+ */
+StencilFunction.Less = 1;
+
+/**
+ * Equal
+ *
+ * @type {number}
+ */
+StencilFunction.Equal = 2;
+
+/**
+ * LessEqual
+ *
+ * @type {number}
+ */
+StencilFunction.LessEqual = 3;
+
+/**
+ * Greater
+ *
+ * @type {number}
+ */
+StencilFunction.Greater = 4;
+
+/**
+ * NotEqual
+ *
+ * @type {number}
+ */
+StencilFunction.NotEqual = 5;
+
+/**
+ * GreaterEqual
+ *
+ * @type {number}
+ */
+StencilFunction.GreaterEqual = 6;
+
+/**
+ * Always
+ *
+ * @type {number}
+ */
+StencilFunction.Always = 7;
+
+/**
+ * Stencil operations
+ */
+export class StencilOperation {}
+
+/**
+ * Keep
+ *
+ * @type {number}
+ */
+StencilOperation.Keep = 0;
+
+/**
+ * Zero
+ *
+ * @type {number}
+ */
+StencilOperation.Zero = 1;
+
+/**
+ * Replace
+ *
+ * @type {number}
+ */
+StencilOperation.Replace = 2;
+
+/**
+ * Increment
+ *
+ * @type {number}
+ */
+StencilOperation.Increment = 3;
+
+/**
+ * Decrement
+ *
+ * @type {number}
+ */
+StencilOperation.Decrement = 4;
+
+/**
+ * Invert
+ *
+ * @type {number}
+ */
+StencilOperation.Invert = 5;
+
+/**
+ * IncrementWrap
+ *
+ * @type {number}
+ */
+StencilOperation.IncrementWrap = 6;
+
+/**
+ * DecrementWrap
+ *
+ * @type {number}
+ */
+StencilOperation.DecrementWrap = 7;

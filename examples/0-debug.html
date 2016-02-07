@@ -4,9 +4,7 @@
         <title>Lemon - Debug</title>
         <meta charset="utf-8">
         <link rel="stylesheet" type="text/css" href="./assets/styles/common.css" />
-        <script src="../libs/closure-library/closure/goog/base.js"></script>
-        <script src="../build/deps.js"></script>
-        <script src="../libs/gl-matrix.js"></script>
+        <script src="../build/Lemon.js"></script>
         <link href='http://fonts.googleapis.com/css?family=Oswald:700,400' rel='stylesheet' type='text/css'>
     </head>
     <body>
@@ -21,28 +19,10 @@
 
         <script>
 
-            goog.require('Lemon.Camera');
-            goog.require('Lemon.Color');
-            goog.require('Lemon.PostEffect');
-            goog.require('Lemon.Material');
-            goog.require('Lemon.Model');
-            goog.require('Lemon.Mesh');
-            goog.require('Lemon.PointLight');
-            goog.require('Lemon.Program');
-            goog.require('Lemon.RenderCanvas');
-            goog.require('Lemon.Scene');
-            goog.require('Lemon.Skybox');
-            goog.require('Lemon.Sprite');
-            goog.require('Lemon.Texture');
-            goog.require('Lemon.TextureVideo');
-            goog.require('Lemon.Transformable');
-            goog.require('Lemon.ProgramLibrary');
-
             window.onload = function()
             {
                 // Load texture for tests.
-                var lemonTexture = new Lemon.Texture();
-                lemonTexture.loadFromFile("./assets/images/box.jpg");
+                var lemonTexture = new Lemon.Texture("./assets/images/box.jpg");
 
                 var scene = new Lemon.Scene();
 
@@ -54,6 +34,19 @@
                 light6.setPosition(0, 3, 0);
                 light6.setDirection(0, -1, 0);
                 scene.add(light6);
+
+    var textures = new Lemon.TextureCube([
+        './assets/images/TropicalSkyBox/Up.jpg',
+        './assets/images/TropicalSkyBox/Down.jpg',
+        './assets/images/TropicalSkyBox/Left.jpg',
+        './assets/images/TropicalSkyBox/Right.jpg',
+        './assets/images/TropicalSkyBox/Back.jpg',
+        './assets/images/TropicalSkyBox/Front.jpg'
+    ]);
+
+    var skybox = new Lemon.Skybox();
+    skybox.setTexture(textures);
+                scene.add(skybox);
 
                 // Test program library.
                 Lemon.ProgramLibrary.load("PhongShader", 'default.vert', 'default.frag', ["USE_TEXTURE", "USE_LIGHT"]);
@@ -92,8 +85,7 @@
                 }
 
                 // Test 3D model.
-                var model = new Lemon.Model();
-                model.loadFromFile('./assets/models/lee-perry-smith/model.json');
+                var model = new Lemon.Model('./assets/models/lee-perry-smith/model.json');
                 model.setPosition(0, 2, 0);
                 model.setScale(5, 5, 5);
                 model.setRotation(-90, 0, 0);
@@ -118,6 +110,8 @@
                     // Calculate elapsed time between two frames.
                     diff     = timestamp - previous;
                     previous = timestamp;
+
+                    camera.rotate(0.005, 0);
 
                     // Logic.
                     scene.update(0.0);

@@ -1,92 +1,101 @@
-goog.provide('Lemon.Mesh');
-goog.require('Lemon.Drawable');
-goog.require('Lemon.Geometry');
-goog.require('Lemon.Material');
-goog.require('Lemon.MeshCommand');
-goog.require('Lemon.Program');
+import {Drawable} from './Drawable.js';
+import {MeshCommand} from '../Renderers/Commands/MeshCommand.js';
 
 /**
- * A mesh.
- * @constructor
- * @extends {Lemon.Drawable}
+ * A mesh
+ *
+ * @extends {Drawable}
  * @author Donovan ORHAN <dono.orhan@gmail.com>
  */
-Lemon.Mesh = function()
+export class Mesh extends Drawable
 {
-    Lemon.Drawable.call(this);
+    /**
+     * Constructor
+     */
+    constructor()
+    {
+        super();
+
+        /**
+         * Geometry
+         *
+         * @type {Geometry}
+         * @private
+         */
+        this.geometry = null;
+
+        /**
+         * Material
+         *
+         * @type {Material}
+         * @private
+         */
+        this.material = null;
+
+        /**
+         * Program
+         *
+         * @type {Program}
+         * @private
+         */
+        this.program = null;
+    }
 
     /**
-    * Geometry.
-    * @type {Lemon.Geometry}
-    * @private
-    */
-    this.geometry = null;
+     * Draw the element
+     *
+     * @param {RenderTarget} renderTarget Renderer who called this method
+     */
+    draw(renderTarget)
+    {
+        if (!this.geometry || !this.material || !this.program)
+            return;
+
+        let task            = renderTarget.getActiveTask();
+        let activeTechnique = this.material.getActiveTechnique();
+        let passCount       = this.material.getPassCount(activeTechnique);
+
+        for (let i = 0; i < passCount; i++)
+            task.addCommand(new MeshCommand(this.geometry, this.material.getPass(activeTechnique, i), this.program, this.getTransformationMatrix(), this.getNormalMatrix(), 0, this.geometry.getIndexCount()));
+    };
 
     /**
-    * Material.
-    * @type {Lemon.Material}
-    * @private
-    */
-    this.material = null;
+     * Set geometry
+     *
+     * @param {Geometry} geometry A Geometry instance
+     */
+    setGeometry(geometry)
+    {
+        this.geometry = geometry;
+    }
 
     /**
-    * Program.
-    * @type {Lemon.Program}
-    * @private
-    */
-    this.program = null;
-};
-goog.inherits(Lemon.Mesh, Lemon.Drawable);
+     * Set material
+     *
+     * @param {Material} material A Material instance
+     */
+    setMaterial(material)
+    {
+        this.material = material;
+    };
 
-/**
- * Draw the element.
- * @param {Lemon.RenderTarget} renderTarget Renderer who called this method.
- */
-Lemon.Mesh.prototype.draw = function( renderTarget )
-{
-    if( !this.geometry || !this.material || !this.program )
-        return;
+    /**
+     * Set program
+     *
+     * @param {Program} program A Program instance
+     */
+    setProgram(program)
+    {
+        this.program = program;
+    }
 
-    var task            = renderTarget.getActiveTask();
-    var activeTechnique = this.material.getActiveTechnique();
-    var passCount       = this.material.getPassCount(activeTechnique); 
-
-    for( var i = 0; i < passCount; i++ )
-        task.addCommand(new Lemon.MeshCommand(this.geometry, this.material.getPass(activeTechnique, i), this.program, this.getTransformationMatrix(), this.getNormalMatrix(), 0, this.geometry.getIndexCount()));
-};
-
-/**
- * Set geometry.
- * @param {Lemon.Geometry} geometry A Geometry instance.
- */
-Lemon.Mesh.prototype.setGeometry = function( geometry )
-{
-    this.geometry = geometry;
-};
-
-/**
- * Set material.
- * @param {Lemon.Material} material A Material instance.
- */
-Lemon.Mesh.prototype.setMaterial = function( material )
-{
-    this.material = material;
-};
-
-/**
- * Set program.
- * @param {Lemon.Program} program A Program instance.
- */
-Lemon.Mesh.prototype.setProgram = function( program )
-{
-    this.program = program;
-};
-
-/**
- * Return a reference to the program use by this mesh.
- * @return {Lemon.Program} A Program instance.
- */
-Lemon.Mesh.prototype.getProgram = function() 
-{
-    return this.program;
-};
+    /**
+     * Return a reference to the program use by this mesh
+     *
+     * @return {Program} A Program instance
+     */
+    getProgram()
+    {
+        return this.program;
+    }
+}

@@ -1,418 +1,443 @@
-goog.provide('Lemon.Geometry');
-goog.require('Lemon.Private.ContextResource');
-goog.require('Lemon.VertexFormat');
+import {ContextResource} from './ContextResource.js';
+import {VertexFormat, VertexElement} from './VertexFormat.js';
 
 /**
- * A geometry.
- * @constructor
- * @extends {Lemon.Private.ContextResource}
+ * A geometry
+ *
+ * @extends {ContextResource}
  * @author Donovan ORHAN <dono.orhan@gmail.com>
  */
-Lemon.Geometry = function() 
+export class Geometry extends ContextResource
 {
-    Lemon.Private.ContextResource.call(this);
+    /**
+     * Constructor
+     */
+    constructor()
+    {
+        super();
+
+        /**
+         * Colors
+         *
+         * @type {Float32Array}
+         * @private
+         */
+        this.colors = null;
+
+        /**
+         * Indices
+         *
+         * @type {Uint16Array}
+         * @private
+         */
+        this.indices = null;
+
+        /**
+         * Normals
+         *
+         * @type {Float32Array}
+         * @private
+         */
+        this.normals = null;
+
+        /**
+         * Positions
+         *
+         * @type {Float32Array}
+         * @private
+         */
+        this.positions = null;
+
+        /**
+         * Uvs
+         *
+         * @type {Float32Array}
+         * @private
+         */
+        this.uvs = null;
+
+        /**
+         * Format
+         *
+         * @type {VertexFormat}
+         * @private
+         */
+        this.vertexFormat = null;
+    }
 
     /**
-    * Colors.
-    * @type {Float32Array}
-    * @private
-    */
-    this.colors = null;
+     * Set vertices colors
+     *
+     * @param {Float32Array} colors An array of float values representing colors (r, g, b, a, r, g, b, a, …)
+     */
+    setColors(colors)
+    {
+        this.colors = new Float32Array(colors);
+
+        // Indicate that an attribute of the geometry need an update.
+        if (this.vertexFormat)
+            this.vertexFormat.setStreamAsWaitingUpdate(VertexElement.Usage.Color, true);
+    }
 
     /**
-    * Indices.
-    * @type {Uint16Array}
-    * @private
-    */
-    this.indices = null;
+     * Set indices
+     *
+     * @param {Uint16Array} indices An array of unsigned integer values representing indices order
+     */
+    setIndices(indices)
+    {
+        this.indices = new Uint16Array(indices);
+
+        // Indicate that indices need an update.
+        if (this.vertexFormat)
+            this.vertexFormat.setIndicesAsWaitingUpdate(true);
+    }
 
     /**
-    * Normals.
-    * @type {Float32Array}
-    * @private
-    */
-    this.normals = null;
+     * Set vertices normals
+     *
+     * @param {Float32Array} normals An array of float values representing normals (x, y, z, x, y, z, …)
+     */
+    setNormals(normals)
+    {
+        this.normals = new Float32Array(normals);
+
+        // Indicate that an attribut of the geometry need an update.
+        if (this.vertexFormat)
+            this.vertexFormat.setStreamAsWaitingUpdate(VertexElement.Usage.Normal, true);
+    }
 
     /**
-    * Positions.
-    * @type {Float32Array}
-    * @private
-    */
-    this.positions = null;
+     * Set vertices positions
+     *
+     * @param {Float32Array} positions An array of float values representing positions (x, y, z, x, y, z, …)
+     */
+    setPositions(positions)
+    {
+        this.positions = new Float32Array(positions);
+
+        // Indicate that an attribute of the geometry need an update.
+        if (this.vertexFormat)
+            this.vertexFormat.setStreamAsWaitingUpdate(VertexElement.Usage.Position, true);
+    }
 
     /**
-    * Uvs.
-    * @type {Float32Array}
-    * @private
-    */
-    this.uvs = null;
+     * Set texture coordinates (uvs) for each vertex
+     *
+     * @param {Float32Array} uvs An array of float values representing texture coordinates (u, v, u, v, …)
+     */
+    setTextureUVs(uvs)
+    {
+        this.uvs = new Float32Array(uvs);
+
+        // Indicate that an attribute of the geometry need an update
+        if (this.vertexFormat)
+            this.vertexFormat.setStreamAsWaitingUpdate(VertexElement.Usage.UVS, true);
+    };
 
     /**
-    * Format.
-    * @type {Lemon.VertexFormat}
-    * @private
-    */
-    this.vertexFormat = null;
-};
-goog.inherits(Lemon.Geometry, Lemon.Private.ContextResource);
+     * Set geometry's format
+     *
+     * @param {VertexFormat} vertexFormat A VertexFormat instance
+     */
+    setVertexFormat(vertexFormat)
+    {
+        this.vertexFormat = vertexFormat;
+    }
 
-/**
- * Set vertices colors.
- * @param {Float32Array} colors An array of float values representing colors (r, g, b, a, r, g, b, a, …).
- */
-Lemon.Geometry.prototype.setColors = function( colors ) 
-{
-    this.colors = new Float32Array(colors);
+    /**
+     * Get format
+     *
+     * @return {VertexFormat} A VertexFormat instance
+     */
+    getVertexFormat()
+    {
+        return this.vertexFormat;
+    }
 
-    // Indicate that an attribut of the geometry need an update.
-    if( this.vertexFormat )
-        this.vertexFormat.setStreamAsWaitingUpdate(Lemon.VertexElement.Usage.Color, true);
-};
+    /**
+     * Return index count
+     *
+     * @return {number} Indices array's length
+     */
+    getIndexCount()
+    {
+        return this.indices.length;
+    }
 
-/**
- * Set indices.
- * @param {Uint16Array} indices An array of unsigned integer values representing indices order.
- */
-Lemon.Geometry.prototype.setIndices = function( indices ) 
-{
-    this.indices = new Uint16Array(indices);
+    /**
+     * Return the indices
+     *
+     * @return {Uint16Array} Indices array
+     */
+    getIndices()
+    {
+        return this.indices;
+    }
 
-    // Indicate that indices need an update.
-    if( this.vertexFormat )
-        this.vertexFormat.setIndicesAsWaitingUpdate(true);
-};
+    /**
+     * Return an array with the color for each vertex
+     *
+     * @return {Float32Array} An array with the format [r, g, b, a, r, g, b, a, …]
+     */
+   getVerticesColors()
+    {
+        return this.colors;
+    }
 
-/**
- * Set vertices normals.
- * @param {Float32Array} normals An array of float values representing normals (x, y, z, x, y, z, …).
- */
-Lemon.Geometry.prototype.setNormals = function( normals ) 
-{
-    this.normals = new Float32Array(normals);
+    /**
+     * Return an array with the position for each vertex
+     *
+     * @return {Float32Array} An array with the format [x, y, z, x, y, z, …]
+     */
+    getVerticesPositions()
+    {
+        return this.positions;
+    }
 
-    // Indicate that an attribut of the geometry need an update.
-    if( this.vertexFormat )
-        this.vertexFormat.setStreamAsWaitingUpdate(Lemon.VertexElement.Usage.Normal, true);
-};
+    /**
+     * Return an array with the normal for each vertex
+     *
+     * @return {Float32Array} An array with the format [x, y, z, x, y, z, …]
+     */
+    getVerticesNormals()
+    {
+        return this.normals;
+    }
 
-/**
- * Set vertices positions.
- * @param {Float32Array} positions An array of float values representing positions (x, y, z, x, y, z, …).
- */
-Lemon.Geometry.prototype.setPositions = function( positions ) 
-{
-    this.positions = new Float32Array(positions);
+    /**
+     * Return an array with the texture coordinates for each vertex
+     *
+     * @return {Float32Array} An array with the format [u, v, u, v, …]
+     */
+    getVerticesUVs()
+    {
+        return this.uvs;
+    }
 
-    // Indicate that an attribut of the geometry need an update.
-    if( this.vertexFormat )
-        this.vertexFormat.setStreamAsWaitingUpdate(Lemon.VertexElement.Usage.Position, true);
-};
+    /**
+     * Create a cube
+     *
+     * @param {number} width Width
+     * @param {number} height Height
+     * @param {number} depth Depth
+     * @return {Geometry} A Geometry instance
+     */
+    static createCube(width, height, depth)
+    {
+        let geometry = new Geometry();
 
-/**
- * Set texture coordinates (uvs) for each vertex.
- * @param {Float32Array} uvs An array of float values representing texture coordinates (u, v, u, v, …).
- */
-Lemon.Geometry.prototype.setTextureUVs = function( uvs ) 
-{
-    this.uvs = new Float32Array(uvs);
+        // Set format
+        let format = new VertexFormat();
+        format.add(new VertexElement(VertexElement.Usage.Position, 0, VertexElement.Type.Float, 3, false));
+        format.add(new VertexElement(VertexElement.Usage.Color, 2, VertexElement.Type.Float, 4, false));
+        format.add(new VertexElement(VertexElement.Usage.UVS, 1, VertexElement.Type.Float, 2, false));
+        format.add(new VertexElement(VertexElement.Usage.Normal, 3, VertexElement.Type.Float, 3, false));
+        geometry.setVertexFormat(format);
 
-    // Indicate that an attribut of the geometry need an update.
-    if( this.vertexFormat )
-        this.vertexFormat.setStreamAsWaitingUpdate(Lemon.VertexElement.Usage.UVS, true);
-};
+        // Set positions
+        let positions = new Float32Array([
+            -width, -height,  depth,
+            width, -height,  depth,
+            width,  height,  depth,
+            -width,  height,  depth,
 
-/**
- * Set geometry's format.
- * @param {Lemon.VertexFormat} vertexFormat A VertexFormat instance.
- */
-Lemon.Geometry.prototype.setVertexFormat = function( vertexFormat ) 
-{
-    this.vertexFormat = vertexFormat;
-};
+            -width, -height, -depth,
+            -width,  height, -depth,
+            width,  height, -depth,
+            width, -height, -depth,
 
-/**
- * Get format.
- * @return {Lemon.VertexFormat} A VertexFormat instance.
- */
-Lemon.Geometry.prototype.getVertexFormat = function() 
-{
-    return this.vertexFormat;
-};
+            -width,  height, -depth,
+            -width,  height,  depth,
+            width,  height,  depth,
+            width,  height, -depth,
 
-/**
- * Return index count.
- * @return {number} Indices array's length.
- */
-Lemon.Geometry.prototype.getIndexCount = function() 
-{
-    return this.indices.length;
-};
+            -width, -height, -depth,
+            width, -height, -depth,
+            width, -height,  depth,
+            -width, -height,  depth,
 
-/**
- * Return the indices.
- * @return {Uint16Array} Indices array.
- */
-Lemon.Geometry.prototype.getIndices = function() 
-{
-    return this.indices;
-};
+            width, -height, -depth,
+            width,  height, -depth,
+            width,  height,  depth,
+            width, -height,  depth,
 
-/**
- * Return an array with the color for each vertex.
- * @return {Float32Array} An array with the format [r, g, b, a, r, g, b, a, …].
- */
-Lemon.Geometry.prototype.getVerticesColors = function() 
-{
-    return this.colors;
-};
+            -width, -height, -depth,
+            -width, -height,  depth,
+            -width,  height,  depth,
+            -width,  height, -depth
+        ]);
+        geometry.setPositions(positions);
 
-/**
- * Return an array with the position for each vertex.
- * @return {Float32Array} An array with the format [x, y, z, x, y, z, …].
- */
-Lemon.Geometry.prototype.getVerticesPositions = function() 
-{
-    return this.positions;
-};
+        // Set colors
+        let colors = new Float32Array([
+            1, 1, 1, 1,
+            1, 1, 1, 1,
+            1, 1, 1, 1,
+            1, 1, 1, 1,
 
-/**
- * Return an array with the normal for each vertex.
- * @return {Float32Array} An array with the format [x, y, z, x, y, z, …].
- */
-Lemon.Geometry.prototype.getVerticesNormals = function() 
-{
-    return this.normals;
-};
+            1, 1, 1, 1,
+            1, 1, 1, 1,
+            1, 1, 1, 1,
+            1, 1, 1, 1,
 
-/**
- * Return an array with the texture coordinates for each vertex.
- * @return {Float32Array} An array with the format [u, v, u, v, …].
- */
-Lemon.Geometry.prototype.getVerticesUVs = function() 
-{
-    return this.uvs;
-};
+            1, 1, 1, 1,
+            1, 1, 1, 1,
+            1, 1, 1, 1,
+            1, 1, 1, 1,
 
-/**
- * Create a cube.
- * @param {number} width Width.
- * @param {number} height Height.
- * @param {number} depth Depth.
- * @return {Lemon.Geometry} A Geometry instance.
- */
-Lemon.Geometry.createCube = function( width, height, depth ) 
-{
-    var geometry = new Lemon.Geometry();
+            1, 1, 1, 1,
+            1, 1, 1, 1,
+            1, 1, 1, 1,
+            1, 1, 1, 1,
 
-    // Set format.
-    var format = new Lemon.VertexFormat();
-    format.add(new Lemon.VertexElement(Lemon.VertexElement.Usage.Position, 0, Lemon.VertexElement.Type.Float, 3, false));
-    format.add(new Lemon.VertexElement(Lemon.VertexElement.Usage.Color, 2, Lemon.VertexElement.Type.Float, 4, false));
-    format.add(new Lemon.VertexElement(Lemon.VertexElement.Usage.UVS, 1, Lemon.VertexElement.Type.Float, 2, false));
-    format.add(new Lemon.VertexElement(Lemon.VertexElement.Usage.Normal, 3, Lemon.VertexElement.Type.Float, 3, false));
-    geometry.setVertexFormat(format);
+            1, 1, 1, 1,
+            1, 1, 1, 1,
+            1, 1, 1, 1,
+            1, 1, 1, 1,
 
-    // Set positions
-    var positions = new Float32Array([      
-        -width, -height,  depth,
-         width, -height,  depth,
-         width,  height,  depth,
-        -width,  height,  depth,
-        
-        -width, -height, -depth,
-        -width,  height, -depth,
-         width,  height, -depth,
-         width, -height, -depth,
-        
-        -width,  height, -depth,
-        -width,  height,  depth,
-         width,  height,  depth,
-         width,  height, -depth,
-        
-        -width, -height, -depth,
-         width, -height, -depth,
-         width, -height,  depth,
-        -width, -height,  depth,
-        
-         width, -height, -depth,
-         width,  height, -depth,
-         width,  height,  depth,
-         width, -height,  depth,
-        
-        -width, -height, -depth,
-        -width, -height,  depth,
-        -width,  height,  depth,
-        -width,  height, -depth
-    ]);
-    geometry.setPositions(positions);
+            1, 1, 1, 1,
+            1, 1, 1, 1,
+            1, 1, 1, 1,
+            1, 1, 1, 1
+        ]);
+        geometry.setColors(colors);
 
-    // Set colors
-    var colors = new Float32Array([
-        1, 1, 1, 1,
-        1, 1, 1, 1,
-        1, 1, 1, 1,
-        1, 1, 1, 1,
-             
-        1, 1, 1, 1,
-        1, 1, 1, 1,
-        1, 1, 1, 1,
-        1, 1, 1, 1,
-             
-        1, 1, 1, 1,
-        1, 1, 1, 1,
-        1, 1, 1, 1,
-        1, 1, 1, 1,
-             
-        1, 1, 1, 1,
-        1, 1, 1, 1,
-        1, 1, 1, 1,
-        1, 1, 1, 1,
-             
-        1, 1, 1, 1,
-        1, 1, 1, 1,
-        1, 1, 1, 1,
-        1, 1, 1, 1,
-             
-        1, 1, 1, 1,
-        1, 1, 1, 1,
-        1, 1, 1, 1,
-        1, 1, 1, 1
-    ]);
-    geometry.setColors(colors);
+        // Texture uvs
+        let uvs = new Float32Array([
+            0, 0,
+            1, 0,
+            1, 1,
+            0, 1,
 
-    // Texture uvs
-    var uvs = new Float32Array([
-        0, 0,
-        1, 0,
-        1, 1,
-        0, 1,
+            0, 0,
+            1, 0,
+            1, 1,
+            0, 1,
 
-        0, 0,
-        1, 0,
-        1, 1,
-        0, 1,
+            0, 0,
+            1, 0,
+            1, 1,
+            0, 1,
 
-        0, 0,
-        1, 0,
-        1, 1,
-        0, 1,
+            0, 0,
+            1, 0,
+            1, 1,
+            0, 1,
 
-        0, 0,
-        1, 0,
-        1, 1,
-        0, 1,
+            0, 0,
+            1, 0,
+            1, 1,
+            0, 1,
 
-        0, 0,
-        1, 0,
-        1, 1,
-        0, 1,
-        
-        0, 0,
-        1, 0,
-        1, 1,
-        0, 1
-    ]);
-    geometry.setTextureUVs(uvs);
+            0, 0,
+            1, 0,
+            1, 1,
+            0, 1
+        ]);
+        geometry.setTextureUVs(uvs);
 
-    // Normals
-    var normals = new Float32Array([
-        0.0, 0.0, 1.0,
-        0.0, 0.0, 1.0,
-        0.0, 0.0, 1.0,
-        0.0, 0.0, 1.0,
+        // Normals
+        let normals = new Float32Array([
+            0.0, 0.0, 1.0,
+            0.0, 0.0, 1.0,
+            0.0, 0.0, 1.0,
+            0.0, 0.0, 1.0,
 
-        0.0, 0.0, -1.0,
-        0.0, 0.0, -1.0,
-        0.0, 0.0, -1.0,
-        0.0, 0.0, -1.0,
+            0.0, 0.0, -1.0,
+            0.0, 0.0, -1.0,
+            0.0, 0.0, -1.0,
+            0.0, 0.0, -1.0,
 
-        0.0, 1.0, 0.0,
-        0.0, 1.0, 0.0,
-        0.0, 1.0, 0.0,
-        0.0, 1.0, 0.0,
+            0.0, 1.0, 0.0,
+            0.0, 1.0, 0.0,
+            0.0, 1.0, 0.0,
+            0.0, 1.0, 0.0,
 
-        0.0, -1.0, 0.0,
-        0.0, -1.0, 0.0,
-        0.0, -1.0, 0.0,
-        0.0, -1.0, 0.0,
+            0.0, -1.0, 0.0,
+            0.0, -1.0, 0.0,
+            0.0, -1.0, 0.0,
+            0.0, -1.0, 0.0,
 
-        1.0, 0.0, 0.0,
-        1.0, 0.0, 0.0,
-        1.0, 0.0, 0.0,
-        1.0, 0.0, 0.0,
+            1.0, 0.0, 0.0,
+            1.0, 0.0, 0.0,
+            1.0, 0.0, 0.0,
+            1.0, 0.0, 0.0,
 
-        -1.0, 0.0, 0.0,
-        -1.0, 0.0, 0.0,
-        -1.0, 0.0, 0.0,
-        -1.0, 0.0, 0.0
-    ]);
-    geometry.setNormals(normals);
+            -1.0, 0.0, 0.0,
+            -1.0, 0.0, 0.0,
+            -1.0, 0.0, 0.0,
+            -1.0, 0.0, 0.0
+        ]);
+        geometry.setNormals(normals);
 
-    // Indices.
-    var indices = new Uint16Array([  0,  1,  2,  0,  2,  3,  4,  5,  6,  4,  6,  7, 
-                                     8,  9, 10,  8, 10, 11, 12, 13, 14, 12, 14, 15,
-                                    16, 17, 18, 16, 18, 19, 20, 21, 22, 20, 22, 23 ]);
-    geometry.setIndices(indices);
+        // Indices.
+        let indices = new Uint16Array([     0,  1,  2,  0,  2,  3,  4,  5,  6,  4,  6,  7,
+                                            8,  9, 10,  8, 10, 11, 12, 13, 14, 12, 14, 15,
+                                            16, 17, 18, 16, 18, 19, 20, 21, 22, 20, 22, 23 ]);
+        geometry.setIndices(indices);
 
-    return geometry;
-};
+        return geometry;
+    }
 
-/**
- * Create a rectangle.
- * @param {number} width Width.
- * @param {number} height Height.
- * @return {Lemon.Geometry} A Geometry instance.
- */
-Lemon.Geometry.createRectangle = function( width, height ) 
-{
-    var geometry = new Lemon.Geometry();
+    /**
+     * Create a rectangle
+     *
+     * @param {number} width Width
+     * @param {number} height Height
+     * @return {Geometry} A Geometry instance
+     */
+    static createRectangle(width, height)
+    {
+        let geometry = new Geometry();
 
-    // Set format.
-    var format = new Lemon.VertexFormat();
-    format.add(new Lemon.VertexElement(Lemon.VertexElement.Usage.Position, 0, Lemon.VertexElement.Type.Float, 3, false));
-    format.add(new Lemon.VertexElement(Lemon.VertexElement.Usage.Color, 1, Lemon.VertexElement.Type.Float, 4, false));
-    format.add(new Lemon.VertexElement(Lemon.VertexElement.Usage.UVS, 2, Lemon.VertexElement.Type.Float, 2, false));
-    format.add(new Lemon.VertexElement(Lemon.VertexElement.Usage.Normal, 3, Lemon.VertexElement.Type.Float, 3, false));
-    geometry.setVertexFormat(format);
+        // Set format
+        let format = new VertexFormat();
+        format.add(new VertexElement(VertexElement.Usage.Position, 0, VertexElement.Type.Float, 3, false));
+        format.add(new VertexElement(VertexElement.Usage.Color, 1, VertexElement.Type.Float, 4, false));
+        format.add(new VertexElement(VertexElement.Usage.UVS, 2, VertexElement.Type.Float, 2, false));
+        format.add(new VertexElement(VertexElement.Usage.Normal, 3, VertexElement.Type.Float, 3, false));
+        geometry.setVertexFormat(format);
 
-    // Set positions
-    var positions = new Float32Array([      
-        -width, -height,  0,
-        -width,  height,  0,
-         width, -height,  0,
-         width,  height,  0
-    ]);
-    geometry.setPositions(positions);
+        // Set positions
+        let positions = new Float32Array([
+            -width, -height,  0,
+            -width,  height,  0,
+            width, -height,  0,
+            width,  height,  0
+        ]);
+        geometry.setPositions(positions);
 
-    // Set colors
-    var colors = new Float32Array([      
-        1, 1, 1, 1, 
-        1, 1, 1, 1, 
-        1, 1, 1, 1, 
-        1, 1, 1, 1
-    ]);
-    geometry.setColors(colors);
+        // Set colors
+        let colors = new Float32Array([
+            1, 1, 1, 1,
+            1, 1, 1, 1,
+            1, 1, 1, 1,
+            1, 1, 1, 1
+        ]);
+        geometry.setColors(colors);
 
-    // Texture uvs
-    var uvs = new Float32Array([      
-        0, 1,
-        0, 0,
-        1, 1,
-        1, 0
-    ]);
-    geometry.setTextureUVs(uvs);
+        // Texture uvs
+        let uvs = new Float32Array([
+            0, 1,
+            0, 0,
+            1, 1,
+            1, 0
+        ]);
+        geometry.setTextureUVs(uvs);
 
-    // Normals
-    var normals = new Float32Array([
-        0.0, 0.0, 1.0,
-        0.0, 0.0, 1.0,
-        0.0, 0.0, 1.0,
-        0.0, 0.0, 1.0,
-    ]);
-    geometry.setNormals(normals);
+        // Normals
+        let normals = new Float32Array([
+            0.0, 0.0, 1.0,
+            0.0, 0.0, 1.0,
+            0.0, 0.0, 1.0,
+            0.0, 0.0, 1.0,
+        ]);
+        geometry.setNormals(normals);
 
-    // Indices.
-    geometry.setIndices(new Uint16Array([0, 2, 1, 3]));
+        // Indices
+        geometry.setIndices(new Uint16Array([0, 2, 1, 3]));
 
-    return geometry;
-};
+        return geometry;
+    }
+}

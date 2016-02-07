@@ -19,8 +19,7 @@ function init()
         Lemon.ProgramLibrary.load('DefaultShader', 'default.vert', 'default.frag', ['USE_TEXTURE', 'USE_LIGHT']);
 
         // Texture to apply.
-        var boxTexture = new Lemon.Texture();
-        boxTexture.loadFromFile('../assets/images/box.jpg');
+        var boxTexture = new Lemon.Texture('../assets/images/box.jpg');
 
         // Create material.
         var material = new Lemon.Material();

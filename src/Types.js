@@ -1,7 +1,81 @@
-goog.provide('Lemon.Type');
+/**
+ * Types available
+ */
+export class Type {}
 
 /**
- * Types availables.
- * @enum {number}.
+ * Float
+ *
+ * @type {number}
  */
-Lemon.Type = { Float: 0, Int: 1, Bool: 2, Matrix: 3, Texture2D: 4, TextureCube: 5, Byte: 6, u_Byte: 7, Short: 8, u_Short: 9, u_Int: 10 };
+Type.Float = 0;
+
+/**
+ * Integer
+ *
+ * @type {number}
+ */
+Type.Int = 1;
+
+/**
+ * Bool
+ *
+ * @type {number}
+ */
+Type.Bool = 2;
+
+/**
+ * Matrix
+ *
+ * @type {number}
+ */
+Type.Matrix  = 3;
+
+/**
+ * 2D Texture
+ *
+ * @type {number}
+ */
+Type.Texture2D = 4;
+
+/**
+ * 3D Texture
+ *
+ * @type {number}
+ */
+Type.TextureCube = 5;
+
+/**
+ * Byte
+ *
+ * @type {number}
+ */
+Type.Byte = 6;
+
+/**
+ * u_Byte
+ *
+ * @type {number}
+ */
+Type.u_Byte = 7;
+
+/**
+ * Short
+ *
+ * @type {number}
+ */
+Type.Short = 8;
+
+/**
+ * u_Short
+ *
+ * @type {number}
+ */
+Type.u_Short = 9;
+
+/**
+ * u_Int
+ * 
+ * @type {number}
+ */
+Type.u_Int = 10;
