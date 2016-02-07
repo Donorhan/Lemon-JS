@@ -1,61 +1,84 @@
-goog.provide('Lemon.Private.TextureInterface');
-goog.require('Lemon.Private.ContextResource');
+import {ContextResource} from '../ContextResource.js';
 
 /**
- * A texture.
- * @constructor
- * @extends {Lemon.Private.ContextResource}
+ * A texture
+ *
+ * @extends {ContextResource}
  * @author Donovan ORHAN <dono.orhan@gmail.com>
  */
-Lemon.Private.TextureInterface = function() 
+export class TextureInterface extends ContextResource
 {
-    Lemon.Private.ContextResource.call(this);
+    /**
+     * Constructor
+     */
+    constructor()
+    {
+        super();
+
+        /**
+         * State
+         *
+         * @type {boolean}
+         * @protected
+         */
+        this.ready = false;
+
+        /**
+         * Mipmap state
+         *
+         * @type {boolean}
+         * @protected
+         */
+        this.mipmap = true;
+    }
 
     /**
-    * State.
-    * @type {boolean}
-    * @protected
-    */
-    this.ready = false;
+     * Indicate if texture is ready
+     *
+     * @return {boolean} True if the texture is ready to be use
+     */
+    isReady()
+    {
+        return this.ready;
+    }
 
     /**
-    * Mipmap state.
-    * @type {boolean}
-    * @protected
-    */
-    this.mipmap = true;
-};
-goog.inherits(Lemon.Private.TextureInterface, Lemon.Private.ContextResource);
+     * Indicate if the texture use mip-mapping
+     *
+     * @return {boolean} True if the texture is mip-mapped
+     */
+    isMipmaped()
+    {
+        return this.mipmap;
+    }
 
-/**
- * Indicate if texture is ready.
- * @return {boolean} True if the texture is ready to be use.
- */
-Lemon.Private.TextureInterface.prototype.isReady = function() { return this.ready; };
+    /**
+     * Indicate if the texture is repeated
+     *
+     * @return {boolean} True if the texture is repeated
+     */
+    isRepeated()
+    {
+        return false;
+    }
 
-/**
- * Indicate if the texture use mipmapping.
- * @return {boolean} True if the texture is mipmaped.
- */
-Lemon.Private.TextureInterface.prototype.isMipmaped = function() { return this.mipmap; };
+    /**
+     * Indicate if the texture is smoothed
+     *
+     * @return {boolean} True if the texture is smoothed
+     */
+    isSmoothed()
+    {
+        return false;
+    }
 
-/**
- * Indicate if the texture is repeated.
- * @return {boolean} True if the texture is repeated.
- */
-Lemon.Private.TextureInterface.prototype.isRepeated = function() { return false; };
-
-/**
- * Indicate if the texture is smoothed.
- * @return {boolean} True if the texture is smoothed.
- */
-Lemon.Private.TextureInterface.prototype.isSmoothed = function() { return false; };
-
-/**
- * Indicate if the texture must use mipmapping.
- * @param {boolean} value True to use mipmapping.
- */
-Lemon.Private.TextureInterface.prototype.useMipmap = function( value ) 
-{ 
-    this.mipmap = value;
-};
+    /**
+     * Indicate if the texture must use mip-mapping
+     *
+     * @param {boolean} value True to use mip-mapping
+     */
+    useMipmap(value)
+    {
+        this.mipmap = value;
+    }
+}

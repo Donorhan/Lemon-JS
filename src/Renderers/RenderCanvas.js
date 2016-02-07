@@ -1,44 +1,52 @@
-goog.provide('Lemon.RenderCanvas');
-goog.require('Lemon.RenderAPI');
-goog.require('Lemon.RenderAPI.WebGL');
-goog.require('Lemon.RenderTarget');
+import {Context} from '../Context.js';
+import {RenderTarget} from './RenderTarget.js';
+import {WebGL} from './WebGL/RenderWebGL.js';
 
 /**
- * A rendering canvas.
- * @constructor
- * @extends {Lemon.RenderTarget}
- * @param {string} canvas Id of the container.
- * @param {{antialiasing: boolean, width: (number|undefined), height: (number|undefined)}} options Options.
- * @param {string=} type A string with the value "webgl" or "canvas".
+ * A rendering canvas
+ *
+ * @extends {RenderTarget}
+ * @author Donovan ORHAN <dono.orhan@gmail.com>
  */
-Lemon.RenderCanvas = function( canvas, options, type )
+export class RenderCanvas extends RenderTarget
 {
-    Lemon.RenderTarget.call(this);
+    /**
+     * Constructor
+     *
+     * @param {string} canvas Id of the container
+     * @param {{antialiasing: boolean, width: (number|undefined), height: (number|undefined)}} options Options
+     * @param {string=} type A string with the value "webgl" or "canvas"
+     */
+    constructor(canvas, options = {}, type = 'webgl')
+    {
+        super();
+
+        /**
+         * The render API to use: For now we support WebGL 1.0.3 only
+         *
+         * @type {RenderAPI}
+         * @protected
+         */
+        this.renderApi = WebGL.getInstance();
+
+        // Init the context
+        this.context.init(Context.Type.WebGL, options, canvas);
+    }
 
     /**
-    * The render API to use: For now we support WebGL 1.0.3 only.
-    * @type {Lemon.RenderAPI}
-    * @protected
-    */
-    this.renderApi = Lemon.RenderAPI.WebGL.getInstance();
+     * Clear the canvas
+     *
+     * @param {Color} color A Color instance
+     */
+    clear(color) 
+    {
+        // Remove previous tasks
+        this.removeTasks();
 
-    // Init the context.
-    this.context.init( Lemon.Private.Context.Type.WebGL, options || {}, canvas);
-};
-goog.inherits(Lemon.RenderCanvas, Lemon.RenderTarget);
+        // Activate context
+        this.context.activate();
 
-/**
- * Clear the canvas.
- * @param {Lemon.Color} color A Color instance.
- */
-Lemon.RenderCanvas.prototype.clear = function( color ) 
-{
-    // Remove previous tasks.
-    this.removeTasks();
-
-    // Activate context.
-    this.context.activate();
-
-    // Clear screen.
-    this.renderApi.clear(color);
-};
+        // Clear screen
+        this.renderApi.clear(color);
+    }
+}

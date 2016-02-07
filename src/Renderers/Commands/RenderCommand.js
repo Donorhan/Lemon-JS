@@ -1,20 +1,21 @@
-goog.provide('Lemon.RenderCommand');
-goog.require('Lemon.RenderAPI');
-
 /**
- * An abstract rendering command.
- * @constructor
+ * An abstract rendering command
+ *
+ * @author Donovan ORHAN <dono.orhan@gmail.com>
  */
-Lemon.RenderCommand = function() { };
+export class RenderCommand
+{ 
+    /**
+     * Indicate if the command concern an opaque element
+     *
+     * @return {boolean} True if command must be in the opaque queue
+     */
+    isOpaque() { return true; };
 
-/**
- * Indicate if the command concern an opaque element.
- * @return {boolean} True if command must be in the opaque queue.
- */
-Lemon.RenderCommand.prototype.isOpaque = function() { return true; };
-
-/**
- * Execute the command.
- * @param {Lemon.RenderAPI} renderAPI RenderAPI instance used to process the commands.
- */
-Lemon.RenderCommand.prototype.execute = function( renderAPI ) { };
+    /**
+     * Execute the command
+     *
+     * @param {RenderAPI} renderAPI RenderAPI instance used to process the commands
+     */
+    execute(renderAPI) { };
+}

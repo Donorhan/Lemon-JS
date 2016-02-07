@@ -1,77 +1,86 @@
-goog.provide('Lemon.Skybox');
-goog.require('Lemon.Drawable');
-goog.require('Lemon.Program');
-goog.require('Lemon.SkyboxCommand');
-goog.require('Lemon.TextureCube');
+import {Drawable} from './Drawable.js';
+import {SkyboxCommand} from '../Renderers/Commands/SkyboxCommand.js';
 
 /**
- * A skybox.
- * @constructor
- * @extends {Lemon.Drawable}
+ * A Skybox
+ *
+ * @extends {Drawable}
  * @author Donovan ORHAN <dono.orhan@gmail.com>
  */
-Lemon.Skybox = function()
+export class Skybox extends Drawable
 {
-    Lemon.Drawable.call(this);
+    /**
+     * Constructor
+     */
+    constructor()
+    {
+        super();
+
+        /**
+         * Program
+         *
+         * @type {Program}
+         * @private
+         */
+        this.customProgram = null;
+
+        /**
+         * Texture cube linked
+         *
+         * @type {TextureCube}
+         * @private
+         */
+        this.texture = null;
+    }
 
     /**
-    * Program.
-    * @type {Lemon.Program}
-    * @private
-    */
-    this.customProgram = null;
+     * Draw the element
+     *
+     * @param {RenderTarget} renderTarget Renderer who called this method
+     */
+    draw(renderTarget)
+    {
+        if (this.texture)
+            renderTarget.getActiveTask().addCommand(new SkyboxCommand(this));
+    }
 
     /**
-    * Texture cube linked.
-    * @type {Lemon.TextureCube}
-    * @private
-    */
-    this.texture = null;
-};
-goog.inherits(Lemon.Skybox, Lemon.Drawable);
+     * Set program to use
+     *
+     * @param {Program} program A Program instance.
+     */
+    setCustomProgram(program)
+    {
+        this.customProgram = program;
+    }
 
-/**
- * Draw the element.
- * @param {Lemon.RenderTarget} renderTarget Renderer who called this method.
- */
-Lemon.Skybox.prototype.draw = function( renderTarget )
-{
-    if( this.texture )
-        renderTarget.getActiveTask().addCommand(new Lemon.SkyboxCommand(this));
-};
+    /**
+     * Set texture
+     *
+     * @param {TextureCube} texture A TextureCube instance
+     */
+    setTexture(texture)
+    {
+        this.texture = texture;
+    }
 
-/**
- * Set program to use.
- * @param {Lemon.Program} program A Program instance.
- */
-Lemon.Skybox.prototype.setCustomProgram = function( program ) 
-{
-    this.customProgram = program;
-};
+    /**
+     * Get program
+     *
+     * @return {?Program} A Program instance or null if the Skybox use the default program
+     */
+    getCustomProgram()
+    {
+        return this.customProgram;
+    }
 
-/**
- * Set texture.
- * @param {Lemon.TextureCube} texture A TextureCube instance.
- */
-Lemon.Skybox.prototype.setTexture = function( texture ) 
-{
-    this.texture = texture;
-};
-
-/**
- * Get program.
- * @return {?Lemon.Program} A Program instance or null if the skybox use the default program.
- */
-Lemon.Skybox.prototype.getCustomProgram = function() 
-{
-    return this.customProgram;
-};
-
-/**
- * Get the linked TextureCube instance.
- * @return {Lemon.TextureCube} A TextureCube instances.
- */
-Lemon.Skybox.prototype.getTexture = function()
-{
-    return this.texture;
-};
+    /**
+     * Get the linked TextureCube instance
+     *
+     * @return {TextureCube} A TextureCube instances
+     */
+    getTexture()
+    {
+        return this.texture;
+    }
+}

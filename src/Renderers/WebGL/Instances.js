@@ -1,67 +1,83 @@
-goog.provide('Lemon.WebGLObjects.BufferData');
-goog.provide('Lemon.WebGLObjects.Instances');
-
 /**
- * A WebGL buffer.
- * @constructor.
+ * A WebGL buffer
+ *
  * @author Donovan ORHAN <dono.orhan@gmail.com>
  */
-Lemon.WebGLObjects.BufferData = function() 
+export class BufferData
 {
     /**
-    * Index buffer.
-    * @type {WebGLBuffer}
-    * @public
-    */
-    this.indexBuffer = null;
+     * Constructor
+     */
+    constructor()
+    {
+        /**
+         * Index buffer
+         *
+         * @type {WebGLBuffer}
+         * @public
+         */
+        this.indexBuffer = null;
 
-    /**
-    * Vertex buffers.
-    * @type {Array.<WebGLBuffer>}
-    * @public
-    */
-    this.vertexBuffers = [];
+        /**
+         * Vertex buffers
+         *
+         * @type {Array.<WebGLBuffer>}
+         * @public
+         */
+        this.vertexBuffers = [];
 
-    /**
-    * Vertex array object.
-    * @type {WebGLBuffer}
-    * @public
-    */
-    this.vao = null;
-};
+        /**
+         * Vertex array object
+         *
+         * @type {WebGLBuffer}
+         * @public
+         */
+        this.vao = null;
+    }
+}
 
 /**
- * WebGL instances.
- * @constructor.
+ * WebGL instances
+ *
  * @author Donovan ORHAN <dono.orhan@gmail.com>
  */
-Lemon.WebGLObjects.Instances = function() 
+export class Instances
 {
     /**
-    * WebGL buffers.
-    * @type {Array.<Lemon.WebGLObjects.BufferData>}
-    * @public
-    */
-    this.buffers = [];
+     * Constructor
+     */
+    constructor()
+    {
+        /**
+         * WebGL buffers
+         *
+         * @type {Array.<BufferData>}
+         * @public
+         */
+        this.buffers = [];
 
-    /**
-    * WebGL frame buffers.
-    * @type {Array.<WebGLFramebuffer>}
-    * @public
-    */
-    this.frameBuffers = [];
+        /**
+         * WebGL frame buffers
+         *
+         * @type {Array.<WebGLFramebuffer>}
+         * @public
+         */
+        this.frameBuffers = [];
 
-    /**
-    * Programs/Shaders data.
-    * @type {Array.<WebGLProgram>}
-    * @public
-    */
-    this.programs = [];
+        /**
+         * Programs/Shaders data
+         *
+         * @type {Array.<WebGLProgram>}
+         * @public
+         */
+        this.programs = [];
 
-    /**
-    * Textures data.
-    * @type {Array.<WebGLTexture>}
-    * @public
-    */
-    this.textures = [];
-};
+        /**
+         * Textures data
+         *
+         * @type {Array.<WebGLTexture>}
+         * @public
+         */
+        this.textures = [];
+    }
+}
