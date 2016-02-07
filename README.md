@@ -3,9 +3,10 @@ Lemon-JS
 An accessible rendering engine in Javascript. ([Demonstrations here](http://dorhan.fr/Demos/Lemon/exemples))
 
 ### Installation
-- Get Lemon.min.js from the build directory
-- Copy "shaders" folder to your project
-- See the next step.
+- Download [the latest version](https://github.com/DonoSybrix/Lemon-JS/releases) of LemonJS
+- Insert Lemon.min.js file to our website using <script>
+- Copy "shaders" folder to your project to get default shaders
+- Enjoy!
 
 ### Hello world
 
@@ -49,9 +50,12 @@ function applicationLoop( deltatime )
     renderer.display();
 }
 ```
-### Advanced: How to build
-- [Get closure.jar](https://github.com/google/closure-compiler) and copy the file to "libs"
-- Run "build.sh" from the "build" directory 
+
+### How to contribute
+- Clone this repository
+- npm install from the folder
+- 'npm run dev' (developement) or 'npm run build' (production)
+- Enjoy!
 
 ### License
-[Creative Commons 4.0](http://creativecommons.org/licenses/by/4.0/)
+[MIT](https://github.com/DonoSybrix/Lemon-JS/blob/master/LICENSE.md)
