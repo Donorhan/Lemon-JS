@@ -4,7 +4,7 @@ An accessible rendering engine in Javascript. ([Demonstrations here](http://dorh
 
 ### Installation
 - Download [the latest version](https://github.com/DonoSybrix/Lemon-JS/releases) of LemonJS
-- Insert Lemon.min.js file to our website using <script>
+- Insert Lemon.min.js file to our website
 - Copy "shaders" folder to your project to get default shaders
 - Enjoy!
 
