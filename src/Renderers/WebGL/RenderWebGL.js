@@ -1,3 +1,4 @@
+import {BlendMode} from '../../BlendMode.js';
 import {Cache} from './Cache.js';
 import {Context} from '../../Context.js';
 import {DirectionalLight} from '../../Lights/DirectionalLight.js';
@@ -9,6 +10,7 @@ import {StateBlock, DrawingMode} from '../../StateBlock.js';
 import {TextureCube} from '../../Textures/TextureCube.js';
 import {TextureVideo} from '../../Textures/TextureVideo.js';
 import {Type} from '../../Types.js';
+import {TypesConverter} from './TypesConverter.js';
 import {VertexElement} from '../../VertexFormat.js';
 import * as WebGLConst from './WebGL.js';
 
@@ -66,7 +68,8 @@ export class WebGL extends RenderAPI
          */
         this.state = new StateBlock();
 
-        // Init state block
+        // Init state block and types
+        TypesConverter.init();
         this.initStateBlockWithDefaultValues(this.state);
 
         return instance;
@@ -294,7 +297,7 @@ export class WebGL extends RenderAPI
     */
     drawIndexedPrimitives(drawingMode, firstVertexIndex, vertexCount) 
     {
-        Context.getActive().drawElements(this.convertDrawingModeToConstant(drawingMode), vertexCount, WebGLConst.UNSIGNED_SHORT, firstVertexIndex);
+        Context.getActive().drawElements(TypesConverter.drawingModeToConstant.get(drawingMode), vertexCount, WebGLConst.UNSIGNED_SHORT, firstVertexIndex);
         this.disableVertexAttribArray();
     }
 
@@ -307,7 +310,7 @@ export class WebGL extends RenderAPI
     */
     drawPrimitives(drawingMode, firstVertexIndex, vertexCount) 
     {
-        Context.getActive().drawArrays(this.convertDrawingModeToConstant(drawingMode), firstVertexIndex, vertexCount);
+        Context.getActive().drawArrays(TypesConverter.drawingModeToConstant.get(drawingMode), firstVertexIndex, vertexCount);
         this.disableVertexAttribArray();
     }
 
@@ -543,12 +546,11 @@ export class WebGL extends RenderAPI
             gl.enable(WebGLConst.BLEND);
 
             // Apply functions and equations
-            gl.blendEquationSeparate( this.convertBlendingEquationToConstant(blendMode.colorEquation), this.convertBlendingEquationToConstant(blendMode.alphaEquation) );
-
-            gl.blendFuncSeparate(   this.convertBlendingFactorToConstant(blendMode.colorSourceFactor), 
-                                    this.convertBlendingFactorToConstant(blendMode.colorDestinationFactor), 
-                                    this.convertBlendingFactorToConstant(blendMode.alphaSourceFactor), 
-                                    this.convertBlendingFactorToConstant(blendMode.alphaDestinationFactor) );
+            gl.blendEquationSeparate(TypesConverter.blendingEquationToConstant.get(blendMode.colorEquation), TypesConverter.blendingEquationToConstant.get(blendMode.alphaEquation));
+            gl.blendFuncSeparate(TypesConverter.blendingFactorToConstant.get(blendMode.colorSourceFactor), 
+                                 TypesConverter.blendingFactorToConstant.get(blendMode.colorDestinationFactor), 
+                                 TypesConverter.blendingFactorToConstant.get(blendMode.alphaSourceFactor), 
+                                 TypesConverter.blendingFactorToConstant.get(blendMode.alphaDestinationFactor));
         }
 
         this.state.blendMode = blendMode;
@@ -580,7 +582,7 @@ export class WebGL extends RenderAPI
 
             if (this.state.depthFunction != depthFunction)
             {
-                gl.depthFunc(this.convertDepthFunctionToConstant(depthFunction));
+                gl.depthFunc(TypesConverter.depthFunctionToConstant.get(depthFunction));
                 this.state.depthFunction = depthFunction;
             }
         }
@@ -682,7 +684,7 @@ export class WebGL extends RenderAPI
             // Fill it
             if (this.cache.vertexFormat.isStreamWaitingUpdate(vertexElements[i].stream))
             { 
-                let streamType = this.convertStreamTypeToConstant(this.cache.vertexFormat.getStreamType(vertexElements[i].stream));
+                let streamType = TypesConverter.streamTypeToConstant.get(this.cache.vertexFormat.getStreamType(vertexElements[i].stream));
 
                 switch( vertexElements[i].usage )
                 {
@@ -778,7 +780,7 @@ export class WebGL extends RenderAPI
 
                     uniforms[finalName] = new ProgramElement(gl.getUniformLocation(programID, uniform.name), 
                                                                     finalName,
-                                                                    this.convertConstantToShaderTypes(uniform.type),
+                                                                    TypesConverter.toShaderTypes(uniform.type),
                                                                     uniform.size);
                 }
 
@@ -789,7 +791,7 @@ export class WebGL extends RenderAPI
                     let attribute = gl.getActiveAttrib(programID, i);
                     attributes[attribute.name] = new ProgramElement(gl.getAttribLocation(programID, attribute.name), 
                                                                     attribute.name,
-                                                                    this.convertConstantToShaderTypes(attribute.type),
+                                                                    TypesConverter.toShaderTypes(attribute.type),
                                                                     attribute.size);
                 }
             }
@@ -976,7 +978,7 @@ export class WebGL extends RenderAPI
     {
         if( this.state.stencilFunction != stencilFunction || this.state.stencilReference != reference || this.state.stencilMask != mask )
         {
-            Context.getActive().stencilFunc(this.convertStencilFunctionToConstant(stencilFunction), reference, mask);
+            Context.getActive().stencilFunc(TypesConverter.stencilFunctionToConstant.get(stencilFunction), reference, mask);
             this.state.stencilFunction  = stencilFunction;
             this.state.stencilReference = reference;
             this.state.stencilMask      = mask;
@@ -994,9 +996,9 @@ export class WebGL extends RenderAPI
     {
         if (this.state.stencilTestFail != sFail || this.state.stencilDepthTestFail != dpFail || this.state.stencilSuccess != dppPass)
         {
-            Context.getActive().stencilOp(this.convertStencilOperationToConstant(sFail), 
-                                   this.convertStencilOperationToConstant(dpFail), 
-                                   this.convertStencilOperationToConstant(dppPass));
+            Context.getActive().stencilOp(TypesConverter.stencilOperationToConstant.get(sFail), 
+                                          TypesConverter.stencilOperationToConstant.get(dpFail), 
+                                          TypesConverter.stencilOperationToConstant.get(dppPass));
 
             this.state.stencilTestFail      = sFail;
             this.state.stencilDepthTestFail = dpFail;
@@ -1029,7 +1031,7 @@ export class WebGL extends RenderAPI
                 gl.enableVertexAttribArray(vertexElements[i].usage);
                 gl.vertexAttribPointer( vertexElements[i].usage, 
                                         vertexElements[i].count, 
-                                        this.convertVertexTypeToConstant(vertexElements[i].type), 
+                                        TypesConverter.vertexTypeToConstant.get(vertexElements[i].type), 
                                         vertexElements[i].normalize, 
                                         this.cache.vertexFormat.getStreamStride(vertexElements[i].stream),
                                         vertexElements[i].offset);
@@ -1048,269 +1050,5 @@ export class WebGL extends RenderAPI
     setVertexFormat(format) 
     {
         this.cache.vertexFormat = format;
-    }
-
-    /* ------------------------------------------------------------------------------------------ */
-    ///
-    /// Conversions functions
-    ///
-    /* ------------------------------------------------------------------------------------------ */
-    /**
-     * Convert the given factor to a WebGL factor equivalent
-     *
-     * @param {BlendMode.Factor} factor A blending Factor instance
-     * @return {number} A WebGL value.
-     * @private
-     */
-    convertBlendingFactorToConstant(factor) 
-    {
-        switch(factor)
-        {
-            default:
-            case BlendMode.Factor.Zero:                           return WebGLConst.ZERO;
-            case BlendMode.Factor.One:                            return WebGLConst.ONE;
-            case BlendMode.Factor.SourceColor:                    return WebGLConst.SRC_COLOR;
-            case BlendMode.Factor.OneMinusSourceColor:            return WebGLConst.ONE_MINUS_SRC_COLOR;
-            case BlendMode.Factor.DestinationColor:               return WebGLConst.DST_COLOR;
-            case BlendMode.Factor.OneMinusDestinationColor:       return WebGLConst.ONE_MINUS_DST_COLOR;
-            case BlendMode.Factor.SourceAlpha:                    return WebGLConst.SRC_ALPHA;
-            case BlendMode.Factor.OneMinusSourceAlpha:            return WebGLConst.ONE_MINUS_SRC_ALPHA;
-            case BlendMode.Factor.DestinationAlpha:               return WebGLConst.DST_ALPHA;
-            case BlendMode.Factor.OneMinusDestinationAlpha:       return WebGLConst.ONE_MINUS_DST_ALPHA;
-        }
-    }
-
-    /**
-     * Convert the given equation to an equivalent WebGL equation
-     *
-     * @param {BlendMode.Equation} equation A blending Equation value
-     * @return {number} A WebGL value.
-     * @private
-     */
-    convertBlendingEquationToConstant(equation) 
-    {
-        switch(equation)
-        {
-            default:
-            case BlendMode.Equation.Add:                          return WebGLConst.FUNC_ADD;
-            case BlendMode.Equation.Subtract:                     return WebGLConst.FUNC_SUBTRACT;
-        }
-    }
-
-    /**
-     * Convert the given depth function to an equivalent WebGL function
-     *
-     * @param {DepthFunction} depthFunction A DepthFunction value
-     * @return {number} A WebGL value.
-     * @private
-     */
-    convertDepthFunctionToConstant(depthFunction) 
-    {
-        switch(depthFunction)
-        {
-            case DepthFunction.Never:                             return WebGLConst.NEVER;
-            case DepthFunction.Less:                              return WebGLConst.LESS;
-            case DepthFunction.Equal:                             return WebGLConst.EQUAL;
-            case DepthFunction.LessEqual:                         return WebGLConst.LEQUAL;
-            case DepthFunction.Greater:                           return WebGLConst.GREATER;
-            case DepthFunction.NotEqual:                          return WebGLConst.NOTEQUAL;
-            case DepthFunction.GreaterEqual:                      return WebGLConst.GEQUAL;
-            case DepthFunction.Always:                            return WebGLConst.ALWAYS;
-            default:                                              return WebGLConst.LEQUAL;
-        }
-    }
-
-    /**
-     * Convert the given drawing mode to an equivalent WebGL value
-     *
-     * @param {DrawingMode} drawingMode A drawing mode
-     * @return {number} A WebGL value.
-     * @private
-     */
-    convertDrawingModeToConstant(drawingMode) 
-    {
-        switch(drawingMode)
-        {
-            default:
-            case DrawingMode.Points:                              return WebGLConst.POINTS;
-            case DrawingMode.Lines:                               return WebGLConst.LINES;
-            case DrawingMode.LinesStrip:                          return WebGLConst.LINE_STRIP;
-            case DrawingMode.LinesLoop:                           return WebGLConst.LINE_LOOP;
-            case DrawingMode.Triangles:                           return WebGLConst.TRIANGLES;
-            case DrawingMode.TrianglesStrip:                      return WebGLConst.TRIANGLE_STRIP;
-            case DrawingMode.TrianglesFan:                        return WebGLConst.TRIANGLE_FAN;
-        }
-    }
-
-    /**
-     * Convert the given stencil function to an equivalent WebGL function
-     *
-     * @param {StencilFunction} stencilFunction A StencilFunction value
-     * @return {number} A WebGL value
-     * @private
-     */
-    convertStencilFunctionToConstant(stencilFunction) 
-    {
-        switch(stencilFunction)
-        {
-            case StencilFunction.Never:                         return WebGLConst.NEVER;
-            case StencilFunction.Less:                          return WebGLConst.LESS;
-            case StencilFunction.Equal:                         return WebGLConst.EQUAL;
-            case StencilFunction.LessEqual:                     return WebGLConst.LEQUAL;
-            case StencilFunction.Greater:                       return WebGLConst.GREATER;
-            case StencilFunction.NotEqual:                      return WebGLConst.NOTEQUAL;
-            case StencilFunction.GreaterEqual:                  return WebGLConst.GEQUAL;
-            case StencilFunction.Always:                        return WebGLConst.ALWAYS;
-            default:                                            return WebGLConst.LEQUAL;
-        }
-    }
-
-    /**
-     * Convert the given stencil operation to an equivalent WebGL function
-     *
-     * @param {StencilOperation} operation A StencilOperation value
-     * @return {number} A WebGL value
-     * @private
-     */
-    convertStencilOperationToConstant(operation) 
-    {
-        switch(operation)
-        {
-            default:
-            case StencilOperation.Keep:                            return WebGLConst.KEEP;
-            case StencilOperation.Zero:                            return WebGLConst.ZERO;
-            case StencilOperation.Replace:                         return WebGLConst.REPLACE;
-            case StencilOperation.Increment:                       return WebGLConst.INCR;
-            case StencilOperation.Decrement:                       return WebGLConst.DECR;
-            case StencilOperation.Invert:                          return WebGLConst.INVERT;
-            case StencilOperation.IncrementWrap:                   return WebGLConst.INCR_WRAP;
-            case StencilOperation.DecrementWrap:                   return WebGLConst.DECR_WRAP;
-        }
-    }
-
-    /**
-     * Convert the given vertex type to an equivalent WebGL type
-     *
-     * @param {VertexElement.Type} type A VertexElement type
-     * @return {number} A WebGL value
-     * @private
-     */
-    convertVertexTypeToConstant(type) 
-    {
-        switch(type)
-        {
-            default:
-            case VertexElement.Type.Byte:            return WebGLConst.BYTE;
-            case VertexElement.Type.Float:           return WebGLConst.FLOAT;
-            case VertexElement.Type.Int:             return WebGLConst.INT;
-            case VertexElement.Type.Short:           return WebGLConst.SHORT;
-        }
-    }
-
-    /**
-     * Convert the given type of stream to an equivalent WebGL type
-     *
-     * @param {VertexElement.StreamType} type A StreamType
-     * @return {number} A WebGL value
-     * @private
-     */
-    convertStreamTypeToConstant(type) 
-    {
-        switch(type)
-        {
-            default:
-            case VertexElement.StreamType.Static:    return WebGLConst.STATIC_DRAW;
-            case VertexElement.StreamType.Dynamic:   return WebGLConst.DYNAMIC_DRAW;
-            case VertexElement.StreamType.Stream:    return WebGLConst.STREAM_DRAW;
-        }
-    }
-
-    /**
-     * Convert the given type to an equivalent
-     *
-     * @param {number} type A WebGL value
-     * @return {Type} A custom type value
-     * @private
-     */
-    convertConstantToShaderTypes(type) 
-    {
-        switch(type)
-        {
-            default:
-            case WebGLConst.FLOAT:
-            case WebGLConst.FLOAT_VEC2:
-            case WebGLConst.FLOAT_VEC3:
-            case WebGLConst.FLOAT_VEC4:
-                return Type.Float;
-            case WebGLConst.INT:
-            case WebGLConst.INT_VEC2:
-            case WebGLConst.INT_VEC3:
-            case WebGLConst.INT_VEC4:
-                return Type.Int;
-            case WebGLConst.BOOL:
-            case WebGLConst.BOOL_VEC2:
-            case WebGLConst.BOOL_VEC3:
-            case WebGLConst.BOOL_VEC4:
-                return Type.Bool;
-            case WebGLConst.FLOAT_MAT2:
-            case WebGLConst.FLOAT_MAT3:
-            case WebGLConst.FLOAT_MAT4:
-                return Type.Matrix;
-            case WebGLConst.SAMPLER_2D:
-                return Type.Texture2D;
-            case WebGLConst.SAMPLER_CUBE:
-                return Type.TextureCube;
-            case WebGLConst.BYTE:
-                return Type.Byte;
-            case WebGLConst.UNSIGNED_BYTE:
-                return Type.u_Byte;
-            case WebGLConst.SHORT:
-                return Type.Short;
-            case WebGLConst.UNSIGNED_SHORT:
-                return Type.u_Short;
-            case WebGLConst.UNSIGNED_INT:
-                return Type.u_Int;
-        }
-    }
-
-    /**
-     * Convert the given webgl shader's type to an equivalent value
-     *
-     * @param {number} type A WebGL value
-     * @return {number} A number representing element count for the given type
-     * @private
-     */
-    convertConstantToShaderCount(type) 
-    {
-        switch(type)
-        {
-            default:
-            case WebGLConst.FLOAT:
-            case WebGLConst.INT:
-            case WebGLConst.BOOL:
-            case WebGLConst.SAMPLER_2D:
-            case WebGLConst.SAMPLER_CUBE:
-            case WebGLConst.BYTE:
-            case WebGLConst.UNSIGNED_BYTE:
-            case WebGLConst.SHORT:
-            case WebGLConst.UNSIGNED_SHORT:
-            case WebGLConst.UNSIGNED_INT:
-                return 1;
-            case WebGLConst.FLOAT_VEC2:
-            case WebGLConst.INT_VEC2:
-            case WebGLConst.BOOL_VEC2:
-            case WebGLConst.FLOAT_MAT2:
-                return 2;
-            case WebGLConst.FLOAT_VEC3:
-            case WebGLConst.INT_VEC3:
-            case WebGLConst.BOOL_VEC3:
-            case WebGLConst.FLOAT_MAT3:
-                return 3;
-            case WebGLConst.FLOAT_VEC4:
-            case WebGLConst.INT_VEC4:
-            case WebGLConst.BOOL_VEC4:
-            case WebGLConst.FLOAT_MAT4:
-                return 4;
-        }
     }
 }
