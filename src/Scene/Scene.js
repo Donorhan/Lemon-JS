@@ -86,6 +86,9 @@ export class Scene
         // Recursive function to roam the graph
         function visit(node, target)
         {
+            if (!node.isEnabled())
+                return;
+
             // Visit node
             node.visit(target);
 

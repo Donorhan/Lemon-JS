@@ -27,6 +27,14 @@ export class Node extends Transformable
         this.children = [];
 
         /**
+         * An enabled element will be drawn/sent to the renderer
+         *
+         * @type {boolean}
+         * @private
+         */
+        this.enabled = true;
+
+        /**
          * Name, useful to retrieve the node
          *
          * @type {string}
@@ -60,6 +68,16 @@ export class Node extends Transformable
         // Add as a child
         this.children.push(node);
         node.parent = this;
+    }
+
+    /**
+     * Set node's state
+     *
+     * @param {boolean} value True to enable false to disable
+     */
+    enable(value)
+    {
+        this.enabled = value;
     }
 
     /**
@@ -124,8 +142,7 @@ export class Node extends Transformable
      */
     update(deltaTime, parentUpdated)
     {
-        let parentMatrix = this.parent ? this.parent.getTransformationMatrix() : null;
-        return this.computeTransformationMatrix(parentMatrix, parentUpdated);
+        return this.computeTransformationMatrix((this.parent ? this.parent.getTransformationMatrix() : null), parentUpdated);
     }
 
     /**
@@ -143,6 +160,16 @@ export class Node extends Transformable
     getChildren()
     {
         return this.children;
+    }
+
+    /**
+     * Get state
+     *
+     * @return {boolean} True if the node is enabled, otherwise false
+     */
+    isEnabled()
+    {
+        return this.enabled;
     }
 
     /**
