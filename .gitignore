@@ -1,2 +1,3 @@
 node_modules/
+build/
 examples/0-debug.html
