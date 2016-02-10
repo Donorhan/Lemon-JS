@@ -21,9 +21,6 @@
 
             window.onload = function()
             {
-                // Load texture for tests.
-                var lemonTexture = new Lemon.Texture("./assets/images/box.jpg");
-
                 var scene = new Lemon.Scene();
 
                 // Tests.
@@ -31,21 +28,21 @@
                 light6.setAmbientColor(255, 255,255);
                 light6.setDiffuseColor(255, 255, 255);
                 light6.setSpecularColor(255, 255, 255);
-                light6.setPosition(0, 3, 0);
+                light6.setPosition(0, 0, 3);
                 light6.setDirection(0, -1, 0);
                 scene.add(light6);
 
-    var textures = new Lemon.TextureCube([
-        './assets/images/TropicalSkyBox/Up.jpg',
-        './assets/images/TropicalSkyBox/Down.jpg',
-        './assets/images/TropicalSkyBox/Left.jpg',
-        './assets/images/TropicalSkyBox/Right.jpg',
-        './assets/images/TropicalSkyBox/Back.jpg',
-        './assets/images/TropicalSkyBox/Front.jpg'
-    ]);
+                var textures = new Lemon.TextureCube([
+                    './assets/images/TropicalSkyBox/Up.jpg',
+                    './assets/images/TropicalSkyBox/Down.jpg',
+                    './assets/images/TropicalSkyBox/Left.jpg',
+                    './assets/images/TropicalSkyBox/Right.jpg',
+                    './assets/images/TropicalSkyBox/Back.jpg',
+                    './assets/images/TropicalSkyBox/Front.jpg'
+                ]);
 
-    var skybox = new Lemon.Skybox();
-    skybox.setTexture(textures);
+                var skybox = new Lemon.Skybox();
+                skybox.setTexture(textures);
                 scene.add(skybox);
 
                 // Test program library.
@@ -57,11 +54,18 @@
                     var cubeGeometry = Lemon.Geometry.createCube(0.5, 0.5, 0.5);
 
                     var mesh = new Lemon.Mesh();
-                    mesh.setPosition(2, 1, 0);
+                    mesh.setPosition(5, 2, 0);
                     mesh.setMaterial(Lemon.Material.create('default'));
                     mesh.setGeometry(cubeGeometry);
                     mesh.setProgram(Lemon.ProgramLibrary.get("PhongShader-withoutTexture"));
                     scene.add(mesh);
+
+                  var mesh2 = new Lemon.Mesh();
+                  mesh2.setPosition(0, 2, 0);
+                  mesh2.setMaterial(Lemon.Material.create('default'));
+                  mesh2.setGeometry(cubeGeometry);
+                  mesh2.setProgram(Lemon.ProgramLibrary.get("PhongShader-withoutTexture"));
+                  scene.add(mesh2);
                 }
 
                 // Create a quad.
@@ -103,6 +107,8 @@
                 var previous = 0;
                 var diff     = 0;
 
+                var bbox = new Lemon.Box();
+
                 function mainLoop( timestamp )
                 {
                     requestAnimationFrame(mainLoop);
@@ -111,7 +117,8 @@
                     diff     = timestamp - previous;
                     previous = timestamp;
 
-                    camera.rotate(0.005, 0);
+                    camera.rotate(0.015, 0);
+                    light6.setPosition(camera.getPosition()[0], camera.getPosition()[1], camera.getPosition()[2]);
 
                     // Logic.
                     scene.update(0.0);
@@ -123,6 +130,26 @@
 
                 }
                 requestAnimationFrame(mainLoop);
+
+                window.onmousemove = function(event)
+                {
+                    var start  = camera.screenToWorldPoint([event.pageX, event.pageY, 0.0]);
+                    var end    = camera.screenToWorldPoint([event.pageX, camera.viewport[3] - event.pageY, 1.0]);
+
+                    var ray = new Lemon.Ray(start, end);
+                    var bbox = new Lemon.Box();
+                    bbox.compute(mesh.geometry.positions);
+                    bbox.applyTransform(mesh.getTransformationMatrix());
+
+                    var collision = [];
+                    if (bbox.intersectRay(ray, collision)) {
+                      mesh.material.getPass(0, 0).set("material.ambient", [1.0, 0, 0]);
+                      mesh.material.getPass(0, 0).set("material.diffuse", [1.0, 0, 0]);
+                    } else {
+                      mesh.material.getPass(0, 0).set("material.ambient", [0.0, 0, 0]);
+                      mesh.material.getPass(0, 0).set("material.diffuse", [0.55, 0.55, 0.55]);
+                    }
+                }
             };
 
         </script>

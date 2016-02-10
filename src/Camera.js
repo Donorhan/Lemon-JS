@@ -1,3 +1,4 @@
+import * as glExt from './Math/gl-matrix-extension.js';
 let glMatrix = require('gl-matrix');
 
 /**
@@ -342,6 +343,38 @@ export class Camera
         }
 
         return this.matrixViewProjection;
+    }
+
+    /**
+     * Convert a point in 2D space to the 3D space
+     *
+     * Z value must have one of this two values:
+     * - 0 for near plane
+     * - 1 for far plane
+     *
+     * @param {Array.<number>} position Position in 2D space/a vec3
+     * @return {!glMatrix.vec3} An array with position in 3D
+     */
+    screenToWorldPoint(position)
+    {
+        return glMatrix.vec3.unproject([position[0], position[1], position[2]],
+                                        this.getViewMatrix(),
+                                        this.getProjectionMatrix(),
+                                        this.viewport);
+    }
+
+    /**
+     * Convert a point in 3D space to the 2D space
+     *
+     * @param {Array.<number>} position Position in 3D space/a vec3
+     * @return {!glMatrix.vec2} An array with position in 2D
+     */
+    worldToScreenPoint(position)
+    {
+        return glMatrix.vec3.project([position[0], position[1], position[2]],
+                                        this.getViewMatrix(),
+                                        this.getProjectionMatrix(),
+                                        this.viewport);
     }
 }
 

@@ -13,7 +13,7 @@ export class Drawable extends Node
      *
      * @param {RenderTarget} renderTarget Renderer who called this method
      */
-    draw(renderTarget) { };
+    draw(renderTarget) { }
 
     /**
      * Visit the node and his children
