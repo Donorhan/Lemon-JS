@@ -1226,7 +1226,7 @@ export class WebGL extends RenderAPI
     }
 
     /**
-     * Convert the given type to a Lemon equivalent
+     * Convert the given type to an equivalent
      *
      * @param {number} type A WebGL value
      * @return {Type} A custom type value
@@ -1274,7 +1274,7 @@ export class WebGL extends RenderAPI
     }
 
     /**
-     * Convert the given webgl shader's type to an equivalent Lemon value
+     * Convert the given webgl shader's type to an equivalent value
      *
      * @param {number} type A WebGL value
      * @return {number} A number representing element count for the given type
