@@ -137,12 +137,12 @@ export class Node extends Transformable
      * Update the node and his children
      *
      * @param {number} deltaTime A floating value representing time elapsed between two frames
-     * @param {boolean} parentUpdated Indicate if the parent element have been updated
+     * @param {?boolean} forceUpdate Set to true to force an update
      * @return {boolean} True if the node have been updated
      */
-    update(deltaTime, parentUpdated)
+    update(deltaTime, forceUpdate = false)
     {
-        return this.computeTransformationMatrix((this.parent ? this.parent.getTransformationMatrix() : null), parentUpdated);
+        return this.computeTransformationMatrix((this.parent ? this.parent.getTransformationMatrix() : null), forceUpdate);
     }
 
     /**

@@ -60,20 +60,26 @@ export class Scene
      */
     update(deltaTime)
     {
-        // Recursive function to roam the graph
-        function update(node, deltaTime, parentUpdated)
-        {
-            // Update node
-            let updated = node.update(deltaTime, parentUpdated);
+        this.updateNode(this.root, deltaTime, false);
+    }
 
-            // Update his children
-            let children = node.getChildren();
-            for (let i = 0; i < children.length; i++)
-                update(children[i], deltaTime, (updated || parentUpdated));
-        }
+    /**
+     * Update a node and his children
+     *
+     * @param {Node} node A Node instance
+     * @param {number} deltaTime A floating value representing time elapsed between two frames
+     * @param {boolean} forceUpdate Set to true to force an update
+     * @private
+     */
+    updateNode(node, deltaTime, forceUpdate)
+    {
+        // Update node
+        let updated = node.update(deltaTime, forceUpdate);
 
-        // Start the recursive method
-        update(this.root, deltaTime, false);
+        // Update his children
+        let children = node.getChildren();
+        for (let i = 0; i < children.length; i++)
+            this.updateNode(children[i], deltaTime, (updated || forceUpdate));
     }
 
     /**
@@ -83,22 +89,27 @@ export class Scene
      */
     visit(renderTarget)
     {
-        // Recursive function to roam the graph
-        function visit(node, target)
-        {
-            if (!node.isEnabled())
-                return;
+        this.visitNode(renderTarget, this.root);
+    }
 
-            // Visit node
-            node.visit(target);
+    /**
+     * Visit a node and his children
+     *
+     * @param {RenderTarget} renderTarget Renderer who called this method
+     * @param {Node} node A Node instance to visit
+     * @private
+     */
+    visitNode(target, node)
+    {
+        if (!node.isEnabled())
+            return;
 
-            // Visit his children
-            let children = node.getChildren();
-            for (let i = 0; i < children.length; i++)
-                visit(children[i], target);
-        }
+        // Visit node
+        node.visit(target);
 
-        // Start the recursive method
-        visit(this.root, renderTarget);
+        // Visit his children
+        let children = node.getChildren();
+        for (let i = 0; i < children.length; i++)
+            this.visitNode(target, children[i]);
     }
 }
