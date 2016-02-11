@@ -22,6 +22,7 @@ export class Drawable extends Node
      */
     visit(renderTarget)
     {
-        this.draw(renderTarget);
+        if (super.visit(renderTarget))
+            this.draw(renderTarget);
     }
 }

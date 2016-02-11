@@ -48,7 +48,8 @@ export class Light extends Node
      */
     visit(renderTarget) 
     {
-        renderTarget.getRenderAPI().bindLight(this);
+        if (super.visit(renderTarget))
+            renderTarget.getRenderAPI().bindLight(this);
     }
 
     /**

@@ -1,4 +1,5 @@
 import {Transformable} from '../Transformable.js';
+import {Box} from '../Math/Box.js';
 
 /**
  * A node element is an element of a scene
@@ -19,12 +20,30 @@ export class Node extends Transformable
         super();
 
         /**
+         * Bounding box
+         *
+         * @type {Array.<Node>}
+         * @private
+         */
+        this.boundingBox = new Box();
+
+        /**
          * Node's children
          *
          * @type {Array.<Node>}
          * @private
          */
         this.children = [];
+
+        /**
+         * A culled element will not be drawn/sent to the renderer
+         *
+         * Warning: This attribute is set by Cullers automatically
+         *
+         * @type {boolean}
+         * @public
+         */
+        this.culled = false;
 
         /**
          * An enabled element will be drawn/sent to the renderer
@@ -73,7 +92,7 @@ export class Node extends Transformable
     /**
      * Set node's state
      *
-     * @param {boolean} value True to enable false to disable
+     * @param {boolean} value True to enable, false to disable
      */
     enable(value)
     {
@@ -138,19 +157,39 @@ export class Node extends Transformable
      *
      * @param {number} deltaTime A floating value representing time elapsed between two frames
      * @param {?boolean} forceUpdate Set to true to force an update
-     * @return {boolean} True if the node have been updated
+     * @return {boolean} True if the node has been updated
      */
     update(deltaTime, forceUpdate = false)
     {
-        return this.computeTransformationMatrix((this.parent ? this.parent.getTransformationMatrix() : null), forceUpdate);
+        if (!this.computeTransformationMatrix((this.parent ? this.parent.getTransformationMatrix() : null), forceUpdate))
+            return false;
+
+        // Update bounding box only if node has moved
+        this.boundingBox.applyMatrix(this.getTransformationMatrix());
+
+        return true;
     }
 
     /**
      * Visit the node and his children
      *
      * @param {RenderTarget} renderTarget Renderer who called this method
+     * @return {boolean} True if visit was successful, otherwise false
      */
-    visit(renderTarget) { };
+    visit(renderTarget)
+    {
+        return (!this.culled && this.enabled);
+    }
+
+    /**
+     * Return Node's bounding Box
+     *
+     * @return {Box} A Box instance
+     */
+    getBoundingBox()
+    {
+        return this.boundingBox;
+    }
 
     /**
      * Return Node's children

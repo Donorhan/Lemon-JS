@@ -133,7 +133,7 @@ export class Geometry extends ContextResource
         // Indicate that an attribute of the geometry need an update
         if (this.vertexFormat)
             this.vertexFormat.setStreamAsWaitingUpdate(VertexElement.Usage.UVS, true);
-    };
+    }
 
     /**
      * Set geometry's format
@@ -180,7 +180,7 @@ export class Geometry extends ContextResource
      *
      * @return {Float32Array} An array with the format [r, g, b, a, r, g, b, a, …]
      */
-   getVerticesColors()
+    getVerticesColors()
     {
         return this.colors;
     }

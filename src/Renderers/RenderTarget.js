@@ -54,23 +54,23 @@ export class RenderTarget
     clear(color) { };
 
     /**
+     * Create a new task
+     *
+     * @return {number} RenderTask's index
+     */
+    createTask()
+    {
+        this.tasks.push(new RenderTask());
+        return (this.tasks.length - 1);
+    }
+
+    /**
      * Display
      */
     display() 
     {
         for (let i = 0; i < this.tasks.length; i++)
             this.tasks[i].execute(this.renderApi);
-    }
-
-    /**
-     * Create a new task
-     *
-     * @return {number} RenderTask's index
-     */
-    createTask() 
-    { 
-        this.tasks.push(new RenderTask());
-        return (this.tasks.length - 1);
     }
 
     /**

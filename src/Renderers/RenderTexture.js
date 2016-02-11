@@ -62,7 +62,7 @@ export class RenderTexture extends RenderTarget
      * @param {boolean=} useStencilBuffer True to use a depth buffer
      * @private
      */
-    init( width, height, textureCount, useDepthBuffer = true, useStencilBuffer = false) 
+    init(width, height, textureCount, useDepthBuffer = true, useStencilBuffer = false)
     {
         // Create textures.
         for (let i = 0; i < textureCount; i++)

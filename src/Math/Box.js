@@ -18,14 +18,14 @@ export class Box
          *
          * @type {glMatrix.vec3}
          */
-        this.maxBounds = glMatrix.vec3.create();
+        this.maxBounds = glMatrix.vec3.fromValues(0.1, 0.1, 0.1);
 
         /**
          * Minimun bounds
          *
          * @type {glMatrix.vec3}
          */
-        this.minBounds = glMatrix.vec3.create();
+        this.minBounds = glMatrix.vec3.fromValues(-0.1, -0.1 -0.1);
 
         /**
          * Maximum bounds (with transformation applied)
@@ -100,7 +100,7 @@ export class Box
      *
      * @param {glMatrix.mat4} matrix A matrix
      */
-    applyTransform(matrix)
+    applyMatrix(matrix)
     {
         // Compute result
         let a = glMatrix.vec4.create();
