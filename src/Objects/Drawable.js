@@ -19,10 +19,14 @@ export class Drawable extends Node
      * Visit the node and his children
      *
      * @param {RenderTarget} renderTarget Renderer who called this method
+     * @return {boolean} True if visit was successful, otherwise false
      */
     visit(renderTarget)
     {
-        if (super.visit(renderTarget))
-            this.draw(renderTarget);
+        if (!super.visit(renderTarget))
+            return false;
+
+        this.draw(renderTarget);
+        return true;
     }
 }

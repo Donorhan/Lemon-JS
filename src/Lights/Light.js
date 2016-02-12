@@ -45,11 +45,15 @@ export class Light extends Node
      * Visit the node and his children
      *
      * @param {RenderTarget} renderTarget Renderer who called this method
+     * @return {boolean} True if visit was successful, otherwise false
      */
     visit(renderTarget) 
     {
-        if (super.visit(renderTarget))
-            renderTarget.getRenderAPI().bindLight(this);
+        if (!super.visit(renderTarget))
+            return false;
+
+        renderTarget.getRenderAPI().bindLight(this);
+        return true;
     }
 
     /**
