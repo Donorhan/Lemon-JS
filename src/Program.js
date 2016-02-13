@@ -65,7 +65,7 @@ export class Program extends ContextResource
         {
             this.sources[1] = data;
         });
-    };
+    }
 
     /**
      * Load program from data

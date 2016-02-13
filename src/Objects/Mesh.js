@@ -1,5 +1,6 @@
 import {Drawable} from './Drawable.js';
 import {MeshCommand} from '../Renderers/Commands/MeshCommand.js';
+import {VertexFormat, VertexElement} from '../VertexFormat.js';
 
 /**
  * A mesh
@@ -51,13 +52,14 @@ export class Mesh extends Drawable
         if (!this.geometry || !this.material || !this.program)
             return;
 
+        // Create a task
         let task            = renderTarget.getActiveTask();
         let activeTechnique = this.material.getActiveTechnique();
         let passCount       = this.material.getPassCount(activeTechnique);
 
         for (let i = 0; i < passCount; i++)
             task.addCommand(new MeshCommand(this.geometry, this.material.getPass(activeTechnique, i), this.program, this.getTransformationMatrix(), this.getNormalMatrix(), 0, this.geometry.getIndexCount()));
-    };
+    }
 
     /**
      * Set geometry
@@ -67,6 +69,7 @@ export class Mesh extends Drawable
     setGeometry(geometry)
     {
         this.geometry = geometry;
+        this.boundingBox.compute(geometry.getVerticesPositions());
     }
 
     /**
@@ -77,7 +80,7 @@ export class Mesh extends Drawable
     setMaterial(material)
     {
         this.material = material;
-    };
+    }
 
     /**
      * Set program

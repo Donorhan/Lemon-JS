@@ -56,9 +56,9 @@ export class Scene
     /**
      * Update the graph
      *
-     * @param {number} deltaTime A floating value representing time elapsed between two frames
+     * @param {?number} deltaTime A floating value representing time elapsed between two frames
      */
-    update(deltaTime)
+    update(deltaTime = 0.0)
     {
         this.updateNode(this.root, deltaTime, false);
     }
@@ -74,12 +74,12 @@ export class Scene
     updateNode(node, deltaTime, forceUpdate)
     {
         // Update node
-        let updated = node.update(deltaTime, forceUpdate);
+        let updated = node.update(deltaTime, forceUpdate) || forceUpdate;
 
         // Update his children
         let children = node.getChildren();
         for (let i = 0; i < children.length; i++)
-            this.updateNode(children[i], deltaTime, (updated || forceUpdate));
+            this.updateNode(children[i], deltaTime, updated);
     }
 
     /**
@@ -101,15 +101,21 @@ export class Scene
      */
     visitNode(target, node)
     {
-        if (!node.isEnabled())
-            return;
+        if (node.visit(target))
+        {
+            let children = node.getChildren();
+            for (let i = 0; i < children.length; i++)
+                this.visitNode(target, children[i]);
+        }
+    }
 
-        // Visit node
-        node.visit(target);
-
-        // Visit his children
-        let children = node.getChildren();
-        for (let i = 0; i < children.length; i++)
-            this.visitNode(target, children[i]);
+    /**
+     * Return root node
+     *
+     * @return {Node} node A Node instance
+     */
+    getRoot()
+    {
+        return this.root;
     }
 }

@@ -157,7 +157,7 @@ export class VertexFormat
     {
         this.elements.push(element);
         this.compute();
-    };
+    }
 
     /**
      * Set elements

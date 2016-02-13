@@ -24,7 +24,7 @@ export class PointLight extends Light
         this.constant = 1.0;
 
         /**
-         * Lieanr value
+         * Linear value
          *
          * @type {number}
          * @private

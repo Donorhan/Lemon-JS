@@ -124,4 +124,3 @@ export class PostEffect
         this.renderApi.setUniform(this.sprite.getCustomProgram(), name, type, value, groupCount);
     }
 }
-

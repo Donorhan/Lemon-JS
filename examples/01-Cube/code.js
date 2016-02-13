@@ -8,7 +8,7 @@ function init()
     // A camera to draw the scene.
     camera = new Lemon.Camera();
     camera.move(3, 3, 3);
-    camera.setViewport(0, 0, renderer.getSize()[0], renderer.getSize()[1]);
+    camera.setViewport(0, 0, renderer.getWidth(), renderer.getHeight());
 
     // Create a scene where you can add sprites, lights, objects, ….
     scene = new Lemon.Scene();
