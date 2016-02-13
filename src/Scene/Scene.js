@@ -56,9 +56,9 @@ export class Scene
     /**
      * Update the graph
      *
-     * @param {number} deltaTime A floating value representing time elapsed between two frames
+     * @param {?number} deltaTime A floating value representing time elapsed between two frames
      */
-    update(deltaTime)
+    update(deltaTime = 0.0)
     {
         this.updateNode(this.root, deltaTime, false);
     }

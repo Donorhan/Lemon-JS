@@ -1,3 +1,4 @@
+import {Color} from '../Color.js';
 import {Context} from '../Context.js';
 import {RenderTarget} from './RenderTarget.js';
 import {WebGL} from './WebGL/RenderWebGL.js';
@@ -22,7 +23,7 @@ export class RenderCanvas extends RenderTarget
         super();
 
         /**
-         * The render API to use: For now we support WebGL 1.0.3 only
+         * The render API to use: For now the renderer support WebGL 1.0.3 only
          *
          * @type {RenderAPI}
          * @protected
@@ -36,9 +37,9 @@ export class RenderCanvas extends RenderTarget
     /**
      * Clear the canvas
      *
-     * @param {Color} color A Color instance
+     * @param {?Color} color A Color instance
      */
-    clear(color) 
+    clear(color = new Color(30, 30, 30)) 
     {
         // Remove previous tasks
         this.removeTasks();

@@ -134,43 +134,61 @@ export class Transformable
     /**
      * Set origin
      *
-     * @param {number} x Origin on X
-     * @param {number} y Origin on Y
-     * @param {number} z Origin on Z
+     * @param {number|Array.<number>} x Origin on X or an array with origin on each axis
+     * @param {?number} y Origin on Y
+     * @param {?number} z Origin on Z
      */
-    setOrigin(x, y, z)
+    setOrigin(x, y = this.origin[1], z = this.origin[2])
     {
-        glMatrix.vec3.set(this.origin, x, y, z);
+        if (x.constructor === Array)
+            glMatrix.vec3.copy(this.origin, x);
+        else
+            glMatrix.vec3.set(this.origin, x, y, z);
+
         this.needTransformUpdate = true;
     }
 
     /**
      * Set position
      *
-     * @param {number} x Position on X
-     * @param {number} y Position on Y
-     * @param {number} z Position on Z
+     * @param {number|Array.<number>} x Position on X or an array with position on each axis
+     * @param {?number} y Position on Y
+     * @param {?number} z Position on Z
      */
-    setPosition(x, y, z)
+    setPosition(x, y = this.position[1], z = this.position[2])
     {
-        glMatrix.vec3.set(this.position, x, y, z);
+        if (x.constructor === Array)
+            glMatrix.vec3.copy(this.position, x);
+        else
+            glMatrix.vec3.set(this.position, x, y, z);
+
         this.needTransformUpdate = true;
     }
 
     /**
      * Set rotation using values in degrees
      *
-     * @param {number} x Rotation on X in degrees
-     * @param {number} y Rotation on Y in degrees
-     * @param {number} z Rotation on Z in degrees
+     * @param {number|Array.<number>} x Rotation on X in degrees or an array with rotation on each axis
+     * @param {?number} y Rotation on Y in degrees
+     * @param {?number} z Rotation on Z in degrees
      */
-    setRotation(x, y, z)
+    setRotation(x, y = 0, z = 0)
     {
         // Compute rotation matrix
         glMatrix.mat4.identity(this.rotationMatrix);
-        glMatrix.mat4.rotateX(this.rotationMatrix, this.rotationMatrix, glMatrix.glMatrix.toRadian(x));
-        glMatrix.mat4.rotateY(this.rotationMatrix, this.rotationMatrix, glMatrix.glMatrix.toRadian(y));
-        glMatrix.mat4.rotateZ(this.rotationMatrix, this.rotationMatrix, glMatrix.glMatrix.toRadian(z));
+
+        if (x.constructor === Array)
+        {
+            glMatrix.mat4.rotateX(this.rotationMatrix, this.rotationMatrix, glMatrix.glMatrix.toRadian(x[0]));
+            glMatrix.mat4.rotateY(this.rotationMatrix, this.rotationMatrix, glMatrix.glMatrix.toRadian(x[1]));
+            glMatrix.mat4.rotateZ(this.rotationMatrix, this.rotationMatrix, glMatrix.glMatrix.toRadian(x[2]));
+        }
+        else
+        {
+            glMatrix.mat4.rotateX(this.rotationMatrix, this.rotationMatrix, glMatrix.glMatrix.toRadian(x));
+            glMatrix.mat4.rotateY(this.rotationMatrix, this.rotationMatrix, glMatrix.glMatrix.toRadian(y));
+            glMatrix.mat4.rotateZ(this.rotationMatrix, this.rotationMatrix, glMatrix.glMatrix.toRadian(z));            
+        }
 
         // Compute quaterion
         let m3 = glMatrix.mat3.create();
@@ -209,20 +227,24 @@ export class Transformable
     /**
      * Set scale
      *
-     * @param {number} x Position on X
-     * @param {number} y Position on Y
-     * @param {number} z Position on Z
+     * @param {number|Array.<number>} x Scale on X or an array with scale on each axis
+     * @param {?number} y Scale on Y
+     * @param {?number} z Scale on Z
      */
-    setScale(x, y, z)
+    setScale(x, y = this.scale[1], z = this.scale[2])
     {
-        glMatrix.vec3.set(this.scale, x, y, z);
+        if (x.constructor === Array)
+            glMatrix.vec3.copy(this.scale, x);
+        else
+            glMatrix.vec3.set(this.scale, x, y, z);
+
         this.needTransformUpdate = true;
     }
 
     /**
      * Update matrix
      *
-     * @param {?glMatrix.mat4} parentMatrix Parent transformable's matrix
+     * @param {?Array.<number>|glMatrix.mat4} parentMatrix Parent transformable's matrix
      * @param {boolean} forceUpdate True to force an update
      * @return {boolean} True if the matrix have been updated, otherwise false
      */
@@ -254,7 +276,7 @@ export class Transformable
     /**
      * Return computed matrix
      *
-     * @return {glMatrix.mat4} A reference to the object's matrix
+     * @return {Array.<number>|glMatrix.mat4} A reference to the object's matrix
      */
     getTransformationMatrix()
     {
@@ -264,7 +286,7 @@ export class Transformable
     /**
      * Return computed normal matrix
      *
-     * @return {glMatrix.mat4} A matrix
+     * @return {Array.<number>|glMatrix.mat4} A matrix
      */
     getNormalMatrix()
     {
@@ -274,7 +296,7 @@ export class Transformable
     /**
      * Return the origin
      *
-     * @return {glMatrix.vec3} A vector with the value for each axis
+     * @return {Array.<number>|glMatrix.vec3} A vector with the value for each axis
      */
     getOrigin()
     {
@@ -284,7 +306,7 @@ export class Transformable
     /**
      * Return relative position
      *
-     * @return {glMatrix.vec3} A vector with the value for each axis
+     * @return {Array.<number>|glMatrix.vec3} A vector with the value for each axis
      */
     getPosition()
     {
@@ -305,7 +327,7 @@ export class Transformable
     /**
      * Return the scale
      *
-     * @return {glMatrix.vec3} A vector with the value for each axis
+     * @return {Array.<number>|glMatrix.vec3} A vector with the value for each axis
      */
     getScale()
     {

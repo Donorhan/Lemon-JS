@@ -1,3 +1,4 @@
+import {Color} from '../Color.js';
 import {Context} from '../Context.js';
 import {RenderTask} from './RenderTask.js';
 
@@ -49,9 +50,9 @@ export class RenderTarget
     /**
      * Clear the rendering target
      *
-     * @param {Color} color A Color instance
+     * @param {?Color} color A Color instance
      */
-    clear(color) { };
+    clear(color = new Color(30, 30, 30)) { };
 
     /**
      * Create a new task
@@ -143,5 +144,25 @@ export class RenderTarget
     getSize() 
     {
         return this.context.getSize();
+    }
+
+    /**
+     * Get width
+     *
+     * @return {!number} Width in pixels
+     */
+    getWidth()
+    {
+        return this.context.getSize()[0];
+    }
+
+    /**
+     * Get height
+     *
+     * @return {!number} Height in pixels
+     */
+    getHeight()
+    {
+        return this.context.getSize()[1];
     }
 }

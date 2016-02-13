@@ -61,8 +61,8 @@ export class Context
 
             // Init WebGL.
             this.instance                   = this.domElement.getContext('webgl', { antialias: options.antialiasing || true });
-            this.instance.viewportWidth     = this.domElement.width;
-            this.instance.viewportHeight    = this.domElement.height;
+            this.instance.viewportWidth     = this.domElement.clientWidth;
+            this.instance.viewportHeight    = this.domElement.clientHeight;
         }
 
         // Set as active context.

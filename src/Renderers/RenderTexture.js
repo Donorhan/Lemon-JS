@@ -1,3 +1,4 @@
+import {Color} from '../Color.js';
 import {Img as Image} from '../Image.js';
 import {RenderTarget} from './RenderTarget.js';
 import {Texture} from '../Textures/Texture.js';
@@ -85,9 +86,9 @@ export class RenderTexture extends RenderTarget
     /**
      * Clear the texture
      *
-     * @param {Color} color A Color instance
+     * @param {?Color} color A Color instance
      */
-    clear(color) 
+    clear(color = new Color(0, 0, 0)) 
     {
         // Remove previous tasks.
         this.removeTasks();
