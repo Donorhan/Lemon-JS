@@ -25,10 +25,12 @@ export class Scene
      * Add a node element to the scene
      *
      * @param {Node} node A Node instance
+     * @return {Scene} A reference to the instance
      */
     add(node)
     {
         this.root.addChild(node);
+        return this;
     }
 
     /**

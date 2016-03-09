@@ -62,10 +62,13 @@ export class Light extends Node
      * @param {number} r Red value in the range 0 to 255
      * @param {number} g Green value in the range 0 to 255
      * @param {number} b Blue value in the range 0 to 255
+     * @return {Light} A reference to the instance
      */
     setAmbientColor(r, g, b) 
     {
         this.ambient.set(r, g, b);
+
+        return this;
     }
 
     /**
@@ -74,10 +77,13 @@ export class Light extends Node
      * @param {number} r Red value in the range 0 to 255
      * @param {number} g Green value in the range 0 to 255
      * @param {number} b Blue value in the range 0 to 255
+     * @return {Light} A reference to the instance
      */
     setDiffuseColor(r, g, b) 
     {
         this.diffuse.set(r, g, b);
+
+        return this;
     }
 
     /**
@@ -86,10 +92,13 @@ export class Light extends Node
      * @param {number} r Red value in the range 0 to 255
      * @param {number} g Green value in the range 0 to 255
      * @param {number} b Blue value in the range 0 to 255
+     * @return {Light} A reference to the instance
      */
     setSpecularColor(r, g, b) 
     {
         this.specular.set(r, g, b);
+
+        return this;
     }
 
     /**

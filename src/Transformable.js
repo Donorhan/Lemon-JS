@@ -82,6 +82,7 @@ export class Transformable
      *
      * @param {Array.<number>|Float32Array|Float64Array} position An array with value for each axis
      * @param {Array.<number>|Float32Array|Float64Array=} up An array with value for each axis
+     * @return {Transformable} A reference to the instance
      */
     lookAt(position = [0, 0, 0], up = [0, 1, 0])
     {
@@ -129,6 +130,8 @@ export class Transformable
 
         // Send result
         this.setRotationFromMatrix(matrix);
+
+        return this;
     }
 
     /**
@@ -137,6 +140,7 @@ export class Transformable
      * @param {number|Array.<number>} x Origin on X or an array with origin on each axis
      * @param {?number} y Origin on Y
      * @param {?number} z Origin on Z
+     * @return {Transformable} A reference to the instance
      */
     setOrigin(x, y = this.origin[1], z = this.origin[2])
     {
@@ -146,6 +150,8 @@ export class Transformable
             glMatrix.vec3.set(this.origin, x, y, z);
 
         this.needTransformUpdate = true;
+
+        return this;
     }
 
     /**
@@ -154,6 +160,7 @@ export class Transformable
      * @param {number|Array.<number>} x Position on X or an array with position on each axis
      * @param {?number} y Position on Y
      * @param {?number} z Position on Z
+     * @return {Transformable} A reference to the instance
      */
     setPosition(x, y = this.position[1], z = this.position[2])
     {
@@ -163,6 +170,8 @@ export class Transformable
             glMatrix.vec3.set(this.position, x, y, z);
 
         this.needTransformUpdate = true;
+
+        return this;
     }
 
     /**
@@ -171,6 +180,7 @@ export class Transformable
      * @param {number|Array.<number>} x Rotation on X in degrees or an array with rotation on each axis
      * @param {?number} y Rotation on Y in degrees
      * @param {?number} z Rotation on Z in degrees
+     * @return {Transformable} A reference to the instance
      */
     setRotation(x, y = 0, z = 0)
     {
@@ -196,12 +206,15 @@ export class Transformable
         glMatrix.quat.fromMat3(this.rotation, m3);
 
         this.needTransformUpdate = true;
+
+        return this;
     }
 
     /**
      * Set rotation from a quaternion
      *
      * @param {glMatrix.quat} quaternion A quaternion
+     * @return {Transformable} A reference to the instance
      */
     setRotationFromQuaternion(quaternion)
     {
@@ -209,12 +222,15 @@ export class Transformable
 
         this.rotation               = quaternion;
         this.needTransformUpdate    = true;
+
+        return this;
     }
 
     /**
      * Set rotation from a rotation matrix
      *
      * @param {glMatrix.mat4} matrix A Matrix
+     * @return {Transformable} A reference to the instance
      */
     setRotationFromMatrix(matrix)
     {
@@ -222,6 +238,8 @@ export class Transformable
 
         this.rotationMatrix         = matrix;
         this.needTransformUpdate    = true;
+
+        return this;
     }
 
     /**
@@ -230,6 +248,7 @@ export class Transformable
      * @param {number|Array.<number>} x Scale on X or an array with scale on each axis
      * @param {?number} y Scale on Y
      * @param {?number} z Scale on Z
+     * @return {Transformable} A reference to the instance
      */
     setScale(x, y = this.scale[1], z = this.scale[2])
     {
@@ -239,6 +258,8 @@ export class Transformable
             glMatrix.vec3.set(this.scale, x, y, z);
 
         this.needTransformUpdate = true;
+
+        return this;
     }
 
     /**

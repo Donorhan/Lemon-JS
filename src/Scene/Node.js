@@ -74,6 +74,7 @@ export class Node extends Transformable
      * Add a child to the node
      *
      * @param {Node} node A Node instance
+     * @return {Node} A reference to the instance
      */
     addChild(node)
     {
@@ -87,16 +88,21 @@ export class Node extends Transformable
         // Add as a child
         this.children.push(node);
         node.parent = this;
+
+        return this;
     }
 
     /**
      * Set node's state
      *
      * @param {boolean} value True to enable, false to disable
+     * @return {Node} A reference to the instance
      */
     enable(value)
     {
         this.enabled = value;
+
+        return this;
     }
 
     /**
@@ -146,10 +152,13 @@ export class Node extends Transformable
      * Set the name to easily retrieve it later
      *
      * @param {string} name A string
+     * @return {Node} A reference to the instance
      */
     setName(name)
     {
         this.name = name;
+
+        return this;
     }
 
     /**

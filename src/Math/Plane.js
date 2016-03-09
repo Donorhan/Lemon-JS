@@ -41,6 +41,8 @@ export class Plane
 
     /**
      * Normalize
+     * 
+     * @return {Plane} A reference to the instance
      */
     normalize()
     {
@@ -49,6 +51,8 @@ export class Plane
         this.normal[1] /= length;
         this.normal[2] /= length;
         this.distance  /= length;
+
+        return this;
     }
 
     /**
@@ -58,11 +62,14 @@ export class Plane
      * @param {number} y Normal on Y
      * @param {number} z Normal on Z
      * @param {number} distance Distance from origin
+     * @return {Plane} A reference to the instance
      */
     set(x, y, z, distance)
     {
         glMatrix.vec3.set(this.normal, x, y, z);
         this.distance = distance;
+
+        return this;
     }
 
     /**
@@ -71,6 +78,7 @@ export class Plane
      * @param {Array.<number>} a Point A
      * @param {Array.<number>} b Point B
      * @param {Array.<number>} c Point C
+     * @return {Plane} A reference to the instance
      */
     setFromPoints(a, b, c)
     {
@@ -86,6 +94,8 @@ export class Plane
         this.distance = -glMatrix.vec3.dot(this.normal, a);
 
         this.normalize();
+
+        return this;
     }
 
     /**

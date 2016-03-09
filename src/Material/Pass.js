@@ -76,6 +76,7 @@ export class Pass extends StateBlock
      * @param {string} name Parameter's name
      * @param {Type} type Parameter's type
      * @param {Array.<number>|number|boolean|Texture|Float32Array} value Parameter's value
+     * @return {Pass} A reference to the instance
      */
     add(name, type, value) 
     {
@@ -92,6 +93,8 @@ export class Pass extends StateBlock
 
         // … otherwise we create a new one
         this.parameters.push(new PassParameter(name, type, value));
+
+        return this;
     }
 
     /**
@@ -99,6 +102,7 @@ export class Pass extends StateBlock
      *
      * @param {string} name Parameter's name
      * @param {Array.<number>|number|boolean|Texture|Float32Array} value Parameter's value
+     * @return {Pass} A reference to the instance
      */
     set(name, value) 
     {
@@ -110,6 +114,8 @@ export class Pass extends StateBlock
                 break;
             }
         }
+
+        return this;
     }
 
     /**

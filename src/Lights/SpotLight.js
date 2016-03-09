@@ -62,20 +62,26 @@ export class SpotLight extends Light
      * @param {number} x Direction on X
      * @param {number} y Direction on Y
      * @param {number} z Direction on Z
+     * @return {SpotLight} A reference to the instance
      */
     setDirection(x, y, z) 
     {
-        this.direction = [x, y, z]; 
+        this.direction = [x, y, z];
+
+        return this;
     }
 
     /**
      * Set cut off
      *
      * @param {number} value The cutoff value
+     * @return {SpotLight} A reference to the instance
      */
     setCutoff(value) 
     {
         this.cutoff = value;
+
+        return this;
     }
 
     /**
@@ -84,12 +90,15 @@ export class SpotLight extends Light
      * @param {number} constant The constant value
      * @param {number} linear The linear value
      * @param {number} quadratic The quadratic value
+     * @return {SpotLight} A reference to the instance
      */
     setValues(constant, linear, quadratic) 
     {
         this.constant   = constant;
         this.linear     = linear;
         this.quadratic  = quadratic;
+
+        return this;
     }
 
     /**

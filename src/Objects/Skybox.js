@@ -47,21 +47,27 @@ export class Skybox extends Drawable
     /**
      * Set program to use
      *
-     * @param {Program} program A Program instance.
+     * @param {Program} program A Program instance
+     * @return {Skybox} A reference to the instance
      */
     setCustomProgram(program)
     {
         this.customProgram = program;
+
+        return this;
     }
 
     /**
      * Set texture
      *
      * @param {TextureCube} texture A TextureCube instance
+     * @return {Skybox} A reference to the instance
      */
     setTexture(texture)
     {
         this.texture = texture;
+
+        return this;
     }
 
     /**

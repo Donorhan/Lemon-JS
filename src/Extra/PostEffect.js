@@ -51,6 +51,7 @@ export class PostEffect
      * @param {number} height Resulting effect height
      * @param {boolean=} useDepthBuffer True to use depth buffer (useful in 3D)
      * @param {boolean=} userStencilBuffer True to use stencil buffer
+     * @return {PostEffect} A reference to the instance
      */
     init(width, height, useDepthBuffer = true, userStencilBuffer = false) 
     {
@@ -61,6 +62,8 @@ export class PostEffect
         this.sprite.setSize(1, 1);
         this.sprite.setTexture(this.renderTexture.getTextures()[0]);
         this.sprite.setTextureRect(0, 0, width, height);
+
+        return this;
     }
 
     /**
@@ -106,10 +109,13 @@ export class PostEffect
      * Set program to use
      *
      * @param {Program} program A Program instance
+     * @return {PostEffect} A reference to the instance
      */
     setProgram(program) 
     {
         this.sprite.setCustomProgram(program);
+
+        return this;
     }
 
     /**
@@ -118,9 +124,12 @@ export class PostEffect
      * @param {string} name Element's name in the shader
      * @param {Type} type Type of value to send
      * @param {Array.<number>|number|boolean|Texture|Float32Array} value A value
+     * @return {PostEffect} A reference to the instance
      */
     setEffectValue(name, type, value, groupCount) 
     { 
         this.renderApi.setUniform(this.sprite.getCustomProgram(), name, type, value, groupCount);
+
+        return this;
     }
 }
