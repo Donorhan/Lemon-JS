@@ -152,22 +152,28 @@ export class VertexFormat
      * Add an element to the format
      *
      * @param {VertexElement} element A VertexElement instance
+     * @return {VertexFormat} A reference to the instance
      */
     add(element)
     {
         this.elements.push(element);
         this.compute();
+
+        return this;
     }
 
     /**
      * Set elements
      *
      * @param {Array.<VertexElement>} elements An array of VertexElement instance
+     * @return {VertexFormat} A reference to the instance
      */
     set(elements)
     {
         this.elements = elements;
         this.compute();
+
+        return this;
     }
 
     /**
@@ -175,10 +181,13 @@ export class VertexFormat
      *
      * @param {number} index Stream index
      * @param {VertexElement.StreamType} type A type
+     * @return {VertexFormat} A reference to the instance
      */
     setStreamType(index, type)
     {
         this.streamType[index] = type;
+
+        return this;
     }
 
     /**
@@ -243,22 +252,29 @@ export class VertexFormat
      * Indicate if the indices need an update
      *
      * @param {boolean} state True to ask an update
+     * @return {VertexFormat} A reference to the instance
      */
     setIndicesAsWaitingUpdate(state)
     {
         this.indicesNeedUpdate = state;
+
+        return this;
     }
 
     /**
-     * Indicate if the stream need an update.
-     * @param {VertexElement.Usage } usage Stream usage.
-     * @param {boolean} state True to ask an update.
+     * Indicate if the stream need an update
+     * 
+     * @param {VertexElement.Usage } usage Stream usage
+     * @param {boolean} state True to ask an update
+     * @return {VertexFormat} A reference to the instance
      */
     setStreamAsWaitingUpdate(usage, state)
     {
         for (let i = 0; i < this.elements.length; i++)
             if (this.elements[i].usage == usage)
                 this.streamNeedUpdate[this.elements[i].stream] = state;
+
+        return this;
     }
 
     /**

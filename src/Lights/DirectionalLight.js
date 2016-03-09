@@ -30,10 +30,13 @@ export class DirectionalLight extends Light
      * @param {number} x Direction on X
      * @param {number} y Direction on Y
      * @param {number} z Direction on Z
+     * @return {DirectionalLight} A reference to the instance
      */
     setDirection(x, y, z) 
     {
         this.direction = [x, y, z];
+
+        return this;
     }
 
     /**
@@ -43,6 +46,6 @@ export class DirectionalLight extends Light
      */
     getDirection() 
     {
-        return this.direction; 
+        return this.direction;
     }
 }

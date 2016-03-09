@@ -46,12 +46,15 @@ export class PointLight extends Light
      * @param {number} constant The constant value
      * @param {number} linear The linear value
      * @param {number} quadratic The quadratic value
+     * @return {PointLight} A reference to the instance
      */
     setValues(constant, linear, quadratic) 
     {
         this.constant   = constant;
         this.linear     = linear;
         this.quadratic  = quadratic;
+
+        return this;
     }
 
     /**

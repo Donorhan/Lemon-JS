@@ -74,10 +74,13 @@ export class Sprite extends Drawable
      * Set blend mode to use
      *
      * @param {BlendMode} blendMode A BlendMode instance
+     * @return {Sprite} A reference to the instance
      */
     setBlendMode(blendMode)
     {
         this.blendMode = blendMode;
+
+        return this;
     }
 
     /**
@@ -87,10 +90,13 @@ export class Sprite extends Drawable
      * @param {number} g Green color in the range [0-255]
      * @param {number} b Blue color in the range [0-255]
      * @param {number=} a Opacity in the range [0-255]
+     * @return {Sprite} A reference to the instance
      */
     setColor(r, g, b, a)
     {
         this.color.set(r, g, b, a);
+
+        return this;
     }
 
     /**
@@ -108,10 +114,13 @@ export class Sprite extends Drawable
      * Set program to use
      *
      * @param {Program} program A Program instance
+     * @return {Sprite} A reference to the instance
      */
     setCustomProgram(program)
     {
         this.customProgram = program;
+
+        return this;
     }
 
     /**
@@ -119,21 +128,27 @@ export class Sprite extends Drawable
      *
      * @param {number} x Size on X
      * @param {number} y Size on Y
+     * @return {Sprite} A reference to the instance
      */
     setSize(x, y)
     {
         this.size[0] = x;
         this.size[1] = y;
+
+        return this;
     }
 
     /**
      * Set texture to use
      *
      * @param {TextureInterface} texture Can be a Texture or a TextureVideo
+     * @return {Sprite} A reference to the instance
      */
     setTexture(texture)
     {
         this.texture = texture;
+
+        return this;
     }
 
     /**
@@ -143,10 +158,13 @@ export class Sprite extends Drawable
      * @param {number} y Start position on y
      * @param {number} w Area's width
      * @param {number} h Area's height
+     * @return {Sprite} A reference to the instance
      */
     setTextureRect(x, y, w, h)
     {
         this.rect = [x, y, w, h];
+
+        return this;
     }
 
     /**

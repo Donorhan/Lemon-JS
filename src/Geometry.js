@@ -69,6 +69,7 @@ export class Geometry extends ContextResource
      * Set vertices colors
      *
      * @param {Float32Array} colors An array of float values representing colors (r, g, b, a, r, g, b, a, …)
+     * @return {Geometry} A reference to the instance
      */
     setColors(colors)
     {
@@ -77,12 +78,15 @@ export class Geometry extends ContextResource
         // Indicate that an attribute of the geometry need an update.
         if (this.vertexFormat)
             this.vertexFormat.setStreamAsWaitingUpdate(VertexElement.Usage.Color, true);
+
+        return this;
     }
 
     /**
      * Set indices
      *
      * @param {Uint16Array} indices An array of unsigned integer values representing indices order
+     * @return {Geometry} A reference to the instance
      */
     setIndices(indices)
     {
@@ -91,12 +95,15 @@ export class Geometry extends ContextResource
         // Indicate that indices need an update.
         if (this.vertexFormat)
             this.vertexFormat.setIndicesAsWaitingUpdate(true);
+
+        return this;
     }
 
     /**
      * Set vertices normals
      *
      * @param {Float32Array} normals An array of float values representing normals (x, y, z, x, y, z, …)
+     * @return {Geometry} A reference to the instance
      */
     setNormals(normals)
     {
@@ -105,12 +112,15 @@ export class Geometry extends ContextResource
         // Indicate that an attribut of the geometry need an update.
         if (this.vertexFormat)
             this.vertexFormat.setStreamAsWaitingUpdate(VertexElement.Usage.Normal, true);
+
+        return this;
     }
 
     /**
      * Set vertices positions
      *
      * @param {Float32Array} positions An array of float values representing positions (x, y, z, x, y, z, …)
+     * @return {Geometry} A reference to the instance
      */
     setPositions(positions)
     {
@@ -119,12 +129,15 @@ export class Geometry extends ContextResource
         // Indicate that an attribute of the geometry need an update.
         if (this.vertexFormat)
             this.vertexFormat.setStreamAsWaitingUpdate(VertexElement.Usage.Position, true);
+
+        return this;
     }
 
     /**
      * Set texture coordinates (uvs) for each vertex
      *
      * @param {Float32Array} uvs An array of float values representing texture coordinates (u, v, u, v, …)
+     * @return {Geometry} A reference to the instance
      */
     setTextureUVs(uvs)
     {
@@ -133,16 +146,21 @@ export class Geometry extends ContextResource
         // Indicate that an attribute of the geometry need an update
         if (this.vertexFormat)
             this.vertexFormat.setStreamAsWaitingUpdate(VertexElement.Usage.UVS, true);
+
+        return this;
     }
 
     /**
      * Set geometry's format
      *
      * @param {VertexFormat} vertexFormat A VertexFormat instance
+     * @return {Geometry} A reference to the instance
      */
     setVertexFormat(vertexFormat)
     {
         this.vertexFormat = vertexFormat;
+
+        return this;
     }
 
     /**

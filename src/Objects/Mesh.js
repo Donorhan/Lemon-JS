@@ -65,31 +65,40 @@ export class Mesh extends Drawable
      * Set geometry
      *
      * @param {Geometry} geometry A Geometry instance
+     * @return {Mesh} A reference to the instance
      */
     setGeometry(geometry)
     {
         this.geometry = geometry;
         this.boundingBox.compute(geometry.getVerticesPositions());
+
+        return this;
     }
 
     /**
      * Set material
      *
      * @param {Material} material A Material instance
+     * @return {Mesh} A reference to the instance
      */
     setMaterial(material)
     {
         this.material = material;
+
+        return this;
     }
 
     /**
      * Set program
      *
      * @param {Program} program A Program instance
+     * @return {Mesh} A reference to the instance
      */
     setProgram(program)
     {
         this.program = program;
+
+        return this;
     }
 
     /**

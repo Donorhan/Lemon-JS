@@ -138,11 +138,14 @@ export class Camera
      * @param {number} x Direction on X
      * @param {number} y Direction on Y
      * @param {number} z Direction on Z
+     * @return {Camera} A reference to the instance
      */
     lookAt(x, y, z)
     {
         glMatrix.vec3.set(this.direction, x, y, z);
         this.matrixViewNeedUpdate = true;
+
+        return this;
     }
 
     /**
@@ -151,11 +154,14 @@ export class Camera
      * @param {number} x Position on X
      * @param {number} y Position on Y
      * @param {number} z Position on Z
+     * @return {Camera} A reference to the instance
      */
     move(x, y, z)
     {
         glMatrix.vec3.set(this.position, x, y, z);
         this.matrixViewNeedUpdate = true;
+
+        return this;
     }
 
     /**
@@ -163,6 +169,7 @@ export class Camera
      *
      * @param {number} yaw A floating value
      * @param {number} pitch A floating value
+     * @return {Camera} A reference to the instance
      */
     rotate(yaw, pitch)
     {
@@ -194,34 +201,43 @@ export class Camera
         glMatrix.vec3.set(this.position, p[0], p[1], p[2]);
 
         this.matrixViewNeedUpdate = true;
+
+        return this;
     }
 
     /**
      * Set field of view
      *
      * @param {number} value Value in degrees (default: 45)
+     * @return {Camera} A reference to the instance
      */
     setFieldOfView(value)
     {
         this.fov = value;
         this.setType(this.type); // Force projection matrix update
+
+        return this;
     }
 
     /**
      * Set screen's ratio
      *
      * @param {number} ratio Ratio to assign (4/3, 16/9, …)
+     * @return {Camera} A reference to the instance
      */
     setRatio(ratio)
     {
         this.ratio = ratio;
         this.setType(this.type); // Force projection matrix update
+
+        return this;
     }
 
     /**
      * Set camera's distances
      *
      * @param {Camera.Type} type Type asked, for 2D you should use "Orthographic"
+     * @return {Camera} A reference to the instance
      */
     setType(type)
     {
@@ -243,6 +259,8 @@ export class Camera
         }
 
         this.matrixViewProjectionNeedUpdate = true;
+
+        return this;
     }
 
     /**
@@ -250,11 +268,14 @@ export class Camera
      *
      * @param {number} min Minimum distance to show
      * @param {number} max Maximum distance to show
+     * @return {Camera} A reference to the instance
      */
     setViewDistances(min, max)
     {
         glMatrix.vec2.set(this.limits, min, max);
         this.setType(this.type); // Force projection matrix update
+
+        return this;
     }
 
     /**
@@ -264,22 +285,28 @@ export class Camera
      * @param {number} y View start position on Y
      * @param {number} w View size on X
      * @param {number} h View size on Y
+     * @return {Camera} A reference to the instance
      */
     setViewport(x, y, w, h)
     {
         glMatrix.vec4.set(this.viewport, x, y, w, h);
         this.setRatio(w / h);
+
+        return this;
     }
 
     /**
      * Zoom
      *
      * @param {number} zoomValue Zoom scale to apply
+     * @return {Camera} A reference to the instance
      */
     zoom(zoomValue)
     {
         this.zoomScale = 1.0 / zoomValue;
         this.setType(this.type); // Force projection matrix update
+
+        return this;
     }
 
     /**

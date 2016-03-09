@@ -50,41 +50,53 @@ export class Texture extends TextureInterface
      * Load texture from a file
      *
      * @param {string} path Path to the texture file
+     * @return {Texture} A reference to the instance
      */
     loadFromFile(path)
     {
         this.image = new Image();
         this.image.loadFromFile(path);
+
+        return this;
     }
 
     /**
      * Load texture from an Image
      *
      * @param {Image} image An Image instance
+     * @return {Texture} A reference to the instance
      */
     loadFromImage(image)
     {
         this.image = image;
+
+        return this;
     }
 
     /**
      * Repeat the texture
      *
      * @param {boolean} value True to repeat, otherwise false
+     * @return {Texture} A reference to the instance
      */
     setRepeated(value)
     {
         this.repeat = value;
+
+        return this;
     }
 
     /**
      * Smooth the texture
      *
      * @param {boolean} value True to smooth, otherwise false
+     * @return {Texture} A reference to the instance
      */
     setSmooth(value)
     {
         this.smooth = value;
+
+        return this;
     }
 
     /**

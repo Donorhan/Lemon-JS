@@ -99,6 +99,7 @@ export class Box
      * Apply a transformation matrix to know absolute position
      *
      * @param {glMatrix.mat4} matrix A matrix
+     * @return {Box} A reference to the instance
      */
     applyMatrix(matrix)
     {
@@ -113,6 +114,8 @@ export class Box
         // Compute size and center
         glMatrix.vec3.subtract(this.size, this.maxTransformedBounds, this.minTransformedBounds);
         glMatrix.vec3.set(this.center, this.size[0] * 0.5, this.size[1] * 0.5, this.size[2] * 0.5);
+
+        return this;
     }
 
     /**
