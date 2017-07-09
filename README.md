@@ -1,6 +1,16 @@
 Lemon-JS
 ======
-An accessible rendering engine in Javascript. ([Demonstrations here](http://dorhan.fr/Demos/Lemon/exemples))
+An accessible rendering engine in Javascript. 
+
+### Demonstrations
+ - [A simple cube](https://www.dorhan.fr/Demos/Lemon/exemples/01-Cube/)
+ - [A custom mesh](https://www.dorhan.fr/Demos/Lemon/exemples/02-Mesh/)
+ - [Billboard sprites](https://www.dorhan.fr/Demos/Lemon/exemples/03-Sprites/)
+ - [A 3D model](https://www.dorhan.fr/Demos/Lemon/exemples/04-Model/)
+ - [Scene management](https://www.dorhan.fr/Demos/Lemon/exemples/05-Scene/)
+ - [Lights](https://www.dorhan.fr/Demos/Lemon/exemples/06-Lights/)
+ - [Make blob using shaders](https://www.dorhan.fr/Demos/Lemon/exemples/07-Shaders/)
+ - [Post processing stack](https://www.dorhan.fr/Demos/Lemon/exemples/08-Processing/)
 
 ### Installation
 - Download [the latest version](https://github.com/DonoSybrix/Lemon-JS/releases) of LemonJS
