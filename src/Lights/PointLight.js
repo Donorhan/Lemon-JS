@@ -1,18 +1,16 @@
-import {Light} from './Light.js';
+import Light from './Light';
 
 /**
  * A point light
  *
+ * @category Lights
  * @extends {Light}
- * @author Donovan ORHAN <dono.orhan@gmail.com>
  */
-export class PointLight extends Light
-{
+class PointLight extends Light {
     /**
      * Constructor
      */
-    constructor()
-    {
+    constructor() {
         super();
 
         /**
@@ -48,11 +46,10 @@ export class PointLight extends Light
      * @param {number} quadratic The quadratic value
      * @return {PointLight} A reference to the instance
      */
-    setValues(constant, linear, quadratic) 
-    {
-        this.constant   = constant;
-        this.linear     = linear;
-        this.quadratic  = quadratic;
+    setValues(constant, linear, quadratic) {
+        this.constant = constant;
+        this.linear = linear;
+        this.quadratic = quadratic;
 
         return this;
     }
@@ -62,8 +59,9 @@ export class PointLight extends Light
      *
      * @return {Array.<number>} An array with constant, linear and quadratic values
      */
-    getValues() 
-    {
+    getValues() {
         return [this.constant, this.linear, this.quadratic];
     }
 }
+
+export default PointLight;

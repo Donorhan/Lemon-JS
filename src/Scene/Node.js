@@ -1,22 +1,20 @@
-import {Transformable} from '../Transformable.js';
-import {Box} from '../Math/Box.js';
+import Transformable from '../Transformable';
+import Box from '../Math/Box';
 
 /**
  * A node element is an element of a scene
  *
+ * @category Core
  * @description A Node can represent something like a light, a mesh, a sprite, a camera or a text
  * @extends {Transformable}
- * @author Donovan ORHAN <dono.orhan@gmail.com>
  */
-export class Node extends Transformable
-{
+class Node extends Transformable {
     /**
      * Constructor
      *
      * @param {string=} name A string
      */
-    constructor(name = '')
-    {
+    constructor(name = '') {
         super();
 
         /**
@@ -76,14 +74,16 @@ export class Node extends Transformable
      * @param {Node} node A Node instance
      * @return {Node} A reference to the instance
      */
-    addChild(node)
-    {
-        if (node == this)
-            return;
+    /* eslint no-param-reassign: ["error", { "props": false }] */
+    addChild(node) {
+        if (node === this) {
+            return null;
+        }
 
         // Detach node from his previous parent
-        if (node.parent)
+        if (node.parent) {
             node.parent.removeChild(node);
+        }
 
         // Add as a child
         this.children.push(node);
@@ -98,8 +98,7 @@ export class Node extends Transformable
      * @param {boolean} value True to enable, false to disable
      * @return {Node} A reference to the instance
      */
-    enable(value)
-    {
+    enable(value) {
         this.enabled = value;
 
         return this;
@@ -111,21 +110,18 @@ export class Node extends Transformable
      * @param {string} name A string
      * @return {?Node} A Node instance of null
      */
-    findChild(name)
-    {
-        for (let i = 0; i < this.children.length; i++)
-        {
-            if (this.children[i].name == name)
+    findChild(name) {
+        let child = null;
+
+        for (let i = 0; i < this.children.length || child != null; i += 1) {
+            if (this.children[i].name === name) {
                 return this.children[i];
-            else
-            {
-                let child = this.children[i].findChild(name);
-                if (child)
-                    return child;
             }
+
+            child = this.children[i].findChild(name);
         }
 
-        return null;
+        return child;
     }
 
     /**
@@ -134,11 +130,9 @@ export class Node extends Transformable
      * @param {Node} node A Node instance
      * @return {boolean} True if the operation is a success
      */
-    removeChild(node)
-    {
-        let index = this.children.indexOf(node);
-        if (index != -1)
-        {
+    removeChild(node) {
+        const index = this.children.indexOf(node);
+        if (index !== -1) {
             this.children.splice(index, 1);
             node.parent = null;
 
@@ -154,8 +148,7 @@ export class Node extends Transformable
      * @param {string} name A string
      * @return {Node} A reference to the instance
      */
-    setName(name)
-    {
+    setName(name) {
         this.name = name;
 
         return this;
@@ -168,10 +161,10 @@ export class Node extends Transformable
      * @param {?boolean} forceUpdate Set to true to force an update
      * @return {boolean} True if the node has been updated
      */
-    update(deltaTime, forceUpdate = false)
-    {
-        if (!this.computeTransformationMatrix((this.parent ? this.parent.getTransformationMatrix() : null), forceUpdate))
+    update(deltaTime, forceUpdate = false) {
+        if (!this.computeTransformationMatrix((this.parent ? this.parent.getTransformationMatrix() : null), forceUpdate)) {
             return false;
+        }
 
         // Update bounding box only if node has moved
         this.boundingBox.applyMatrix(this.getTransformationMatrix());
@@ -185,8 +178,7 @@ export class Node extends Transformable
      * @param {RenderTarget} renderTarget Renderer who called this method
      * @return {boolean} True if visit was successful, otherwise false
      */
-    visit(renderTarget)
-    {
+    visit() {
         return (!this.culled && this.enabled);
     }
 
@@ -195,8 +187,7 @@ export class Node extends Transformable
      *
      * @return {Box} A Box instance
      */
-    getBoundingBox()
-    {
+    getBoundingBox() {
         return this.boundingBox;
     }
 
@@ -205,8 +196,7 @@ export class Node extends Transformable
      *
      * @return {Array.<Node>} An array of Node
      */
-    getChildren()
-    {
+    getChildren() {
         return this.children;
     }
 
@@ -215,8 +205,7 @@ export class Node extends Transformable
      *
      * @return {boolean} True if the node is enabled, otherwise false
      */
-    isEnabled()
-    {
+    isEnabled() {
         return this.enabled;
     }
 
@@ -225,8 +214,9 @@ export class Node extends Transformable
      *
      * @return {boolean} True if it's the root node, otherwise false
      */
-    isRoot()
-    {
+    isRoot() {
         return (this.parent === null);
     }
 }
+
+export default Node;

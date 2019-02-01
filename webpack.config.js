@@ -1,46 +1,36 @@
-var webpack = require('webpack');
-var UglifyJsPlugin = webpack.optimize.UglifyJsPlugin;
-var path = require('path');
-var env = require('yargs').argv.mode;
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
+const path = require('path');
 
-var libraryName = 'Lemon';
 
-var plugins = [], outputFile;
+const examplesPath = 'examples';
 
-if (env === 'build') {
-  plugins.push(new UglifyJsPlugin({ minimize: true }));
-  outputFile = libraryName + '.min.js';
-} else {
-  outputFile = libraryName + '.js';
-}
-
-var config = {
-  entry: __dirname + '/src/Main.js',
-  devtool: 'source-map',
-  output: {
-    path: __dirname + '/build',
-    filename: outputFile,
-    library: libraryName,
-    libraryTarget: 'umd',
-    umdNamedDefine: true
-  },
-  module: {
-    loaders: [
-      {
-        test: /(\.jsx|\.js)$/,
-        loader: 'babel',
-        exclude: /(node_modules|bower_components)/,
-        query: {
-          presets: ['es2015']
-        }
-      }
-    ]
-  },
-  resolve: {
-    root: path.resolve('./src'),
-    extensions: ['', '.js']
-  },
-  plugins: plugins
+module.exports = {
+    entry: {
+        cube: path.join(__dirname, examplesPath, '01-Cube'),
+        sprites: path.join(__dirname, examplesPath, '02-Sprites'),
+        model: path.join(__dirname, examplesPath, '03-Model'),
+        scene: path.join(__dirname, examplesPath, '04-Scene'),
+        lights: path.join(__dirname, examplesPath, '05-Lights'),
+        shaders: path.join(__dirname, examplesPath, '06-Shaders'),
+        postprocessing: path.join(__dirname, examplesPath, '07-PostProcessing'),
+    },
+    output: {
+        path: path.join(__dirname, examplesPath, 'build'),
+        filename: '[name].js',
+    },
+    module: {
+        rules: [
+            {
+                test: /\.js$/,
+                exclude: /node_modules\/(?!(gl-matrix|webgl-constants)\/).*/,
+                loader: 'babel-loader?cacheDirectory=true',
+            },
+        ],
+    },
+    optimization: {
+        sideEffects: false,
+    },
+    plugins: [
+        new BundleAnalyzerPlugin(),
+    ],
 };
-
-module.exports = config;

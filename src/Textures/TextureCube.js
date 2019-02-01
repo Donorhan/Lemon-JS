@@ -1,22 +1,20 @@
-import {ContextResource} from '../ContextResource.js';
-import {Img as Image} from '../Image.js';
+import ContextResource from '../ContextResource';
+import Image from '../Image';
 
 /**
  * A texture cube to use with Sky-boxes
  *
+ * @category Textures
  * @extends {ContextResource}
- * @author Donovan ORHAN <dono.orhan@gmail.com>
  */
-export class TextureCube extends ContextResource
-{
+class TextureCube extends ContextResource {
     /**
      * Constructor
      *
      * @param {Array.<string>} paths An array with the image's path for the right cube's face,
      * Paths must be provided in the given order: up, down, left, right, back, front
      */
-    constructor(paths = [])
-    {
+    constructor(paths = []) {
         super();
 
         /**
@@ -27,8 +25,9 @@ export class TextureCube extends ContextResource
          */
         this.images = [];
 
-        if (paths.length)
+        if (paths.length) {
             this.loadFromFiles(paths);
+        }
     }
 
     /**
@@ -37,11 +36,9 @@ export class TextureCube extends ContextResource
      * @param {Array.<string>} paths An array with the image's path for the right cube's face,
      * Paths must be provided in the given order: up, down, left, right, back, front
      */
-    loadFromFiles(paths)
-    {
-        for (let i in paths)
-        {
-            let image = new Image();
+    loadFromFiles(paths) {
+        for (const i in paths) {
+            const image = new Image();
             image.loadFromFile(paths[i]);
             this.images[i] = image;
         }
@@ -52,8 +49,7 @@ export class TextureCube extends ContextResource
      *
      * @return {Array.<Image>} An array with images instances
      */
-    getImages()
-    {
+    getImages() {
         return this.images;
     }
 
@@ -62,22 +58,33 @@ export class TextureCube extends ContextResource
      *
      * @return {boolean} True if everything is ready
      */
-    isReady()
-    {
-        if (this.images.length === 0)
+    isReady() {
+        if (this.images.length === 0) {
             return false;
+        }
 
-        for (let i = 0; i < this.images.length; i++)
-            if (!this.images[i].isReady())
+        for (let i = 0; i < this.images.length; i += 1) {
+            if (!this.images[i].isReady()) {
                 return false;
+            }
+        }
 
         return true;
     }
 }
 
 /**
-* Faces
+ * Faces
  *
-* @enum {number}
-*/
-TextureCube.Face = { Up: 0, Down: 1, Left: 2, Right: 3, Back: 4, Front: 5 };
+ * @enum {number}
+ */
+TextureCube.Face = {
+    Up: 0,
+    Down: 1,
+    Left: 2,
+    Right: 3,
+    Back: 4,
+    Front: 5,
+};
+
+export default TextureCube;

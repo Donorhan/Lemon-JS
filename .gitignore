@@ -1,3 +1,5 @@
 node_modules/
-build/
-examples/0-debug.html
+examples/build/*
+.DS_Store
+doc
+package-lock.json

@@ -1,18 +1,16 @@
-import {TextureInterface} from './TextureInterface.js';
+import TextureInterface from './TextureInterface';
 
 /**
  * A texture to display video
  *
+ * @category Textures
  * @extends {TextureInterface}
- * @author Donovan ORHAN <dono.orhan@gmail.com>
  */
-export class TextureVideo extends TextureInterface
-{
+class TextureVideo extends TextureInterface {
     /**
      * Constructor
      */
-    constructor()
-    {
+    constructor() {
         super();
 
         /**
@@ -28,32 +26,28 @@ export class TextureVideo extends TextureInterface
      *
      * @param {string} path Path to the video file
      */
-    loadFromFile(path)
-    {
+    loadFromFile(path) {
         // Detect when video is ready
-        this.data.addEventListener('canplaythrough', () =>
-        {
+        this.data.addEventListener('canplaythrough', () => {
             this.ready = true;
         }, true);
 
         // Load
         this.data.preload = 'auto';
         this.data.src = path;
-    };
+    }
 
     /**
      * Pause the video
      */
-    pause()
-    {
+    pause() {
         this.data.pause();
     }
 
     /**
      * Play the video
      */
-    play()
-    {
+    play() {
         this.data.play();
     }
 
@@ -62,8 +56,7 @@ export class TextureVideo extends TextureInterface
      *
      * @return {number} The duration property returns the length of the current audio/video, in seconds
      */
-    getDuration()
-    {
+    getDuration() {
         return this.data.duration;
     }
 
@@ -72,8 +65,9 @@ export class TextureVideo extends TextureInterface
      *
      * @return {HTMLVideoElement} The HTML video element
      */
-    getVideoData()
-    {
+    getVideoData() {
         return this.data;
     }
 }
+
+export default TextureVideo;

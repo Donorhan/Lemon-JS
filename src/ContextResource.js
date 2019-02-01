@@ -3,22 +3,22 @@
  * - Indicate that the object have a refence to the graphic API.
  * - The object have a unique ID.
  *
- * @author Donovan ORHAN <dono.orhan@gmail.com>
+ * @category Core
  */
-export class ContextResource
-{
+class ContextResource {
     /**
      * Constructor
      */
-    constructor()
-    {
+    constructor() {
         /**
          * Unique identifier
          *
          * @type {number}
          * @public
          */
-        this.UID = ++ContextResource.globalID;
+        this.UID = ContextResource.globalID;
+
+        ContextResource.globalID += 1;
     }
 
     /**
@@ -26,8 +26,7 @@ export class ContextResource
      *
      * @return {number} An unsigned integer
      */
-    getUID()
-    {
+    getUID() {
         return this.UID;
     }
 }
@@ -38,3 +37,5 @@ export class ContextResource
 * @type {number}
 */
 ContextResource.globalID = -1;
+
+export default ContextResource;

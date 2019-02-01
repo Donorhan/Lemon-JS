@@ -1,24 +1,25 @@
+import ProgramLibrary from '../../../src/Extra/ProgramLibrary';
+
 // Animation's method.
 window.requestAnimationFrame = window.requestAnimationFrame || window.mozRequestAnimationFrame || window.webkitRequestAnimationFrame || window.msRequestAnimationFrame;
 
 // Set path to shaders.
-Lemon.ProgramLibrary.folderPath = '../../shaders/';
+ProgramLibrary.folderPath = '../../shaders/GLSL/';
 
 // Render the scene.
-function startLoop( callback )
-{
-    var previous = 0;
-    var diff     = 0;
+export default (callback) => {
+    let previous = 0;
+    let diff = 0;
 
-    function mainLoop( timestamp )
-    {
+    function mainLoop(timestamp) {
         requestAnimationFrame(mainLoop);
 
         // Calculate elapsed time between two frames.
-        diff     = timestamp - previous;
+        diff = timestamp - previous;
         previous = timestamp;
 
         callback(diff);
     }
+
     requestAnimationFrame(mainLoop);
-}
+};

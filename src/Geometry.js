@@ -1,19 +1,17 @@
-import {ContextResource} from './ContextResource.js';
-import {VertexFormat, VertexElement} from './VertexFormat.js';
+import ContextResource from './ContextResource';
+import { VertexFormat, VertexElement } from './VertexFormat';
 
 /**
  * A geometry
  *
+ * @category Geometry
  * @extends {ContextResource}
- * @author Donovan ORHAN <dono.orhan@gmail.com>
  */
-export class Geometry extends ContextResource
-{
+class Geometry extends ContextResource {
     /**
      * Constructor
      */
-    constructor()
-    {
+    constructor() {
         super();
 
         /**
@@ -71,13 +69,13 @@ export class Geometry extends ContextResource
      * @param {Float32Array} colors An array of float values representing colors (r, g, b, a, r, g, b, a, …)
      * @return {Geometry} A reference to the instance
      */
-    setColors(colors)
-    {
+    setColors(colors) {
         this.colors = new Float32Array(colors);
 
         // Indicate that an attribute of the geometry need an update.
-        if (this.vertexFormat)
+        if (this.vertexFormat) {
             this.vertexFormat.setStreamAsWaitingUpdate(VertexElement.Usage.Color, true);
+        }
 
         return this;
     }
@@ -88,13 +86,13 @@ export class Geometry extends ContextResource
      * @param {Uint16Array} indices An array of unsigned integer values representing indices order
      * @return {Geometry} A reference to the instance
      */
-    setIndices(indices)
-    {
+    setIndices(indices) {
         this.indices = new Uint16Array(indices);
 
         // Indicate that indices need an update.
-        if (this.vertexFormat)
+        if (this.vertexFormat) {
             this.vertexFormat.setIndicesAsWaitingUpdate(true);
+        }
 
         return this;
     }
@@ -105,13 +103,13 @@ export class Geometry extends ContextResource
      * @param {Float32Array} normals An array of float values representing normals (x, y, z, x, y, z, …)
      * @return {Geometry} A reference to the instance
      */
-    setNormals(normals)
-    {
+    setNormals(normals) {
         this.normals = new Float32Array(normals);
 
         // Indicate that an attribut of the geometry need an update.
-        if (this.vertexFormat)
+        if (this.vertexFormat) {
             this.vertexFormat.setStreamAsWaitingUpdate(VertexElement.Usage.Normal, true);
+        }
 
         return this;
     }
@@ -122,13 +120,13 @@ export class Geometry extends ContextResource
      * @param {Float32Array} positions An array of float values representing positions (x, y, z, x, y, z, …)
      * @return {Geometry} A reference to the instance
      */
-    setPositions(positions)
-    {
+    setPositions(positions) {
         this.positions = new Float32Array(positions);
 
         // Indicate that an attribute of the geometry need an update.
-        if (this.vertexFormat)
+        if (this.vertexFormat) {
             this.vertexFormat.setStreamAsWaitingUpdate(VertexElement.Usage.Position, true);
+        }
 
         return this;
     }
@@ -139,13 +137,13 @@ export class Geometry extends ContextResource
      * @param {Float32Array} uvs An array of float values representing texture coordinates (u, v, u, v, …)
      * @return {Geometry} A reference to the instance
      */
-    setTextureUVs(uvs)
-    {
+    setTextureUVs(uvs) {
         this.uvs = new Float32Array(uvs);
 
         // Indicate that an attribute of the geometry need an update
-        if (this.vertexFormat)
+        if (this.vertexFormat) {
             this.vertexFormat.setStreamAsWaitingUpdate(VertexElement.Usage.UVS, true);
+        }
 
         return this;
     }
@@ -156,8 +154,7 @@ export class Geometry extends ContextResource
      * @param {VertexFormat} vertexFormat A VertexFormat instance
      * @return {Geometry} A reference to the instance
      */
-    setVertexFormat(vertexFormat)
-    {
+    setVertexFormat(vertexFormat) {
         this.vertexFormat = vertexFormat;
 
         return this;
@@ -168,8 +165,7 @@ export class Geometry extends ContextResource
      *
      * @return {VertexFormat} A VertexFormat instance
      */
-    getVertexFormat()
-    {
+    getVertexFormat() {
         return this.vertexFormat;
     }
 
@@ -178,8 +174,7 @@ export class Geometry extends ContextResource
      *
      * @return {number} Indices array's length
      */
-    getIndexCount()
-    {
+    getIndexCount() {
         return this.indices.length;
     }
 
@@ -188,8 +183,7 @@ export class Geometry extends ContextResource
      *
      * @return {Uint16Array} Indices array
      */
-    getIndices()
-    {
+    getIndices() {
         return this.indices;
     }
 
@@ -198,8 +192,7 @@ export class Geometry extends ContextResource
      *
      * @return {Float32Array} An array with the format [r, g, b, a, r, g, b, a, …]
      */
-    getVerticesColors()
-    {
+    getVerticesColors() {
         return this.colors;
     }
 
@@ -208,8 +201,7 @@ export class Geometry extends ContextResource
      *
      * @return {Float32Array} An array with the format [x, y, z, x, y, z, …]
      */
-    getVerticesPositions()
-    {
+    getVerticesPositions() {
         return this.positions;
     }
 
@@ -218,8 +210,7 @@ export class Geometry extends ContextResource
      *
      * @return {Float32Array} An array with the format [x, y, z, x, y, z, …]
      */
-    getVerticesNormals()
-    {
+    getVerticesNormals() {
         return this.normals;
     }
 
@@ -228,8 +219,7 @@ export class Geometry extends ContextResource
      *
      * @return {Float32Array} An array with the format [u, v, u, v, …]
      */
-    getVerticesUVs()
-    {
+    getVerticesUVs() {
         return this.uvs;
     }
 
@@ -241,12 +231,11 @@ export class Geometry extends ContextResource
      * @param {number} depth Depth
      * @return {Geometry} A Geometry instance
      */
-    static createCube(width, height, depth)
-    {
-        let geometry = new Geometry();
+    static createCube(width, height, depth) {
+        const geometry = new Geometry();
 
         // Set format
-        let format = new VertexFormat();
+        const format = new VertexFormat();
         format.add(new VertexElement(VertexElement.Usage.Position, 0, VertexElement.Type.Float, 3, false));
         format.add(new VertexElement(VertexElement.Usage.Color, 2, VertexElement.Type.Float, 4, false));
         format.add(new VertexElement(VertexElement.Usage.UVS, 1, VertexElement.Type.Float, 2, false));
@@ -254,41 +243,41 @@ export class Geometry extends ContextResource
         geometry.setVertexFormat(format);
 
         // Set positions
-        let positions = new Float32Array([
-            -width, -height,  depth,
-            width, -height,  depth,
-            width,  height,  depth,
-            -width,  height,  depth,
+        const positions = new Float32Array([
+            -width, -height, depth,
+            width, -height, depth,
+            width, height, depth,
+            -width, height, depth,
 
             -width, -height, -depth,
-            -width,  height, -depth,
-            width,  height, -depth,
+            -width, height, -depth,
+            width, height, -depth,
             width, -height, -depth,
 
-            -width,  height, -depth,
-            -width,  height,  depth,
-            width,  height,  depth,
-            width,  height, -depth,
+            -width, height, -depth,
+            -width, height, depth,
+            width, height, depth,
+            width, height, -depth,
 
             -width, -height, -depth,
             width, -height, -depth,
-            width, -height,  depth,
-            -width, -height,  depth,
+            width, -height, depth,
+            -width, -height, depth,
 
             width, -height, -depth,
-            width,  height, -depth,
-            width,  height,  depth,
-            width, -height,  depth,
+            width, height, -depth,
+            width, height, depth,
+            width, -height, depth,
 
             -width, -height, -depth,
-            -width, -height,  depth,
-            -width,  height,  depth,
-            -width,  height, -depth
+            -width, -height, depth,
+            -width, height, depth,
+            -width, height, -depth,
         ]);
         geometry.setPositions(positions);
 
         // Set colors
-        let colors = new Float32Array([
+        const colors = new Float32Array([
             1, 1, 1, 1,
             1, 1, 1, 1,
             1, 1, 1, 1,
@@ -317,12 +306,12 @@ export class Geometry extends ContextResource
             1, 1, 1, 1,
             1, 1, 1, 1,
             1, 1, 1, 1,
-            1, 1, 1, 1
+            1, 1, 1, 1,
         ]);
         geometry.setColors(colors);
 
         // Texture uvs
-        let uvs = new Float32Array([
+        const uvs = new Float32Array([
             0, 0,
             1, 0,
             1, 1,
@@ -351,12 +340,12 @@ export class Geometry extends ContextResource
             0, 0,
             1, 0,
             1, 1,
-            0, 1
+            0, 1,
         ]);
         geometry.setTextureUVs(uvs);
 
         // Normals
-        let normals = new Float32Array([
+        const normals = new Float32Array([
             0.0, 0.0, 1.0,
             0.0, 0.0, 1.0,
             0.0, 0.0, 1.0,
@@ -385,14 +374,15 @@ export class Geometry extends ContextResource
             -1.0, 0.0, 0.0,
             -1.0, 0.0, 0.0,
             -1.0, 0.0, 0.0,
-            -1.0, 0.0, 0.0
+            -1.0, 0.0, 0.0,
         ]);
         geometry.setNormals(normals);
 
         // Indices.
-        let indices = new Uint16Array([     0,  1,  2,  0,  2,  3,  4,  5,  6,  4,  6,  7,
-                                            8,  9, 10,  8, 10, 11, 12, 13, 14, 12, 14, 15,
-                                            16, 17, 18, 16, 18, 19, 20, 21, 22, 20, 22, 23 ]);
+        const indices = new Uint16Array([0, 1, 2, 0, 2, 3, 4, 5, 6, 4, 6, 7,
+            8, 9, 10, 8, 10, 11, 12, 13, 14, 12, 14, 15,
+            16, 17, 18, 16, 18, 19, 20, 21, 22, 20, 22, 23,
+        ]);
         geometry.setIndices(indices);
 
         return geometry;
@@ -405,12 +395,11 @@ export class Geometry extends ContextResource
      * @param {number} height Height
      * @return {Geometry} A Geometry instance
      */
-    static createRectangle(width, height)
-    {
-        let geometry = new Geometry();
+    static createRectangle(width, height) {
+        const geometry = new Geometry();
 
         // Set format
-        let format = new VertexFormat();
+        const format = new VertexFormat();
         format.add(new VertexElement(VertexElement.Usage.Position, 0, VertexElement.Type.Float, 3, false));
         format.add(new VertexElement(VertexElement.Usage.Color, 1, VertexElement.Type.Float, 4, false));
         format.add(new VertexElement(VertexElement.Usage.UVS, 2, VertexElement.Type.Float, 2, false));
@@ -418,34 +407,34 @@ export class Geometry extends ContextResource
         geometry.setVertexFormat(format);
 
         // Set positions
-        let positions = new Float32Array([
-            -width, -height,  0,
-            -width,  height,  0,
-            width, -height,  0,
-            width,  height,  0
+        const positions = new Float32Array([
+            -width, -height, 0,
+            -width, height, 0,
+            width, -height, 0,
+            width, height, 0,
         ]);
         geometry.setPositions(positions);
 
         // Set colors
-        let colors = new Float32Array([
+        const colors = new Float32Array([
             1, 1, 1, 1,
             1, 1, 1, 1,
             1, 1, 1, 1,
-            1, 1, 1, 1
+            1, 1, 1, 1,
         ]);
         geometry.setColors(colors);
 
         // Texture uvs
-        let uvs = new Float32Array([
+        const uvs = new Float32Array([
             0, 1,
             0, 0,
             1, 1,
-            1, 0
+            1, 0,
         ]);
         geometry.setTextureUVs(uvs);
 
         // Normals
-        let normals = new Float32Array([
+        const normals = new Float32Array([
             0.0, 0.0, 1.0,
             0.0, 0.0, 1.0,
             0.0, 0.0, 1.0,
@@ -459,3 +448,5 @@ export class Geometry extends ContextResource
         return geometry;
     }
 }
+
+export default Geometry;

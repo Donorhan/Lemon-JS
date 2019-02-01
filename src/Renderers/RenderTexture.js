@@ -1,17 +1,16 @@
-import {Color} from '../Color.js';
-import {Img as Image} from '../Image.js';
-import {RenderTarget} from './RenderTarget.js';
-import {Texture} from '../Textures/Texture.js';
-import {WebGL} from './WebGL/RenderWebGL.js';
+import Color from '../Color';
+import Image from '../Image';
+import RenderTarget from './RenderTarget';
+import Texture from '../Textures/Texture';
+import WebGL from './WebGL/RenderWebGL';
 
 /**
  * A rendering texture: Supported by WebGL only.
  *
+ * @category Rendering
  * @extends {RenderTarget}
- * @author Donovan ORHAN <dono.orhan@gmail.com>
  */
-export class RenderTexture extends RenderTarget
-{
+class RenderTexture extends RenderTarget {
     /**
      * Constructor
      *
@@ -21,32 +20,31 @@ export class RenderTexture extends RenderTarget
      * @param {boolean=} useDepthBuffer True to use a depth buffer
      * @param {boolean=} useStencilBuffer True to use a stencil buffer
      */
-    constructor(width, height, textureCount, useDepthBuffer = true, useStencilBuffer = false)
-    {
+    constructor(width, height, textureCount, useDepthBuffer = true, useStencilBuffer = false) {
         super();
 
         /**
-        * The render API to use
-        *
-        * @type {RenderAPI}
-        * @protected
-        */
+         * The render API to use
+         *
+         * @type {RenderAPI}
+         * @protected
+         */
         this.renderApi = WebGL.getInstance();
 
         /**
-        * Frame buffer identifier
-        *
-        * @type {number}
-        * @private
-        */
+         * Frame buffer identifier
+         *
+         * @type {number}
+         * @private
+         */
         this.framebuffer = this.renderApi.createFrameBuffer();
 
         /**
-        * An array with the textures to draw in
-        *
-        * @type {Array.<Texture>}
-        * @private
-        */
+         * An array with the textures to draw in
+         *
+         * @type {Array.<Texture>}
+         * @private
+         */
         this.textures = [];
 
         // Init the render texture
@@ -63,15 +61,13 @@ export class RenderTexture extends RenderTarget
      * @param {boolean=} useStencilBuffer True to use a depth buffer
      * @private
      */
-    init(width, height, textureCount, useDepthBuffer = true, useStencilBuffer = false)
-    {
+    init(width, height, textureCount, useDepthBuffer = true, useStencilBuffer = false) {
         // Create textures.
-        for (let i = 0; i < textureCount; i++)
-        {
-            let image = new Image();
+        for (let i = 0; i < textureCount; i += 1) {
+            const image = new Image();
             image.create(width, height, null);
 
-            let texture = new Texture();
+            const texture = new Texture();
             texture.setRepeated(false);
             texture.setSmooth(true);
             texture.useMipmap(false);
@@ -88,8 +84,7 @@ export class RenderTexture extends RenderTarget
      *
      * @param {?Color} color A Color instance
      */
-    clear(color = new Color(0, 0, 0)) 
-    {
+    clear(color = new Color(0, 0, 0)) {
         // Remove previous tasks.
         this.removeTasks();
 
@@ -103,16 +98,14 @@ export class RenderTexture extends RenderTarget
     /**
      * Begin rendering to texture
      */
-    begin() 
-    {
-        this.renderApi.bindFrameBuffer(this.framebuffer);    
+    begin() {
+        this.renderApi.bindFrameBuffer(this.framebuffer);
     }
 
     /**
      * Display
      */
-    display() 
-    {
+    display() {
         super.display();
 
         // Go back to the default buffer
@@ -124,8 +117,9 @@ export class RenderTexture extends RenderTarget
      *
      * @return {Array.<Texture>} An array of Texture
      */
-    getTextures() 
-    {
+    getTextures() {
         return this.textures;
     }
 }
+
+export default RenderTexture;

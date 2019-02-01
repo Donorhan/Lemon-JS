@@ -1,12 +1,11 @@
-import {StateBlock} from '../StateBlock.js';
+import { StateBlock } from '../StateBlock';
 
 /**
  * A pass parameter
  *
- * @author Donovan ORHAN <dono.orhan@gmail.com>
+ * @category Material
  */
-export class PassParameter
-{
+export class PassParameter {
     /**
      * Constructor
      *
@@ -14,8 +13,7 @@ export class PassParameter
      * @param {Type} type Element's type
      * @param {Array.<number>|number|boolean|Texture|Float32Array} value Element's value
      */
-    constructor(name, type, value)
-    {
+    constructor(name, type, value) {
         /**
          * Name
          *
@@ -45,20 +43,14 @@ export class PassParameter
 /**
  * A pass
  *
+ * @category Material
  * @extends {StateBlock}
- * @author Donovan ORHAN <dono.orhan@gmail.com>
  */
-export class Pass extends StateBlock
-{
+export class Pass extends StateBlock {
     /**
      * Constructor
-     *
-     * @param {string} name Name to assign
-     * @param {Type} type Element's type
-     * @param {Array.<number>|number|boolean|Texture|Float32Array} value Element's value
      */
-    constructor(name, type, value)
-    {
+    constructor() {
         super();
 
         /**
@@ -78,16 +70,13 @@ export class Pass extends StateBlock
      * @param {Array.<number>|number|boolean|Texture|Float32Array} value Parameter's value
      * @return {Pass} A reference to the instance
      */
-    add(name, type, value) 
-    {
+    add(name, type, value) {
         // A value with this name already exist? We erase previous data …
-        for (let i = 0; i < this.parameters.length; i++)
-        {
-            if (this.parameters[i].name == name)
-            {
-                this.parameters[i].value = value; 
-                this.parameters[i].type  = type; 
-                return;
+        for (let i = 0; i < this.parameters.length; i += 1) {
+            if (this.parameters[i].name === name) {
+                this.parameters[i].value = value;
+                this.parameters[i].type = type;
+                return this;
             }
         }
 
@@ -104,13 +93,10 @@ export class Pass extends StateBlock
      * @param {Array.<number>|number|boolean|Texture|Float32Array} value Parameter's value
      * @return {Pass} A reference to the instance
      */
-    set(name, value) 
-    {
-        for (let i = 0; i < this.parameters.length; i++)
-        {
-            if (this.parameters[i].name == name)
-            {
-                this.parameters[i].value = value; 
+    set(name, value) {
+        for (let i = 0; i < this.parameters.length; i += 1) {
+            if (this.parameters[i].name === name) {
+                this.parameters[i].value = value;
                 break;
             }
         }
@@ -123,8 +109,9 @@ export class Pass extends StateBlock
      *
      * @return {Array.<PassParameter>} An array of PassParameter
      */
-    getParameters() 
-    {
+    getParameters() {
         return this.parameters;
     }
 }
+
+export default Pass;

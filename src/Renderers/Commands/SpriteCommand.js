@@ -1,24 +1,23 @@
-import {DepthFunction, DrawingMode} from '../../StateBlock.js';
-import {Geometry} from '../../Geometry.js';
-import {Program} from '../../Program.js';
-import {RenderCommand} from './RenderCommand.js';
-import {TextureVideo} from '../../Textures/TextureVideo.js';
-import {Type} from '../../Types.js';
+import { DepthFunction, DrawingMode } from '../../StateBlock';
+import Geometry from '../../Geometry';
+import { Program } from '../../Program';
+import RenderCommand from './RenderCommand';
+import TextureVideo from '../../Textures/TextureVideo';
+import Type from '../../Types';
 
 /**
  * Draw sprites
  *
+ * @category Rendering
  * @extends {RenderCommand}
  */
-export class SpriteCommand extends RenderCommand
-{
+class SpriteCommand extends RenderCommand {
     /**
      * Constructor
      *
      * @param {Sprite} sprite A Sprite instance
      */
-    constructor(sprite)
-    {
+    constructor(sprite) {
         super();
 
         /**
@@ -35,8 +34,7 @@ export class SpriteCommand extends RenderCommand
      *
      * @param {RenderAPI} renderAPI RenderAPI instance used to process the commands
      */
-    execute(renderAPI) 
-    {
+    execute(renderAPI) {
         SpriteCommand.draw(renderAPI, this.sprite);
     }
 
@@ -46,33 +44,35 @@ export class SpriteCommand extends RenderCommand
      * @param {RenderAPI} renderAPI RenderAPI instance used to process the commands
      * @param {Sprite} sprite Sprite instance to draw
      */
-    static draw(renderAPI, sprite) 
-    {
-        let spriteTexture = sprite.getTexture();
-        if (!spriteTexture.isReady())
+    static draw(renderAPI, sprite) {
+        const spriteTexture = sprite.getTexture();
+        if (!spriteTexture.isReady()) {
             return;
+        }
 
         // Use custom or default program
         let program = sprite.getCustomProgram();
-        if (!program)
-        {
-            if (SpriteCommand.isDefaultProgramLoaded())
+        if (!program) {
+            if (SpriteCommand.isDefaultProgramLoaded()) {
                 program = SpriteCommand.sharedProgram;
-            else
+            } else {
                 return;
+            }
         }
 
         // Program.
-        let programCode = renderAPI.setProgram(program);
-        if (programCode === -1)
+        const programCode = renderAPI.setProgram(program);
+        if (programCode === -1) {
             return;
+        }
 
-        let spriteRect = sprite.getTextureRect();
-        let spriteSize = sprite.getSize();
+        const spriteRect = sprite.getTextureRect();
+        const spriteSize = sprite.getSize();
 
         // Must send/update shared uniforms
-        if (programCode === 1)
+        if (programCode === 1) {
             renderAPI.setUniform(program, 'uCamera', Type.Matrix, renderAPI.getActiveCamera().getViewProjectionMatrix());
+        }
 
         // Send uniforms
         renderAPI.setUniform(program, 'uModel', Type.Matrix, sprite.getTransformationMatrix());
@@ -84,40 +84,41 @@ export class SpriteCommand extends RenderCommand
 
         // Set visible area
         let uvs = null;
-        if (spriteTexture instanceof TextureVideo)
+        if (spriteTexture instanceof TextureVideo) {
             uvs = new Float32Array([0, 1, 0, 0, 1, 1, 1, 0]);
-        else 
-        {
-            let textureSize = spriteTexture.getImage().getSize();
-                
-            let x1 = spriteRect[0] / textureSize[0];
-            let y1 = (spriteRect[1] + spriteRect[3]) / textureSize[1];
+        } else {
+            const textureSize = spriteTexture.getImage().getSize();
+
+            const x1 = spriteRect[0] / textureSize[0];
+            const y1 = (spriteRect[1] + spriteRect[3]) / textureSize[1];
             let x2 = (spriteRect[0] + spriteRect[2]) / textureSize[0];
             let y2 = spriteRect[1] / textureSize[1];
 
-            if (spriteRect[2] === 0 && spriteRect[3] === 0)
-                x2 = y2 = 1.0;
+            if (spriteRect[2] === 0 && spriteRect[3] === 0) {
+                x2 = 1.0;
+                y2 = 1.0;
+            }
 
             uvs = new Float32Array([x1, y2, x1, y1, x2, y2, x2, y1]);
         }
         SpriteCommand.sharedGeometry.setTextureUVs(uvs);
 
         // Set color
-        let spriteColor = sprite.getColor();
-        let colors = new Float32Array([      
-            spriteColor.r, spriteColor.g, spriteColor.b, spriteColor.a, 
-            spriteColor.r, spriteColor.g, spriteColor.b, spriteColor.a, 
-            spriteColor.r, spriteColor.g, spriteColor.b, spriteColor.a, 
-            spriteColor.r, spriteColor.g, spriteColor.b, spriteColor.a
+        const spriteColor = sprite.getColor();
+        const colors = new Float32Array([
+            spriteColor.r, spriteColor.g, spriteColor.b, spriteColor.a,
+            spriteColor.r, spriteColor.g, spriteColor.b, spriteColor.a,
+            spriteColor.r, spriteColor.g, spriteColor.b, spriteColor.a,
+            spriteColor.r, spriteColor.g, spriteColor.b, spriteColor.a,
         ]);
         SpriteCommand.sharedGeometry.setColors(colors);
 
         // Set positions
-        let positions = new Float32Array([      
-            -spriteSize[0], -spriteSize[1],  0,
-            -spriteSize[0],  spriteSize[1],  0,
-             spriteSize[0], -spriteSize[1],  0,
-             spriteSize[0],  spriteSize[1],  0
+        const positions = new Float32Array([
+            -spriteSize[0], -spriteSize[1], 0,
+            -spriteSize[0], spriteSize[1], 0,
+            spriteSize[0], -spriteSize[1], 0,
+            spriteSize[0], spriteSize[1], 0,
         ]);
         SpriteCommand.sharedGeometry.setPositions(positions);
 
@@ -125,7 +126,7 @@ export class SpriteCommand extends RenderCommand
         renderAPI.setGeometry(SpriteCommand.sharedGeometry);
 
         // Draw object
-        renderAPI.drawIndexedPrimitives(DrawingMode.TrianglesStrip, 0, 4); 
+        renderAPI.drawIndexedPrimitives(DrawingMode.TrianglesStrip, 0, 4);
     }
 
     /**
@@ -133,32 +134,35 @@ export class SpriteCommand extends RenderCommand
      *
      * @return {boolean} Return true if the default program is loaded
      */
-    static isDefaultProgramLoaded() 
-    {
+    static isDefaultProgramLoaded() {
         // Everything is ok?
-        if (SpriteCommand.sharedProgram.isReady())
+        if (SpriteCommand.sharedProgram.isReady()) {
             return true;
+        }
 
-        let vertexShader =  'uniform mat4 uCamera;' +
-                            'uniform mat4 uModel;' +
-                            'attribute vec4 aPosition;' +
-                            'attribute vec4 aColor;' +
-                            'attribute vec2 aTexCoord;' +
-                            'varying vec4 vColor;' +
-                            'varying vec2 vUV;' +
-                            'void main() {' +
-                                'gl_Position = (uCamera * uModel) * aPosition;' +
-                                'vColor      = aColor;' +
-                                'vUV         = aTexCoord;' +
-                            '}';
+        const vertexShader = `
+        uniform mat4 uCamera;
+        uniform mat4 uModel;
+        attribute vec4 aPosition;
+        attribute vec4 aColor;
+        attribute vec2 aTexCoord;
+        varying vec4 vColor;
+        varying vec2 vUV;
 
-        let fragmentShader =    'uniform lowp sampler2D texture;' +
-                                'varying lowp vec4 vColor;' +
-                                'varying mediump vec2 vUV;' +
-                                'void main() {' +
-                                    'gl_FragColor = texture2D(texture, vUV) * vColor;' +
-                                '}';
+        void main() {
+            gl_Position = (uCamera * uModel) * aPosition;
+            vColor      = aColor;
+            vUV         = aTexCoord;
+        }`;
 
+        const fragmentShader = `
+        uniform lowp sampler2D texture;
+        varying lowp vec4 vColor;
+        varying mediump vec2 vUV;
+
+        void main() {
+            gl_FragColor = texture2D(texture, vUV) * vColor;
+        }`;
         SpriteCommand.sharedProgram.loadFromData(vertexShader, fragmentShader);
 
         return false;
@@ -180,3 +184,5 @@ SpriteCommand.sharedGeometry = Geometry.createRectangle(0.5, 0.5);
  * @private
  */
 SpriteCommand.sharedProgram = new Program();
+
+export default SpriteCommand;

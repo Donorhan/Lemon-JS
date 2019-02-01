@@ -1,17 +1,15 @@
-import {Color} from '../../Color.js';
+import Color from '../../Color';
 
 /**
  * Cache for WebGL API
  *
- * @author Donovan ORHAN <dono.orhan@gmail.com>
+ * @category WebGL
  */
-export class Cache
-{
+class Cache {
     /**
      * Constructor
      */
-    constructor()
-    {
+    constructor() {
         /**
          * Active vertex format
          *
@@ -109,3 +107,5 @@ export class Cache
         this.lightsType = [];
     }
 }
+
+export default Cache;

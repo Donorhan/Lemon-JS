@@ -1,22 +1,20 @@
-import {BlendMode} from '../BlendMode.js';
-import {Color} from '../Color.js';
-import {Drawable} from './Drawable.js';
-import {SpriteCommand} from '../Renderers/Commands/SpriteCommand.js';
+import BlendMode from '../BlendMode';
+import Color from '../Color';
+import Drawable from './Drawable';
+import SpriteCommand from '../Renderers/Commands/SpriteCommand';
 
 /**
  * A sprite
  *
+ * @category Drawables
  * @description Draw 2D textured element efficiently.
  * @extends {Drawable}
- * @author Donovan ORHAN <dono.orhan@gmail.com>
  */
-export class Sprite extends Drawable
-{
+class Sprite extends Drawable {
     /**
      * Constructor
      */
-    constructor()
-    {
+    constructor() {
         super();
 
         /**
@@ -76,8 +74,7 @@ export class Sprite extends Drawable
      * @param {BlendMode} blendMode A BlendMode instance
      * @return {Sprite} A reference to the instance
      */
-    setBlendMode(blendMode)
-    {
+    setBlendMode(blendMode) {
         this.blendMode = blendMode;
 
         return this;
@@ -92,8 +89,7 @@ export class Sprite extends Drawable
      * @param {number=} a Opacity in the range [0-255]
      * @return {Sprite} A reference to the instance
      */
-    setColor(r, g, b, a)
-    {
+    setColor(r, g, b, a) {
         this.color.set(r, g, b, a);
 
         return this;
@@ -104,10 +100,10 @@ export class Sprite extends Drawable
      *
      * @param {RenderTarget} renderTarget Renderer who called this method
      */
-    draw(renderTarget)
-    {
-        if (this.texture)
+    draw(renderTarget) {
+        if (this.texture) {
             renderTarget.getActiveTask().addCommand(new SpriteCommand(this));
+        }
     }
 
     /**
@@ -116,8 +112,7 @@ export class Sprite extends Drawable
      * @param {Program} program A Program instance
      * @return {Sprite} A reference to the instance
      */
-    setCustomProgram(program)
-    {
+    setCustomProgram(program) {
         this.customProgram = program;
 
         return this;
@@ -130,8 +125,7 @@ export class Sprite extends Drawable
      * @param {number} y Size on Y
      * @return {Sprite} A reference to the instance
      */
-    setSize(x, y)
-    {
+    setSize(x, y) {
         this.size[0] = x;
         this.size[1] = y;
 
@@ -144,8 +138,7 @@ export class Sprite extends Drawable
      * @param {TextureInterface} texture Can be a Texture or a TextureVideo
      * @return {Sprite} A reference to the instance
      */
-    setTexture(texture)
-    {
+    setTexture(texture) {
         this.texture = texture;
 
         return this;
@@ -160,8 +153,7 @@ export class Sprite extends Drawable
      * @param {number} h Area's height
      * @return {Sprite} A reference to the instance
      */
-    setTextureRect(x, y, w, h)
-    {
+    setTextureRect(x, y, w, h) {
         this.rect = [x, y, w, h];
 
         return this;
@@ -172,8 +164,7 @@ export class Sprite extends Drawable
      *
      * @return {BlendMode} A BlendMode instance
      */
-    getBlendMode()
-    {
+    getBlendMode() {
         return this.blendMode;
     }
 
@@ -182,8 +173,7 @@ export class Sprite extends Drawable
      *
      * @return {Color} A Color instance
      */
-    getColor()
-    {
+    getColor() {
         return this.color;
     }
 
@@ -192,8 +182,7 @@ export class Sprite extends Drawable
      *
      * @return {?Program} A Program instance or null if the sprite use the default program
      */
-    getCustomProgram()
-    {
+    getCustomProgram() {
         return this.customProgram;
     }
 
@@ -202,8 +191,7 @@ export class Sprite extends Drawable
      *
      * @return {Array.<number>} An array with index 0 for size on X and index 1 for size on y
      */
-    getSize()
-    {
+    getSize() {
         return this.size;
     }
 
@@ -212,8 +200,7 @@ export class Sprite extends Drawable
      *
      * @return {TextureInterface} A texture
      */
-    getTexture ()
-    {
+    getTexture() {
         return this.texture;
     }
 
@@ -222,8 +209,9 @@ export class Sprite extends Drawable
      *
      * @return {Array.<number>} An array representing area to show (x, y, w, h)
      */
-    getTextureRect()
-    {
+    getTextureRect() {
         return this.rect;
     }
 }
+
+export default Sprite;

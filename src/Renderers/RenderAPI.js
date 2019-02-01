@@ -1,20 +1,18 @@
 /**
  * A rendering API
  *
- * Web technologies allow Canvas and WebGL rendering
- * @author Donovan ORHAN <dono.orhan@gmail.com>
+ * @category Rendering
+ * @description Web technologies allow Canvas and WebGL rendering
  */
-export class RenderAPI 
-{
+class RenderAPI {
     /**
      * Constructor
      */
-    constructor()
-    {
+    constructor() {
         /**
          * Camera to use for next draw calls and graphics calculs
          *
-         * @type {Camera} 
+         * @type {Camera}
          * @protected
          */
         this.activeCamera = null;
@@ -25,15 +23,14 @@ export class RenderAPI
      *
      * @param {Light} light A Light instance
      */
-    bindLight(light) { };
+    bindLight(light) { }
 
     /**
      * Apply the given state block
      *
      * @param {StateBlock} stateBlock A StateBlock instance
      */
-    applyStateBlock(stateBlock)
-    {
+    applyStateBlock(stateBlock) {
         this.setBlendMode(stateBlock.blendMode);
         this.setDepthState(stateBlock.depthTest, stateBlock.depthWrite, stateBlock.depthFunction);
         this.setFaceCulling(stateBlock.faceCulling);
@@ -47,7 +44,7 @@ export class RenderAPI
      *
      * @param {number} framebufferID An identifier, -1 to bind the default frame buffer
      */
-    bindFrameBuffer(framebufferID = -1) { };
+    bindFrameBuffer(framebufferID = -1) { }
 
     /**
      * Bind texture to the the given slot
@@ -55,7 +52,7 @@ export class RenderAPI
      * @param {number} slot Targeted slot's index
      * @param {TextureInterface} texture A Texture instance
      */
-    bindTexture(slot, texture) { };
+    bindTexture(slot, texture) { }
 
     /**
      * Bind texture cube to the the given slot
@@ -63,26 +60,26 @@ export class RenderAPI
      * @param {number} slot Targeted slot's index
      * @param {TextureCube} texture A TextureCube instance
      */
-    bindTextureCube(slot, texture) { };
+    bindTextureCube(slot, texture) { }
 
     /**
      * Clear the rendering target
      *
      * @param {Color} color A Color instance
      */
-    clear(color) { };
+    clear(color) { }
 
     /**
      * Clear cache
      */
-    clearCache() { };
+    clearCache() { }
 
     /**
      * Create a new frame buffer
      *
      * @return {number} An identifier to work with it later
      */
-    createFrameBuffer() { return 0; };
+    createFrameBuffer() { return 0; }
 
     /**
     * Draw indexed primitives
@@ -91,7 +88,7 @@ export class RenderAPI
     * @param {number} firstVertexIndex Index of the first vertex to draw, useful to draw some parts
     * @param {number} vertexCount Vertex count to draw
     */
-    drawIndexedPrimitives(drawingMode, firstVertexIndex, vertexCount) { }; 
+    drawIndexedPrimitives(drawingMode, firstVertexIndex, vertexCount) { }
 
     /**
     * Draw primitives
@@ -100,7 +97,7 @@ export class RenderAPI
     * @param {number} firstVertexIndex Index of the first vertex to draw, useful to draw some parts
     * @param {number} vertexCount Vertex count to draw
     */
-    drawPrimitives(drawingMode, firstVertexIndex, vertexCount) { };
+    drawPrimitives(drawingMode, firstVertexIndex, vertexCount) { }
 
     /**
      * Init frame buffer: attach it to textures, depth buffer and/or a stencil buffer
@@ -110,16 +107,15 @@ export class RenderAPI
      * @param {boolean=} useDepthBuffer True to use a depth buffer
      * @param {boolean=} useStencilBuffer True to use a depth buffer
      */
-    initFrameBuffer(framebufferID, textures, useDepthBuffer = true, useStencilBuffer = false) { };
+    initFrameBuffer(framebufferID, textures, useDepthBuffer = true, useStencilBuffer = false) { }
 
     /**
      * Set camera to use
      *
      * @param {Camera} camera A Camera instance
      */
-    setActiveCamera(camera) 
-    { 
-        this.activeCamera = camera; 
+    setActiveCamera(camera) {
+        this.activeCamera = camera;
     }
 
     /**
@@ -127,7 +123,7 @@ export class RenderAPI
      *
      * @param {BlendMode} blendMode A BlendMode instance
      */
-    setBlendMode(blendMode) { };
+    setBlendMode(blendMode) { }
 
     /**
      * Set depth state
@@ -136,27 +132,27 @@ export class RenderAPI
      * @param {boolean} writeTest True to activate depth writing otherwise false
      * @param {DepthFunction} depthFunction Depth function to apply
      */
-    setDepthState(depthTest, writeTest, depthFunction) { };
+    setDepthState(depthTest, writeTest, depthFunction) { }
 
     /**
      * Set face culling state.
      * @param {FaceCulling} mode Face culling mode to set.
      */
-    setFaceCulling(mode) { };
+    setFaceCulling(mode) { }
 
     /**
      * Set geometry to use
      *
      * @param {Geometry} geometry A Geometry instance
      */
-    setGeometry(geometry) { };
+    setGeometry(geometry) { }
 
     /**
      * Set index buffer to use
      *
      * @param {number|WebGLBuffer} buffer A buffer instance
      */
-    setIndexBuffer(buffer) { };
+    setIndexBuffer(buffer) { }
 
     /**
      * Set program to use
@@ -164,7 +160,7 @@ export class RenderAPI
      * @param {Program} program A Program instance to use
      * @return {number} -1: an error occured, 0: everything is ok, 2 : program have been changed
      */
-    setProgram(program) { return -1; };
+    setProgram(program) { return -1; }
 
     /**
      * Set uniform value
@@ -176,7 +172,7 @@ export class RenderAPI
      * @param {number=} groupCount When an element is an array, you can create group (like sub-array)
      * @return {boolean} True if uniform has been set successfully, otherwise false
      */
-    setUniform(program, name, type, value, groupCount) { return false; };
+    setUniform(program, name, type, value, groupCount) { return false; }
 
     /**
      * Set scissor test state
@@ -187,7 +183,7 @@ export class RenderAPI
      * @param {number} w Width of the rectangle
      * @param {number} h Height of the rectangle
      */
-    setScissorTest(state, x, y, w, h) { };
+    setScissorTest(state, x, y, w, h) { }
 
     /**
      * Set stencil test state
@@ -195,7 +191,7 @@ export class RenderAPI
      * @param {boolean} activate True to active stencil testing, otherwise false
      * @param {number} writeMask Stencil writing value
      */
-    setStencilState(activate, writeMask) { };
+    setStencilState(activate, writeMask) { }
 
     /**
      * Set stencil function to use
@@ -204,7 +200,7 @@ export class RenderAPI
      * @param {number} reference Reference value
      * @param {number} mask Mask to use
      */
-    setStencilFunction(stencilFunction, reference, mask) { };
+    setStencilFunction(stencilFunction, reference, mask) { }
 
     /**
      * Set stencil operations to use
@@ -213,7 +209,7 @@ export class RenderAPI
      * @param {StencilOperation} dpFail Reference value
      * @param {StencilOperation} dppPass Mask to use
      */
-    setStencilOperations(sFail, dpFail, dppPass) { };
+    setStencilOperations(sFail, dpFail, dppPass) { }
 
     /**
      * Set vertex buffer to use
@@ -222,22 +218,23 @@ export class RenderAPI
      * @param {number} stream An integer representing stream to use
      * @param {number|WebGLBuffer} buffer A buffer instance
      */
-    setVertexBuffer(stream, buffer) { };
+    setVertexBuffer(stream, buffer) { }
 
     /**
      * Set vertex format to use
      *
      * @param {VertexFormat} format A VertexFormat instance
      */
-    setVertexFormat(format) { };
+    setVertexFormat(format) { }
 
     /**
      * Get the active camera
      *
      * @return {Camera} A Camera instance or null
      */
-    getActiveCamera() 
-    { 
-        return this.activeCamera; 
+    getActiveCamera() {
+        return this.activeCamera;
     }
 }
+
+export default RenderAPI;

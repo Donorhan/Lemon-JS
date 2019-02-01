@@ -1,18 +1,16 @@
-import {Light} from './Light.js';
+import Light from './Light';
 
 /**
  * A spotlight
  *
+ * @category Lights
  * @extends {Light}
- * @author Donovan ORHAN <dono.orhan@gmail.com>
  */
-export class SpotLight extends Light
-{
+class SpotLight extends Light {
     /**
      * Constructor
      */
-    constructor()
-    {
+    constructor() {
         super();
 
         /**
@@ -64,8 +62,7 @@ export class SpotLight extends Light
      * @param {number} z Direction on Z
      * @return {SpotLight} A reference to the instance
      */
-    setDirection(x, y, z) 
-    {
+    setDirection(x, y, z) {
         this.direction = [x, y, z];
 
         return this;
@@ -77,8 +74,7 @@ export class SpotLight extends Light
      * @param {number} value The cutoff value
      * @return {SpotLight} A reference to the instance
      */
-    setCutoff(value) 
-    {
+    setCutoff(value) {
         this.cutoff = value;
 
         return this;
@@ -92,11 +88,10 @@ export class SpotLight extends Light
      * @param {number} quadratic The quadratic value
      * @return {SpotLight} A reference to the instance
      */
-    setValues(constant, linear, quadratic) 
-    {
-        this.constant   = constant;
-        this.linear     = linear;
-        this.quadratic  = quadratic;
+    setValues(constant, linear, quadratic) {
+        this.constant = constant;
+        this.linear = linear;
+        this.quadratic = quadratic;
 
         return this;
     }
@@ -106,9 +101,8 @@ export class SpotLight extends Light
      *
      * @return {Array.<number>} A vector with values for each axis
      */
-    getDirection() 
-    {
-        return this.direction; 
+    getDirection() {
+        return this.direction;
     }
 
     /**
@@ -116,8 +110,9 @@ export class SpotLight extends Light
      *
      * @return {Array.<number>} An array with constant, linear and quadratic values
      */
-    getValues() 
-    {
+    getValues() {
         return [this.constant, this.linear, this.quadratic];
     }
 }
+
+export default SpotLight;

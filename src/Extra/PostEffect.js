@@ -1,23 +1,21 @@
-import {Color} from '../Color.js';
-import {RenderTexture} from '../Renderers/RenderTexture.js';
-import {Sprite} from '../Objects/Sprite.js';
-import {SpriteCommand} from '../Renderers/Commands/SpriteCommand.js';
-import {WebGL} from '../Renderers/WebGL/RenderWebGL.js';
+import Color from '../Color';
+import RenderTexture from '../Renderers/RenderTexture';
+import Sprite from '../Objects/Sprite';
+import SpriteCommand from '../Renderers/Commands/SpriteCommand';
+import WebGL from '../Renderers/WebGL/RenderWebGL';
 
 /**
  * A class to create post-effects
  *
- * @author Donovan ORHAN <dono.orhan@gmail.com>
+ * @category Shaders
  */
-export class PostEffect
-{
+class PostEffect {
     /**
      * Constructor
      *
      * @param {Program} program A Program instance.
      */
-    constructor(program)
-    {
+    constructor(program) {
         /**
         * The render API to use
         *
@@ -53,8 +51,7 @@ export class PostEffect
      * @param {boolean=} userStencilBuffer True to use stencil buffer
      * @return {PostEffect} A reference to the instance
      */
-    init(width, height, useDepthBuffer = true, userStencilBuffer = false) 
-    {
+    init(width, height, useDepthBuffer = true, userStencilBuffer = false) {
         // Init texture
         this.renderTexture = new RenderTexture(width, height, 1, useDepthBuffer, userStencilBuffer);
 
@@ -71,10 +68,10 @@ export class PostEffect
      *
      * @param {Color=} color A Color instance
      */
-    begin(color = new Color(30, 30, 30)) 
-    {
-        if (!this.renderTexture)
+    begin(color = new Color(30, 30, 30)) {
+        if (!this.renderTexture) {
             return;
+        }
 
         this.renderTexture.clear(color);
     }
@@ -82,17 +79,17 @@ export class PostEffect
     /**
      * End
      */
-    end() 
-    {
-        if (!this.renderTexture)
+    end() {
+        if (!this.renderTexture) {
             return;
+        }
 
         // Display result
         this.renderTexture.display();
 
         // Draw the full screen quad
         SpriteCommand.draw(this.renderApi, this.sprite);
-    };
+    }
 
     /**
      * Render the given scene
@@ -100,8 +97,7 @@ export class PostEffect
      * @param {Scene} scene A Scene instance
      * @param {Camera} camera A Camera instance
      */
-    render(scene, camera) 
-    {
+    render(scene, camera) {
         this.renderTexture.render(scene, camera);
     }
 
@@ -111,8 +107,7 @@ export class PostEffect
      * @param {Program} program A Program instance
      * @return {PostEffect} A reference to the instance
      */
-    setProgram(program) 
-    {
+    setProgram(program) {
         this.sprite.setCustomProgram(program);
 
         return this;
@@ -126,10 +121,11 @@ export class PostEffect
      * @param {Array.<number>|number|boolean|Texture|Float32Array} value A value
      * @return {PostEffect} A reference to the instance
      */
-    setEffectValue(name, type, value, groupCount) 
-    { 
+    setEffectValue(name, type, value, groupCount) {
         this.renderApi.setUniform(this.sprite.getCustomProgram(), name, type, value, groupCount);
 
         return this;
     }
 }
+
+export default PostEffect;

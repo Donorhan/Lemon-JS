@@ -1,21 +1,19 @@
-import {Drawable} from './Drawable.js';
-import {ModelLoader} from '../Loaders/ModelLoader.js';
+import Drawable from './Drawable';
+import ModelLoader from '../Loaders/ModelLoader';
 
 /**
  * A model
  *
+ * @category Drawables
  * @extends {Drawable}
- * @author Donovan ORHAN <dono.orhan@gmail.com>
  */
-export class Model extends Drawable
-{
+class Model extends Drawable {
     /**
      * Constructor
      *
      * @param {string} filePath Path to the file with model's data
      */
-    constructor(filePath = '')
-    {
+    constructor(filePath = '') {
         super();
 
         /**
@@ -26,8 +24,9 @@ export class Model extends Drawable
          */
         this.meshes = [];
 
-        if (filePath.length)
+        if (filePath.length) {
             this.loadFromFile(filePath);
+        }
     }
 
     /**
@@ -37,14 +36,14 @@ export class Model extends Drawable
      * @param {boolean} parentUpdated Indicate if the parent element have been updated
      * @return {boolean} True if the node have been updated
      */
-    update(deltaTime, parentUpdated)
-    {
+    update(deltaTime, parentUpdated) {
         // Call parent method
-        let updated = super.update.call(this, deltaTime, parentUpdated);
+        const updated = super.update.call(this, deltaTime, parentUpdated);
 
         // Update meshes.
-        for (let i = 0; i < this.meshes.length; i++)
+        for (let i = 0; i < this.meshes.length; i += 1) {
             this.meshes[i].computeTransformationMatrix(this.getTransformationMatrix(), updated);
+        }
 
         return updated;
     }
@@ -54,10 +53,10 @@ export class Model extends Drawable
      *
      * @param {RenderTarget} renderTarget Renderer who called this method
      */
-    draw(renderTarget)
-    {
-        for (let i = 0; i < this.meshes.length; i++)
+    draw(renderTarget) {
+        for (let i = 0; i < this.meshes.length; i += 1) {
             this.meshes[i].draw(renderTarget);
+        }
     }
 
     /**
@@ -65,8 +64,9 @@ export class Model extends Drawable
      *
      * @param {string} filePath Path to the file with model's data
      */
-    loadFromFile(filePath)
-    {
+    loadFromFile(filePath) {
         ModelLoader.loadFromFile(filePath, this);
     }
 }
+
+export default Model;

@@ -1,0 +1,17 @@
+{
+    "root": true,
+    "extends": ["airbnb-base"],
+    "env": {
+        "browser": true
+    },
+    "rules": {
+        "indent": ["error", 4],
+        "max-len": ["error", { "code": 180 }],
+        "class-methods-use-this": "off",
+        "prefer-destructuring": "off",
+        "guard-for-in": "off",
+        "no-restricted-syntax": "off",
+        "no-unused-vars": "off",
+        "no-bitwise": "off"
+    }
+}

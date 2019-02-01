@@ -1,49 +1,47 @@
-import {Color} from '../Color.js';
-import {Context} from '../Context.js';
-import {RenderTask} from './RenderTask.js';
+import Color from '../Color';
+import Context from '../Context';
+import RenderTask from './RenderTask';
 
 /**
  * A rendering target
  *
- * @author Donovan ORHAN <dono.orhan@gmail.com>
+ * @category Rendering
  */
-export class RenderTarget
-{
+class RenderTarget {
     /**
      * Constructor
      */
-    constructor()
-    {   
+    constructor() {
         /**
-        * A reference to the active task
-        *
-        * @type {null|RenderTask} 
-        * @protected
-        */
+         * A reference to the active task
+         *
+         * @type {null|RenderTask}
+         * @protected
+         */
         this.activeTask = null;
 
         /**
-        * Context instance
-        *
-        * @type {Context} 
-        * @protected
-        */
+         * Context instance
+         *
+         * @type {Context}
+         * @protected
+         */
         this.context = new Context();
 
         /**
-        * Tasks to execute
-        *
-        * @type {Array.<RenderTask>} 
-        * @protected
-        */
+         * Tasks to execute
+         *
+         * @type {Array.<RenderTask>}
+         * @protected
+         */
         this.tasks = [];
 
         /**
-        * The render API to use
-        *
-        * @type {RenderAPI}
-        * @protected
-        */
+         * The render API to use
+         *
+         * @type {RenderAPI}
+         * @protected
+         */
         this.renderApi = null;
     }
 
@@ -52,15 +50,14 @@ export class RenderTarget
      *
      * @param {?Color} color A Color instance
      */
-    clear(color = new Color(30, 30, 30)) { };
+    clear(color = new Color(30, 30, 30)) { }
 
     /**
      * Create a new task
      *
      * @return {number} RenderTask's index
      */
-    createTask()
-    {
+    createTask() {
         this.tasks.push(new RenderTask());
         return (this.tasks.length - 1);
     }
@@ -68,10 +65,10 @@ export class RenderTarget
     /**
      * Display
      */
-    display() 
-    {
-        for (let i = 0; i < this.tasks.length; i++)
+    display() {
+        for (let i = 0; i < this.tasks.length; i += 1) {
             this.tasks[i].execute(this.renderApi);
+        }
     }
 
     /**
@@ -80,8 +77,7 @@ export class RenderTarget
      * @param {Scene} scene A Scene instance
      * @param {Camera} camera A Camera instance
      */
-    render(scene, camera) 
-    {
+    render(scene, camera) {
         // Clear render API cache
         this.renderApi.clearCache();
 
@@ -89,8 +85,9 @@ export class RenderTarget
         this.renderApi.setActiveCamera(camera);
 
         // Ensure at least one task is alive
-        if (!this.getActiveTask())
+        if (!this.getActiveTask()) {
             this.setActiveTask(this.createTask());
+        }
 
         // Manage the scene
         scene.visit(this);
@@ -101,10 +98,10 @@ export class RenderTarget
      *
      * @param {number} index An integer representing task's index
      */
-    setActiveTask(index) 
-    {
-        if (index >= 0 && index < this.tasks.length)
+    setActiveTask(index) {
+        if (index >= 0 && index < this.tasks.length) {
             this.activeTask = this.tasks[index];
+        }
     }
 
     /**
@@ -112,16 +109,14 @@ export class RenderTarget
      *
      * @return {?RenderTask} A RenderTask or null
      */
-    getActiveTask() 
-    {
+    getActiveTask() {
         return this.activeTask;
     }
 
     /**
      * Remove all the tasks in memory
      */
-    removeTasks() 
-    {
+    removeTasks() {
         this.tasks.length = 0;
         this.activeTask = null;
     }
@@ -131,8 +126,7 @@ export class RenderTarget
      *
      * @return {RenderAPI} A Render API instance
      */
-    getRenderAPI() 
-    {
+    getRenderAPI() {
         return this.renderApi;
     }
 
@@ -141,8 +135,7 @@ export class RenderTarget
      *
      * @return {Array.<number>} A array with size on x and y
      */
-    getSize() 
-    {
+    getSize() {
         return this.context.getSize();
     }
 
@@ -151,8 +144,7 @@ export class RenderTarget
      *
      * @return {!number} Width in pixels
      */
-    getWidth()
-    {
+    getWidth() {
         return this.context.getSize()[0];
     }
 
@@ -161,8 +153,9 @@ export class RenderTarget
      *
      * @return {!number} Height in pixels
      */
-    getHeight()
-    {
+    getHeight() {
         return this.context.getSize()[1];
     }
 }
+
+export default RenderTarget;

@@ -1,19 +1,17 @@
-import {Drawable} from './Drawable.js';
-import {SkyboxCommand} from '../Renderers/Commands/SkyboxCommand.js';
+import Drawable from './Drawable';
+import SkyboxCommand from '../Renderers/Commands/SkyboxCommand';
 
 /**
  * A Skybox
  *
+ * @category Drawables
  * @extends {Drawable}
- * @author Donovan ORHAN <dono.orhan@gmail.com>
  */
-export class Skybox extends Drawable
-{
+class Skybox extends Drawable {
     /**
      * Constructor
      */
-    constructor()
-    {
+    constructor() {
         super();
 
         /**
@@ -38,10 +36,10 @@ export class Skybox extends Drawable
      *
      * @param {RenderTarget} renderTarget Renderer who called this method
      */
-    draw(renderTarget)
-    {
-        if (this.texture)
+    draw(renderTarget) {
+        if (this.texture) {
             renderTarget.getActiveTask().addCommand(new SkyboxCommand(this));
+        }
     }
 
     /**
@@ -50,8 +48,7 @@ export class Skybox extends Drawable
      * @param {Program} program A Program instance
      * @return {Skybox} A reference to the instance
      */
-    setCustomProgram(program)
-    {
+    setCustomProgram(program) {
         this.customProgram = program;
 
         return this;
@@ -63,8 +60,7 @@ export class Skybox extends Drawable
      * @param {TextureCube} texture A TextureCube instance
      * @return {Skybox} A reference to the instance
      */
-    setTexture(texture)
-    {
+    setTexture(texture) {
         this.texture = texture;
 
         return this;
@@ -75,8 +71,7 @@ export class Skybox extends Drawable
      *
      * @return {?Program} A Program instance or null if the Skybox use the default program
      */
-    getCustomProgram()
-    {
+    getCustomProgram() {
         return this.customProgram;
     }
 
@@ -85,8 +80,9 @@ export class Skybox extends Drawable
      *
      * @return {TextureCube} A TextureCube instances
      */
-    getTexture()
-    {
+    getTexture() {
         return this.texture;
     }
 }
+
+export default Skybox;

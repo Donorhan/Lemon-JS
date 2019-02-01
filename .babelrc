@@ -1,0 +1,21 @@
+{
+    "presets": [
+        ["@babel/preset-env", {
+            "modules": false,
+            "useBuiltIns": false,
+            "targets": {
+                "browsers": [
+                    "> 5%",
+                    "last 2 versions",
+                    "not ie < 11",
+                    "ios_saf >= 10.2",
+                ],
+            },
+        }]
+    ],
+    "plugins": [
+        "@babel/plugin-proposal-class-properties",
+        "@babel/plugin-proposal-export-namespace-from",
+        "@babel/plugin-syntax-dynamic-import"
+    ]
+}

@@ -1,25 +1,22 @@
-import {Color} from '../Color.js';
-import {Context} from '../Context.js';
-import {RenderTarget} from './RenderTarget.js';
-import {WebGL} from './WebGL/RenderWebGL.js';
+import Color from '../Color';
+import Context from '../Context';
+import RenderTarget from './RenderTarget';
+import WebGL from './WebGL/RenderWebGL';
 
 /**
  * A rendering canvas
  *
+ * @category Rendering
  * @extends {RenderTarget}
- * @author Donovan ORHAN <dono.orhan@gmail.com>
  */
-export class RenderCanvas extends RenderTarget
-{
+class RenderCanvas extends RenderTarget {
     /**
      * Constructor
      *
      * @param {string} canvas Id of the container
      * @param {{antialiasing: boolean, width: (number|undefined), height: (number|undefined)}} options Options
-     * @param {string=} type A string with the value "webgl" or "canvas"
      */
-    constructor(canvas, options = {}, type = 'webgl')
-    {
+    constructor(canvas, options = {}) {
         super();
 
         /**
@@ -39,8 +36,7 @@ export class RenderCanvas extends RenderTarget
      *
      * @param {?Color} color A Color instance
      */
-    clear(color = new Color(30, 30, 30)) 
-    {
+    clear(color = new Color(30, 30, 30)) {
         // Remove previous tasks
         this.removeTasks();
 
@@ -51,3 +47,5 @@ export class RenderCanvas extends RenderTarget
         this.renderApi.clear(color);
     }
 }
+
+export default RenderCanvas;

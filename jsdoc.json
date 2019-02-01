@@ -1,0 +1,26 @@
+{
+    "opts": {
+        "template": "node_modules/better-docs",
+        "destination": "./doc/",
+        "recurse": true
+    },
+    "source": {
+        "include": ["./src", "./README.md"],
+        "includePattern": ".+\\.js(doc|x)?$",
+        "excludePattern": "(^|\\/|\\\\)_"
+    },
+    "plugins": [
+        "node_modules/better-docs/category"
+    ],
+    "templates": {
+        "better-docs": {
+            "name": "LemonJS Documentation",
+            "navigation": [
+                {
+                    "label": "Github",
+                    "href": "https://github.com/Donorhan/Lemon-JS"
+                }
+            ]
+        }
+    }
+}

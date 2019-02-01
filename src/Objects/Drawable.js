@@ -1,13 +1,12 @@
-import {Node} from '../Scene/Node.js';
+import Node from '../Scene/Node';
 
 /**
  * A drawable element
  *
+ * @category Drawables
  * @extends {Node}
- * @author Donovan ORHAN <dono.orhan@gmail.com>
  */
-export class Drawable extends Node
-{
+class Drawable extends Node {
     /**
      * Draw the element
      *
@@ -21,12 +20,14 @@ export class Drawable extends Node
      * @param {RenderTarget} renderTarget Renderer who called this method
      * @return {boolean} True if visit was successful, otherwise false
      */
-    visit(renderTarget)
-    {
-        if (!super.visit(renderTarget))
+    visit(renderTarget) {
+        if (!super.visit(renderTarget)) {
             return false;
+        }
 
         this.draw(renderTarget);
         return true;
     }
 }
+
+export default Drawable;

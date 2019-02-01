@@ -1,21 +1,19 @@
-import {ContextResource} from './ContextResource.js';
-import {FileLoader} from './Loaders/FileLoader.js';
+import ContextResource from './ContextResource';
+import FileLoader from './Loaders/FileLoader';
 
 /**
  * A program
  *
+ * @category Shaders
  * @extends {ContextResource}
- * @author Donovan ORHAN <dono.orhan@gmail.com>
  */
-export class Program extends ContextResource
-{
+export class Program extends ContextResource {
     /**
      * Constructor
      *
      * @constructor
      */
-    constructor()
-    {
+    constructor() {
         super();
 
         /**
@@ -52,17 +50,14 @@ export class Program extends ContextResource
      * @param {string} vertexFile Path to the vertex shader file
      * @param {string} fragmentFile Path to the fragment shader file
      */
-    loadFromFiles(vertexFile, fragmentFile)
-    {
+    loadFromFiles(vertexFile, fragmentFile) {
         // Vertex file.
-        FileLoader.load(vertexFile, (status, data) =>
-        {
+        FileLoader.load(vertexFile, (status, data) => {
             this.sources[0] = data;
         });
 
         // Fragment file.
-        FileLoader.load(fragmentFile, (status, data) =>
-        {
+        FileLoader.load(fragmentFile, (status, data) => {
             this.sources[1] = data;
         });
     }
@@ -73,8 +68,7 @@ export class Program extends ContextResource
      * @param {string} vertexSource Vertex shader code
      * @param {string} fragmentSource Fragment shader code
      */
-    loadFromData(vertexSource, fragmentSource)
-    {
+    loadFromData(vertexSource, fragmentSource) {
         this.sources[0] = vertexSource;
         this.sources[1] = fragmentSource;
     }
@@ -84,8 +78,7 @@ export class Program extends ContextResource
      *
      * @return {Array.<ProgramElement>} An array of attribute
      */
-    getAttributes()
-    {
+    getAttributes() {
         return this.attributes;
     }
 
@@ -94,8 +87,7 @@ export class Program extends ContextResource
      *
      * @return {Array.<string>} Index 0: Vertex shader, Index 1: Fragment shader
      */
-    getSources()
-    {
+    getSources() {
         return this.sources;
     }
 
@@ -105,9 +97,8 @@ export class Program extends ContextResource
      * @param {string} name Name of the uniform
      * @return {?ProgramElement} A program Element or null if uniform doesn't exist
      */
-    getUniform(name)
-    {
-        return this.uniforms[name] || null;
+    getUniform(name) {
+        return this.uniforms[name] || null;
     }
 
     /**
@@ -115,8 +106,7 @@ export class Program extends ContextResource
      *
      * @return {Array.<ProgramElement>} An array of uniforms
      */
-    getUniforms()
-    {
+    getUniforms() {
         return this.uniforms;
     }
 
@@ -126,8 +116,7 @@ export class Program extends ContextResource
      * Source array must have two elements: the fragment and the vertex shaders
      * @return {boolean} True if program is ready, otherwise false
      */
-    isReady()
-    {
+    isReady() {
         return (this.sources.length === 2 && this.sources[0] !== null && this.sources[1] !== null);
     }
 }
@@ -135,10 +124,10 @@ export class Program extends ContextResource
 /**
  * An element from the shader
  *
+ * @category Shaders
  * @constructor
  */
-export class ProgramElement
-{
+export class ProgramElement {
     /**
      * Constructor
      *
@@ -147,8 +136,7 @@ export class ProgramElement
      * @param {Type} type Element's type (float, vec, …)
      * @param {number} size Element's size
      */
-    constructor(location, name, type, size)
-    {
+    constructor(location, name, type, size) {
         /**
          * Location in the shader
          *

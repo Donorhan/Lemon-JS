@@ -1,16 +1,13 @@
 /**
  * An image
- * Use a weird name due to the lack of namespace in Javascript :(
  *
- * @author Donovan ORHAN <dono.orhan@gmail.com>
+ * @category Core
  */
-export class Img
-{
+class Img {
     /**
      * Constructor
      */
-    constructor()
-    {
+    constructor() {
         /**
          * Native instance
          *
@@ -57,12 +54,10 @@ export class Img
      *
      * @param {string} path Path to the image file
      */
-    loadFromFile(path)
-    {
-        this.data.onload = () =>
-        {
+    loadFromFile(path) {
+        this.data.onload = () => {
             this.status = Img.Status.Loaded;
-            this.width  = this.data.width;
+            this.width = this.data.width;
             this.height = this.data.height;
             this.pixels = null;
         };
@@ -77,11 +72,10 @@ export class Img
      * @param {number} height Image's height
      * @param {Uint8Array?} data An array with pixels (r, g, b, a)
      */
-    create(width, height, data = null)
-    {
-        this.pixels = data ? data : new Uint8Array(width * height * 4);
-        this.data   = null;
-        this.width  = width;
+    create(width, height, data = null) {
+        this.pixels = data || new Uint8Array(width * height * 4);
+        this.data = null;
+        this.width = width;
         this.height = height;
         this.status = Img.Status.Loaded;
     }
@@ -91,8 +85,7 @@ export class Img
      *
      * @return {Array.<number>} Image's width and height in pixel
      */
-    getSize()
-    {
+    getSize() {
         return [this.width, this.height];
     }
 
@@ -101,9 +94,8 @@ export class Img
      *
      * @return {Image|Uint8Array} A native Image object or an array depending method use to load the image
      */
-    getData()
-    {
-        return this.data || this.pixels;
+    getData() {
+        return this.data || this.pixels;
     }
 
     /**
@@ -111,9 +103,8 @@ export class Img
      *
      * @return {boolean} True if image is ready, otherwise false
      */
-    isReady()
-    {
-        return (this.status == Img.Status.Loaded);
+    isReady() {
+        return (this.status === Img.Status.Loaded);
     }
 }
 
@@ -123,3 +114,5 @@ export class Img
  * @enum {number}
  */
 Img.Status = { Unload: 0, Loading: 1, Loaded: 2 };
+
+export default Img;

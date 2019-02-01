@@ -2,10 +2,9 @@
  * Represent one of the element of a vertex.
  * It can be a position, a normal, a color, ….
  *
- * @author Donovan ORHAN <dono.orhan@gmail.com>
+ * @category Geometry
  */
-export class VertexElement
-{
+export class VertexElement {
     /**
      * Constructor
      *
@@ -15,15 +14,14 @@ export class VertexElement
      * @param {number?} count Value count, ex: A "vec2" will have "2" for this parameter
      * @param {boolean?} normalize True to ask rendering API to normalize values
      */
-    constructor(usage, stream, type, count = 0, normalize = false)
-    {
+    constructor(usage, stream, type, count = 0, normalize = false) {
         /**
          * Value count for this element
          *
          * @type {number}
          * @public
          */
-        this.count = count
+        this.count = count;
 
         /**
          * Indicate if the value need to be normalized by the graphic API
@@ -79,34 +77,47 @@ export class VertexElement
  *
  * @enum {number}
  */
-VertexElement.StreamType = { Static: 0, Dynamic: 1, Stream: 2 };
+VertexElement.StreamType = {
+    Static: 0,
+    Dynamic: 1,
+    Stream: 2,
+};
 
 /**
  * VertexElement's types
  *
  * @enum {number}
  */
-VertexElement.Type = { Byte: 0, Float: 1, Int: 2, Short: 3 };
+VertexElement.Type = {
+    Byte: 0,
+    Float: 1,
+    Int: 2,
+    Short: 3,
+};
 
 /**
  * VertexElement's usage
  *
  * @enum {number}
  */
-VertexElement.Usage = { Position: 0, Color: 1, UVS: 2, Normal: 3, Tangent: 4 };
+VertexElement.Usage = {
+    Position: 0,
+    Color: 1,
+    UVS: 2,
+    Normal: 3,
+    Tangent: 4,
+};
 
 /**
  * Indicate the format of a vertex
  *
- * @author Donovan ORHAN <dono.orhan@gmail.com>
+ * @category Geometry
  */
-export class VertexFormat
-{
+export class VertexFormat {
     /**
      * Constructor
      */
-    constructor()
-    {
+    constructor() {
         /**
          * Elements inside this format
          *
@@ -154,8 +165,7 @@ export class VertexFormat
      * @param {VertexElement} element A VertexElement instance
      * @return {VertexFormat} A reference to the instance
      */
-    add(element)
-    {
+    add(element) {
         this.elements.push(element);
         this.compute();
 
@@ -168,8 +178,7 @@ export class VertexFormat
      * @param {Array.<VertexElement>} elements An array of VertexElement instance
      * @return {VertexFormat} A reference to the instance
      */
-    set(elements)
-    {
+    set(elements) {
         this.elements = elements;
         this.compute();
 
@@ -183,8 +192,7 @@ export class VertexFormat
      * @param {VertexElement.StreamType} type A type
      * @return {VertexFormat} A reference to the instance
      */
-    setStreamType(index, type)
-    {
+    setStreamType(index, type) {
         this.streamType[index] = type;
 
         return this;
@@ -195,54 +203,45 @@ export class VertexFormat
      *
      * @private
      */
-    compute()
-    {
-        let offset          = 0;
-        let size            = 0;
-        let previousStream  = 0;
+    compute() {
+        let offset = 0;
+        let size = 0;
+        let previousStream = 0;
 
         // Sort elements by stream (ascending)
-        this.elements.sort(function(a, b)
-        {
-            if (a.stream < b.stream)
-                return -1;
-            else if (a.stream > b.stream)
-                return 1;
-
-            return 0;
-        })
+        this.elements.sort((a, b) => {
+            const t = (a.stream > b.stream ? 1 : 0);
+            return a.stream < b.stream ? -1 : t;
+        });
 
         // Compute values
-        for (let i = 0; i < this.elements.length; i++)
-        {
+        for (let i = 0; i < this.elements.length; i += 1) {
             // Reset offset and stride when we change stream
-            if (previousStream != this.elements[i].stream)
-            {
-                this.streamStride[previousStream]   = offset;
-                offset                              = 0;
+            if (previousStream !== this.elements[i].stream) {
+                this.streamStride[previousStream] = offset;
+                offset = 0;
             }
 
-            switch (this.elements[i].type)
-            {
-                case VertexElement.Type.Float:
-                case VertexElement.Type.Int:
-                    size = 4;
-                    break;
-                case VertexElement.Type.Short:
-                    size = 2;
-                    break;
-                case VertexElement.Type.Byte:
-                    size = 1;
-                    break;
-                default:
-                    size = 1;
-                    break;
+            switch (this.elements[i].type) {
+            case VertexElement.Type.Float:
+            case VertexElement.Type.Int:
+                size = 4;
+                break;
+            case VertexElement.Type.Short:
+                size = 2;
+                break;
+            case VertexElement.Type.Byte:
+                size = 1;
+                break;
+            default:
+                size = 1;
+                break;
             }
 
-            this.elements[i].offset  = offset;
-            size                    *= this.elements[i].count;
-            offset                  += size;
-            previousStream           = this.elements[i].stream;
+            this.elements[i].offset = offset;
+            size *= this.elements[i].count;
+            offset += size;
+            previousStream = this.elements[i].stream;
         }
 
         this.streamStride[previousStream] = offset;
@@ -254,8 +253,7 @@ export class VertexFormat
      * @param {boolean} state True to ask an update
      * @return {VertexFormat} A reference to the instance
      */
-    setIndicesAsWaitingUpdate(state)
-    {
+    setIndicesAsWaitingUpdate(state) {
         this.indicesNeedUpdate = state;
 
         return this;
@@ -263,16 +261,17 @@ export class VertexFormat
 
     /**
      * Indicate if the stream need an update
-     * 
+     *
      * @param {VertexElement.Usage } usage Stream usage
      * @param {boolean} state True to ask an update
      * @return {VertexFormat} A reference to the instance
      */
-    setStreamAsWaitingUpdate(usage, state)
-    {
-        for (let i = 0; i < this.elements.length; i++)
-            if (this.elements[i].usage == usage)
+    setStreamAsWaitingUpdate(usage, state) {
+        for (let i = 0; i < this.elements.length; i += 1) {
+            if (this.elements[i].usage === usage) {
                 this.streamNeedUpdate[this.elements[i].stream] = state;
+            }
+        }
 
         return this;
     }
@@ -282,8 +281,7 @@ export class VertexFormat
      *
      * @return {Array.<VertexElement>} An array of VertexElement
      */
-    getElements()
-    {
+    getElements() {
         return this.elements;
     }
 
@@ -293,8 +291,7 @@ export class VertexFormat
      * @param {number} index Stream index
      * @return {number} A stride value, 0 if the stream don't exist
      */
-    getStreamStride(index)
-    {
+    getStreamStride(index) {
         return this.streamStride[index] || 0;
     }
 
@@ -304,8 +301,7 @@ export class VertexFormat
      * @param {number} index Stream index
      * @return {VertexElement.StreamType} A type, default: stream
      */
-    getStreamType(index)
-    {
+    getStreamType(index) {
         return this.streamType[index] || VertexElement.StreamType.Stream;
     }
 
@@ -314,8 +310,7 @@ export class VertexFormat
      *
      * @return {boolean} True if the indices need an update, otherwise false
      */
-    isIndicesWaitingUpdate()
-    {
+    isIndicesWaitingUpdate() {
         return this.indicesNeedUpdate;
     }
 
@@ -325,8 +320,7 @@ export class VertexFormat
      * @param {number} index Stream index
      * @return {boolean} True if the stream need an update, otherwise false
      */
-    isStreamWaitingUpdate(index)
-    {
+    isStreamWaitingUpdate(index) {
         return this.streamNeedUpdate[index];
     }
 }

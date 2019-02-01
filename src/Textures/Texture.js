@@ -1,22 +1,20 @@
-import {TextureInterface} from './TextureInterface.js';
-import {Img as Image} from '../Image.js';
+import TextureInterface from './TextureInterface';
+import Image from '../Image';
 
 /**
  * A texture
  *
+ * @category Textures
  * @extends {TextureInterface}
- * @author Donovan ORHAN <dono.orhan@gmail.com>
  */
-export class Texture extends TextureInterface
-{
+class Texture extends TextureInterface {
     /**
      * Constructor
      *
      * @param {string} path Path to the texture file
      */
-    constructor(path = '')
-    {
-        super()
+    constructor(path = '') {
+        super();
 
         /**
          * Image instance
@@ -42,8 +40,9 @@ export class Texture extends TextureInterface
          */
         this.smooth = true;
 
-        if (path.length)
+        if (path.length) {
             this.loadFromFile(path);
+        }
     }
 
     /**
@@ -52,8 +51,7 @@ export class Texture extends TextureInterface
      * @param {string} path Path to the texture file
      * @return {Texture} A reference to the instance
      */
-    loadFromFile(path)
-    {
+    loadFromFile(path) {
         this.image = new Image();
         this.image.loadFromFile(path);
 
@@ -66,8 +64,7 @@ export class Texture extends TextureInterface
      * @param {Image} image An Image instance
      * @return {Texture} A reference to the instance
      */
-    loadFromImage(image)
-    {
+    loadFromImage(image) {
         this.image = image;
 
         return this;
@@ -79,8 +76,7 @@ export class Texture extends TextureInterface
      * @param {boolean} value True to repeat, otherwise false
      * @return {Texture} A reference to the instance
      */
-    setRepeated(value)
-    {
+    setRepeated(value) {
         this.repeat = value;
 
         return this;
@@ -92,8 +88,7 @@ export class Texture extends TextureInterface
      * @param {boolean} value True to smooth, otherwise false
      * @return {Texture} A reference to the instance
      */
-    setSmooth(value)
-    {
+    setSmooth(value) {
         this.smooth = value;
 
         return this;
@@ -104,8 +99,7 @@ export class Texture extends TextureInterface
      *
      * @return {?Image} An Image instance
      */
-    getImage()
-    {
+    getImage() {
         return this.image;
     }
 
@@ -114,14 +108,15 @@ export class Texture extends TextureInterface
      *
      * @return {boolean} True if the texture is ready to be use
      */
-    isReady()
-    {
-        if (!this.image)
+    isReady() {
+        if (!this.image) {
             return false;
+        }
 
-        let textureSize = this.image.getSize();
-        if (textureSize[0] === 0 || textureSize[1] === 0)
+        const textureSize = this.image.getSize();
+        if (textureSize[0] === 0 || textureSize[1] === 0) {
             return false;
+        }
 
         return true;
     }
@@ -132,8 +127,7 @@ export class Texture extends TextureInterface
      * @return {boolean} True if the texture is repeated
      * @override
      */
-    isRepeated()
-    {
+    isRepeated() {
         return this.repeat;
     }
 
@@ -143,8 +137,9 @@ export class Texture extends TextureInterface
      * @return {boolean} True if the texture is smoothed
      * @override
      */
-    isSmoothed()
-    {
+    isSmoothed() {
         return this.smooth;
     }
 }
+
+export default Texture;

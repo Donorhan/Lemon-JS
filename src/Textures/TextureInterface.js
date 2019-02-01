@@ -1,18 +1,16 @@
-import {ContextResource} from '../ContextResource.js';
+import ContextResource from '../ContextResource';
 
 /**
  * A texture
  *
+ * @category Textures
  * @extends {ContextResource}
- * @author Donovan ORHAN <dono.orhan@gmail.com>
  */
-export class TextureInterface extends ContextResource
-{
+class TextureInterface extends ContextResource {
     /**
      * Constructor
      */
-    constructor()
-    {
+    constructor() {
         super();
 
         /**
@@ -37,8 +35,7 @@ export class TextureInterface extends ContextResource
      *
      * @return {boolean} True if the texture is ready to be use
      */
-    isReady()
-    {
+    isReady() {
         return this.ready;
     }
 
@@ -47,8 +44,7 @@ export class TextureInterface extends ContextResource
      *
      * @return {boolean} True if the texture is mip-mapped
      */
-    isMipmaped()
-    {
+    isMipmaped() {
         return this.mipmap;
     }
 
@@ -57,8 +53,7 @@ export class TextureInterface extends ContextResource
      *
      * @return {boolean} True if the texture is repeated
      */
-    isRepeated()
-    {
+    isRepeated() {
         return false;
     }
 
@@ -67,8 +62,7 @@ export class TextureInterface extends ContextResource
      *
      * @return {boolean} True if the texture is smoothed
      */
-    isSmoothed()
-    {
+    isSmoothed() {
         return false;
     }
 
@@ -77,8 +71,9 @@ export class TextureInterface extends ContextResource
      *
      * @param {boolean} value True to use mip-mapping
      */
-    useMipmap(value)
-    {
+    useMipmap(value) {
         this.mipmap = value;
     }
 }
+
+export default TextureInterface;

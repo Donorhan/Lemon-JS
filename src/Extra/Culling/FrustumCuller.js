@@ -1,18 +1,16 @@
-import {Culler} from './Culler.js';
-import {Frustum} from '../../Math/Frustum.js';
+import Culler from './Culler';
+import Frustum from '../../Math/Frustum';
 
 /**
  * Hide elements out of the view
  *
- * @author Donovan ORHAN <dono.orhan@gmail.com>
+ * @category Culling
  */
-export class FrustumCuller extends Culler
-{
+class FrustumCuller extends Culler {
     /**
      * Constructor
      */
-    constructor()
-    {
+    constructor() {
         super();
 
         /**
@@ -31,10 +29,10 @@ export class FrustumCuller extends Culler
      * @param {Camera} camera A Camera instance
      * @param {?boolean} overwriteCullingState Set to true to ignore previous culling values
      */
-    execute(scene, camera, overwriteCullingState = false)
-    {
-        if (!this.enabled)
+    execute(scene, camera, overwriteCullingState = false) {
+        if (!this.enabled) {
             return;
+        }
 
         // Compute frustum
         this.frustum.fromMatrix(camera.getViewProjectionMatrix());
@@ -50,23 +48,25 @@ export class FrustumCuller extends Culler
      * @param {boolean} overwriteCullingState Set to true to ignore previous culling values
      * @param {boolean} isRootNode True for the root node
      */
-    cullNode(node, overwriteCullingState = false, isRootNode = false)
-    {
-        if (node.isEnabled())
-        {
-            if (!overwriteCullingState && node.culled)
+    /* eslint no-param-reassign: ["error", { "props": false }] */
+    cullNode(node, overwriteCullingState = false, isRootNode = false) {
+        if (node.isEnabled()) {
+            if (!overwriteCullingState && node.culled) {
                 return;
+            }
 
             // Update culling state
             node.culled = !isRootNode && !this.frustum.containsBox(node.getBoundingBox());
 
             // Continue visit
-            if (!node.culled)
-            {
-                let children = node.getChildren();
-                for (let i = 0; i < children.length; i++)
+            if (!node.culled) {
+                const children = node.getChildren();
+                for (let i = 0; i < children.length; i += 1) {
                     this.cullNode(children[i], overwriteCullingState, false);
+                }
             }
         }
     }
 }
+
+export default FrustumCuller;

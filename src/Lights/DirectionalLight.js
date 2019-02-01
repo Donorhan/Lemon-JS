@@ -1,18 +1,16 @@
-import {Light} from './Light.js';
+import Light from './Light';
 
 /**
  * A directional light
  *
+ * @category Lights
  * @extends {Light}
- * @author Donovan ORHAN <dono.orhan@gmail.com>
  */
-export class DirectionalLight extends Light
-{
+class DirectionalLight extends Light {
     /**
      * Constructor
      */
-    constructor()
-    {
+    constructor() {
         super();
 
         /**
@@ -32,8 +30,7 @@ export class DirectionalLight extends Light
      * @param {number} z Direction on Z
      * @return {DirectionalLight} A reference to the instance
      */
-    setDirection(x, y, z) 
-    {
+    setDirection(x, y, z) {
         this.direction = [x, y, z];
 
         return this;
@@ -44,8 +41,9 @@ export class DirectionalLight extends Light
      *
      * @return {Array.<number>} A vector with values for each axis
      */
-    getDirection() 
-    {
+    getDirection() {
         return this.direction;
     }
 }
+
+export default DirectionalLight;

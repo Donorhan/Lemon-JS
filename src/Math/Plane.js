@@ -1,17 +1,15 @@
-let glMatrix = require('gl-matrix');
+import { vec3 } from 'gl-matrix';
 
 /**
- * A Plane
+ * A plane
  *
- * @author Donovan ORHAN <dono.orhan@gmail.com>
+ * @category Geometry
  */
-export class Plane
-{
+class Plane {
     /**
      * Constructor
      */
-    constructor()
-    {
+    constructor() {
         /**
          * Distance from origin
          *
@@ -22,9 +20,9 @@ export class Plane
         /**
          * Normal
          *
-         * @type {glMatrix.vec3}
+         * @type {vec3}
          */
-        this.normal = glMatrix.vec3.create();
+        this.normal = vec3.create();
     }
 
     /**
@@ -34,23 +32,21 @@ export class Plane
      * @param {number} y Point position on Y
      * @param {number} z Point position on Z
      */
-    distanceTo(x, y, z)
-    {
-        return glMatrix.vec3.dot(this.normal, glMatrix.vec3.fromValues(x, y, z)) + this.distance;
+    distanceTo(x, y, z) {
+        return vec3.dot(this.normal, vec3.fromValues(x, y, z)) + this.distance;
     }
 
     /**
      * Normalize
-     * 
+     *
      * @return {Plane} A reference to the instance
      */
-    normalize()
-    {
-        let length = glMatrix.vec3.length(this.normal);
+    normalize() {
+        const length = vec3.length(this.normal);
         this.normal[0] /= length;
         this.normal[1] /= length;
         this.normal[2] /= length;
-        this.distance  /= length;
+        this.distance /= length;
 
         return this;
     }
@@ -64,9 +60,8 @@ export class Plane
      * @param {number} distance Distance from origin
      * @return {Plane} A reference to the instance
      */
-    set(x, y, z, distance)
-    {
-        glMatrix.vec3.set(this.normal, x, y, z);
+    set(x, y, z, distance) {
+        vec3.set(this.normal, x, y, z);
         this.distance = distance;
 
         return this;
@@ -80,18 +75,17 @@ export class Plane
      * @param {Array.<number>} c Point C
      * @return {Plane} A reference to the instance
      */
-    setFromPoints(a, b, c)
-    {
+    setFromPoints(a, b, c) {
         // Diff
-        let edge1 = glMatrix.vec3.create();
-        let edge2 = glMatrix.vec3.create();
-        let vecA  = glMatrix.vec3.fromValues(a[0], a[1], a[2]);
-        glMatrix.vec3.subtract(edge1, glMatrix.vec3.fromValues(b[0], b[1], b[2]), vecA);
-        glMatrix.vec3.subtract(edge2, glMatrix.vec3.fromValues(c[0], c[1], c[2]), vecA);
+        const edge1 = vec3.create();
+        const edge2 = vec3.create();
+        const vecA = vec3.fromValues(a[0], a[1], a[2]);
+        vec3.subtract(edge1, vec3.fromValues(b[0], b[1], b[2]), vecA);
+        vec3.subtract(edge2, vec3.fromValues(c[0], c[1], c[2]), vecA);
 
         // Compute
-        glMatrix.vec3.cross(this.normal, edge1, edge2);
-        this.distance = -glMatrix.vec3.dot(this.normal, a);
+        vec3.cross(this.normal, edge1, edge2);
+        this.distance = -vec3.dot(this.normal, a);
 
         this.normalize();
 
@@ -101,10 +95,9 @@ export class Plane
     /**
      * Get normal
      *
-     * @return {glMatrix.vec3}
+     * @return {vec3}
      */
-    getNormal()
-    {
+    getNormal() {
         return this.normal;
     }
 
@@ -113,8 +106,9 @@ export class Plane
      *
      * @return {number}
      */
-    getDistance()
-    {
+    getDistance() {
         return this.distance;
     }
 }
+
+export default Plane;

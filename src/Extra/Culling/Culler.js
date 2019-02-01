@@ -1,15 +1,13 @@
 /**
  * Abstract culling element
  *
- * @author Donovan ORHAN <dono.orhan@gmail.com>
+ * @category Culling
  */
-export class Culler
-{
+class Culler {
     /**
      * Constructor
      */
-    constructor()
-    {
+    constructor() {
         /**
          * State
          *
@@ -24,8 +22,7 @@ export class Culler
      *
      * @param {boolean} value True to enable, false to disable
      */
-    enable(value)
-    {
+    enable(value) {
         this.enabled = value;
     }
 
@@ -38,3 +35,5 @@ export class Culler
      */
     execute(scene, camera, overwriteCullingState = false) { }
 }
+
+export default Culler;

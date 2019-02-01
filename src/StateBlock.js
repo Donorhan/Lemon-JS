@@ -1,17 +1,288 @@
-import {BlendMode} from './BlendMode.js';
+import BlendMode from './BlendMode';
+
+/**
+ * Depth function to use
+ *
+ * @category Types
+ */
+export class DepthFunction {}
+
+/**
+ * Never
+ *
+ * @type {number}
+ */
+DepthFunction.Never = 0;
+
+/**
+ * Less
+ *
+ * @type {number}
+ */
+DepthFunction.Less = 1;
+
+/**
+ * Equal
+ *
+ * @type {number}
+ */
+DepthFunction.Equal = 2;
+
+/**
+ * LessEqual
+ *
+ * @type {number}
+ */
+DepthFunction.LessEqual = 3;
+
+/**
+ * Greater
+ *
+ * @type {number}
+ */
+DepthFunction.Greater = 4;
+
+/**
+ * NotEqual
+ *
+ * @type {number}
+ */
+DepthFunction.NotEqual = 5;
+
+/**
+ * GreaterEqual
+ *
+ * @type {number}
+ */
+DepthFunction.GreaterEqual = 6;
+
+/**
+ * Always
+ *
+ * @type {number}
+ */
+DepthFunction.Always = 7;
+
+/**
+ * Drawing modes
+ *
+ * @category Types
+ */
+export class DrawingMode {}
+
+/**
+ * Draw as points
+ *
+ * @type {number}
+ */
+DrawingMode.Points = 0;
+
+/**
+ * Draw as lines
+ *
+ * @type {number}
+ */
+DrawingMode.Lines = 1;
+
+/**
+ * Draw as lines strip
+ *
+ * @type {number}
+ */
+DrawingMode.LinesStrip = 2;
+
+/**
+ * Draw as lines loop
+ *
+ * @type {number}
+ */
+DrawingMode.LinesLoop = 3;
+
+/**
+ * Draw as triangles
+ *
+ * @type {number}
+ */
+DrawingMode.Triangles = 4;
+
+/**
+ * Draw as triangles strip
+ *
+ * @type {number}
+ */
+DrawingMode.TrianglesStrip = 5;
+
+/**
+ * Draw as triangles fan
+ *
+ * @type {number}
+ */
+DrawingMode.TrianglesFan = 6;
+
+/**
+ * Face culling
+ *
+ * @category Types
+ */
+export class FaceCulling {}
+
+/**
+ * Don't draw back face
+ *
+ * @type {number}
+ */
+FaceCulling.Back = 0;
+
+/**
+ * Don't draw front face
+ *
+ * @type {number}
+ */
+FaceCulling.Front = 1;
+
+/**
+ * Draw both faces, disable face culling
+ *
+ * @type {number}
+ */
+FaceCulling.None = 2;
+
+/**
+ * Stencil functions
+ *
+ * @category Types
+ */
+export class StencilFunction {}
+
+/**
+ * Never
+ *
+ * @type {number}
+ */
+StencilFunction.Never = 0;
+
+/**
+ * Less
+ *
+ * @type {number}
+ */
+StencilFunction.Less = 1;
+
+/**
+ * Equal
+ *
+ * @type {number}
+ */
+StencilFunction.Equal = 2;
+
+/**
+ * LessEqual
+ *
+ * @type {number}
+ */
+StencilFunction.LessEqual = 3;
+
+/**
+ * Greater
+ *
+ * @type {number}
+ */
+StencilFunction.Greater = 4;
+
+/**
+ * NotEqual
+ *
+ * @type {number}
+ */
+StencilFunction.NotEqual = 5;
+
+/**
+ * GreaterEqual
+ *
+ * @type {number}
+ */
+StencilFunction.GreaterEqual = 6;
+
+/**
+ * Always
+ *
+ * @type {number}
+ */
+StencilFunction.Always = 7;
+
+/**
+ * Stencil operations
+ *
+ * @category Types
+ */
+export class StencilOperation {}
+
+/**
+ * Keep
+ *
+ * @type {number}
+ */
+StencilOperation.Keep = 0;
+
+/**
+ * Zero
+ *
+ * @type {number}
+ */
+StencilOperation.Zero = 1;
+
+/**
+ * Replace
+ *
+ * @type {number}
+ */
+StencilOperation.Replace = 2;
+
+/**
+ * Increment
+ *
+ * @type {number}
+ */
+StencilOperation.Increment = 3;
+
+/**
+ * Decrement
+ *
+ * @type {number}
+ */
+StencilOperation.Decrement = 4;
+
+/**
+ * Invert
+ *
+ * @type {number}
+ */
+StencilOperation.Invert = 5;
+
+/**
+ * IncrementWrap
+ *
+ * @type {number}
+ */
+StencilOperation.IncrementWrap = 6;
+
+/**
+ * DecrementWrap
+ *
+ * @type {number}
+ */
+StencilOperation.DecrementWrap = 7;
 
 /**
  * A rendering state
  *
- * @author Donovan ORHAN <dono.orhan@gmail.com>
+ * @category Core
  */
-export class StateBlock
-{
+export class StateBlock {
     /**
      * Constructor
      */
-    constructor()
-    {
+    constructor() {
         /**
          * Blend mode
          *
@@ -144,282 +415,18 @@ export class StateBlock
      * @param {StateBlock} state A StateBlock instance
      * @return {boolean} True if the two states are equals, otherwise false
      */
-    isEqual(state)
-    {
-        return (this.blendMode.isEqual(state.blendMode)                     &&
-                this.depthFunction          == state.depthFunction          &&
-                this.depthWrite             == state.depthWrite             &&
-                this.depthTest              == state.depthTest              &&
-                this.stencilFunction        == state.stencilFunction        &&
-                this.stencilReference       == state.stencilReference       &&
-                this.stencilMask            == state.stencilMask            &&
-                this.stencilTest            == state.stencilTest            &&
-                this.stencilWrite           == state.stencilWrite           &&
-                this.stencilTestFail        == state.stencilTestFail        &&
-                this.stencilDepthTestFail   == state.stencilDepthTestFail   &&
-                this.stencilSuccess         == state.stencilSuccess );
+    isEqual(state) {
+        return (this.blendMode.isEqual(state.blendMode)
+                && this.depthFunction === state.depthFunction
+                && this.depthWrite === state.depthWrite
+                && this.depthTest === state.depthTest
+                && this.stencilFunction === state.stencilFunction
+                && this.stencilReference === state.stencilReference
+                && this.stencilMask === state.stencilMask
+                && this.stencilTest === state.stencilTest
+                && this.stencilWrite === state.stencilWrite
+                && this.stencilTestFail === state.stencilTestFail
+                && this.stencilDepthTestFail === state.stencilDepthTestFail
+                && this.stencilSuccess === state.stencilSuccess);
     }
 }
-
-/**
- * Depth function to use
- */
-export class DepthFunction {}
-
-/**
- * Never
- *
- * @type {number}
- */
-DepthFunction.Never = 0;
-
-/**
- * Less
- *
- * @type {number}
- */
-DepthFunction.Less = 1;
-
-/**
- * Equal
- *
- * @type {number}
- */
-DepthFunction.Equal = 2;
-
-/**
- * LessEqual
- *
- * @type {number}
- */
-DepthFunction.LessEqual = 3;
-
-/**
- * Greater
- *
- * @type {number}
- */
-DepthFunction.Greater = 4;
-
-/**
- * NotEqual
- *
- * @type {number}
- */
-DepthFunction.NotEqual = 5;
-
-/**
- * GreaterEqual
- *
- * @type {number}
- */
-DepthFunction.GreaterEqual = 6;
-
-/**
- * Always
- *
- * @type {number}
- */
-DepthFunction.Always = 7;
-
-/**
-* Drawing modes
-*/
-export class DrawingMode {}
-
-/**
- * Draw as points
- *
- * @type {number}
- */
-DrawingMode.Points = 0;
-
-/**
- * Draw as lines
- *
- * @type {number}
- */
-DrawingMode.Lines = 1;
-
-/**
- * Draw as lines strip
- *
- * @type {number}
- */
-DrawingMode.LinesStrip = 2;
-
-/**
- * Draw as lines loop
- *
- * @type {number}
- */
-DrawingMode.LinesLoop = 3;
-
-/**
- * Draw as triangles
- *
- * @type {number}
- */
-DrawingMode.Triangles = 4;
-
-/**
- * Draw as triangles strip
- *
- * @type {number}
- */
-DrawingMode.TrianglesStrip = 5;
-
-/**
- * Draw as triangles fan
- *
- * @type {number}
- */
-DrawingMode.TrianglesFan = 6;
-
-/**
- * Face culling
- */
-export class FaceCulling {}
-
-/**
- * Don't draw back face
- *
- * @type {number}
- */
-FaceCulling.Back = 0;
-
-/**
- * Don't draw front face
- *
- * @type {number}
- */
-FaceCulling.Front = 1;
-
-/**
- * Draw both faces, disable face culling
- *
- * @type {number}
- */
-FaceCulling.None = 2;
-
-/**
- * Stencil functions
- */
-export class StencilFunction {}
-
-/**
- * Never
- *
- * @type {number}
- */
-StencilFunction.Never = 0;
-
-/**
- * Less
- *
- * @type {number}
- */
-StencilFunction.Less = 1;
-
-/**
- * Equal
- *
- * @type {number}
- */
-StencilFunction.Equal = 2;
-
-/**
- * LessEqual
- *
- * @type {number}
- */
-StencilFunction.LessEqual = 3;
-
-/**
- * Greater
- *
- * @type {number}
- */
-StencilFunction.Greater = 4;
-
-/**
- * NotEqual
- *
- * @type {number}
- */
-StencilFunction.NotEqual = 5;
-
-/**
- * GreaterEqual
- *
- * @type {number}
- */
-StencilFunction.GreaterEqual = 6;
-
-/**
- * Always
- *
- * @type {number}
- */
-StencilFunction.Always = 7;
-
-/**
- * Stencil operations
- */
-export class StencilOperation {}
-
-/**
- * Keep
- *
- * @type {number}
- */
-StencilOperation.Keep = 0;
-
-/**
- * Zero
- *
- * @type {number}
- */
-StencilOperation.Zero = 1;
-
-/**
- * Replace
- *
- * @type {number}
- */
-StencilOperation.Replace = 2;
-
-/**
- * Increment
- *
- * @type {number}
- */
-StencilOperation.Increment = 3;
-
-/**
- * Decrement
- *
- * @type {number}
- */
-StencilOperation.Decrement = 4;
-
-/**
- * Invert
- *
- * @type {number}
- */
-StencilOperation.Invert = 5;
-
-/**
- * IncrementWrap
- *
- * @type {number}
- */
-StencilOperation.IncrementWrap = 6;
-
-/**
- * DecrementWrap
- *
- * @type {number}
- */
-StencilOperation.DecrementWrap = 7;

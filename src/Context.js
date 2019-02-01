@@ -1,15 +1,13 @@
 /**
  * A context
  *
- * @author Donovan ORHAN <dono.orhan@gmail.com>
+ * @category Core
  */
-export class Context
-{
+class Context {
     /**
      * Constructor
      */
-    constructor()
-    {
+    constructor() {
         /**
          * The DOM element
          *
@@ -31,8 +29,7 @@ export class Context
      *
      * @enum {Object}
      */
-    static getActive()
-    {
+    static getActive() {
         return Context.current.instance;
     }
 
@@ -43,31 +40,31 @@ export class Context
      * @param {{antialiasing: boolean, width: (number|undefined), height: (number|undefined)}} options Options
      * @param {string} targetID Targeted DOM element
      */
-    init(type, options, targetID)
-    {
+    init(type, options, targetID) {
         // Get DOM element.
-        let target = document.getElementById(targetID);
-        if (!target)
-            throw '404 - Canvas with the name ' + targetID + ' not found.';
+        const target = document.getElementById(targetID);
+        if (!target) {
+            throw Error(`404 - Canvas with the name ${targetID} not found.`);
+        }
 
         // Init webgl context.
-        if (type == Context.Type.WebGL)
-        {
+        if (type === Context.Type.WebGL) {
             // Create canvas.
-            this.domElement         = document.createElement('canvas');
-            this.domElement.width   = target.offsetWidth;
-            this.domElement.height  = target.offsetHeight;
+            this.domElement = document.createElement('canvas');
+            this.domElement.width = target.offsetWidth;
+            this.domElement.height = target.offsetHeight;
             target.appendChild(this.domElement);
 
             // Init WebGL.
-            this.instance                   = this.domElement.getContext('webgl', { antialias: options.antialiasing || true });
-            this.instance.viewportWidth     = this.domElement.clientWidth;
-            this.instance.viewportHeight    = this.domElement.clientHeight;
+            this.instance = this.domElement.getContext('webgl', { antialias: options.antialiasing || true });
+            this.instance.viewportWidth = this.domElement.clientWidth;
+            this.instance.viewportHeight = this.domElement.clientHeight;
         }
 
         // Set as active context.
-        if (!Context.current)
+        if (!Context.current) {
             Context.current = this;
+        }
     }
 
     /**
@@ -76,10 +73,10 @@ export class Context
      * @param {number} width Width to assign in pixel
      * @param {number} height Height to assign in pixel
      */
-    resize(width, height)
-    {
-        if (!this.domElement || !this.instance)
+    resize(width, height) {
+        if (!this.domElement || !this.instance) {
             return;
+        }
 
         // DOM
         this.domElement.width = width;
@@ -95,8 +92,7 @@ export class Context
      *
      * The context become the one used by the renderer
      */
-    activate()
-    {
+    activate() {
         Context.current = this;
     }
 
@@ -105,8 +101,7 @@ export class Context
      *
      * @return {Array.<number>} A array with size on x and y
      */
-    getSize()
-    {
+    getSize() {
         return [this.domElement.width, this.domElement.height];
     }
 }
@@ -124,3 +119,5 @@ Context.Type = { WebGL: 0 };
  * @type {Context}
  */
 Context.current = null;
+
+export default Context;

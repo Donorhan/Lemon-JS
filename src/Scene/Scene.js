@@ -1,17 +1,15 @@
-import {Node} from './Node.js';
+import Node from './Node';
 
 /**
  * A scene
  *
- * @author Donovan ORHAN <dono.orhan@gmail.com>
+ * @category Core
  */
-export class Scene
-{
+class Scene {
     /**
      * Constructor
      */
-    constructor()
-    {
+    constructor() {
         /**
          * Root node
          *
@@ -27,8 +25,7 @@ export class Scene
      * @param {Node} node A Node instance
      * @return {Scene} A reference to the instance
      */
-    add(node)
-    {
+    add(node) {
         this.root.addChild(node);
         return this;
     }
@@ -39,8 +36,7 @@ export class Scene
      * @param {string} name A string
      * @return {?Node} A Node instance of null
      */
-    find(name)
-    {
+    find(name) {
         return this.root.findChild(name);
     }
 
@@ -50,8 +46,7 @@ export class Scene
      * @param {Node} node A Node instance
      * @return {boolean} True if the operation is a success
      */
-    remove(node)
-    {
+    remove(node) {
         return this.root.removeChild(node);
     }
 
@@ -60,8 +55,7 @@ export class Scene
      *
      * @param {?number} deltaTime A floating value representing time elapsed between two frames
      */
-    update(deltaTime = 0.0)
-    {
+    update(deltaTime = 0.0) {
         this.updateNode(this.root, deltaTime, false);
     }
 
@@ -73,15 +67,15 @@ export class Scene
      * @param {boolean} forceUpdate Set to true to force an update
      * @private
      */
-    updateNode(node, deltaTime, forceUpdate)
-    {
+    updateNode(node, deltaTime, forceUpdate) {
         // Update node
-        let updated = node.update(deltaTime, forceUpdate) || forceUpdate;
+        const updated = node.update(deltaTime, forceUpdate) || forceUpdate;
 
         // Update his children
-        let children = node.getChildren();
-        for (let i = 0; i < children.length; i++)
+        const children = node.getChildren();
+        for (let i = 0; i < children.length; i += 1) {
             this.updateNode(children[i], deltaTime, updated);
+        }
     }
 
     /**
@@ -89,8 +83,7 @@ export class Scene
      *
      * @param {RenderTarget} renderTarget Renderer who called this method
      */
-    visit(renderTarget)
-    {
+    visit(renderTarget) {
         this.visitNode(renderTarget, this.root);
     }
 
@@ -101,13 +94,12 @@ export class Scene
      * @param {Node} node A Node instance to visit
      * @private
      */
-    visitNode(target, node)
-    {
-        if (node.visit(target))
-        {
-            let children = node.getChildren();
-            for (let i = 0; i < children.length; i++)
+    visitNode(target, node) {
+        if (node.visit(target)) {
+            const children = node.getChildren();
+            for (let i = 0; i < children.length; i += 1) {
                 this.visitNode(target, children[i]);
+            }
         }
     }
 
@@ -116,8 +108,9 @@ export class Scene
      *
      * @return {Node} node A Node instance
      */
-    getRoot()
-    {
+    getRoot() {
         return this.root;
     }
 }
+
+export default Scene;

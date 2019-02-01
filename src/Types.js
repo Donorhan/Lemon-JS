@@ -1,7 +1,9 @@
 /**
  * Types available
+ *
+ * @category Types
  */
-export class Type {}
+class Type {}
 
 /**
  * Float
@@ -29,7 +31,7 @@ Type.Bool = 2;
  *
  * @type {number}
  */
-Type.Matrix  = 3;
+Type.Matrix = 3;
 
 /**
  * 2D Texture
@@ -75,7 +77,9 @@ Type.u_Short = 9;
 
 /**
  * u_Int
- * 
+ *
  * @type {number}
  */
 Type.u_Int = 10;
+
+export default Type;

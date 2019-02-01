@@ -1,5 +1,5 @@
 {
-  "name": "Lemon-JS",
+  "name": "lemon-js",
   "description": "Javascript rendering library for simple and high performance WebGL apps",
   "version": "0.0.1",
   "author": "Donovan Orhan <dono.orhan@gmail.com>",
@@ -10,19 +10,29 @@
     "url": "https://github.com/DonoSybrix/Lemon-JS"
   },
   "scripts": {
-    "build": "webpack --mode=build",
-    "dev": "webpack --progress --colors --watch --mode=dev"
+    "build": "webpack --mode production --optimize-minimize",
+    "dev": "webpack --mode development --watch",
+    "doc": "node_modules/.bin/jsdoc -c jsdoc.json"
   },
   "dependencies": {
-    "gl-matrix": "2.3.*"
+    "gl-matrix": "3.0.0",
+    "webgl-constants": "^0.2.0"
   },
   "devDependencies": {
-    "babel": "6.*.*",
-    "babel-core": "6.*.*",
-    "babel-loader": "6.*.*",
-    "babel-preset-es2015": "6.*.*",
-    "webpack": "1.12.*",
-    "yargs": "3.32.*"
+    "@babel/core": "7.2.*",
+    "@babel/plugin-proposal-class-properties": "^7.3.0",
+    "@babel/plugin-proposal-export-namespace-from": "^7.2.0",
+    "@babel/plugin-syntax-dynamic-import": "^7.2.0",
+    "@babel/preset-env": "7.3.*",
+    "babel-loader": "8.0.*",
+    "better-docs": "^1.1.3",
+    "eslint": "^5.3.0",
+    "eslint-config-airbnb-base": "^13.1.0",
+    "eslint-plugin-import": "^2.16.0",
+    "jsdoc": "^3.5.5",
+    "webpack": "4.29.*",
+    "webpack-bundle-analyzer": "^3.0.3",
+    "webpack-cli": "^3.2.1"
   },
   "keywords": [
     "webpack",

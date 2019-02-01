@@ -1,18 +1,16 @@
-import {Pass} from './Pass.js';
-import {Type} from '../Types.js';
+import { Pass } from './Pass';
+import Type from '../Types';
 
 /**
  * A material
  *
- * @author Donovan ORHAN <dono.orhan@gmail.com>
+ * @category Material
  */
-export class Material
-{
+class Material {
     /**
      * Constructor
      */
-    constructor()
-    {
+    constructor() {
         /**
          * Index of the technique to use
          *
@@ -39,17 +37,15 @@ export class Material
      *
      * @return {Material} A Material instance
      */
-    static create(name) 
-    {
-        let material = new Material();
-        let pass = material.createPass();
+    static create(name) {
+        const material = new Material();
+        const pass = material.createPass();
 
-        if (name == 'default')
-        {
-            pass.add("material.ambient", Type.Float, [0.0, 0.0, 0.0]);
-            pass.add("material.diffuse", Type.Float, [0.55, 0.55, 0.55]);
-            pass.add("material.specular", Type.Float, [0.7, 0.7, 0.7]);
-            pass.add("material.shininess", Type.Float, 38.4);
+        if (name === 'default') {
+            pass.add('material.ambient', Type.Float, [0.0, 0.0, 0.0]);
+            pass.add('material.diffuse', Type.Float, [0.55, 0.55, 0.55]);
+            pass.add('material.specular', Type.Float, [0.7, 0.7, 0.7]);
+            pass.add('material.shininess', Type.Float, 38.4);
         }
 
         return material;
@@ -61,9 +57,8 @@ export class Material
      * @param {number=} techniqueIndex Targeted technique's index (default: 0)
      * @return {Pass} A Pass instance.
      */
-    createPass(techniqueIndex = 0)
-    {
-        let pass = new Pass();
+    createPass(techniqueIndex = 0) {
+        const pass = new Pass();
         this.techniques[techniqueIndex].push(pass);
 
         return pass;
@@ -74,8 +69,7 @@ export class Material
      *
      * @return {number} The technique index.
      */
-    createTechnique() 
-    {
+    createTechnique() {
         this.techniques.push([]);
         return this.techniques.length - 1;
     }
@@ -85,8 +79,7 @@ export class Material
      *
      * @param {number} techniqueIndex Targeted technique's index
      */
-    setActiveTechnique(techniqueIndex) 
-    {
+    setActiveTechnique(techniqueIndex) {
         this.activeTechnique = techniqueIndex;
     }
 
@@ -95,8 +88,7 @@ export class Material
      *
      * @return {number} A positive integer
      */
-    getActiveTechnique() 
-    {
+    getActiveTechnique() {
         return this.activeTechnique;
     }
 
@@ -107,12 +99,12 @@ export class Material
      * @param {number} passIndex Pass's index
      * @return {?Pass} A Pass instance or null if the technique or the pass don't exist
      */
-    getPass(techniqueIndex, passIndex) 
-    {
-        if (techniqueIndex >= this.techniques.length)
+    getPass(techniqueIndex, passIndex) {
+        if (techniqueIndex >= this.techniques.length) {
             return null;
+        }
 
-        return this.techniques[techniqueIndex][passIndex] || null;
+        return this.techniques[techniqueIndex][passIndex] || null;
     }
 
     /**
@@ -121,11 +113,13 @@ export class Material
      * @param {number} techniqueIndex Targeted technique's index
      * @return {number} A signed integer
      */
-    getPassCount(techniqueIndex = 0) 
-    {
-        if (techniqueIndex >= this.techniques.length)
+    getPassCount(techniqueIndex = 0) {
+        if (techniqueIndex >= this.techniques.length) {
             return 0;
+        }
 
         return this.techniques[techniqueIndex].length;
     }
 }
+
+export default Material;

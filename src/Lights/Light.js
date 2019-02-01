@@ -1,19 +1,17 @@
-import {Color} from '../Color.js';
-import {Node} from '../Scene/Node.js';
+import Color from '../Color';
+import Node from '../Scene/Node';
 
 /**
  * A light
 
+ * @category Lights
  * @extends {Node}
- * @author Donovan ORHAN <dono.orhan@gmail.com>
  */
-export class Light extends Node
-{
+class Light extends Node {
     /**
      * Constructor
      */
-    constructor()
-    {
+    constructor() {
         super();
 
         /**
@@ -47,10 +45,10 @@ export class Light extends Node
      * @param {RenderTarget} renderTarget Renderer who called this method
      * @return {boolean} True if visit was successful, otherwise false
      */
-    visit(renderTarget) 
-    {
-        if (!super.visit(renderTarget))
+    visit(renderTarget) {
+        if (!super.visit(renderTarget)) {
             return false;
+        }
 
         renderTarget.getRenderAPI().bindLight(this);
         return true;
@@ -64,8 +62,7 @@ export class Light extends Node
      * @param {number} b Blue value in the range 0 to 255
      * @return {Light} A reference to the instance
      */
-    setAmbientColor(r, g, b) 
-    {
+    setAmbientColor(r, g, b) {
         this.ambient.set(r, g, b);
 
         return this;
@@ -79,8 +76,7 @@ export class Light extends Node
      * @param {number} b Blue value in the range 0 to 255
      * @return {Light} A reference to the instance
      */
-    setDiffuseColor(r, g, b) 
-    {
+    setDiffuseColor(r, g, b) {
         this.diffuse.set(r, g, b);
 
         return this;
@@ -94,8 +90,7 @@ export class Light extends Node
      * @param {number} b Blue value in the range 0 to 255
      * @return {Light} A reference to the instance
      */
-    setSpecularColor(r, g, b) 
-    {
+    setSpecularColor(r, g, b) {
         this.specular.set(r, g, b);
 
         return this;
@@ -106,8 +101,7 @@ export class Light extends Node
      *
      * @return {Color} A color instance
      */
-    getAmbientColor() 
-    {
+    getAmbientColor() {
         return this.ambient;
     }
 
@@ -116,8 +110,7 @@ export class Light extends Node
      *
      * @return {Color} A color instance
      */
-    getDiffuseColor() 
-    {
+    getDiffuseColor() {
         return this.diffuse;
     }
 
@@ -126,8 +119,9 @@ export class Light extends Node
      *
      * @return {Color} A color instance
      */
-    getSpecularColor() 
-    {
+    getSpecularColor() {
         return this.specular;
     }
 }
+
+export default Light;

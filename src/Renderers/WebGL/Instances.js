@@ -1,15 +1,13 @@
 /**
  * A WebGL buffer
  *
- * @author Donovan ORHAN <dono.orhan@gmail.com>
+ * @category WebGL
  */
-export class BufferData
-{
+export class BufferData {
     /**
      * Constructor
      */
-    constructor()
-    {
+    constructor() {
         /**
          * Index buffer
          *
@@ -39,15 +37,13 @@ export class BufferData
 /**
  * WebGL instances
  *
- * @author Donovan ORHAN <dono.orhan@gmail.com>
+ * @category WebGL
  */
-export class Instances
-{
+export class Instances {
     /**
      * Constructor
      */
-    constructor()
-    {
+    constructor() {
         /**
          * WebGL buffers
          *

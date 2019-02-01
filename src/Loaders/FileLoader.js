@@ -1,10 +1,9 @@
 /**
  * A class to load file using Ajax
  *
- * @author Donovan ORHAN <dono.orhan@gmail.com>
+ * @category Loaders
  */
-export class FileLoader
-{
+class FileLoader {
     /**
      * Load a file
      *
@@ -12,15 +11,16 @@ export class FileLoader
      * @param {function(boolean, string, Object=)} callback Callback
      * @param {Object=} userData User data
      */
-    static load(filePath, callback, userData)
-    {
-        let reader = new XMLHttpRequest();
-        reader.onreadystatechange = () =>
-        {
-            if (reader.readyState === 4 && (reader.status === 200 || reader.status === 0))
+    static load(filePath, callback, userData) {
+        const reader = new XMLHttpRequest();
+        reader.onreadystatechange = () => {
+            if (reader.readyState === 4 && (reader.status === 200 || reader.status === 0)) {
                 callback(true, reader.responseText, userData);
+            }
         };
         reader.open('GET', filePath, true);
         reader.send();
     }
 }
+
+export default FileLoader;

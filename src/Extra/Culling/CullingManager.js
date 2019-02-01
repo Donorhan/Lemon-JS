@@ -1,17 +1,15 @@
-import {FrustumCuller} from './FrustumCuller.js';
+import FrustumCuller from './FrustumCuller';
 
 /**
  * Culling manager
  *
- * @author Donovan ORHAN <dono.orhan@gmail.com>
+ * @category Culling
  */
-export class CullingManager
-{
+class CullingManager {
     /**
      * Constructor
      */
-    constructor()
-    {
+    constructor() {
         /**
          * Cullers
          *
@@ -21,7 +19,7 @@ export class CullingManager
         this.cullers = new Map();
 
         // Add a Frustum Culler by default
-        this.add("frustum", new FrustumCuller());
+        this.add('frustum', new FrustumCuller());
     }
 
     /**
@@ -30,8 +28,7 @@ export class CullingManager
      * @param {string} name Name to assign
      * @param {Culler} culler A Culler instance
      */
-    add(name, culler)
-    {
+    add(name, culler) {
         this.cullers.set(name, culler);
     }
 
@@ -41,11 +38,11 @@ export class CullingManager
      * @param {string} name Name of the Culler
      * @param {boolean} value True to enable, false to disable
      */
-    enable(name, value)
-    {
-        let culler = this.cullers.get(name);
-        if (culler)
+    enable(name, value) {
+        const culler = this.cullers.get(name);
+        if (culler) {
             culler.enable(value);
+        }
     }
 
     /**
@@ -54,10 +51,13 @@ export class CullingManager
      * @param {Scene} scene A Scene instance
      * @param {Camera} camera A Camera instance
      */
-    execute(scene, camera) 
-    { 
+    execute(scene, camera) {
         let i = 0;
-        for (let culler of this.cullers.values())
-            culler.execute(scene, camera, (i++ == 0));
+        for (const culler of this.cullers.values()) {
+            culler.execute(scene, camera, (i === 0));
+            i += 1;
+        }
     }
 }
+
+export default CullingManager;

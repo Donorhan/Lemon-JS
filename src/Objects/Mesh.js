@@ -1,20 +1,17 @@
-import {Drawable} from './Drawable.js';
-import {MeshCommand} from '../Renderers/Commands/MeshCommand.js';
-import {VertexFormat, VertexElement} from '../VertexFormat.js';
+import Drawable from './Drawable';
+import MeshCommand from '../Renderers/Commands/MeshCommand';
 
 /**
  * A mesh
  *
+ * @category Drawables
  * @extends {Drawable}
- * @author Donovan ORHAN <dono.orhan@gmail.com>
  */
-export class Mesh extends Drawable
-{
+class Mesh extends Drawable {
     /**
      * Constructor
      */
-    constructor()
-    {
+    constructor() {
         super();
 
         /**
@@ -47,18 +44,25 @@ export class Mesh extends Drawable
      *
      * @param {RenderTarget} renderTarget Renderer who called this method
      */
-    draw(renderTarget)
-    {
-        if (!this.geometry || !this.material || !this.program)
+    draw(renderTarget) {
+        if (!this.geometry || !this.material || !this.program) {
             return;
+        }
 
         // Create a task
-        let task            = renderTarget.getActiveTask();
-        let activeTechnique = this.material.getActiveTechnique();
-        let passCount       = this.material.getPassCount(activeTechnique);
+        const task = renderTarget.getActiveTask();
+        const activeTechnique = this.material.getActiveTechnique();
+        const passCount = this.material.getPassCount(activeTechnique);
 
-        for (let i = 0; i < passCount; i++)
-            task.addCommand(new MeshCommand(this.geometry, this.material.getPass(activeTechnique, i), this.program, this.getTransformationMatrix(), this.getNormalMatrix(), 0, this.geometry.getIndexCount()));
+        for (let i = 0; i < passCount; i += 1) {
+            task.addCommand(new MeshCommand(this.geometry,
+                this.material.getPass(activeTechnique, i),
+                this.program,
+                this.getTransformationMatrix(),
+                this.getNormalMatrix(),
+                0,
+                this.geometry.getIndexCount()));
+        }
     }
 
     /**
@@ -67,8 +71,7 @@ export class Mesh extends Drawable
      * @param {Geometry} geometry A Geometry instance
      * @return {Mesh} A reference to the instance
      */
-    setGeometry(geometry)
-    {
+    setGeometry(geometry) {
         this.geometry = geometry;
         this.boundingBox.compute(geometry.getVerticesPositions());
 
@@ -81,8 +84,7 @@ export class Mesh extends Drawable
      * @param {Material} material A Material instance
      * @return {Mesh} A reference to the instance
      */
-    setMaterial(material)
-    {
+    setMaterial(material) {
         this.material = material;
 
         return this;
@@ -94,8 +96,7 @@ export class Mesh extends Drawable
      * @param {Program} program A Program instance
      * @return {Mesh} A reference to the instance
      */
-    setProgram(program)
-    {
+    setProgram(program) {
         this.program = program;
 
         return this;
@@ -106,8 +107,9 @@ export class Mesh extends Drawable
      *
      * @return {Program} A Program instance
      */
-    getProgram()
-    {
+    getProgram() {
         return this.program;
     }
 }
+
+export default Mesh;
