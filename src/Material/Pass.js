@@ -49,8 +49,10 @@ export class PassParameter {
 export class Pass extends StateBlock {
     /**
      * Constructor
+     *
+     * @param {Array.<Array>} [parameters] An array of parameters
      */
-    constructor() {
+    constructor(parameters = []) {
         super();
 
         /**
@@ -60,6 +62,11 @@ export class Pass extends StateBlock {
         * @private
         */
         this.parameters = [];
+
+        // Fill with parameters attribute
+        for (let i = 0; i < parameters.length; i += 1) {
+            this.add(parameters[i][0], parameters[i][1], parameters[i][2]);
+        }
     }
 
     /**

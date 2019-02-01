@@ -20,14 +20,10 @@ class ModelLoader {
      * @param {string} filePath Path to the file with the 3D model
      * @param {Model} model Model to fill with data
      */
-    static loadFromFile(filePath, model) {
-        FileLoader.load(filePath, (status, data, userData) => {
-            // Compute path to the parent folder
-            const folder = userData.filePath.replace(/[^/]*$/, '');
-
-            // Parse file.
-            ModelLoader.parseJSON(data, userData.model, folder);
-        }, { model, filePath });
+    static async loadFromFile(filePath, model) {
+        const response = await FileLoader.load(filePath);
+        const folder = filePath.replace(/[^/]*$/, ''); // Compute path to the parent folder
+        ModelLoader.parseJSON(response.data, model, folder);
     }
 
     /**

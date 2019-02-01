@@ -40,33 +40,19 @@ class App {
         const geometry = Geometry.createCube(0.5, 0.5, 0.5);
 
         // Shared material
-        const material = new Material();
-        const pass = material.createPass();
-        pass.add('material.ambient', Type.Float, [0.05, 0.05, 0.05]);
-        pass.add('material.diffuse', Type.Float, [0.5, 0.5, 0.5]);
-        pass.add('material.specular', Type.Float, [0.7, 0.7, 0.7]);
-        pass.add('material.shininess', Type.Float, 38.4);
+        const material = new Material.Create('default');
 
         // Cube
-        this.cube1 = new Mesh();
+        this.cube1 = new Mesh(geometry, material, this.customProgram);
         this.cube1.setPosition(-2, 0, 0);
-        this.cube1.setMaterial(material);
-        this.cube1.setGeometry(geometry);
-        this.cube1.setProgram(this.customProgram);
         this.scene.add(this.cube1);
 
-        this.cube2 = new Mesh();
+        this.cube2 = new Mesh(geometry, material, this.customProgram);
         this.cube2.setPosition(0, 0, 0);
-        this.cube2.setMaterial(material);
-        this.cube2.setGeometry(geometry);
-        this.cube2.setProgram(this.customProgram);
         this.scene.add(this.cube2);
 
-        this.cube3 = new Mesh();
+        this.cube3 = new Mesh(geometry, material, this.customProgram);
         this.cube3.setPosition(2, 0, 0);
-        this.cube3.setMaterial(material);
-        this.cube3.setGeometry(geometry);
-        this.cube3.setProgram(this.customProgram);
         this.scene.add(this.cube3);
     }
 

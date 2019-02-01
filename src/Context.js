@@ -37,7 +37,7 @@ class Context {
      * Init
      *
      * @param {Context.Type} type Type of context
-     * @param {{antialiasing: boolean, width: (number|undefined), height: (number|undefined)}} options Options
+     * @param {{antialiasing: boolean, width: (number|undefined), height: (number|undefined), premultipliedAlpha: boolean}} options Options
      * @param {string} targetID Targeted DOM element
      */
     init(type, options, targetID) {
@@ -56,7 +56,11 @@ class Context {
             target.appendChild(this.domElement);
 
             // Init WebGL.
-            this.instance = this.domElement.getContext('webgl', { antialias: options.antialiasing || true });
+            this.instance = this.domElement.getContext('webgl', {
+                antialias: options.antialiasing || true,
+                premultipliedAlpha: options.premultipliedAlpha,
+                alpha: false,
+            });
             this.instance.viewportWidth = this.domElement.clientWidth;
             this.instance.viewportHeight = this.domElement.clientHeight;
         }

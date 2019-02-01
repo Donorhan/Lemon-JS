@@ -104,7 +104,7 @@ class Texture extends TextureInterface {
     }
 
     /**
-     * Indicate if texture is ready
+     * Indicates if texture is ready
      *
      * @return {boolean} True if the texture is ready to be use
      */
@@ -122,7 +122,7 @@ class Texture extends TextureInterface {
     }
 
     /**
-     * Indicate if the texture is repeated
+     * Indicates if the texture is repeated
      *
      * @return {boolean} True if the texture is repeated
      * @override
@@ -132,7 +132,7 @@ class Texture extends TextureInterface {
     }
 
     /**
-     * Indicate if the texture is smoothed
+     * Indicates if the texture is smoothed
      *
      * @return {boolean} True if the texture is smoothed
      * @override

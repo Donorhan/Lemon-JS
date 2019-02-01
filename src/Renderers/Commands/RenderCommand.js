@@ -5,7 +5,7 @@
  */
 class RenderCommand {
     /**
-     * Indicate if the command concern an opaque element
+     * Indicates if the command concern an opaque element
      *
      * @return {boolean} True if command must be in the opaque queue
      */

@@ -7,7 +7,7 @@ class BlendMode {
     /**
      * Constructor
      *
-     * @param {BlendMode=} mode Mode to use, preset values.
+     * @param {BlendMode} [mode] Mode to use, preset values.
      */
     constructor(mode) {
         /**

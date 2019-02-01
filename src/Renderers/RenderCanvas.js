@@ -16,7 +16,7 @@ class RenderCanvas extends RenderTarget {
      * @param {string} canvas Id of the container
      * @param {{antialiasing: boolean, width: (number|undefined), height: (number|undefined)}} options Options
      */
-    constructor(canvas, options = {}) {
+    constructor(canvas, options = { antialiasing: true, premultipliedAlpha: false }) {
         super();
 
         /**

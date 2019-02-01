@@ -289,7 +289,7 @@ export class StateBlock {
          * @type {BlendMode}
          * @public
          */
-        this.blendMode = new BlendMode();
+        this.blendMode = new BlendMode(BlendMode.Mode.None);
 
         /**
          * Depth function to use
@@ -301,7 +301,7 @@ export class StateBlock {
         this.depthFunction = DepthFunction.Less;
 
         /**
-         * Indicate if we want to write in the depth buffer
+         * Indicates if we want to write in the depth buffer
          *
          * @type {boolean}
          * @default {true}
@@ -310,7 +310,7 @@ export class StateBlock {
         this.depthWrite = true;
 
         /**
-         * Indicate if we want to test pixels with values in the depth buffer
+         * Indicates if we want to test pixels with values in the depth buffer
          *
          * @type {boolean}
          * @default {true}
@@ -364,7 +364,7 @@ export class StateBlock {
         this.stencilMask = 255;
 
         /**
-         * Indicate if stencil test is active
+         * Indicates if stencil test is active
          *
          * @type {boolean}
          * @default {false}

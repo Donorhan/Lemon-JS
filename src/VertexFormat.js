@@ -24,7 +24,7 @@ export class VertexElement {
         this.count = count;
 
         /**
-         * Indicate if the value need to be normalized by the graphic API
+         * Indicates if the value need to be normalized by the graphic API
          *
          * @type {boolean}
          * @public
@@ -109,7 +109,7 @@ VertexElement.Usage = {
 };
 
 /**
- * Indicate the format of a vertex
+ * Indicates the format of a vertex
  *
  * @category Geometry
  */
@@ -151,7 +151,7 @@ export class VertexFormat {
         this.streamNeedUpdate = [];
 
         /**
-         * Indicate if the indices have changed
+         * Indicates if the indices have changed
          *
          * @type {boolean}
          * @private
@@ -248,7 +248,7 @@ export class VertexFormat {
     }
 
     /**
-     * Indicate if the indices need an update
+     * Indicates if the indices need an update
      *
      * @param {boolean} state True to ask an update
      * @return {VertexFormat} A reference to the instance
@@ -260,7 +260,7 @@ export class VertexFormat {
     }
 
     /**
-     * Indicate if the stream need an update
+     * Indicates if the stream need an update
      *
      * @param {VertexElement.Usage } usage Stream usage
      * @param {boolean} state True to ask an update

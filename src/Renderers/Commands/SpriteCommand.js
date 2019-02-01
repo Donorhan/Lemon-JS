@@ -99,7 +99,7 @@ class SpriteCommand extends RenderCommand {
                 y2 = 1.0;
             }
 
-            uvs = new Float32Array([x1, y2, x1, y1, x2, y2, x2, y1]);
+            uvs = new Float32Array([x1, y1, x1, y2, x2, y1, x2, y2]);
         }
         SpriteCommand.sharedGeometry.setTextureUVs(uvs);
 
@@ -165,6 +165,15 @@ class SpriteCommand extends RenderCommand {
         }`;
         SpriteCommand.sharedProgram.loadFromData(vertexShader, fragmentShader);
 
+        return false;
+    }
+
+    /**
+     * Indicates if the command concern an opaque element
+     *
+     * @return {boolean} True if command must be in the opaque queue
+     */
+    isOpaque() {
         return false;
     }
 }

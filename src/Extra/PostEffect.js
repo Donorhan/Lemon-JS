@@ -56,7 +56,7 @@ class PostEffect {
         this.renderTexture = new RenderTexture(width, height, 1, useDepthBuffer, userStencilBuffer);
 
         // Link resulting texture to the sprite
-        this.sprite.setSize(1, 1);
+        this.sprite.setSize(1, -1);
         this.sprite.setTexture(this.renderTexture.getTextures()[0]);
         this.sprite.setTextureRect(0, 0, width, height);
 

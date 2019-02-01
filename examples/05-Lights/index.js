@@ -16,7 +16,7 @@ class App {
     }
 
     init() {
-        ProgramLibrary.load('DefaultShader', '../../shaders/GLSL/default.vert', '../../shaders/GLSL/default.frag', ['USE_LIGHT']);
+        ProgramLibrary.loadFromFile('DefaultShader', '../../shaders/GLSL/default.vert', '../../shaders/GLSL/default.frag', ['USE_LIGHT']);
 
         this.renderer = new RenderCanvas('simulation');
 
@@ -38,19 +38,14 @@ class App {
     }
 
     createCube() {
-        const cubeMaterial = new Material();
-        const pass = cubeMaterial.createPass();
-        pass.add('material.ambient', Type.Float, [0.05, 0.05, 0.05]);
-        pass.add('material.diffuse', Type.Float, [0.5, 0.5, 0.5]);
-        pass.add('material.specular', Type.Float, [0.7, 0.7, 0.7]);
-        pass.add('material.shininess', Type.Float, 38.4);
+        const cubeMaterial = new Material.Create('default');
 
-
-        this.cube = new Mesh();
+        this.cube = new Mesh(
+            Geometry.createCube(0.5, 0.5, 0.5),
+            cubeMaterial,
+            ProgramLibrary.get('DefaultShader'),
+        );
         this.cube.setPosition(0, 2, 0);
-        this.cube.setMaterial(cubeMaterial);
-        this.cube.setGeometry(Geometry.createCube(0.5, 0.5, 0.5));
-        this.cube.setProgram(ProgramLibrary.get('DefaultShader'));
         this.scene.add(this.cube);
     }
 
@@ -94,37 +89,23 @@ class App {
         pass.add('material.shininess', Type.Float, 200);
 
         // Ground
-        const ground = new Mesh();
+        const ground = new Mesh(wallGeometry, wallMaterial, program);
         ground.setRotation(-90, 0, 0);
-        ground.setMaterial(wallMaterial);
-        ground.setProgram(program);
-        ground.setGeometry(wallGeometry);
         this.scene.add(ground);
 
         // Back wall
-        const backWall = new Mesh();
+        const backWall = new Mesh(wallGeometry, wallMaterial, program);
         backWall.setPosition(0, 2.5, -5);
-        backWall.setMaterial(wallMaterial);
-        backWall.setProgram(program);
-        backWall.setGeometry(wallGeometry);
         this.scene.add(backWall);
 
         // Left wall
-        const leftWall = new Mesh();
-        leftWall.setRotation(0, 90, 0);
-        leftWall.setPosition(-5, 2.5, 0);
-        leftWall.setMaterial(wallMaterial);
-        leftWall.setProgram(program);
-        leftWall.setGeometry(wallGeometry);
+        const leftWall = new Mesh(wallGeometry, wallMaterial, program);
+        leftWall.setRotation(0, 90, 0).setPosition(-5, 2.5, 0);
         this.scene.add(leftWall);
 
         // Right wall
-        const rightWall = new Mesh();
-        rightWall.setRotation(0, -90, 0);
-        rightWall.setPosition(5, 2.5, 0);
-        rightWall.setMaterial(wallMaterial);
-        rightWall.setProgram(program);
-        rightWall.setGeometry(wallGeometry);
+        const rightWall = new Mesh(wallGeometry, wallMaterial, program);
+        rightWall.setRotation(0, -90, 0).setPosition(5, 2.5, 0);
         this.scene.add(rightWall);
     }
 

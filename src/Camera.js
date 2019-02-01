@@ -15,7 +15,7 @@ class Camera {
     /**
      * Constructor
      *
-     * @param {Camera.Type=} type Type of camera
+     * @param {Camera.Type} [type] Type of camera
      */
     constructor(type = Camera.Type.Perspective) {
         /**
@@ -59,7 +59,7 @@ class Camera {
         this.matrixView = mat4.create();
 
         /**
-         * Indicate if the view matrix need an update
+         * Indicates if the view matrix need an update
          *
          * @type {boolean}
          * @private
@@ -75,7 +75,7 @@ class Camera {
         this.matrixViewProjection = mat4.create();
 
         /**
-         * Indicate if the view matrix need an update
+         * Indicates if the view matrix need an update
          *
          * @type {boolean}
          * @private

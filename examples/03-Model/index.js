@@ -13,7 +13,7 @@ class App {
     }
 
     init() {
-        ProgramLibrary.load('PhongShader', '../../shaders/GLSL/default.vert', '../../shaders/GLSL/default.frag', ['USE_TEXTURE', 'USE_LIGHT']);
+        ProgramLibrary.loadFromFile('PhongShader', '../../shaders/GLSL/default.vert', '../../shaders/GLSL/default.frag', ['USE_TEXTURE', 'USE_LIGHT']);
 
         this.renderer = new RenderCanvas('simulation');
         this.camera = new Camera();
@@ -24,10 +24,10 @@ class App {
 
         // Create it
         const model = new Model();
-        model.loadFromFile('../assets/models/lee-perry-smith/model.json');
-        model.setPosition(0, 2, 0);
-        model.setScale(5, 5, 5);
-        model.setRotation(-90, 0, 0);
+        model.loadFromFile('../assets/models/lee-perry-smith/model.json')
+            .setPosition(0, 2, 0)
+            .setScale(5, 5, 5)
+            .setRotation(-90, 0, 0);
 
         // Add a light
         this.light = new PointLight();

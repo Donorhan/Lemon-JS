@@ -99,7 +99,7 @@ class Img {
     }
 
     /**
-     * Indicate if the image is ready to be use
+     * Indicates if the image is ready to be use
      *
      * @return {boolean} True if image is ready, otherwise false
      */

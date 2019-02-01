@@ -1,6 +1,6 @@
 /**
  * A context resource:
- * - Indicate that the object have a refence to the graphic API.
+ * - Indicates that the object have a refence to the graphic API.
  * - The object have a unique ID.
  *
  * @category Core

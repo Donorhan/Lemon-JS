@@ -32,7 +32,7 @@ class ProgramLibrary {
      * @param {Array.<string>=} defines An array with defines data
      * @return {?Program} A Program instance
      */
-    static load(name, vertexShaderFile, fragmentShaderFile, defines) {
+    static async loadFromFile(name, vertexShaderFile, fragmentShaderFile, defines) {
         // Get/Create program
         const program = ProgramLibrary.get(name);
 
@@ -40,71 +40,60 @@ class ProgramLibrary {
         const chunkPatterns = /include\[([^\]]*)\]/g;
 
         // Prepare cache
-        ProgramLibrary.cache[name] = { data: null, ready: false, sources: [] };
-
-        /**
-        * Callback for chunks
-        *
-        * @param {boolean} status Load status
-        * @param {string} chunkData Chunk data
-        * @param {Object=} userData Additional data
-        */
-        const chunkCallback = (status, chunkData, userData) => {
-            // Put chunk data in cache
-            ProgramLibrary.chunks[userData].data = chunkData;
-            ProgramLibrary.chunks[userData].ready = true;
-
-            // Try to update
-            ProgramLibrary.tryUpdateWaitingPrograms();
+        ProgramLibrary.cache[name] = {
+            data: null,
+            ready: false,
+            sources: [],
         };
 
         // Callback processing chunk
-        const callback = (type, programName, data) => {
+        const callback = async (type, data) => {
             const newProgram = ProgramLibrary.programs[name];
             const sources = newProgram.getSources();
             const chunks = data.match(chunkPatterns);
 
             // Analyse if the file ask external chunks
             if (chunks) {
-                let missingChunkCount = chunks.length;
-
+                const waitingChunks = [];
                 for (let i = 0; i < chunks.length; i += 1) {
                     const chunk = chunks[i];
                     const chunkPath = chunk.substring(chunk.lastIndexOf('[') + 1, chunk.lastIndexOf(']'));
 
-                    if (ProgramLibrary.chunks[chunkPath] && ProgramLibrary.chunks[chunkPath].ready) {
-                        missingChunkCount -= 1;
-                    } else if (!ProgramLibrary.chunks[chunkPath]) {
+                    if (!ProgramLibrary.chunks[chunkPath]) {
                         ProgramLibrary.chunks[chunkPath] = { data: '', ready: false };
-                        FileLoader.load(`${ProgramLibrary.folderPath}${chunkPath}?${new Date().getTime()}`, chunkCallback, chunkPath);
+                        waitingChunks.push(FileLoader.load(`${ProgramLibrary.folderPath}${chunkPath}`, chunkPath));
                     }
                 }
 
+                await Promise.all(waitingChunks).then((results) => {
+                    results.forEach((response) => {
+                        ProgramLibrary.chunks[response.name].data = response.data;
+                        ProgramLibrary.chunks[response.name].ready = true;
+                    });
+                });
+
+                // Try to update
+                ProgramLibrary.tryUpdateWaitingPrograms();
+
                 // Everything is in memory? We can fill the program directly
                 const result = ProgramLibrary.replaceChunks(data);
-                if (missingChunkCount === 0) {
-                    ProgramLibrary.fillProgram(sources, newProgram, name, type, result || '');
-                }
+                ProgramLibrary.fillProgram(sources, newProgram, name, type, result || '');
             } else {
                 ProgramLibrary.fillProgram(sources, newProgram, name, type, data);
             }
         };
 
         // Load vertex file
-        FileLoader.load(`${vertexShaderFile}?${new Date().getTime()}`, (status, data) => {
-            const newData = ProgramLibrary.addDefines(data, defines || []);
-
-            ProgramLibrary.cache[name].sources[0] = newData;
-            callback(ProgramLibrary.Target.Vertex, name, newData);
-        });
+        const vertexResponse = await FileLoader.load(`${vertexShaderFile}`);
+        const vertexData = ProgramLibrary.addDefines(vertexResponse.data, defines || []);
+        ProgramLibrary.cache[name].sources[0] = vertexData;
+        await callback(ProgramLibrary.Target.Vertex, vertexData);
 
         // Load fragment file
-        FileLoader.load(`${fragmentShaderFile}?${new Date().getTime()}`, (status, data) => {
-            const newData = ProgramLibrary.addDefines(data, defines || []);
-
-            ProgramLibrary.cache[name].sources[1] = newData;
-            callback(ProgramLibrary.Target.Fragment, name, newData);
-        });
+        const fragmentResponse = await FileLoader.load(`${fragmentShaderFile}`);
+        const fragmentData = ProgramLibrary.addDefines(fragmentResponse.data, defines || []);
+        ProgramLibrary.cache[name].sources[1] = fragmentData;
+        await callback(ProgramLibrary.Target.Fragment, fragmentData);
 
         return program;
     }

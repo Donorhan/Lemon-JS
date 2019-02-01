@@ -37,16 +37,20 @@ class Material {
      *
      * @return {Material} A Material instance
      */
-    static create(name) {
+    static Create(name) {
         const material = new Material();
-        const pass = material.createPass();
 
-        if (name === 'default') {
-            pass.add('material.ambient', Type.Float, [0.0, 0.0, 0.0]);
-            pass.add('material.diffuse', Type.Float, [0.55, 0.55, 0.55]);
-            pass.add('material.specular', Type.Float, [0.7, 0.7, 0.7]);
-            pass.add('material.shininess', Type.Float, 38.4);
+        if (name !== 'default') {
+            material.createPass();
+            return material;
         }
+
+        material.createPass(0, [
+            ['material.ambient', Type.Float, [0.0, 0.0, 0.0]],
+            ['material.diffuse', Type.Float, [0.55, 0.55, 0.55]],
+            ['material.specular', Type.Float, [0.7, 0.7, 0.7]],
+            ['material.shininess', Type.Float, 38.4],
+        ]);
 
         return material;
     }
@@ -55,10 +59,11 @@ class Material {
      * Add a pass to a technique
      *
      * @param {number=} techniqueIndex Targeted technique's index (default: 0)
+     * @param {Array.<Array>} [parameters] An array of parameters
      * @return {Pass} A Pass instance.
      */
-    createPass(techniqueIndex = 0) {
-        const pass = new Pass();
+    createPass(techniqueIndex = 0, parameters = []) {
+        const pass = new Pass(parameters);
         this.techniques[techniqueIndex].push(pass);
 
         return pass;

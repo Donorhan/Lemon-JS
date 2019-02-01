@@ -210,7 +210,7 @@ class Node extends Transformable {
     }
 
     /**
-     * Indicate if the current node is the scene's root
+     * Indicates if the current node is the scene's root
      *
      * @return {boolean} True if it's the root node, otherwise false
      */

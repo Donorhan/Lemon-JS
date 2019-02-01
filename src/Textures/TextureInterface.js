@@ -31,7 +31,7 @@ class TextureInterface extends ContextResource {
     }
 
     /**
-     * Indicate if texture is ready
+     * Indicates if texture is ready
      *
      * @return {boolean} True if the texture is ready to be use
      */
@@ -40,7 +40,7 @@ class TextureInterface extends ContextResource {
     }
 
     /**
-     * Indicate if the texture use mip-mapping
+     * Indicates if the texture use mip-mapping
      *
      * @return {boolean} True if the texture is mip-mapped
      */
@@ -49,7 +49,7 @@ class TextureInterface extends ContextResource {
     }
 
     /**
-     * Indicate if the texture is repeated
+     * Indicates if the texture is repeated
      *
      * @return {boolean} True if the texture is repeated
      */
@@ -58,7 +58,7 @@ class TextureInterface extends ContextResource {
     }
 
     /**
-     * Indicate if the texture is smoothed
+     * Indicates if the texture is smoothed
      *
      * @return {boolean} True if the texture is smoothed
      */
@@ -67,7 +67,7 @@ class TextureInterface extends ContextResource {
     }
 
     /**
-     * Indicate if the texture must use mip-mapping
+     * Indicates if the texture must use mip-mapping
      *
      * @param {boolean} value True to use mip-mapping
      */

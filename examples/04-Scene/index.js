@@ -17,7 +17,7 @@ class App {
     }
 
     init() {
-        ProgramLibrary.load('PhongShader', '../../shaders/GLSL/default.vert', '../../shaders/GLSL/default.frag', ['USE_LIGHT']);
+        ProgramLibrary.loadFromFile('PhongShader', '../../shaders/GLSL/default.vert', '../../shaders/GLSL/default.frag', ['USE_LIGHT']);
 
         this.renderer = new RenderCanvas('simulation');
 

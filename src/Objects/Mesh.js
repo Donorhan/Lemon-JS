@@ -6,12 +6,15 @@ import MeshCommand from '../Renderers/Commands/MeshCommand';
  *
  * @category Drawables
  * @extends {Drawable}
+ * @param {Geometry} [geometry] A Geometry instance
+ * @param {Material} [material] A Material instance
+ * @param {Program} [program] A Program instance
  */
 class Mesh extends Drawable {
     /**
      * Constructor
      */
-    constructor() {
+    constructor(geometry = null, material = null, program = null) {
         super();
 
         /**
@@ -20,7 +23,7 @@ class Mesh extends Drawable {
          * @type {Geometry}
          * @private
          */
-        this.geometry = null;
+        this.geometry = geometry;
 
         /**
          * Material
@@ -28,7 +31,7 @@ class Mesh extends Drawable {
          * @type {Material}
          * @private
          */
-        this.material = null;
+        this.material = material;
 
         /**
          * Program
@@ -36,7 +39,7 @@ class Mesh extends Drawable {
          * @type {Program}
          * @private
          */
-        this.program = null;
+        this.program = program;
     }
 
     /**

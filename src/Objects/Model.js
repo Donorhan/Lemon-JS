@@ -33,7 +33,7 @@ class Model extends Drawable {
      * Update the node and his children
      *
      * @param {number} deltaTime A floating value representing time elapsed between two frames
-     * @param {boolean} parentUpdated Indicate if the parent element have been updated
+     * @param {boolean} parentUpdated Indicates if the parent element have been updated
      * @return {boolean} True if the node have been updated
      */
     update(deltaTime, parentUpdated) {
@@ -66,6 +66,8 @@ class Model extends Drawable {
      */
     loadFromFile(filePath) {
         ModelLoader.loadFromFile(filePath, this);
+
+        return this;
     }
 }
 

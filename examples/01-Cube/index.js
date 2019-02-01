@@ -20,32 +20,35 @@ class App {
 
         // A camera to draw the scene
         this.camera = new Camera();
-        this.camera.move(3, 3, 3);
-        this.camera.setViewport(0, 0, this.renderer.getWidth(), this.renderer.getHeight());
+        this.camera
+            .move(3, 3, 3)
+            .setViewport(0, 0, this.renderer.getWidth(), this.renderer.getHeight());
 
         // Create a scene where you can add sprites, lights, objects, …
         this.scene = new Scene();
 
         // Load default shader
-        ProgramLibrary.load('DefaultShader', '../../shaders/GLSL/default.vert', '../../shaders/GLSL/default.frag', ['USE_TEXTURE', 'USE_LIGHT']);
+        ProgramLibrary.loadFromFile('DefaultShader', '../../shaders/GLSL/default.vert', '../../shaders/GLSL/default.frag', ['USE_TEXTURE', 'USE_LIGHT']);
 
         // Texture to apply
         const boxTexture = new Texture('../assets/images/box.jpg');
 
         // Create material
         const material = new Material();
-        const pass = material.createPass();
-        pass.add('texture', Type.Texture2D, boxTexture);
-        pass.add('material.ambient', Type.Float, [0.0, 0.0, 0.0]);
-        pass.add('material.diffuse', Type.Float, [0.55, 0.55, 0.55]);
-        pass.add('material.specular', Type.Float, [0.7, 0.7, 0.7]);
-        pass.add('material.shininess', Type.Float, 38.4);
+        material.createPass(0, [
+            ['texture', Type.Texture2D, boxTexture],
+            ['material.ambient', Type.Float, [0.0, 0.0, 0.0]],
+            ['material.diffuse', Type.Float, [0.55, 0.55, 0.55]],
+            ['material.specular', Type.Float, [0.7, 0.7, 0.7]],
+            ['material.shininess', Type.Float, 38.4],
+        ]);
 
         // Create the cube
-        this.mesh = new Mesh();
-        this.mesh.setMaterial(material);
-        this.mesh.setGeometry(Geometry.createCube(0.5, 0.5, 0.5));
-        this.mesh.setProgram(ProgramLibrary.get('DefaultShader'));
+        this.mesh = new Mesh(
+            Geometry.createCube(0.5, 0.5, 0.5),
+            material,
+            ProgramLibrary.get('DefaultShader'),
+        );
         this.scene.add(this.mesh);
 
         // Add a light

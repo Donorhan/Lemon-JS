@@ -71,7 +71,7 @@ class Transformable {
         this.scale = vec3.fromValues(1.0, 1.0, 1.0);
 
         /**
-         * Indicate if the matrix/cache need to be updated
+         * Indicates if the matrix/cache need to be updated
          *
          * @type {boolean}
          * @private

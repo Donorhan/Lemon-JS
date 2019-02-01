@@ -72,7 +72,7 @@ class Geometry extends ContextResource {
     setColors(colors) {
         this.colors = new Float32Array(colors);
 
-        // Indicate that an attribute of the geometry need an update.
+        // Indicates that an attribute of the geometry need an update.
         if (this.vertexFormat) {
             this.vertexFormat.setStreamAsWaitingUpdate(VertexElement.Usage.Color, true);
         }
@@ -89,7 +89,7 @@ class Geometry extends ContextResource {
     setIndices(indices) {
         this.indices = new Uint16Array(indices);
 
-        // Indicate that indices need an update.
+        // Indicates that indices need an update.
         if (this.vertexFormat) {
             this.vertexFormat.setIndicesAsWaitingUpdate(true);
         }
@@ -106,7 +106,7 @@ class Geometry extends ContextResource {
     setNormals(normals) {
         this.normals = new Float32Array(normals);
 
-        // Indicate that an attribut of the geometry need an update.
+        // Indicates that an attribut of the geometry need an update.
         if (this.vertexFormat) {
             this.vertexFormat.setStreamAsWaitingUpdate(VertexElement.Usage.Normal, true);
         }
@@ -123,7 +123,7 @@ class Geometry extends ContextResource {
     setPositions(positions) {
         this.positions = new Float32Array(positions);
 
-        // Indicate that an attribute of the geometry need an update.
+        // Indicates that an attribute of the geometry need an update.
         if (this.vertexFormat) {
             this.vertexFormat.setStreamAsWaitingUpdate(VertexElement.Usage.Position, true);
         }
@@ -140,7 +140,7 @@ class Geometry extends ContextResource {
     setTextureUVs(uvs) {
         this.uvs = new Float32Array(uvs);
 
-        // Indicate that an attribute of the geometry need an update
+        // Indicates that an attribute of the geometry need an update
         if (this.vertexFormat) {
             this.vertexFormat.setStreamAsWaitingUpdate(VertexElement.Usage.UVS, true);
         }

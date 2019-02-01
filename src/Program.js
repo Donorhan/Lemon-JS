@@ -50,16 +50,12 @@ export class Program extends ContextResource {
      * @param {string} vertexFile Path to the vertex shader file
      * @param {string} fragmentFile Path to the fragment shader file
      */
-    loadFromFiles(vertexFile, fragmentFile) {
-        // Vertex file.
-        FileLoader.load(vertexFile, (status, data) => {
-            this.sources[0] = data;
-        });
+    async loadFromFiles(vertexFile, fragmentFile) {
+        const vertexReponse = await FileLoader.load(vertexFile);
+        this.sources[0] = vertexReponse.data;
 
-        // Fragment file.
-        FileLoader.load(fragmentFile, (status, data) => {
-            this.sources[1] = data;
-        });
+        const fragmentResponse = await FileLoader.load(fragmentFile);
+        this.sources[1] = fragmentResponse.data;
     }
 
     /**
