@@ -1,0 +1,1586 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: VertexElement</title>
+
+    <script src="scripts/prettify/prettify.js"></script>
+    <script src="scripts/prettify/lang-css.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link href="https://fonts.googleapis.com/css?family=Muli:100,400,700|Oswald:300|Inconsolata,700" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+    <link type="text/css" rel="stylesheet" href="https://jmblog.github.io/color-themes-for-google-code-prettify/themes/tomorrow-night.min.css">
+    <link type="text/css" rel="stylesheet" href="styles/app.min.css">
+</head>
+
+<body>
+    <div id="stickyNavbarOverlay"></div>
+    <div class="top-navbar">
+        <div class="container">
+            <nav class="navbar" role="navigation" aria-label="main navigation">
+                <div class="navbar-brand">
+                    
+                     
+                        <h1 class="navbar-item">LemonJS Documentation</h1>
+                    
+                    <a id="hamburger" role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
+                        <span aria-hidden="true"></span>
+                        <span aria-hidden="true"></span>
+                        <span aria-hidden="true"></span>
+                    </a>
+                </div>
+                 
+                <div class="navbar-menu">
+                    <div class="navbar-end">
+                    
+                        <div class="navbar-item">
+                            <a href="https://github.com/Donorhan/Lemon-JS" target="_blank">Github</a>
+                        </div>
+                    
+                    </div>
+                </div>
+                
+            </nav>
+        </div>
+    </div>
+    <div class="container">
+        <div class="columns">
+            <div class="column is-3" id="sidebarNav">
+                <div class="sidebar">
+                    <nav>
+                        <h2><a href="index.html">Home</a></h2><div class="category"></div><div class="category"><h2>Core</h2><h3>Classes</h3><ul><li><a href="BlendMode.html">BlendMode</a></li><li><a href="Color.html">Color</a></li><li><a href="Context.html">Context</a></li><li><a href="ContextResource.html">ContextResource</a></li><li><a href="Img.html">Img</a></li><li><a href="StateBlock.html">StateBlock</a></li></ul></div><div class="category"><h2>Geometry</h2><h3>Classes</h3><ul><li><a href="Box.html">Box</a></li><li><a href="Frustum.html">Frustum</a></li><li><a href="Geometry.html">Geometry</a></li><li><a href="Plane.html">Plane</a></li><li><a href="Ray.html">Ray</a></li><li><a href="Transformable.html">Transformable</a></li><li><a href="VertexElement.html">VertexElement</a></li><li><a href="VertexFormat.html">VertexFormat</a></li></ul></div><div class="category"><h2>WebGL</h2><h3>Classes</h3><ul><li><a href="BufferData.html">BufferData</a></li><li><a href="Cache.html">Cache</a></li><li><a href="Instances.html">Instances</a></li><li><a href="TypesConverter.html">TypesConverter</a></li><li><a href="WebGL.html">WebGL</a></li></ul></div><div class="category"><h2>Scene</h2><h3>Classes</h3><ul><li><a href="Camera.html">Camera</a></li></ul></div><div class="category"><h2>Culling</h2><h3>Classes</h3><ul><li><a href="Culler.html">Culler</a></li><li><a href="CullingManager.html">CullingManager</a></li><li><a href="FrustumCuller.html">FrustumCuller</a></li></ul></div><div class="category"><h2>Types</h2><h3>Classes</h3><ul><li><a href="DepthFunction.html">DepthFunction</a></li><li><a href="DrawingMode.html">DrawingMode</a></li><li><a href="FaceCulling.html">FaceCulling</a></li><li><a href="StencilFunction.html">StencilFunction</a></li><li><a href="StencilOperation.html">StencilOperation</a></li><li><a href="Type.html">Type</a></li></ul></div><div class="category"><h2>Lights</h2><h3>Classes</h3><ul><li><a href="DirectionalLight.html">DirectionalLight</a></li><li><a href="Light.html">Light</a></li><li><a href="PointLight.html">PointLight</a></li><li><a href="SpotLight.html">SpotLight</a></li></ul></div><div class="category"><h2>Drawables</h2><h3>Classes</h3><ul><li><a href="Drawable.html">Drawable</a></li><li><a href="Mesh.html">Mesh</a></li><li><a href="Model.html">Model</a></li><li><a href="Skybox.html">Skybox</a></li><li><a href="Sprite.html">Sprite</a></li></ul></div><div class="category"><h2>Loaders</h2><h3>Classes</h3><ul><li><a href="FileLoader.html">FileLoader</a></li><li><a href="ModelLoader.html">ModelLoader</a></li></ul></div><div class="category"><h2>Material</h2><h3>Classes</h3><ul><li><a href="Material.html">Material</a></li><li><a href="Pass.html">Pass</a></li><li><a href="PassParameter.html">PassParameter</a></li></ul></div><div class="category"><h2>Rendering</h2><h3>Classes</h3><ul><li><a href="MeshCommand.html">MeshCommand</a></li><li><a href="RenderAPI.html">RenderAPI</a></li><li><a href="RenderCanvas.html">RenderCanvas</a></li><li><a href="RenderCommand.html">RenderCommand</a></li><li><a href="RenderTarget.html">RenderTarget</a></li><li><a href="RenderTask.html">RenderTask</a></li><li><a href="RenderTexture.html">RenderTexture</a></li><li><a href="SkyboxCommand.html">SkyboxCommand</a></li><li><a href="SpriteCommand.html">SpriteCommand</a></li></ul></div><div class="category"><h2>Scene management</h2><h3>Classes</h3><ul><li><a href="Node.html">Node</a></li><li><a href="Scene.html">Scene</a></li></ul></div><div class="category"><h2>Shaders</h2><h3>Classes</h3><ul><li><a href="PostEffect.html">PostEffect</a></li><li><a href="Program.html">Program</a></li><li><a href="ProgramElement.html">ProgramElement</a></li><li><a href="ProgramLibrary.html">ProgramLibrary</a></li></ul></div><div class="category"><h2>Textures</h2><h3>Classes</h3><ul><li><a href="Texture.html">Texture</a></li><li><a href="TextureCube.html">TextureCube</a></li><li><a href="TextureInterface.html">TextureInterface</a></li><li><a href="TextureVideo.html">TextureVideo</a></li></ul></div><div class="category"><h2>Math</h2><h3>Global</h3><ul><li><a href="global.html#multiplyWithMat4">multiplyWithMat4</a></li><li><a href="global.html#project">project</a></li><li><a href="global.html#unproject">unproject</a></li></ul></div>
+                    </nav>
+                </div>
+            </div>
+            <div class="column is-9-desktop">
+                <div class="content" id="main-content-wrapper">
+                    <header class="page-title">
+                        <p>Class</p>
+                        <h1>VertexElement</h1>
+                    </header>
+                    
+                    
+
+
+
+
+<section>
+
+<header>
+    
+        <h2><span class="attribs"><span class="type-signature"></span></span>VertexElement<span class="signature">(usage, stream, type, count<span class="signature-attributes">nullable</span>, normalize<span class="signature-attributes">nullable</span>)</span><span class="type-signature"></span></h2>
+        
+            <div class="class-description">Represent one of the element of a vertex.
+It can be a position, a normal, a color, ….</div>
+        
+    
+</header>
+
+<article>
+    <div class="container-overview">
+    
+        
+            <div class='vertical-section'>
+                <h3 class="title"><span>Constructor</span></h3>
+                <div class="members">
+                    <div class="member">
+
+    
+    <h4 class="name" id="VertexElement">
+        
+        <span class="code-name">
+            new VertexElement<span class="signature">(usage, stream, type, count<span class="signature-attributes">nullable</span>, normalize<span class="signature-attributes">nullable</span>)</span><span class="type-signature"></span>
+        </span>
+    </h4>
+    
+
+    
+    
+    <div class="description">
+        Constructor
+    </div>
+    
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Attributes</th>
+        
+
+        
+        <th>Default</th>
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        
+<tr class="deep-level-0">
+  
+      <td class="name"><code>usage</code></td>
+  
+
+  <td class="type">
+  
+      
+<span class="param-type"><a href="VertexElement.html#.Usage">VertexElement.Usage</a></span>
+
+
+  
+  </td>
+
+  
+      <td class="attributes">
+      
+
+      
+
+      
+      </td>
+  
+
+  
+      <td class="default">
+      
+      </td>
+  
+
+  <td class="description last">Element usage</td>
+</tr>
+
+
+    
+
+        
+<tr class="deep-level-0">
+  
+      <td class="name"><code>stream</code></td>
+  
+
+  <td class="type">
+  
+      
+<span class="param-type">number</span>
+
+
+  
+  </td>
+
+  
+      <td class="attributes">
+      
+
+      
+
+      
+      </td>
+  
+
+  
+      <td class="default">
+      
+      </td>
+  
+
+  <td class="description last">Stream index</td>
+</tr>
+
+
+    
+
+        
+<tr class="deep-level-0">
+  
+      <td class="name"><code>type</code></td>
+  
+
+  <td class="type">
+  
+      
+<span class="param-type"><a href="VertexElement.html#.Type">VertexElement.Type</a></span>
+
+
+  
+  </td>
+
+  
+      <td class="attributes">
+      
+
+      
+
+      
+      </td>
+  
+
+  
+      <td class="default">
+      
+      </td>
+  
+
+  <td class="description last">Type of element</td>
+</tr>
+
+
+    
+
+        
+<tr class="deep-level-0">
+  
+      <td class="name"><code>count</code></td>
+  
+
+  <td class="type">
+  
+      
+<span class="param-type">number</span>
+
+
+  
+  </td>
+
+  
+      <td class="attributes">
+      
+
+      
+          &lt;nullable><br>
+      
+
+      
+      </td>
+  
+
+  
+      <td class="default">
+      
+          0
+      
+      </td>
+  
+
+  <td class="description last">Value count, ex: A "vec2" will have "2" for this parameter</td>
+</tr>
+
+
+    
+
+        
+<tr class="deep-level-0">
+  
+      <td class="name"><code>normalize</code></td>
+  
+
+  <td class="type">
+  
+      
+<span class="param-type">boolean</span>
+
+
+  
+  </td>
+
+  
+      <td class="attributes">
+      
+
+      
+          &lt;nullable><br>
+      
+
+      
+      </td>
+  
+
+  
+      <td class="default">
+      
+          false
+      
+      </td>
+  
+
+  <td class="description last">True to ask rendering API to normalize values</td>
+</tr>
+
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    
+
+    
+
+    
+
+    
+        <p class="tag-source">
+            <a href="VertexFormat.js.html" class="button">View Source</a>
+            <span>
+                <a href="VertexFormat.js.html">VertexFormat.js</a>, <a href="VertexFormat.js.html#line7">line 7</a>
+            </span>
+        </p>
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+                </div>
+            </div>
+        
+    
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+        <div class='vertical-section'>
+            <h3 class="title"><span>Members</span></h3>
+            <div class="members">
+            
+                <div class="member">
+
+    <span class="method-parameter is-pulled-right">
+        <label>Type:</label>
+        
+<span class="param-type">number</span>
+
+
+    </span>
+
+<h4 class="name" id=".StreamType">
+    
+        
+            <span class='tag'>static</span>
+        
+    
+    <span class="code-name">
+        StreamType
+    </span>
+</h4>
+
+
+
+
+<div class="description">
+    Type of stream available
+</div>
+
+
+
+
+
+    <h5 class="subsection-title">Properties:</h5>
+
+    
+
+<table class="props">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+        
+<tr class="deep-level-0">
+    
+        <td class="name"><code>Static</code></td>
+    
+
+    <td class="type">
+    
+        
+<span class="param-type">number</span>
+
+
+    
+    </td>
+
+    
+
+    
+
+    <td class="description last"></td>
+</tr>
+
+    
+        
+<tr class="deep-level-0">
+    
+        <td class="name"><code>Dynamic</code></td>
+    
+
+    <td class="type">
+    
+        
+<span class="param-type">number</span>
+
+
+    
+    </td>
+
+    
+
+    
+
+    <td class="description last"></td>
+</tr>
+
+    
+        
+<tr class="deep-level-0">
+    
+        <td class="name"><code>Stream</code></td>
+    
+
+    <td class="type">
+    
+        
+<span class="param-type">number</span>
+
+
+    
+    </td>
+
+    
+
+    
+
+    <td class="description last"></td>
+</tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    
+
+    
+
+    
+
+    
+        <p class="tag-source">
+            <a href="VertexFormat.js.html" class="button">View Source</a>
+            <span>
+                <a href="VertexFormat.js.html">VertexFormat.js</a>, <a href="VertexFormat.js.html#line80">line 80</a>
+            </span>
+        </p>
+    
+</dl>
+
+
+
+
+
+</div>
+            
+                <div class="member">
+
+    <span class="method-parameter is-pulled-right">
+        <label>Type:</label>
+        
+<span class="param-type">number</span>
+
+
+    </span>
+
+<h4 class="name" id=".Type">
+    
+        
+            <span class='tag'>static</span>
+        
+    
+    <span class="code-name">
+        Type
+    </span>
+</h4>
+
+
+
+
+<div class="description">
+    VertexElement's types
+</div>
+
+
+
+
+
+    <h5 class="subsection-title">Properties:</h5>
+
+    
+
+<table class="props">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+        
+<tr class="deep-level-0">
+    
+        <td class="name"><code>Byte</code></td>
+    
+
+    <td class="type">
+    
+        
+<span class="param-type">number</span>
+
+
+    
+    </td>
+
+    
+
+    
+
+    <td class="description last"></td>
+</tr>
+
+    
+        
+<tr class="deep-level-0">
+    
+        <td class="name"><code>Float</code></td>
+    
+
+    <td class="type">
+    
+        
+<span class="param-type">number</span>
+
+
+    
+    </td>
+
+    
+
+    
+
+    <td class="description last"></td>
+</tr>
+
+    
+        
+<tr class="deep-level-0">
+    
+        <td class="name"><code>Int</code></td>
+    
+
+    <td class="type">
+    
+        
+<span class="param-type">number</span>
+
+
+    
+    </td>
+
+    
+
+    
+
+    <td class="description last"></td>
+</tr>
+
+    
+        
+<tr class="deep-level-0">
+    
+        <td class="name"><code>Short</code></td>
+    
+
+    <td class="type">
+    
+        
+<span class="param-type">number</span>
+
+
+    
+    </td>
+
+    
+
+    
+
+    <td class="description last"></td>
+</tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    
+
+    
+
+    
+
+    
+        <p class="tag-source">
+            <a href="VertexFormat.js.html" class="button">View Source</a>
+            <span>
+                <a href="VertexFormat.js.html">VertexFormat.js</a>, <a href="VertexFormat.js.html#line91">line 91</a>
+            </span>
+        </p>
+    
+</dl>
+
+
+
+
+
+</div>
+            
+                <div class="member">
+
+    <span class="method-parameter is-pulled-right">
+        <label>Type:</label>
+        
+<span class="param-type">number</span>
+
+
+    </span>
+
+<h4 class="name" id=".Usage">
+    
+        
+            <span class='tag'>static</span>
+        
+    
+    <span class="code-name">
+        Usage
+    </span>
+</h4>
+
+
+
+
+<div class="description">
+    VertexElement's usage
+</div>
+
+
+
+
+
+    <h5 class="subsection-title">Properties:</h5>
+
+    
+
+<table class="props">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+        
+<tr class="deep-level-0">
+    
+        <td class="name"><code>Position</code></td>
+    
+
+    <td class="type">
+    
+        
+<span class="param-type">number</span>
+
+
+    
+    </td>
+
+    
+
+    
+
+    <td class="description last"></td>
+</tr>
+
+    
+        
+<tr class="deep-level-0">
+    
+        <td class="name"><code>Color</code></td>
+    
+
+    <td class="type">
+    
+        
+<span class="param-type">number</span>
+
+
+    
+    </td>
+
+    
+
+    
+
+    <td class="description last"></td>
+</tr>
+
+    
+        
+<tr class="deep-level-0">
+    
+        <td class="name"><code>UVS</code></td>
+    
+
+    <td class="type">
+    
+        
+<span class="param-type">number</span>
+
+
+    
+    </td>
+
+    
+
+    
+
+    <td class="description last"></td>
+</tr>
+
+    
+        
+<tr class="deep-level-0">
+    
+        <td class="name"><code>Normal</code></td>
+    
+
+    <td class="type">
+    
+        
+<span class="param-type">number</span>
+
+
+    
+    </td>
+
+    
+
+    
+
+    <td class="description last"></td>
+</tr>
+
+    
+        
+<tr class="deep-level-0">
+    
+        <td class="name"><code>Tangent</code></td>
+    
+
+    <td class="type">
+    
+        
+<span class="param-type">number</span>
+
+
+    
+    </td>
+
+    
+
+    
+
+    <td class="description last"></td>
+</tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    
+
+    
+
+    
+
+    
+        <p class="tag-source">
+            <a href="VertexFormat.js.html" class="button">View Source</a>
+            <span>
+                <a href="VertexFormat.js.html">VertexFormat.js</a>, <a href="VertexFormat.js.html#line103">line 103</a>
+            </span>
+        </p>
+    
+</dl>
+
+
+
+
+
+</div>
+            
+                <div class="member">
+
+    <span class="method-parameter is-pulled-right">
+        <label>Type:</label>
+        
+<span class="param-type">number</span>
+
+
+    </span>
+
+<h4 class="name" id="count">
+    
+    <span class="code-name">
+        count
+    </span>
+</h4>
+
+
+
+
+<div class="description">
+    Value count for this element
+</div>
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    
+
+    
+
+    
+
+    
+        <p class="tag-source">
+            <a href="VertexFormat.js.html" class="button">View Source</a>
+            <span>
+                <a href="VertexFormat.js.html">VertexFormat.js</a>, <a href="VertexFormat.js.html#line24">line 24</a>
+            </span>
+        </p>
+    
+</dl>
+
+
+
+
+
+</div>
+            
+                <div class="member">
+
+    <span class="method-parameter is-pulled-right">
+        <label>Type:</label>
+        
+<span class="param-type">boolean</span>
+
+
+    </span>
+
+<h4 class="name" id="normalize">
+    
+    <span class="code-name">
+        normalize
+    </span>
+</h4>
+
+
+
+
+<div class="description">
+    Indicates if the value need to be normalized by the graphic API
+</div>
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    
+
+    
+
+    
+
+    
+        <p class="tag-source">
+            <a href="VertexFormat.js.html" class="button">View Source</a>
+            <span>
+                <a href="VertexFormat.js.html">VertexFormat.js</a>, <a href="VertexFormat.js.html#line32">line 32</a>
+            </span>
+        </p>
+    
+</dl>
+
+
+
+
+
+</div>
+            
+                <div class="member">
+
+    <span class="method-parameter is-pulled-right">
+        <label>Type:</label>
+        
+<span class="param-type">number</span>
+
+
+    </span>
+
+<h4 class="name" id="offset">
+    
+    <span class="code-name">
+        offset
+    </span>
+</h4>
+
+
+
+
+<div class="description">
+    Offset in the vertex data
+</div>
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    
+
+    
+
+    
+
+    
+        <p class="tag-source">
+            <a href="VertexFormat.js.html" class="button">View Source</a>
+            <span>
+                <a href="VertexFormat.js.html">VertexFormat.js</a>, <a href="VertexFormat.js.html#line40">line 40</a>
+            </span>
+        </p>
+    
+</dl>
+
+
+
+
+
+</div>
+            
+                <div class="member">
+
+    <span class="method-parameter is-pulled-right">
+        <label>Type:</label>
+        
+<span class="param-type">number</span>
+
+
+    </span>
+
+<h4 class="name" id="stream">
+    
+    <span class="code-name">
+        stream
+    </span>
+</h4>
+
+
+
+
+<div class="description">
+    Stream index
+</div>
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    
+
+    
+
+    
+
+    
+        <p class="tag-source">
+            <a href="VertexFormat.js.html" class="button">View Source</a>
+            <span>
+                <a href="VertexFormat.js.html">VertexFormat.js</a>, <a href="VertexFormat.js.html#line48">line 48</a>
+            </span>
+        </p>
+    
+</dl>
+
+
+
+
+
+</div>
+            
+                <div class="member">
+
+    <span class="method-parameter is-pulled-right">
+        <label>Type:</label>
+        
+<span class="param-type">number</span>
+
+
+    </span>
+
+<h4 class="name" id="stride">
+    
+    <span class="code-name">
+        stride
+    </span>
+</h4>
+
+
+
+
+<div class="description">
+    Stream stride.
+</div>
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    
+
+    
+
+    
+
+    
+        <p class="tag-source">
+            <a href="VertexFormat.js.html" class="button">View Source</a>
+            <span>
+                <a href="VertexFormat.js.html">VertexFormat.js</a>, <a href="VertexFormat.js.html#line55">line 55</a>
+            </span>
+        </p>
+    
+</dl>
+
+
+
+
+
+</div>
+            
+                <div class="member">
+
+    <span class="method-parameter is-pulled-right">
+        <label>Type:</label>
+        
+<span class="param-type"><a href="VertexElement.html#.Type">VertexElement.Type</a></span>
+
+
+    </span>
+
+<h4 class="name" id="type">
+    
+    <span class="code-name">
+        type
+    </span>
+</h4>
+
+
+
+
+<div class="description">
+    Type of value
+</div>
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    
+
+    
+
+    
+
+    
+        <p class="tag-source">
+            <a href="VertexFormat.js.html" class="button">View Source</a>
+            <span>
+                <a href="VertexFormat.js.html">VertexFormat.js</a>, <a href="VertexFormat.js.html#line63">line 63</a>
+            </span>
+        </p>
+    
+</dl>
+
+
+
+
+
+</div>
+            
+                <div class="member">
+
+    <span class="method-parameter is-pulled-right">
+        <label>Type:</label>
+        
+<span class="param-type"><a href="VertexElement.html#.Usage">VertexElement.Usage</a></span>
+
+
+    </span>
+
+<h4 class="name" id="usage">
+    
+    <span class="code-name">
+        usage
+    </span>
+</h4>
+
+
+
+
+<div class="description">
+    Type of element
+</div>
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    
+
+    
+
+    
+
+    
+        <p class="tag-source">
+            <a href="VertexFormat.js.html" class="button">View Source</a>
+            <span>
+                <a href="VertexFormat.js.html">VertexFormat.js</a>, <a href="VertexFormat.js.html#line71">line 71</a>
+            </span>
+        </p>
+    
+</dl>
+
+
+
+
+
+</div>
+            
+            </div>
+        </div>
+    
+
+    
+
+    
+
+    
+</article>
+
+</section>
+
+
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+<footer class="footer">
+    <div class="content has-text-centered">
+        <p>Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Sat Feb 02 2019 17:23:43 GMT+0100 (heure normale d’Europe centrale)</p>
+        <p class="sidebar-created-by">
+            <a href="https://github.com/SoftwareBrothers/better-docs" target="_blank">BetterDocs theme</a> provided with <i class="fas fa-heart"></i> by 
+            <a href="http://softwarebrothers.co" target="_blank">SoftwareBrothers</a>
+        </p>
+    </div>
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/app.min.js"></script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

@@ -3,7 +3,7 @@ import Node from './Node';
 /**
  * A scene
  *
- * @category Core
+ * @category Scene management
  */
 class Scene {
     /**

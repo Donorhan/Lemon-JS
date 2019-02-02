@@ -1,0 +1,326 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Extra/ProgramLibrary.js</title>
+
+    <script src="scripts/prettify/prettify.js"></script>
+    <script src="scripts/prettify/lang-css.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link href="https://fonts.googleapis.com/css?family=Muli:100,400,700|Oswald:300|Inconsolata,700" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+    <link type="text/css" rel="stylesheet" href="https://jmblog.github.io/color-themes-for-google-code-prettify/themes/tomorrow-night.min.css">
+    <link type="text/css" rel="stylesheet" href="styles/app.min.css">
+</head>
+
+<body>
+    <div id="stickyNavbarOverlay"></div>
+    <div class="top-navbar">
+        <div class="container">
+            <nav class="navbar" role="navigation" aria-label="main navigation">
+                <div class="navbar-brand">
+                    
+                     
+                        <h1 class="navbar-item">LemonJS Documentation</h1>
+                    
+                    <a id="hamburger" role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
+                        <span aria-hidden="true"></span>
+                        <span aria-hidden="true"></span>
+                        <span aria-hidden="true"></span>
+                    </a>
+                </div>
+                 
+                <div class="navbar-menu">
+                    <div class="navbar-end">
+                    
+                        <div class="navbar-item">
+                            <a href="https://github.com/Donorhan/Lemon-JS" target="_blank">Github</a>
+                        </div>
+                    
+                    </div>
+                </div>
+                
+            </nav>
+        </div>
+    </div>
+    <div class="container">
+        <div class="columns">
+            <div class="column is-3" id="sidebarNav">
+                <div class="sidebar">
+                    <nav>
+                        <h2><a href="index.html">Home</a></h2><div class="category"></div><div class="category"><h2>Core</h2><h3>Classes</h3><ul><li><a href="BlendMode.html">BlendMode</a></li><li><a href="Color.html">Color</a></li><li><a href="Context.html">Context</a></li><li><a href="ContextResource.html">ContextResource</a></li><li><a href="Img.html">Img</a></li><li><a href="StateBlock.html">StateBlock</a></li></ul></div><div class="category"><h2>Geometry</h2><h3>Classes</h3><ul><li><a href="Box.html">Box</a></li><li><a href="Frustum.html">Frustum</a></li><li><a href="Geometry.html">Geometry</a></li><li><a href="Plane.html">Plane</a></li><li><a href="Ray.html">Ray</a></li><li><a href="Transformable.html">Transformable</a></li><li><a href="VertexElement.html">VertexElement</a></li><li><a href="VertexFormat.html">VertexFormat</a></li></ul></div><div class="category"><h2>WebGL</h2><h3>Classes</h3><ul><li><a href="BufferData.html">BufferData</a></li><li><a href="Cache.html">Cache</a></li><li><a href="Instances.html">Instances</a></li><li><a href="TypesConverter.html">TypesConverter</a></li><li><a href="WebGL.html">WebGL</a></li></ul></div><div class="category"><h2>Scene</h2><h3>Classes</h3><ul><li><a href="Camera.html">Camera</a></li></ul></div><div class="category"><h2>Culling</h2><h3>Classes</h3><ul><li><a href="Culler.html">Culler</a></li><li><a href="CullingManager.html">CullingManager</a></li><li><a href="FrustumCuller.html">FrustumCuller</a></li></ul></div><div class="category"><h2>Types</h2><h3>Classes</h3><ul><li><a href="DepthFunction.html">DepthFunction</a></li><li><a href="DrawingMode.html">DrawingMode</a></li><li><a href="FaceCulling.html">FaceCulling</a></li><li><a href="StencilFunction.html">StencilFunction</a></li><li><a href="StencilOperation.html">StencilOperation</a></li><li><a href="Type.html">Type</a></li></ul></div><div class="category"><h2>Lights</h2><h3>Classes</h3><ul><li><a href="DirectionalLight.html">DirectionalLight</a></li><li><a href="Light.html">Light</a></li><li><a href="PointLight.html">PointLight</a></li><li><a href="SpotLight.html">SpotLight</a></li></ul></div><div class="category"><h2>Drawables</h2><h3>Classes</h3><ul><li><a href="Drawable.html">Drawable</a></li><li><a href="Mesh.html">Mesh</a></li><li><a href="Model.html">Model</a></li><li><a href="Skybox.html">Skybox</a></li><li><a href="Sprite.html">Sprite</a></li></ul></div><div class="category"><h2>Loaders</h2><h3>Classes</h3><ul><li><a href="FileLoader.html">FileLoader</a></li><li><a href="ModelLoader.html">ModelLoader</a></li></ul></div><div class="category"><h2>Material</h2><h3>Classes</h3><ul><li><a href="Material.html">Material</a></li><li><a href="Pass.html">Pass</a></li><li><a href="PassParameter.html">PassParameter</a></li></ul></div><div class="category"><h2>Rendering</h2><h3>Classes</h3><ul><li><a href="MeshCommand.html">MeshCommand</a></li><li><a href="RenderAPI.html">RenderAPI</a></li><li><a href="RenderCanvas.html">RenderCanvas</a></li><li><a href="RenderCommand.html">RenderCommand</a></li><li><a href="RenderTarget.html">RenderTarget</a></li><li><a href="RenderTask.html">RenderTask</a></li><li><a href="RenderTexture.html">RenderTexture</a></li><li><a href="SkyboxCommand.html">SkyboxCommand</a></li><li><a href="SpriteCommand.html">SpriteCommand</a></li></ul></div><div class="category"><h2>Scene management</h2><h3>Classes</h3><ul><li><a href="Node.html">Node</a></li><li><a href="Scene.html">Scene</a></li></ul></div><div class="category"><h2>Shaders</h2><h3>Classes</h3><ul><li><a href="PostEffect.html">PostEffect</a></li><li><a href="Program.html">Program</a></li><li><a href="ProgramElement.html">ProgramElement</a></li><li><a href="ProgramLibrary.html">ProgramLibrary</a></li></ul></div><div class="category"><h2>Textures</h2><h3>Classes</h3><ul><li><a href="Texture.html">Texture</a></li><li><a href="TextureCube.html">TextureCube</a></li><li><a href="TextureInterface.html">TextureInterface</a></li><li><a href="TextureVideo.html">TextureVideo</a></li></ul></div><div class="category"><h2>Math</h2><h3>Global</h3><ul><li><a href="global.html#multiplyWithMat4">multiplyWithMat4</a></li><li><a href="global.html#project">project</a></li><li><a href="global.html#unproject">unproject</a></li></ul></div>
+                    </nav>
+                </div>
+            </div>
+            <div class="column is-9-desktop">
+                <div class="content" id="main-content-wrapper">
+                    <header class="page-title">
+                        <p>Source</p>
+                        <h1>Extra/ProgramLibrary.js</h1>
+                    </header>
+                    
+                    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import FileLoader from '../Loaders/FileLoader';
+import { Program } from '../Program';
+
+/**
+ * A class to manage programs/shaders
+ *
+ * @category Shaders
+ */
+class ProgramLibrary {
+    /**
+     * Get the program with the given name
+     *
+     * @param {string} name Program's name
+     * @return {Program} A Program instance, otherwise null is the program doesn't exist
+     */
+    static get(name) {
+        let program = ProgramLibrary.programs[name];
+        if (!program) {
+            program = new Program();
+            ProgramLibrary.programs[name] = program;
+        }
+
+        return program;
+    }
+
+    /**
+     * Load a new program
+     *
+     * @param {string} name Program's name
+     * @param {string} vertexShaderFile Path to the vertex shader file
+     * @param {string} fragmentShaderFile Path to the fragment shader file
+     * @param {Array.&lt;string>=} defines An array with defines data
+     * @return {?Program} A Program instance
+     */
+    static async loadFromFile(name, vertexShaderFile, fragmentShaderFile, defines) {
+        // Get/Create program
+        const program = ProgramLibrary.get(name);
+
+        // Chunck variables
+        const chunkPatterns = /include\[([^\]]*)\]/g;
+
+        // Prepare cache
+        ProgramLibrary.cache[name] = {
+            data: null,
+            ready: false,
+            sources: [],
+        };
+
+        // Callback processing chunk
+        const callback = async (type, data) => {
+            const newProgram = ProgramLibrary.programs[name];
+            const sources = newProgram.getSources();
+            const chunks = data.match(chunkPatterns);
+
+            // Analyse if the file ask external chunks
+            if (chunks) {
+                const waitingChunks = [];
+                for (let i = 0; i &lt; chunks.length; i += 1) {
+                    const chunk = chunks[i];
+                    const chunkPath = chunk.substring(chunk.lastIndexOf('[') + 1, chunk.lastIndexOf(']'));
+
+                    if (!ProgramLibrary.chunks[chunkPath]) {
+                        ProgramLibrary.chunks[chunkPath] = { data: '', ready: false };
+                        waitingChunks.push(FileLoader.load(`${ProgramLibrary.folderPath}${chunkPath}`, chunkPath));
+                    }
+                }
+
+                await Promise.all(waitingChunks).then((results) => {
+                    results.forEach((response) => {
+                        ProgramLibrary.chunks[response.name].data = response.data;
+                        ProgramLibrary.chunks[response.name].ready = true;
+                    });
+                });
+
+                // Try to update
+                ProgramLibrary.tryUpdateWaitingPrograms();
+
+                // Everything is in memory? We can fill the program directly
+                const result = ProgramLibrary.replaceChunks(data);
+                ProgramLibrary.fillProgram(sources, newProgram, name, type, result || '');
+            } else {
+                ProgramLibrary.fillProgram(sources, newProgram, name, type, data);
+            }
+        };
+
+        // Load vertex file
+        const vertexResponse = await FileLoader.load(`${vertexShaderFile}`);
+        const vertexData = ProgramLibrary.addDefines(vertexResponse.data, defines || []);
+        ProgramLibrary.cache[name].sources[0] = vertexData;
+        await callback(ProgramLibrary.Target.Vertex, vertexData);
+
+        // Load fragment file
+        const fragmentResponse = await FileLoader.load(`${fragmentShaderFile}`);
+        const fragmentData = ProgramLibrary.addDefines(fragmentResponse.data, defines || []);
+        ProgramLibrary.cache[name].sources[1] = fragmentData;
+        await callback(ProgramLibrary.Target.Fragment, fragmentData);
+
+        return program;
+    }
+
+    /**
+     * Shortcut to fill program with sources and clear the cache.
+     * @private
+     * @param {Array.&lt;string>} sources Vertex and fragment sources.
+     * @param {Program} program A Program instance.
+     * @param {string} name Program's name.
+     * @param {ProgramLibrary.Target} type Type of data.
+     * @param {string} data Data to add to the program.
+     */
+    static fillProgram(sources, program, name, type, data) {
+        if (type === ProgramLibrary.Target.Vertex) {
+            program.loadFromData(data, sources[1]);
+        } else {
+            program.loadFromData(sources[0], data);
+        }
+
+        if (program.isReady()) {
+            delete ProgramLibrary.cache[name];
+        }
+    }
+
+    /**
+     * Update waiting programs
+     *
+     * @private
+     */
+    static tryUpdateWaitingPrograms() {
+        for (const i in ProgramLibrary.programs) {
+            if (!ProgramLibrary.programs[i].isReady()) {
+                const sources = ProgramLibrary.programs[i].getSources();
+                for (let j = 0; j &lt; 2; j += 1) {
+                    if (!sources[j]) {
+                        const source = ProgramLibrary.replaceChunks(ProgramLibrary.cache[i].sources[j]);
+                        if (source) {
+                            ProgramLibrary.fillProgram(sources, ProgramLibrary.programs[i], i, (j === 0) ? ProgramLibrary.Target.Vertex : ProgramLibrary.Target.Fragment, source);
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    /**
+     * Fill programs with chunks data
+     *
+     * @private
+     * @param {string} data Data to process
+     * @return {?string} A string if everything is ok, otherwise null
+     */
+    static replaceChunks(data) {
+        const chunkPattern = /include\[([^\]]*)\]/;
+        let result = data;
+
+        while (chunkPattern.test(result)) {
+            const chunk = result.match(chunkPattern);
+            const chunkName = chunk[0].substring(chunk[0].lastIndexOf('[') + 1, chunk[0].lastIndexOf(']'));
+
+            // We need to wait all chunks to continue.
+            if (!ProgramLibrary.chunks[chunkName] || !ProgramLibrary.chunks[chunkName].ready) {
+                return null;
+            }
+
+            result = result.replace(chunk[0], ProgramLibrary.chunks[chunkName].data || '');
+        }
+
+        return result;
+    }
+
+    /**
+     * Add defines to the program
+     *
+     * @private
+     * @param {string} source Source data
+     * @param {Array.&lt;string>} defines An array with defines to add to the source parameter
+     * @return {string} The new string
+     */
+    static addDefines(source, defines) {
+        if (!defines) {
+            return source;
+        }
+
+        let defineString = '';
+        for (let i = 0; i &lt; defines.length; i += 1) {
+            defineString += `#define ${defines[i]}\n`;
+        }
+
+        return defineString + source;
+    }
+}
+
+/**
+ * Put data in cache due to asynchrone loading
+ *
+ * @type {Array.&lt;{data: null, ready: boolean, sources: Array&lt;string>}>}
+ */
+ProgramLibrary.cache = [];
+
+/**
+ * Chunks in cache
+ *
+ * @type {Array.&lt;{data: string, ready: boolean}>}
+ */
+ProgramLibrary.chunks = [];
+
+/**
+ * Path to the folder with shaders
+ *
+ * @type {string}
+ */
+ProgramLibrary.folderPath = '../shaders/';
+
+/**
+ * Shaders
+ *
+ * @type {Array.&lt;Program>}
+ */
+ProgramLibrary.programs = [];
+
+/**
+ * Target
+ *
+ * @enum {number}
+ */
+ProgramLibrary.Target = { Vertex: 0, Fragment: 1 };
+
+export default ProgramLibrary;
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+<footer class="footer">
+    <div class="content has-text-centered">
+        <p>Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Sat Feb 02 2019 17:23:42 GMT+0100 (heure normale d’Europe centrale)</p>
+        <p class="sidebar-created-by">
+            <a href="https://github.com/SoftwareBrothers/better-docs" target="_blank">BetterDocs theme</a> provided with <i class="fas fa-heart"></i> by 
+            <a href="http://softwarebrothers.co" target="_blank">SoftwareBrothers</a>
+        </p>
+    </div>
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/app.min.js"></script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

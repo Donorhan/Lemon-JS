@@ -1,0 +1,5008 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: WebGL</title>
+
+    <script src="scripts/prettify/prettify.js"></script>
+    <script src="scripts/prettify/lang-css.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link href="https://fonts.googleapis.com/css?family=Muli:100,400,700|Oswald:300|Inconsolata,700" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+    <link type="text/css" rel="stylesheet" href="https://jmblog.github.io/color-themes-for-google-code-prettify/themes/tomorrow-night.min.css">
+    <link type="text/css" rel="stylesheet" href="styles/app.min.css">
+</head>
+
+<body>
+    <div id="stickyNavbarOverlay"></div>
+    <div class="top-navbar">
+        <div class="container">
+            <nav class="navbar" role="navigation" aria-label="main navigation">
+                <div class="navbar-brand">
+                    
+                     
+                        <h1 class="navbar-item">LemonJS Documentation</h1>
+                    
+                    <a id="hamburger" role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
+                        <span aria-hidden="true"></span>
+                        <span aria-hidden="true"></span>
+                        <span aria-hidden="true"></span>
+                    </a>
+                </div>
+                 
+                <div class="navbar-menu">
+                    <div class="navbar-end">
+                    
+                        <div class="navbar-item">
+                            <a href="https://github.com/Donorhan/Lemon-JS" target="_blank">Github</a>
+                        </div>
+                    
+                    </div>
+                </div>
+                
+            </nav>
+        </div>
+    </div>
+    <div class="container">
+        <div class="columns">
+            <div class="column is-3" id="sidebarNav">
+                <div class="sidebar">
+                    <nav>
+                        <h2><a href="index.html">Home</a></h2><div class="category"></div><div class="category"><h2>Core</h2><h3>Classes</h3><ul><li><a href="BlendMode.html">BlendMode</a></li><li><a href="Color.html">Color</a></li><li><a href="Context.html">Context</a></li><li><a href="ContextResource.html">ContextResource</a></li><li><a href="Img.html">Img</a></li><li><a href="StateBlock.html">StateBlock</a></li></ul></div><div class="category"><h2>Geometry</h2><h3>Classes</h3><ul><li><a href="Box.html">Box</a></li><li><a href="Frustum.html">Frustum</a></li><li><a href="Geometry.html">Geometry</a></li><li><a href="Plane.html">Plane</a></li><li><a href="Ray.html">Ray</a></li><li><a href="Transformable.html">Transformable</a></li><li><a href="VertexElement.html">VertexElement</a></li><li><a href="VertexFormat.html">VertexFormat</a></li></ul></div><div class="category"><h2>WebGL</h2><h3>Classes</h3><ul><li><a href="BufferData.html">BufferData</a></li><li><a href="Cache.html">Cache</a></li><li><a href="Instances.html">Instances</a></li><li><a href="TypesConverter.html">TypesConverter</a></li><li><a href="WebGL.html">WebGL</a></li></ul></div><div class="category"><h2>Scene</h2><h3>Classes</h3><ul><li><a href="Camera.html">Camera</a></li></ul></div><div class="category"><h2>Culling</h2><h3>Classes</h3><ul><li><a href="Culler.html">Culler</a></li><li><a href="CullingManager.html">CullingManager</a></li><li><a href="FrustumCuller.html">FrustumCuller</a></li></ul></div><div class="category"><h2>Types</h2><h3>Classes</h3><ul><li><a href="DepthFunction.html">DepthFunction</a></li><li><a href="DrawingMode.html">DrawingMode</a></li><li><a href="FaceCulling.html">FaceCulling</a></li><li><a href="StencilFunction.html">StencilFunction</a></li><li><a href="StencilOperation.html">StencilOperation</a></li><li><a href="Type.html">Type</a></li></ul></div><div class="category"><h2>Lights</h2><h3>Classes</h3><ul><li><a href="DirectionalLight.html">DirectionalLight</a></li><li><a href="Light.html">Light</a></li><li><a href="PointLight.html">PointLight</a></li><li><a href="SpotLight.html">SpotLight</a></li></ul></div><div class="category"><h2>Drawables</h2><h3>Classes</h3><ul><li><a href="Drawable.html">Drawable</a></li><li><a href="Mesh.html">Mesh</a></li><li><a href="Model.html">Model</a></li><li><a href="Skybox.html">Skybox</a></li><li><a href="Sprite.html">Sprite</a></li></ul></div><div class="category"><h2>Loaders</h2><h3>Classes</h3><ul><li><a href="FileLoader.html">FileLoader</a></li><li><a href="ModelLoader.html">ModelLoader</a></li></ul></div><div class="category"><h2>Material</h2><h3>Classes</h3><ul><li><a href="Material.html">Material</a></li><li><a href="Pass.html">Pass</a></li><li><a href="PassParameter.html">PassParameter</a></li></ul></div><div class="category"><h2>Rendering</h2><h3>Classes</h3><ul><li><a href="MeshCommand.html">MeshCommand</a></li><li><a href="RenderAPI.html">RenderAPI</a></li><li><a href="RenderCanvas.html">RenderCanvas</a></li><li><a href="RenderCommand.html">RenderCommand</a></li><li><a href="RenderTarget.html">RenderTarget</a></li><li><a href="RenderTask.html">RenderTask</a></li><li><a href="RenderTexture.html">RenderTexture</a></li><li><a href="SkyboxCommand.html">SkyboxCommand</a></li><li><a href="SpriteCommand.html">SpriteCommand</a></li></ul></div><div class="category"><h2>Scene management</h2><h3>Classes</h3><ul><li><a href="Node.html">Node</a></li><li><a href="Scene.html">Scene</a></li></ul></div><div class="category"><h2>Shaders</h2><h3>Classes</h3><ul><li><a href="PostEffect.html">PostEffect</a></li><li><a href="Program.html">Program</a></li><li><a href="ProgramElement.html">ProgramElement</a></li><li><a href="ProgramLibrary.html">ProgramLibrary</a></li></ul></div><div class="category"><h2>Textures</h2><h3>Classes</h3><ul><li><a href="Texture.html">Texture</a></li><li><a href="TextureCube.html">TextureCube</a></li><li><a href="TextureInterface.html">TextureInterface</a></li><li><a href="TextureVideo.html">TextureVideo</a></li></ul></div><div class="category"><h2>Math</h2><h3>Global</h3><ul><li><a href="global.html#multiplyWithMat4">multiplyWithMat4</a></li><li><a href="global.html#project">project</a></li><li><a href="global.html#unproject">unproject</a></li></ul></div>
+                    </nav>
+                </div>
+            </div>
+            <div class="column is-9-desktop">
+                <div class="content" id="main-content-wrapper">
+                    <header class="page-title">
+                        <p>Class</p>
+                        <h1>WebGL</h1>
+                    </header>
+                    
+                    
+
+
+
+
+<section>
+
+<header>
+    
+        <h2><span class="attribs"><span class="type-signature"></span></span>WebGL<span class="signature">()</span><span class="type-signature"></span></h2>
+        
+            <div class="class-description">WebGL renderer</div>
+        
+    
+</header>
+
+<article>
+    <div class="container-overview">
+    
+        
+            <div class='vertical-section'>
+                <h3 class="title"><span>Constructor</span></h3>
+                <div class="members">
+                    <div class="member">
+
+    
+    <h4 class="name" id="WebGL">
+        
+        <span class="code-name">
+            new WebGL<span class="signature">()</span><span class="type-signature"></span>
+        </span>
+    </h4>
+    
+
+    
+    
+    <div class="description">
+        Constructor
+    </div>
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    
+
+    
+
+    
+
+    
+        <p class="tag-source">
+            <a href="Renderers_WebGL_RenderWebGL.js.html" class="button">View Source</a>
+            <span>
+                <a href="Renderers_WebGL_RenderWebGL.js.html">Renderers/WebGL/RenderWebGL.js</a>, <a href="Renderers_WebGL_RenderWebGL.js.html#line27">line 27</a>
+            </span>
+        </p>
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+                </div>
+            </div>
+        
+    
+    </div>
+
+    
+        <h3 class="subsection-title">Extends</h3>
+
+        
+
+
+    <ul>
+        <li><a href="RenderAPI.html">RenderAPI</a></li>
+    </ul>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+        <div class='vertical-section'>
+            <h3 class="title"><span>Members</span></h3>
+            <div class="members">
+            
+                <div class="member">
+
+    <span class="method-parameter is-pulled-right">
+        <label>Type:</label>
+        
+<span class="param-type"><a href="Camera.html">Camera</a></span>
+
+
+    </span>
+
+<h4 class="name" id="activeCamera">
+    
+        
+            <span class='tag'>protected</span>
+        
+    
+    <span class="code-name">
+        activeCamera
+    </span>
+</h4>
+
+
+
+
+<div class="description">
+    Camera to use for next draw calls and graphics calculs
+</div>
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+    <dt class="inherited-from">Inherited From:</dt>
+    <dd class="inherited-from"><ul class="dummy"><li>
+        <a href="RenderAPI.html#activeCamera">RenderAPI#activeCamera</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    
+
+    
+
+    
+
+    
+        <p class="tag-source">
+            <a href="Renderers_RenderAPI.js.html" class="button">View Source</a>
+            <span>
+                <a href="Renderers_RenderAPI.js.html">Renderers/RenderAPI.js</a>, <a href="Renderers_RenderAPI.js.html#line18">line 18</a>
+            </span>
+        </p>
+    
+</dl>
+
+
+
+
+
+</div>
+            
+            </div>
+        </div>
+    
+
+    
+        <div class='vertical-section'>
+            <h3 class="title"><span>Methods</span></h3>
+            <div class="members">
+            
+                <div class="member">
+
+    
+    <h4 class="name" id=".getInstance">
+        
+            
+                <span class='tag'>static</span>
+            
+        
+        <span class="code-name">
+            getInstance<span class="signature">()</span><span class="type-signature"></span>
+        </span>
+    </h4>
+    
+
+    
+    
+    <div class="description">
+        Get unique instance
+    </div>
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    
+
+    
+
+    
+
+    
+        <p class="tag-source">
+            <a href="Renderers_WebGL_RenderWebGL.js.html" class="button">View Source</a>
+            <span>
+                <a href="Renderers_WebGL_RenderWebGL.js.html">Renderers/WebGL/RenderWebGL.js</a>, <a href="Renderers_WebGL_RenderWebGL.js.html#line81">line 81</a>
+            </span>
+        </p>
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+            
+                <div class="member">
+
+    
+    <h4 class="name" id="applyStateBlock">
+        
+        <span class="code-name">
+            applyStateBlock<span class="signature">(stateBlock)</span><span class="type-signature"></span>
+        </span>
+    </h4>
+    
+
+    
+    
+    <div class="description">
+        Apply the given state block
+    </div>
+    
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        
+<tr class="deep-level-0">
+  
+      <td class="name"><code>stateBlock</code></td>
+  
+
+  <td class="type">
+  
+      
+<span class="param-type"><a href="StateBlock.html">StateBlock</a></span>
+
+
+  
+  </td>
+
+  
+
+  
+
+  <td class="description last">A StateBlock instance</td>
+</tr>
+
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+    <dt class="inherited-from">Inherited From:</dt>
+    <dd class="inherited-from"><ul class="dummy"><li>
+        <a href="RenderAPI.html#applyStateBlock">RenderAPI#applyStateBlock</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    
+
+    
+
+    
+
+    
+        <p class="tag-source">
+            <a href="Renderers_RenderAPI.js.html" class="button">View Source</a>
+            <span>
+                <a href="Renderers_RenderAPI.js.html">Renderers/RenderAPI.js</a>, <a href="Renderers_RenderAPI.js.html#line33">line 33</a>
+            </span>
+        </p>
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+            
+                <div class="member">
+
+    
+    <h4 class="name" id="bindFrameBuffer">
+        
+        <span class="code-name">
+            bindFrameBuffer<span class="signature">(framebufferID)</span><span class="type-signature"></span>
+        </span>
+    </h4>
+    
+
+    
+    
+    <div class="description">
+        Bind the given framebuffer
+    </div>
+    
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        
+<tr class="deep-level-0">
+  
+      <td class="name"><code>framebufferID</code></td>
+  
+
+  <td class="type">
+  
+      
+<span class="param-type">number</span>
+
+
+  
+  </td>
+
+  
+
+  
+
+  <td class="description last">An identifier, -1 to bind default the frame buffer</td>
+</tr>
+
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-overrides">Overrides:</dt>
+    <dd class="tag-overrides"><ul class="dummy"><li>
+        <a href="RenderAPI.html#bindFrameBuffer">RenderAPI#bindFrameBuffer</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    
+
+    
+
+    
+
+    
+        <p class="tag-source">
+            <a href="Renderers_WebGL_RenderWebGL.js.html" class="button">View Source</a>
+            <span>
+                <a href="Renderers_WebGL_RenderWebGL.js.html">Renderers/WebGL/RenderWebGL.js</a>, <a href="Renderers_WebGL_RenderWebGL.js.html#line103">line 103</a>
+            </span>
+        </p>
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+            
+                <div class="member">
+
+    
+    <h4 class="name" id="bindLight">
+        
+        <span class="code-name">
+            bindLight<span class="signature">(light)</span><span class="type-signature"></span>
+        </span>
+    </h4>
+    
+
+    
+    
+    <div class="description">
+        Bind light
+    </div>
+    
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        
+<tr class="deep-level-0">
+  
+      <td class="name"><code>light</code></td>
+  
+
+  <td class="type">
+  
+      
+<span class="param-type"><a href="Light.html">Light</a></span>
+
+
+  
+  </td>
+
+  
+
+  
+
+  <td class="description last">A Light instance</td>
+</tr>
+
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-overrides">Overrides:</dt>
+    <dd class="tag-overrides"><ul class="dummy"><li>
+        <a href="RenderAPI.html#bindLight">RenderAPI#bindLight</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    
+
+    
+
+    
+
+    
+        <p class="tag-source">
+            <a href="Renderers_WebGL_RenderWebGL.js.html" class="button">View Source</a>
+            <span>
+                <a href="Renderers_WebGL_RenderWebGL.js.html">Renderers/WebGL/RenderWebGL.js</a>, <a href="Renderers_WebGL_RenderWebGL.js.html#line94">line 94</a>
+            </span>
+        </p>
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+            
+                <div class="member">
+
+    
+    <h4 class="name" id="bindTexture">
+        
+        <span class="code-name">
+            bindTexture<span class="signature">(slot, texture)</span><span class="type-signature"></span>
+        </span>
+    </h4>
+    
+
+    
+    
+    <div class="description">
+        Bind texture to the the given slot
+    </div>
+    
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        
+<tr class="deep-level-0">
+  
+      <td class="name"><code>slot</code></td>
+  
+
+  <td class="type">
+  
+      
+<span class="param-type">number</span>
+
+
+  
+  </td>
+
+  
+
+  
+
+  <td class="description last">Targeted slot's index</td>
+</tr>
+
+
+    
+
+        
+<tr class="deep-level-0">
+  
+      <td class="name"><code>texture</code></td>
+  
+
+  <td class="type">
+  
+      
+<span class="param-type">Private.TextureInterface</span>
+
+
+  
+  </td>
+
+  
+
+  
+
+  <td class="description last">A Texture instance</td>
+</tr>
+
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-overrides">Overrides:</dt>
+    <dd class="tag-overrides"><ul class="dummy"><li>
+        <a href="RenderAPI.html#bindTexture">RenderAPI#bindTexture</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    
+
+    
+
+    
+
+    
+        <p class="tag-source">
+            <a href="Renderers_WebGL_RenderWebGL.js.html" class="button">View Source</a>
+            <span>
+                <a href="Renderers_WebGL_RenderWebGL.js.html">Renderers/WebGL/RenderWebGL.js</a>, <a href="Renderers_WebGL_RenderWebGL.js.html#line124">line 124</a>
+            </span>
+        </p>
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+            
+                <div class="member">
+
+    
+    <h4 class="name" id="bindTextureCube">
+        
+        <span class="code-name">
+            bindTextureCube<span class="signature">(slot, texture)</span><span class="type-signature"></span>
+        </span>
+    </h4>
+    
+
+    
+    
+    <div class="description">
+        Bind texture cube to the the given slot
+    </div>
+    
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        
+<tr class="deep-level-0">
+  
+      <td class="name"><code>slot</code></td>
+  
+
+  <td class="type">
+  
+      
+<span class="param-type">number</span>
+
+
+  
+  </td>
+
+  
+
+  
+
+  <td class="description last">Targeted slot's index</td>
+</tr>
+
+
+    
+
+        
+<tr class="deep-level-0">
+  
+      <td class="name"><code>texture</code></td>
+  
+
+  <td class="type">
+  
+      
+<span class="param-type"><a href="TextureCube.html">TextureCube</a></span>
+
+
+  
+  </td>
+
+  
+
+  
+
+  <td class="description last">A TextureCube instance</td>
+</tr>
+
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-overrides">Overrides:</dt>
+    <dd class="tag-overrides"><ul class="dummy"><li>
+        <a href="RenderAPI.html#bindTextureCube">RenderAPI#bindTextureCube</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    
+
+    
+
+    
+
+    
+        <p class="tag-source">
+            <a href="Renderers_WebGL_RenderWebGL.js.html" class="button">View Source</a>
+            <span>
+                <a href="Renderers_WebGL_RenderWebGL.js.html">Renderers/WebGL/RenderWebGL.js</a>, <a href="Renderers_WebGL_RenderWebGL.js.html#line199">line 199</a>
+            </span>
+        </p>
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+            
+                <div class="member">
+
+    
+    <h4 class="name" id="clear">
+        
+        <span class="code-name">
+            clear<span class="signature">(color)</span><span class="type-signature"></span>
+        </span>
+    </h4>
+    
+
+    
+    
+    <div class="description">
+        Clear the rendering target
+    </div>
+    
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        
+<tr class="deep-level-0">
+  
+      <td class="name"><code>color</code></td>
+  
+
+  <td class="type">
+  
+      
+<span class="param-type"><a href="Color.html">Color</a></span>
+
+
+  
+  </td>
+
+  
+
+  
+
+  <td class="description last">A Color instance</td>
+</tr>
+
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-overrides">Overrides:</dt>
+    <dd class="tag-overrides"><ul class="dummy"><li>
+        <a href="RenderAPI.html#clear">RenderAPI#clear</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    
+
+    
+
+    
+
+    
+        <p class="tag-source">
+            <a href="Renderers_WebGL_RenderWebGL.js.html" class="button">View Source</a>
+            <span>
+                <a href="Renderers_WebGL_RenderWebGL.js.html">Renderers/WebGL/RenderWebGL.js</a>, <a href="Renderers_WebGL_RenderWebGL.js.html#line247">line 247</a>
+            </span>
+        </p>
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+            
+                <div class="member">
+
+    
+    <h4 class="name" id="clearCache">
+        
+        <span class="code-name">
+            clearCache<span class="signature">()</span><span class="type-signature"></span>
+        </span>
+    </h4>
+    
+
+    
+    
+    <div class="description">
+        Clear cache.
+    </div>
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-overrides">Overrides:</dt>
+    <dd class="tag-overrides"><ul class="dummy"><li>
+        <a href="RenderAPI.html#clearCache">RenderAPI#clearCache</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    
+
+    
+
+    
+
+    
+        <p class="tag-source">
+            <a href="Renderers_WebGL_RenderWebGL.js.html" class="button">View Source</a>
+            <span>
+                <a href="Renderers_WebGL_RenderWebGL.js.html">Renderers/WebGL/RenderWebGL.js</a>, <a href="Renderers_WebGL_RenderWebGL.js.html#line261">line 261</a>
+            </span>
+        </p>
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+            
+                <div class="member">
+
+    
+    <h4 class="name" id="createFrameBuffer">
+        
+        <span class="code-name">
+            createFrameBuffer<span class="signature">()</span><span class="type-signature"> &rarr; {number}</span>
+        </span>
+    </h4>
+    
+
+    
+    
+    <div class="description">
+        Create a new frame buffer
+    </div>
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-overrides">Overrides:</dt>
+    <dd class="tag-overrides"><ul class="dummy"><li>
+        <a href="RenderAPI.html#createFrameBuffer">RenderAPI#createFrameBuffer</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    
+
+    
+
+    
+
+    
+        <p class="tag-source">
+            <a href="Renderers_WebGL_RenderWebGL.js.html" class="button">View Source</a>
+            <span>
+                <a href="Renderers_WebGL_RenderWebGL.js.html">Renderers/WebGL/RenderWebGL.js</a>, <a href="Renderers_WebGL_RenderWebGL.js.html#line271">line 271</a>
+            </span>
+        </p>
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div class='columns method-parameter'>
+        <div class="column is-2"><label>Returns:</label></div>
+        <div class="column is-10">
+            
+                    
+
+<div class="columns">
+    
+    <div class='param-desc column is-7'>An identifier to work with it later</div>
+    
+    
+    <div class='column is-5 has-text-left'>
+        <label>Type: </label>
+        
+<span class="param-type">number</span>
+
+
+    </div>
+    
+</div>
+
+                
+        </div>
+    </div>
+
+
+
+
+</div>
+            
+                <div class="member">
+
+    
+    <h4 class="name" id="drawIndexedPrimitives">
+        
+        <span class="code-name">
+            drawIndexedPrimitives<span class="signature">(drawingMode, firstVertexIndex, vertexCount)</span><span class="type-signature"></span>
+        </span>
+    </h4>
+    
+
+    
+    
+    <div class="description">
+        Draw indexed primitives
+    </div>
+    
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        
+<tr class="deep-level-0">
+  
+      <td class="name"><code>drawingMode</code></td>
+  
+
+  <td class="type">
+  
+      
+<span class="param-type"><a href="DrawingMode.html">DrawingMode</a></span>
+
+
+  
+  </td>
+
+  
+
+  
+
+  <td class="description last">Drawing mode to use</td>
+</tr>
+
+
+    
+
+        
+<tr class="deep-level-0">
+  
+      <td class="name"><code>firstVertexIndex</code></td>
+  
+
+  <td class="type">
+  
+      
+<span class="param-type">number</span>
+
+
+  
+  </td>
+
+  
+
+  
+
+  <td class="description last">Index of the first vertex to draw, useful to draw some parts</td>
+</tr>
+
+
+    
+
+        
+<tr class="deep-level-0">
+  
+      <td class="name"><code>vertexCount</code></td>
+  
+
+  <td class="type">
+  
+      
+<span class="param-type">number</span>
+
+
+  
+  </td>
+
+  
+
+  
+
+  <td class="description last">Vertex count to draw</td>
+</tr>
+
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-overrides">Overrides:</dt>
+    <dd class="tag-overrides"><ul class="dummy"><li>
+        <a href="RenderAPI.html#drawIndexedPrimitives">RenderAPI#drawIndexedPrimitives</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    
+
+    
+
+    
+
+    
+        <p class="tag-source">
+            <a href="Renderers_WebGL_RenderWebGL.js.html" class="button">View Source</a>
+            <span>
+                <a href="Renderers_WebGL_RenderWebGL.js.html">Renderers/WebGL/RenderWebGL.js</a>, <a href="Renderers_WebGL_RenderWebGL.js.html#line286">line 286</a>
+            </span>
+        </p>
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+            
+                <div class="member">
+
+    
+    <h4 class="name" id="drawPrimitives">
+        
+        <span class="code-name">
+            drawPrimitives<span class="signature">(drawingMode, firstVertexIndex, vertexCount)</span><span class="type-signature"></span>
+        </span>
+    </h4>
+    
+
+    
+    
+    <div class="description">
+        Draw primitives
+    </div>
+    
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        
+<tr class="deep-level-0">
+  
+      <td class="name"><code>drawingMode</code></td>
+  
+
+  <td class="type">
+  
+      
+<span class="param-type"><a href="DrawingMode.html">DrawingMode</a></span>
+
+
+  
+  </td>
+
+  
+
+  
+
+  <td class="description last">Drawing mode to use</td>
+</tr>
+
+
+    
+
+        
+<tr class="deep-level-0">
+  
+      <td class="name"><code>firstVertexIndex</code></td>
+  
+
+  <td class="type">
+  
+      
+<span class="param-type">number</span>
+
+
+  
+  </td>
+
+  
+
+  
+
+  <td class="description last">Index of the first vertex to draw, useful to draw some parts</td>
+</tr>
+
+
+    
+
+        
+<tr class="deep-level-0">
+  
+      <td class="name"><code>vertexCount</code></td>
+  
+
+  <td class="type">
+  
+      
+<span class="param-type">number</span>
+
+
+  
+  </td>
+
+  
+
+  
+
+  <td class="description last">Vertex count to draw</td>
+</tr>
+
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-overrides">Overrides:</dt>
+    <dd class="tag-overrides"><ul class="dummy"><li>
+        <a href="RenderAPI.html#drawPrimitives">RenderAPI#drawPrimitives</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    
+
+    
+
+    
+
+    
+        <p class="tag-source">
+            <a href="Renderers_WebGL_RenderWebGL.js.html" class="button">View Source</a>
+            <span>
+                <a href="Renderers_WebGL_RenderWebGL.js.html">Renderers/WebGL/RenderWebGL.js</a>, <a href="Renderers_WebGL_RenderWebGL.js.html#line298">line 298</a>
+            </span>
+        </p>
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+            
+                <div class="member">
+
+    
+    <h4 class="name" id="getActiveCamera">
+        
+        <span class="code-name">
+            getActiveCamera<span class="signature">()</span><span class="type-signature"> &rarr; {<a href="Camera.html">Camera</a>}</span>
+        </span>
+    </h4>
+    
+
+    
+    
+    <div class="description">
+        Get the active camera
+    </div>
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+    <dt class="inherited-from">Inherited From:</dt>
+    <dd class="inherited-from"><ul class="dummy"><li>
+        <a href="RenderAPI.html#getActiveCamera">RenderAPI#getActiveCamera</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    
+
+    
+
+    
+
+    
+        <p class="tag-source">
+            <a href="Renderers_RenderAPI.js.html" class="button">View Source</a>
+            <span>
+                <a href="Renderers_RenderAPI.js.html">Renderers/RenderAPI.js</a>, <a href="Renderers_RenderAPI.js.html#line235">line 235</a>
+            </span>
+        </p>
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div class='columns method-parameter'>
+        <div class="column is-2"><label>Returns:</label></div>
+        <div class="column is-10">
+            
+                    
+
+<div class="columns">
+    
+    <div class='param-desc column is-7'>A Camera instance or null</div>
+    
+    
+    <div class='column is-5 has-text-left'>
+        <label>Type: </label>
+        
+<span class="param-type"><a href="Camera.html">Camera</a></span>
+
+
+    </div>
+    
+</div>
+
+                
+        </div>
+    </div>
+
+
+
+
+</div>
+            
+                <div class="member">
+
+    
+    <h4 class="name" id="initFrameBuffer">
+        
+        <span class="code-name">
+            initFrameBuffer<span class="signature">(framebufferID, textures, useDepthBuffer<span class="signature-attributes">opt</span>, useStencilBuffer<span class="signature-attributes">opt</span>)</span><span class="type-signature"></span>
+        </span>
+    </h4>
+    
+
+    
+    
+    <div class="description">
+        Init frame buffer: attach it to textures, depth buffer and/or a stencil buffer
+    </div>
+    
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Attributes</th>
+        
+
+        
+        <th>Default</th>
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        
+<tr class="deep-level-0">
+  
+      <td class="name"><code>framebufferID</code></td>
+  
+
+  <td class="type">
+  
+      
+<span class="param-type">number</span>
+
+
+  
+  </td>
+
+  
+      <td class="attributes">
+      
+
+      
+
+      
+      </td>
+  
+
+  
+      <td class="default">
+      
+      </td>
+  
+
+  <td class="description last">Targeted slot's index</td>
+</tr>
+
+
+    
+
+        
+<tr class="deep-level-0">
+  
+      <td class="name"><code>textures</code></td>
+  
+
+  <td class="type">
+  
+      
+<span class="param-type">Array.&lt;<a href="Texture.html">Texture</a>></span>
+
+
+  
+  </td>
+
+  
+      <td class="attributes">
+      
+
+      
+
+      
+      </td>
+  
+
+  
+      <td class="default">
+      
+      </td>
+  
+
+  <td class="description last">An array of Texture instances</td>
+</tr>
+
+
+    
+
+        
+<tr class="deep-level-0">
+  
+      <td class="name"><code>useDepthBuffer</code></td>
+  
+
+  <td class="type">
+  
+      
+<span class="param-type">boolean</span>
+
+
+  
+  </td>
+
+  
+      <td class="attributes">
+      
+          &lt;optional><br>
+      
+
+      
+
+      
+      </td>
+  
+
+  
+      <td class="default">
+      
+          true
+      
+      </td>
+  
+
+  <td class="description last">True to use a depth buffer</td>
+</tr>
+
+
+    
+
+        
+<tr class="deep-level-0">
+  
+      <td class="name"><code>useStencilBuffer</code></td>
+  
+
+  <td class="type">
+  
+      
+<span class="param-type">boolean</span>
+
+
+  
+  </td>
+
+  
+      <td class="attributes">
+      
+          &lt;optional><br>
+      
+
+      
+
+      
+      </td>
+  
+
+  
+      <td class="default">
+      
+          false
+      
+      </td>
+  
+
+  <td class="description last">True to use a stencil buffer</td>
+</tr>
+
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-overrides">Overrides:</dt>
+    <dd class="tag-overrides"><ul class="dummy"><li>
+        <a href="RenderAPI.html#initFrameBuffer">RenderAPI#initFrameBuffer</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    
+
+    
+
+    
+
+    
+        <p class="tag-source">
+            <a href="Renderers_WebGL_RenderWebGL.js.html" class="button">View Source</a>
+            <span>
+                <a href="Renderers_WebGL_RenderWebGL.js.html">Renderers/WebGL/RenderWebGL.js</a>, <a href="Renderers_WebGL_RenderWebGL.js.html#line326">line 326</a>
+            </span>
+        </p>
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+            
+                <div class="member">
+
+    
+    <h4 class="name" id="setActiveCamera">
+        
+        <span class="code-name">
+            setActiveCamera<span class="signature">(camera)</span><span class="type-signature"></span>
+        </span>
+    </h4>
+    
+
+    
+    
+    <div class="description">
+        Set camera to use
+    </div>
+    
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        
+<tr class="deep-level-0">
+  
+      <td class="name"><code>camera</code></td>
+  
+
+  <td class="type">
+  
+      
+<span class="param-type"><a href="Camera.html">Camera</a></span>
+
+
+  
+  </td>
+
+  
+
+  
+
+  <td class="description last">A Camera instance</td>
+</tr>
+
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-overrides">Overrides:</dt>
+    <dd class="tag-overrides"><ul class="dummy"><li>
+        <a href="RenderAPI.html#setActiveCamera">RenderAPI#setActiveCamera</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    
+
+    
+
+    
+
+    
+        <p class="tag-source">
+            <a href="Renderers_WebGL_RenderWebGL.js.html" class="button">View Source</a>
+            <span>
+                <a href="Renderers_WebGL_RenderWebGL.js.html">Renderers/WebGL/RenderWebGL.js</a>, <a href="Renderers_WebGL_RenderWebGL.js.html#line492">line 492</a>
+            </span>
+        </p>
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+            
+                <div class="member">
+
+    
+    <h4 class="name" id="setBlendMode">
+        
+        <span class="code-name">
+            setBlendMode<span class="signature">(blendMode)</span><span class="type-signature"></span>
+        </span>
+    </h4>
+    
+
+    
+    
+    <div class="description">
+        Set blend mode to apply
+    </div>
+    
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        
+<tr class="deep-level-0">
+  
+      <td class="name"><code>blendMode</code></td>
+  
+
+  <td class="type">
+  
+      
+<span class="param-type"><a href="BlendMode.html">BlendMode</a></span>
+
+
+  
+  </td>
+
+  
+
+  
+
+  <td class="description last">A BlendMode instance</td>
+</tr>
+
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-overrides">Overrides:</dt>
+    <dd class="tag-overrides"><ul class="dummy"><li>
+        <a href="RenderAPI.html#setBlendMode">RenderAPI#setBlendMode</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    
+
+    
+
+    
+
+    
+        <p class="tag-source">
+            <a href="Renderers_WebGL_RenderWebGL.js.html" class="button">View Source</a>
+            <span>
+                <a href="Renderers_WebGL_RenderWebGL.js.html">Renderers/WebGL/RenderWebGL.js</a>, <a href="Renderers_WebGL_RenderWebGL.js.html#line504">line 504</a>
+            </span>
+        </p>
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+            
+                <div class="member">
+
+    
+    <h4 class="name" id="setDepthState">
+        
+        <span class="code-name">
+            setDepthState<span class="signature">(depthTest, writeTest, depthFunction)</span><span class="type-signature"></span>
+        </span>
+    </h4>
+    
+
+    
+    
+    <div class="description">
+        Set depth state
+    </div>
+    
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        
+<tr class="deep-level-0">
+  
+      <td class="name"><code>depthTest</code></td>
+  
+
+  <td class="type">
+  
+      
+<span class="param-type">boolean</span>
+
+
+  
+  </td>
+
+  
+
+  
+
+  <td class="description last">True to activate depth testing, otherwise false</td>
+</tr>
+
+
+    
+
+        
+<tr class="deep-level-0">
+  
+      <td class="name"><code>writeTest</code></td>
+  
+
+  <td class="type">
+  
+      
+<span class="param-type">boolean</span>
+
+
+  
+  </td>
+
+  
+
+  
+
+  <td class="description last">True to activate depth writing otherwise false</td>
+</tr>
+
+
+    
+
+        
+<tr class="deep-level-0">
+  
+      <td class="name"><code>depthFunction</code></td>
+  
+
+  <td class="type">
+  
+      
+<span class="param-type"><a href="DepthFunction.html">DepthFunction</a></span>
+
+
+  
+  </td>
+
+  
+
+  
+
+  <td class="description last">Depth function to apply</td>
+</tr>
+
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-overrides">Overrides:</dt>
+    <dd class="tag-overrides"><ul class="dummy"><li>
+        <a href="RenderAPI.html#setDepthState">RenderAPI#setDepthState</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    
+
+    
+
+    
+
+    
+        <p class="tag-source">
+            <a href="Renderers_WebGL_RenderWebGL.js.html" class="button">View Source</a>
+            <span>
+                <a href="Renderers_WebGL_RenderWebGL.js.html">Renderers/WebGL/RenderWebGL.js</a>, <a href="Renderers_WebGL_RenderWebGL.js.html#line539">line 539</a>
+            </span>
+        </p>
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+            
+                <div class="member">
+
+    
+    <h4 class="name" id="setFaceCulling">
+        
+        <span class="code-name">
+            setFaceCulling<span class="signature">(mode)</span><span class="type-signature"></span>
+        </span>
+    </h4>
+    
+
+    
+    
+    <div class="description">
+        Set face culling state
+    </div>
+    
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        
+<tr class="deep-level-0">
+  
+      <td class="name"><code>mode</code></td>
+  
+
+  <td class="type">
+  
+      
+<span class="param-type"><a href="FaceCulling.html">FaceCulling</a></span>
+
+
+  
+  </td>
+
+  
+
+  
+
+  <td class="description last">Face culling mode to set</td>
+</tr>
+
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-overrides">Overrides:</dt>
+    <dd class="tag-overrides"><ul class="dummy"><li>
+        <a href="RenderAPI.html#setFaceCulling">RenderAPI#setFaceCulling</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    
+
+    
+
+    
+
+    
+        <p class="tag-source">
+            <a href="Renderers_WebGL_RenderWebGL.js.html" class="button">View Source</a>
+            <span>
+                <a href="Renderers_WebGL_RenderWebGL.js.html">Renderers/WebGL/RenderWebGL.js</a>, <a href="Renderers_WebGL_RenderWebGL.js.html#line568">line 568</a>
+            </span>
+        </p>
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+            
+                <div class="member">
+
+    
+    <h4 class="name" id="setGeometry">
+        
+        <span class="code-name">
+            setGeometry<span class="signature">(geometry)</span><span class="type-signature"></span>
+        </span>
+    </h4>
+    
+
+    
+    
+    <div class="description">
+        Set geometry to use
+    </div>
+    
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        
+<tr class="deep-level-0">
+  
+      <td class="name"><code>geometry</code></td>
+  
+
+  <td class="type">
+  
+      
+<span class="param-type"><a href="Geometry.html">Geometry</a></span>
+
+
+  
+  </td>
+
+  
+
+  
+
+  <td class="description last">A Geometry instance</td>
+</tr>
+
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-overrides">Overrides:</dt>
+    <dd class="tag-overrides"><ul class="dummy"><li>
+        <a href="RenderAPI.html#setGeometry">RenderAPI#setGeometry</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    
+
+    
+
+    
+
+    
+        <p class="tag-source">
+            <a href="Renderers_WebGL_RenderWebGL.js.html" class="button">View Source</a>
+            <span>
+                <a href="Renderers_WebGL_RenderWebGL.js.html">Renderers/WebGL/RenderWebGL.js</a>, <a href="Renderers_WebGL_RenderWebGL.js.html#line609">line 609</a>
+            </span>
+        </p>
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+            
+                <div class="member">
+
+    
+    <h4 class="name" id="setIndexBuffer">
+        
+        <span class="code-name">
+            setIndexBuffer<span class="signature">(buffer)</span><span class="type-signature"></span>
+        </span>
+    </h4>
+    
+
+    
+    
+    <div class="description">
+        Set index buffer to use
+    </div>
+    
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        
+<tr class="deep-level-0">
+  
+      <td class="name"><code>buffer</code></td>
+  
+
+  <td class="type">
+  
+      
+<span class="param-type">number</span>
+|
+
+<span class="param-type">WebGLBuffer</span>
+
+
+  
+  </td>
+
+  
+
+  
+
+  <td class="description last">A buffer instance</td>
+</tr>
+
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-overrides">Overrides:</dt>
+    <dd class="tag-overrides"><ul class="dummy"><li>
+        <a href="RenderAPI.html#setIndexBuffer">RenderAPI#setIndexBuffer</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    
+
+    
+
+    
+
+    
+        <p class="tag-source">
+            <a href="Renderers_WebGL_RenderWebGL.js.html" class="button">View Source</a>
+            <span>
+                <a href="Renderers_WebGL_RenderWebGL.js.html">Renderers/WebGL/RenderWebGL.js</a>, <a href="Renderers_WebGL_RenderWebGL.js.html#line600">line 600</a>
+            </span>
+        </p>
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+            
+                <div class="member">
+
+    
+    <h4 class="name" id="setProgram">
+        
+        <span class="code-name">
+            setProgram<span class="signature">(program)</span><span class="type-signature"> &rarr; {number}</span>
+        </span>
+    </h4>
+    
+
+    
+    
+    <div class="description">
+        Set program to use
+    </div>
+    
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        
+<tr class="deep-level-0">
+  
+      <td class="name"><code>program</code></td>
+  
+
+  <td class="type">
+  
+      
+<span class="param-type"><a href="Program.html">Program</a></span>
+
+
+  
+  </td>
+
+  
+
+  
+
+  <td class="description last">A Program instance to use</td>
+</tr>
+
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-overrides">Overrides:</dt>
+    <dd class="tag-overrides"><ul class="dummy"><li>
+        <a href="RenderAPI.html#setProgram">RenderAPI#setProgram</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    
+
+    
+
+    
+
+    
+        <p class="tag-source">
+            <a href="Renderers_WebGL_RenderWebGL.js.html" class="button">View Source</a>
+            <span>
+                <a href="Renderers_WebGL_RenderWebGL.js.html">Renderers/WebGL/RenderWebGL.js</a>, <a href="Renderers_WebGL_RenderWebGL.js.html#line685">line 685</a>
+            </span>
+        </p>
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div class='columns method-parameter'>
+        <div class="column is-2"><label>Returns:</label></div>
+        <div class="column is-10">
+            
+                    
+
+<div class="columns">
+    
+    <div class='param-desc column is-7'>-1: an error occured, 0: everything is ok, 1 : program have been changed</div>
+    
+    
+    <div class='column is-5 has-text-left'>
+        <label>Type: </label>
+        
+<span class="param-type">number</span>
+
+
+    </div>
+    
+</div>
+
+                
+        </div>
+    </div>
+
+
+
+
+</div>
+            
+                <div class="member">
+
+    
+    <h4 class="name" id="setScissorTest">
+        
+        <span class="code-name">
+            setScissorTest<span class="signature">(state, x, y, w, h)</span><span class="type-signature"></span>
+        </span>
+    </h4>
+    
+
+    
+    
+    <div class="description">
+        Set scissor test state
+    </div>
+    
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        
+<tr class="deep-level-0">
+  
+      <td class="name"><code>state</code></td>
+  
+
+  <td class="type">
+  
+      
+<span class="param-type">boolean</span>
+
+
+  
+  </td>
+
+  
+
+  
+
+  <td class="description last">True to activate scissor testing, otherwise false</td>
+</tr>
+
+
+    
+
+        
+<tr class="deep-level-0">
+  
+      <td class="name"><code>x</code></td>
+  
+
+  <td class="type">
+  
+      
+<span class="param-type">number</span>
+
+
+  
+  </td>
+
+  
+
+  
+
+  <td class="description last">Position on x from the left of the screen</td>
+</tr>
+
+
+    
+
+        
+<tr class="deep-level-0">
+  
+      <td class="name"><code>y</code></td>
+  
+
+  <td class="type">
+  
+      
+<span class="param-type">number</span>
+
+
+  
+  </td>
+
+  
+
+  
+
+  <td class="description last">Position on y from the bottom of the screen</td>
+</tr>
+
+
+    
+
+        
+<tr class="deep-level-0">
+  
+      <td class="name"><code>w</code></td>
+  
+
+  <td class="type">
+  
+      
+<span class="param-type">number</span>
+
+
+  
+  </td>
+
+  
+
+  
+
+  <td class="description last">Width of the rectangle</td>
+</tr>
+
+
+    
+
+        
+<tr class="deep-level-0">
+  
+      <td class="name"><code>h</code></td>
+  
+
+  <td class="type">
+  
+      
+<span class="param-type">number</span>
+
+
+  
+  </td>
+
+  
+
+  
+
+  <td class="description last">Height of the rectangle</td>
+</tr>
+
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-overrides">Overrides:</dt>
+    <dd class="tag-overrides"><ul class="dummy"><li>
+        <a href="RenderAPI.html#setScissorTest">RenderAPI#setScissorTest</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    
+
+    
+
+    
+
+    
+        <p class="tag-source">
+            <a href="Renderers_WebGL_RenderWebGL.js.html" class="button">View Source</a>
+            <span>
+                <a href="Renderers_WebGL_RenderWebGL.js.html">Renderers/WebGL/RenderWebGL.js</a>, <a href="Renderers_WebGL_RenderWebGL.js.html#line880">line 880</a>
+            </span>
+        </p>
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+            
+                <div class="member">
+
+    
+    <h4 class="name" id="setStencilFunction">
+        
+        <span class="code-name">
+            setStencilFunction<span class="signature">(stencilFunction, reference, mask)</span><span class="type-signature"></span>
+        </span>
+    </h4>
+    
+
+    
+    
+    <div class="description">
+        Set stencil function to use
+    </div>
+    
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        
+<tr class="deep-level-0">
+  
+      <td class="name"><code>stencilFunction</code></td>
+  
+
+  <td class="type">
+  
+      
+<span class="param-type"><a href="StencilFunction.html">StencilFunction</a></span>
+
+
+  
+  </td>
+
+  
+
+  
+
+  <td class="description last">Function to use</td>
+</tr>
+
+
+    
+
+        
+<tr class="deep-level-0">
+  
+      <td class="name"><code>reference</code></td>
+  
+
+  <td class="type">
+  
+      
+<span class="param-type">number</span>
+
+
+  
+  </td>
+
+  
+
+  
+
+  <td class="description last">Reference value</td>
+</tr>
+
+
+    
+
+        
+<tr class="deep-level-0">
+  
+      <td class="name"><code>mask</code></td>
+  
+
+  <td class="type">
+  
+      
+<span class="param-type">number</span>
+
+
+  
+  </td>
+
+  
+
+  
+
+  <td class="description last">Mask to use</td>
+</tr>
+
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-overrides">Overrides:</dt>
+    <dd class="tag-overrides"><ul class="dummy"><li>
+        <a href="RenderAPI.html#setStencilFunction">RenderAPI#setStencilFunction</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    
+
+    
+
+    
+
+    
+        <p class="tag-source">
+            <a href="Renderers_WebGL_RenderWebGL.js.html" class="button">View Source</a>
+            <span>
+                <a href="Renderers_WebGL_RenderWebGL.js.html">Renderers/WebGL/RenderWebGL.js</a>, <a href="Renderers_WebGL_RenderWebGL.js.html#line925">line 925</a>
+            </span>
+        </p>
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+            
+                <div class="member">
+
+    
+    <h4 class="name" id="setStencilOperations">
+        
+        <span class="code-name">
+            setStencilOperations<span class="signature">(sFail, dpFail, dppPass)</span><span class="type-signature"></span>
+        </span>
+    </h4>
+    
+
+    
+    
+    <div class="description">
+        Set stencil operations to use
+    </div>
+    
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        
+<tr class="deep-level-0">
+  
+      <td class="name"><code>sFail</code></td>
+  
+
+  <td class="type">
+  
+      
+<span class="param-type"><a href="StencilOperation.html">StencilOperation</a></span>
+
+
+  
+  </td>
+
+  
+
+  
+
+  <td class="description last">Function to use</td>
+</tr>
+
+
+    
+
+        
+<tr class="deep-level-0">
+  
+      <td class="name"><code>dpFail</code></td>
+  
+
+  <td class="type">
+  
+      
+<span class="param-type"><a href="StencilOperation.html">StencilOperation</a></span>
+
+
+  
+  </td>
+
+  
+
+  
+
+  <td class="description last">Reference value</td>
+</tr>
+
+
+    
+
+        
+<tr class="deep-level-0">
+  
+      <td class="name"><code>dppPass</code></td>
+  
+
+  <td class="type">
+  
+      
+<span class="param-type"><a href="StencilOperation.html">StencilOperation</a></span>
+
+
+  
+  </td>
+
+  
+
+  
+
+  <td class="description last">Mask to use</td>
+</tr>
+
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-overrides">Overrides:</dt>
+    <dd class="tag-overrides"><ul class="dummy"><li>
+        <a href="RenderAPI.html#setStencilOperations">RenderAPI#setStencilOperations</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    
+
+    
+
+    
+
+    
+        <p class="tag-source">
+            <a href="Renderers_WebGL_RenderWebGL.js.html" class="button">View Source</a>
+            <span>
+                <a href="Renderers_WebGL_RenderWebGL.js.html">Renderers/WebGL/RenderWebGL.js</a>, <a href="Renderers_WebGL_RenderWebGL.js.html#line941">line 941</a>
+            </span>
+        </p>
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+            
+                <div class="member">
+
+    
+    <h4 class="name" id="setStencilState">
+        
+        <span class="code-name">
+            setStencilState<span class="signature">(activate, writeMask)</span><span class="type-signature"></span>
+        </span>
+    </h4>
+    
+
+    
+    
+    <div class="description">
+        Set stencil test state
+    </div>
+    
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        
+<tr class="deep-level-0">
+  
+      <td class="name"><code>activate</code></td>
+  
+
+  <td class="type">
+  
+      
+<span class="param-type">boolean</span>
+
+
+  
+  </td>
+
+  
+
+  
+
+  <td class="description last">True to activate stencil test, otherwise false</td>
+</tr>
+
+
+    
+
+        
+<tr class="deep-level-0">
+  
+      <td class="name"><code>writeMask</code></td>
+  
+
+  <td class="type">
+  
+      
+<span class="param-type">number</span>
+
+
+  
+  </td>
+
+  
+
+  
+
+  <td class="description last">Stencil writing value</td>
+</tr>
+
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-overrides">Overrides:</dt>
+    <dd class="tag-overrides"><ul class="dummy"><li>
+        <a href="RenderAPI.html#setStencilState">RenderAPI#setStencilState</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    
+
+    
+
+    
+
+    
+        <p class="tag-source">
+            <a href="Renderers_WebGL_RenderWebGL.js.html" class="button">View Source</a>
+            <span>
+                <a href="Renderers_WebGL_RenderWebGL.js.html">Renderers/WebGL/RenderWebGL.js</a>, <a href="Renderers_WebGL_RenderWebGL.js.html#line898">line 898</a>
+            </span>
+        </p>
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+            
+                <div class="member">
+
+    
+    <h4 class="name" id="setUniform">
+        
+        <span class="code-name">
+            setUniform<span class="signature">(program, name, type, value, groupCount<span class="signature-attributes">opt</span>)</span><span class="type-signature"> &rarr; {boolean}</span>
+        </span>
+    </h4>
+    
+
+    
+    
+    <div class="description">
+        Set uniform value
+    </div>
+    
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Attributes</th>
+        
+
+        
+        <th>Default</th>
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        
+<tr class="deep-level-0">
+  
+      <td class="name"><code>program</code></td>
+  
+
+  <td class="type">
+  
+      
+<span class="param-type"><a href="Program.html">Program</a></span>
+
+
+  
+  </td>
+
+  
+      <td class="attributes">
+      
+
+      
+
+      
+      </td>
+  
+
+  
+      <td class="default">
+      
+      </td>
+  
+
+  <td class="description last">A Program instance to use</td>
+</tr>
+
+
+    
+
+        
+<tr class="deep-level-0">
+  
+      <td class="name"><code>name</code></td>
+  
+
+  <td class="type">
+  
+      
+<span class="param-type">string</span>
+
+
+  
+  </td>
+
+  
+      <td class="attributes">
+      
+
+      
+
+      
+      </td>
+  
+
+  
+      <td class="default">
+      
+      </td>
+  
+
+  <td class="description last">Uniform's name</td>
+</tr>
+
+
+    
+
+        
+<tr class="deep-level-0">
+  
+      <td class="name"><code>type</code></td>
+  
+
+  <td class="type">
+  
+      
+<span class="param-type"><a href="Type.html">Type</a></span>
+
+
+  
+  </td>
+
+  
+      <td class="attributes">
+      
+
+      
+
+      
+      </td>
+  
+
+  
+      <td class="default">
+      
+      </td>
+  
+
+  <td class="description last">Type of value to send</td>
+</tr>
+
+
+    
+
+        
+<tr class="deep-level-0">
+  
+      <td class="name"><code>value</code></td>
+  
+
+  <td class="type">
+  
+      
+<span class="param-type">?Array.&lt;number></span>
+|
+
+<span class="param-type"><a href="Texture.html">Texture</a></span>
+|
+
+<span class="param-type">boolean</span>
+|
+
+<span class="param-type">number</span>
+|
+
+<span class="param-type">Float32Array</span>
+
+
+  
+  </td>
+
+  
+      <td class="attributes">
+      
+
+      
+
+      
+      </td>
+  
+
+  
+      <td class="default">
+      
+      </td>
+  
+
+  <td class="description last">A value</td>
+</tr>
+
+
+    
+
+        
+<tr class="deep-level-0">
+  
+      <td class="name"><code>groupCount</code></td>
+  
+
+  <td class="type">
+  
+      
+<span class="param-type">number</span>
+
+
+  
+  </td>
+
+  
+      <td class="attributes">
+      
+          &lt;optional><br>
+      
+
+      
+
+      
+      </td>
+  
+
+  
+      <td class="default">
+      
+          0
+      
+      </td>
+  
+
+  <td class="description last">When an element is an array, you can create group (like sub-array)</td>
+</tr>
+
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-overrides">Overrides:</dt>
+    <dd class="tag-overrides"><ul class="dummy"><li>
+        <a href="RenderAPI.html#setUniform">RenderAPI#setUniform</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    
+
+    
+
+    
+
+    
+        <p class="tag-source">
+            <a href="Renderers_WebGL_RenderWebGL.js.html" class="button">View Source</a>
+            <span>
+                <a href="Renderers_WebGL_RenderWebGL.js.html">Renderers/WebGL/RenderWebGL.js</a>, <a href="Renderers_WebGL_RenderWebGL.js.html#line786">line 786</a>
+            </span>
+        </p>
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div class='columns method-parameter'>
+        <div class="column is-2"><label>Returns:</label></div>
+        <div class="column is-10">
+            
+                    
+
+<div class="columns">
+    
+    <div class='param-desc column is-7'>True if uniform has been set successfully, otherwise false</div>
+    
+    
+    <div class='column is-5 has-text-left'>
+        <label>Type: </label>
+        
+<span class="param-type">boolean</span>
+
+
+    </div>
+    
+</div>
+
+                
+        </div>
+    </div>
+
+
+
+
+</div>
+            
+                <div class="member">
+
+    
+    <h4 class="name" id="setVertexBuffer">
+        
+        <span class="code-name">
+            setVertexBuffer<span class="signature">(stream, buffer)</span><span class="type-signature"></span>
+        </span>
+    </h4>
+    
+
+    
+    
+    <div class="description">
+        Set vertex buffer to use
+
+Warning: You must call "setVertexFormat" before!
+    </div>
+    
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        
+<tr class="deep-level-0">
+  
+      <td class="name"><code>stream</code></td>
+  
+
+  <td class="type">
+  
+      
+<span class="param-type">number</span>
+
+
+  
+  </td>
+
+  
+
+  
+
+  <td class="description last">An integer representing stream to use</td>
+</tr>
+
+
+    
+
+        
+<tr class="deep-level-0">
+  
+      <td class="name"><code>buffer</code></td>
+  
+
+  <td class="type">
+  
+      
+<span class="param-type">number</span>
+|
+
+<span class="param-type">WebGLBuffer</span>
+
+
+  
+  </td>
+
+  
+
+  
+
+  <td class="description last">A buffer instance</td>
+</tr>
+
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-overrides">Overrides:</dt>
+    <dd class="tag-overrides"><ul class="dummy"><li>
+        <a href="RenderAPI.html#setVertexBuffer">RenderAPI#setVertexBuffer</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    
+
+    
+
+    
+
+    
+        <p class="tag-source">
+            <a href="Renderers_WebGL_RenderWebGL.js.html" class="button">View Source</a>
+            <span>
+                <a href="Renderers_WebGL_RenderWebGL.js.html">Renderers/WebGL/RenderWebGL.js</a>, <a href="Renderers_WebGL_RenderWebGL.js.html#line960">line 960</a>
+            </span>
+        </p>
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+            
+                <div class="member">
+
+    
+    <h4 class="name" id="setVertexFormat">
+        
+        <span class="code-name">
+            setVertexFormat<span class="signature">(format)</span><span class="type-signature"></span>
+        </span>
+    </h4>
+    
+
+    
+    
+    <div class="description">
+        Set vertex format to use
+    </div>
+    
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        
+<tr class="deep-level-0">
+  
+      <td class="name"><code>format</code></td>
+  
+
+  <td class="type">
+  
+      
+<span class="param-type"><a href="VertexFormat.html">VertexFormat</a></span>
+
+
+  
+  </td>
+
+  
+
+  
+
+  <td class="description last">A VertexFormat instance</td>
+</tr>
+
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-overrides">Overrides:</dt>
+    <dd class="tag-overrides"><ul class="dummy"><li>
+        <a href="RenderAPI.html#setVertexFormat">RenderAPI#setVertexFormat</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    
+
+    
+
+    
+
+    
+        <p class="tag-source">
+            <a href="Renderers_WebGL_RenderWebGL.js.html" class="button">View Source</a>
+            <span>
+                <a href="Renderers_WebGL_RenderWebGL.js.html">Renderers/WebGL/RenderWebGL.js</a>, <a href="Renderers_WebGL_RenderWebGL.js.html#line991">line 991</a>
+            </span>
+        </p>
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+            
+            </div>
+        </div>
+    
+
+    
+
+    
+</article>
+
+</section>
+
+
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+<footer class="footer">
+    <div class="content has-text-centered">
+        <p>Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Sat Feb 02 2019 17:23:43 GMT+0100 (heure normale d’Europe centrale)</p>
+        <p class="sidebar-created-by">
+            <a href="https://github.com/SoftwareBrothers/better-docs" target="_blank">BetterDocs theme</a> provided with <i class="fas fa-heart"></i> by 
+            <a href="http://softwarebrothers.co" target="_blank">SoftwareBrothers</a>
+        </p>
+    </div>
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/app.min.js"></script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

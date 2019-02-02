@@ -7,7 +7,7 @@ import { glMatrix } from 'gl-matrix';
 /**
  * Transformable: Manage matrix's transformations
  *
- * @category Core
+ * @category Geometry
  */
 class Transformable {
     /**

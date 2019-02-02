@@ -4,7 +4,7 @@ import Box from '../Math/Box';
 /**
  * A node element is an element of a scene
  *
- * @category Core
+ * @category Scene management
  * @description A Node can represent something like a light, a mesh, a sprite, a camera or a text
  * @extends {Transformable}
  */

@@ -1,7 +1,7 @@
 {
     "opts": {
         "template": "node_modules/better-docs",
-        "destination": "./doc/",
+        "destination": "./docs",
         "recurse": true
     },
     "source": {

@@ -1,0 +1,4491 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Node</title>
+
+    <script src="scripts/prettify/prettify.js"></script>
+    <script src="scripts/prettify/lang-css.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link href="https://fonts.googleapis.com/css?family=Muli:100,400,700|Oswald:300|Inconsolata,700" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+    <link type="text/css" rel="stylesheet" href="https://jmblog.github.io/color-themes-for-google-code-prettify/themes/tomorrow-night.min.css">
+    <link type="text/css" rel="stylesheet" href="styles/app.min.css">
+</head>
+
+<body>
+    <div id="stickyNavbarOverlay"></div>
+    <div class="top-navbar">
+        <div class="container">
+            <nav class="navbar" role="navigation" aria-label="main navigation">
+                <div class="navbar-brand">
+                    
+                     
+                        <h1 class="navbar-item">LemonJS Documentation</h1>
+                    
+                    <a id="hamburger" role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
+                        <span aria-hidden="true"></span>
+                        <span aria-hidden="true"></span>
+                        <span aria-hidden="true"></span>
+                    </a>
+                </div>
+                 
+                <div class="navbar-menu">
+                    <div class="navbar-end">
+                    
+                        <div class="navbar-item">
+                            <a href="https://github.com/Donorhan/Lemon-JS" target="_blank">Github</a>
+                        </div>
+                    
+                    </div>
+                </div>
+                
+            </nav>
+        </div>
+    </div>
+    <div class="container">
+        <div class="columns">
+            <div class="column is-3" id="sidebarNav">
+                <div class="sidebar">
+                    <nav>
+                        <h2><a href="index.html">Home</a></h2><div class="category"></div><div class="category"><h2>Core</h2><h3>Classes</h3><ul><li><a href="BlendMode.html">BlendMode</a></li><li><a href="Color.html">Color</a></li><li><a href="Context.html">Context</a></li><li><a href="ContextResource.html">ContextResource</a></li><li><a href="Img.html">Img</a></li><li><a href="StateBlock.html">StateBlock</a></li></ul></div><div class="category"><h2>Geometry</h2><h3>Classes</h3><ul><li><a href="Box.html">Box</a></li><li><a href="Frustum.html">Frustum</a></li><li><a href="Geometry.html">Geometry</a></li><li><a href="Plane.html">Plane</a></li><li><a href="Ray.html">Ray</a></li><li><a href="Transformable.html">Transformable</a></li><li><a href="VertexElement.html">VertexElement</a></li><li><a href="VertexFormat.html">VertexFormat</a></li></ul></div><div class="category"><h2>WebGL</h2><h3>Classes</h3><ul><li><a href="BufferData.html">BufferData</a></li><li><a href="Cache.html">Cache</a></li><li><a href="Instances.html">Instances</a></li><li><a href="TypesConverter.html">TypesConverter</a></li><li><a href="WebGL.html">WebGL</a></li></ul></div><div class="category"><h2>Scene</h2><h3>Classes</h3><ul><li><a href="Camera.html">Camera</a></li></ul></div><div class="category"><h2>Culling</h2><h3>Classes</h3><ul><li><a href="Culler.html">Culler</a></li><li><a href="CullingManager.html">CullingManager</a></li><li><a href="FrustumCuller.html">FrustumCuller</a></li></ul></div><div class="category"><h2>Types</h2><h3>Classes</h3><ul><li><a href="DepthFunction.html">DepthFunction</a></li><li><a href="DrawingMode.html">DrawingMode</a></li><li><a href="FaceCulling.html">FaceCulling</a></li><li><a href="StencilFunction.html">StencilFunction</a></li><li><a href="StencilOperation.html">StencilOperation</a></li><li><a href="Type.html">Type</a></li></ul></div><div class="category"><h2>Lights</h2><h3>Classes</h3><ul><li><a href="DirectionalLight.html">DirectionalLight</a></li><li><a href="Light.html">Light</a></li><li><a href="PointLight.html">PointLight</a></li><li><a href="SpotLight.html">SpotLight</a></li></ul></div><div class="category"><h2>Drawables</h2><h3>Classes</h3><ul><li><a href="Drawable.html">Drawable</a></li><li><a href="Mesh.html">Mesh</a></li><li><a href="Model.html">Model</a></li><li><a href="Skybox.html">Skybox</a></li><li><a href="Sprite.html">Sprite</a></li></ul></div><div class="category"><h2>Loaders</h2><h3>Classes</h3><ul><li><a href="FileLoader.html">FileLoader</a></li><li><a href="ModelLoader.html">ModelLoader</a></li></ul></div><div class="category"><h2>Material</h2><h3>Classes</h3><ul><li><a href="Material.html">Material</a></li><li><a href="Pass.html">Pass</a></li><li><a href="PassParameter.html">PassParameter</a></li></ul></div><div class="category"><h2>Rendering</h2><h3>Classes</h3><ul><li><a href="MeshCommand.html">MeshCommand</a></li><li><a href="RenderAPI.html">RenderAPI</a></li><li><a href="RenderCanvas.html">RenderCanvas</a></li><li><a href="RenderCommand.html">RenderCommand</a></li><li><a href="RenderTarget.html">RenderTarget</a></li><li><a href="RenderTask.html">RenderTask</a></li><li><a href="RenderTexture.html">RenderTexture</a></li><li><a href="SkyboxCommand.html">SkyboxCommand</a></li><li><a href="SpriteCommand.html">SpriteCommand</a></li></ul></div><div class="category"><h2>Scene management</h2><h3>Classes</h3><ul><li><a href="Node.html">Node</a></li><li><a href="Scene.html">Scene</a></li></ul></div><div class="category"><h2>Shaders</h2><h3>Classes</h3><ul><li><a href="PostEffect.html">PostEffect</a></li><li><a href="Program.html">Program</a></li><li><a href="ProgramElement.html">ProgramElement</a></li><li><a href="ProgramLibrary.html">ProgramLibrary</a></li></ul></div><div class="category"><h2>Textures</h2><h3>Classes</h3><ul><li><a href="Texture.html">Texture</a></li><li><a href="TextureCube.html">TextureCube</a></li><li><a href="TextureInterface.html">TextureInterface</a></li><li><a href="TextureVideo.html">TextureVideo</a></li></ul></div><div class="category"><h2>Math</h2><h3>Global</h3><ul><li><a href="global.html#multiplyWithMat4">multiplyWithMat4</a></li><li><a href="global.html#project">project</a></li><li><a href="global.html#unproject">unproject</a></li></ul></div>
+                    </nav>
+                </div>
+            </div>
+            <div class="column is-9-desktop">
+                <div class="content" id="main-content-wrapper">
+                    <header class="page-title">
+                        <p>Class</p>
+                        <h1>Node</h1>
+                    </header>
+                    
+                    
+
+
+
+
+<section>
+
+<header>
+    
+        <h2><span class="attribs"><span class="type-signature"></span></span>Node<span class="signature">(name<span class="signature-attributes">opt</span>)</span><span class="type-signature"></span></h2>
+        
+            <div class="class-description">A node element is an element of a scene</div>
+        
+    
+</header>
+
+<article>
+    <div class="container-overview">
+    
+        
+            <div class='vertical-section'>
+                <h3 class="title"><span>Constructor</span></h3>
+                <div class="members">
+                    <div class="member">
+
+    
+    <h4 class="name" id="Node">
+        
+        <span class="code-name">
+            new Node<span class="signature">(name<span class="signature-attributes">opt</span>)</span><span class="type-signature"></span>
+        </span>
+    </h4>
+    
+
+    
+    
+    <div class="description">
+        A Node can represent something like a light, a mesh, a sprite, a camera or a text
+    </div>
+    
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Attributes</th>
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        
+<tr class="deep-level-0">
+  
+      <td class="name"><code>name</code></td>
+  
+
+  <td class="type">
+  
+      
+<span class="param-type">string</span>
+
+
+  
+  </td>
+
+  
+      <td class="attributes">
+      
+          &lt;optional><br>
+      
+
+      
+
+      
+      </td>
+  
+
+  
+
+  <td class="description last">A string</td>
+</tr>
+
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    
+
+    
+
+    
+
+    
+        <p class="tag-source">
+            <a href="Scene_Node.js.html" class="button">View Source</a>
+            <span>
+                <a href="Scene_Node.js.html">Scene/Node.js</a>, <a href="Scene_Node.js.html#line11">line 11</a>
+            </span>
+        </p>
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+                </div>
+            </div>
+        
+    
+    </div>
+
+    
+        <h3 class="subsection-title">Extends</h3>
+
+        
+
+
+    <ul>
+        <li><a href="Transformable.html">Transformable</a></li>
+    </ul>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+        <div class='vertical-section'>
+            <h3 class="title"><span>Members</span></h3>
+            <div class="members">
+            
+                <div class="member">
+
+    <span class="method-parameter is-pulled-right">
+        <label>Type:</label>
+        
+<span class="param-type">boolean</span>
+
+
+    </span>
+
+<h4 class="name" id="culled">
+    
+    <span class="code-name">
+        culled
+    </span>
+</h4>
+
+
+
+
+<div class="description">
+    A culled element will not be drawn/sent to the renderer
+
+Warning: This attribute is set by Cullers automatically
+</div>
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    
+
+    
+
+    
+
+    
+        <p class="tag-source">
+            <a href="Scene_Node.js.html" class="button">View Source</a>
+            <span>
+                <a href="Scene_Node.js.html">Scene/Node.js</a>, <a href="Scene_Node.js.html#line44">line 44</a>
+            </span>
+        </p>
+    
+</dl>
+
+
+
+
+
+</div>
+            
+            </div>
+        </div>
+    
+
+    
+        <div class='vertical-section'>
+            <h3 class="title"><span>Methods</span></h3>
+            <div class="members">
+            
+                <div class="member">
+
+    
+    <h4 class="name" id="computeTransformationMatrix">
+        
+        <span class="code-name">
+            computeTransformationMatrix<span class="signature">(parentMatrix, forceUpdate)</span><span class="type-signature"> &rarr; {boolean}</span>
+        </span>
+    </h4>
+    
+
+    
+    
+    <div class="description">
+        Update matrix
+    </div>
+    
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        
+<tr class="deep-level-0">
+  
+      <td class="name"><code>parentMatrix</code></td>
+  
+
+  <td class="type">
+  
+      
+<span class="param-type">?Array.&lt;number></span>
+|
+
+<span class="param-type">mat4</span>
+
+
+  
+  </td>
+
+  
+
+  
+
+  <td class="description last">Parent transformable's matrix</td>
+</tr>
+
+
+    
+
+        
+<tr class="deep-level-0">
+  
+      <td class="name"><code>forceUpdate</code></td>
+  
+
+  <td class="type">
+  
+      
+<span class="param-type">boolean</span>
+
+
+  
+  </td>
+
+  
+
+  
+
+  <td class="description last">True to force an update</td>
+</tr>
+
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+    <dt class="inherited-from">Inherited From:</dt>
+    <dd class="inherited-from"><ul class="dummy"><li>
+        <a href="Transformable.html#computeTransformationMatrix">Transformable#computeTransformationMatrix</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    
+
+    
+
+    
+
+    
+        <p class="tag-source">
+            <a href="Transformable.js.html" class="button">View Source</a>
+            <span>
+                <a href="Transformable.js.html">Transformable.js</a>, <a href="Transformable.js.html#line267">line 267</a>
+            </span>
+        </p>
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div class='columns method-parameter'>
+        <div class="column is-2"><label>Returns:</label></div>
+        <div class="column is-10">
+            
+                    
+
+<div class="columns">
+    
+    <div class='param-desc column is-7'>True if the matrix have been updated, otherwise false</div>
+    
+    
+    <div class='column is-5 has-text-left'>
+        <label>Type: </label>
+        
+<span class="param-type">boolean</span>
+
+
+    </div>
+    
+</div>
+
+                
+        </div>
+    </div>
+
+
+
+
+</div>
+            
+                <div class="member">
+
+    
+    <h4 class="name" id="enable">
+        
+        <span class="code-name">
+            enable<span class="signature">(value)</span><span class="type-signature"> &rarr; {<a href="Node.html">Node</a>}</span>
+        </span>
+    </h4>
+    
+
+    
+    
+    <div class="description">
+        Set node's state
+    </div>
+    
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        
+<tr class="deep-level-0">
+  
+      <td class="name"><code>value</code></td>
+  
+
+  <td class="type">
+  
+      
+<span class="param-type">boolean</span>
+
+
+  
+  </td>
+
+  
+
+  
+
+  <td class="description last">True to enable, false to disable</td>
+</tr>
+
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    
+
+    
+
+    
+
+    
+        <p class="tag-source">
+            <a href="Scene_Node.js.html" class="button">View Source</a>
+            <span>
+                <a href="Scene_Node.js.html">Scene/Node.js</a>, <a href="Scene_Node.js.html#line101">line 101</a>
+            </span>
+        </p>
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div class='columns method-parameter'>
+        <div class="column is-2"><label>Returns:</label></div>
+        <div class="column is-10">
+            
+                    
+
+<div class="columns">
+    
+    <div class='param-desc column is-7'>A reference to the instance</div>
+    
+    
+    <div class='column is-5 has-text-left'>
+        <label>Type: </label>
+        
+<span class="param-type"><a href="Node.html">Node</a></span>
+
+
+    </div>
+    
+</div>
+
+                
+        </div>
+    </div>
+
+
+
+
+</div>
+            
+                <div class="member">
+
+    
+    <h4 class="name" id="findChild">
+        
+        <span class="code-name">
+            findChild<span class="signature">(name)</span><span class="type-signature"> &rarr; (nullable) {<a href="Node.html">Node</a>}</span>
+        </span>
+    </h4>
+    
+
+    
+    
+    <div class="description">
+        Find the child with the given name
+    </div>
+    
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        
+<tr class="deep-level-0">
+  
+      <td class="name"><code>name</code></td>
+  
+
+  <td class="type">
+  
+      
+<span class="param-type">string</span>
+
+
+  
+  </td>
+
+  
+
+  
+
+  <td class="description last">A string</td>
+</tr>
+
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    
+
+    
+
+    
+
+    
+        <p class="tag-source">
+            <a href="Scene_Node.js.html" class="button">View Source</a>
+            <span>
+                <a href="Scene_Node.js.html">Scene/Node.js</a>, <a href="Scene_Node.js.html#line113">line 113</a>
+            </span>
+        </p>
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div class='columns method-parameter'>
+        <div class="column is-2"><label>Returns:</label></div>
+        <div class="column is-10">
+            
+                    
+
+<div class="columns">
+    
+    <div class='param-desc column is-7'>A Node instance of null</div>
+    
+    
+    <div class='column is-5 has-text-left'>
+        <label>Type: </label>
+        
+<span class="param-type"><a href="Node.html">Node</a></span>
+
+
+    </div>
+    
+</div>
+
+                
+        </div>
+    </div>
+
+
+
+
+</div>
+            
+                <div class="member">
+
+    
+    <h4 class="name" id="getBoundingBox">
+        
+        <span class="code-name">
+            getBoundingBox<span class="signature">()</span><span class="type-signature"> &rarr; {<a href="Box.html">Box</a>}</span>
+        </span>
+    </h4>
+    
+
+    
+    
+    <div class="description">
+        Return Node's bounding Box
+    </div>
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    
+
+    
+
+    
+
+    
+        <p class="tag-source">
+            <a href="Scene_Node.js.html" class="button">View Source</a>
+            <span>
+                <a href="Scene_Node.js.html">Scene/Node.js</a>, <a href="Scene_Node.js.html#line190">line 190</a>
+            </span>
+        </p>
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div class='columns method-parameter'>
+        <div class="column is-2"><label>Returns:</label></div>
+        <div class="column is-10">
+            
+                    
+
+<div class="columns">
+    
+    <div class='param-desc column is-7'>A Box instance</div>
+    
+    
+    <div class='column is-5 has-text-left'>
+        <label>Type: </label>
+        
+<span class="param-type"><a href="Box.html">Box</a></span>
+
+
+    </div>
+    
+</div>
+
+                
+        </div>
+    </div>
+
+
+
+
+</div>
+            
+                <div class="member">
+
+    
+    <h4 class="name" id="getChildren">
+        
+        <span class="code-name">
+            getChildren<span class="signature">()</span><span class="type-signature"> &rarr; {Array.&lt;<a href="Node.html">Node</a>>}</span>
+        </span>
+    </h4>
+    
+
+    
+    
+    <div class="description">
+        Return Node's children
+    </div>
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    
+
+    
+
+    
+
+    
+        <p class="tag-source">
+            <a href="Scene_Node.js.html" class="button">View Source</a>
+            <span>
+                <a href="Scene_Node.js.html">Scene/Node.js</a>, <a href="Scene_Node.js.html#line199">line 199</a>
+            </span>
+        </p>
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div class='columns method-parameter'>
+        <div class="column is-2"><label>Returns:</label></div>
+        <div class="column is-10">
+            
+                    
+
+<div class="columns">
+    
+    <div class='param-desc column is-7'>An array of Node</div>
+    
+    
+    <div class='column is-5 has-text-left'>
+        <label>Type: </label>
+        
+<span class="param-type">Array.&lt;<a href="Node.html">Node</a>></span>
+
+
+    </div>
+    
+</div>
+
+                
+        </div>
+    </div>
+
+
+
+
+</div>
+            
+                <div class="member">
+
+    
+    <h4 class="name" id="getNormalMatrix">
+        
+        <span class="code-name">
+            getNormalMatrix<span class="signature">()</span><span class="type-signature"> &rarr; {Array.&lt;number>|mat4}</span>
+        </span>
+    </h4>
+    
+
+    
+    
+    <div class="description">
+        Return computed normal matrix
+    </div>
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+    <dt class="inherited-from">Inherited From:</dt>
+    <dd class="inherited-from"><ul class="dummy"><li>
+        <a href="Transformable.html#getNormalMatrix">Transformable#getNormalMatrix</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    
+
+    
+
+    
+
+    
+        <p class="tag-source">
+            <a href="Transformable.js.html" class="button">View Source</a>
+            <span>
+                <a href="Transformable.js.html">Transformable.js</a>, <a href="Transformable.js.html#line307">line 307</a>
+            </span>
+        </p>
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div class='columns method-parameter'>
+        <div class="column is-2"><label>Returns:</label></div>
+        <div class="column is-10">
+            
+                    
+
+<div class="columns">
+    
+    <div class='param-desc column is-7'>A matrix</div>
+    
+    
+    <div class='column is-5 has-text-left'>
+        <label>Type: </label>
+        
+<span class="param-type">Array.&lt;number></span>
+|
+
+<span class="param-type">mat4</span>
+
+
+    </div>
+    
+</div>
+
+                
+        </div>
+    </div>
+
+
+
+
+</div>
+            
+                <div class="member">
+
+    
+    <h4 class="name" id="getOrigin">
+        
+        <span class="code-name">
+            getOrigin<span class="signature">()</span><span class="type-signature"> &rarr; {Array.&lt;number>|vec3}</span>
+        </span>
+    </h4>
+    
+
+    
+    
+    <div class="description">
+        Return the origin
+    </div>
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+    <dt class="inherited-from">Inherited From:</dt>
+    <dd class="inherited-from"><ul class="dummy"><li>
+        <a href="Transformable.html#getOrigin">Transformable#getOrigin</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    
+
+    
+
+    
+
+    
+        <p class="tag-source">
+            <a href="Transformable.js.html" class="button">View Source</a>
+            <span>
+                <a href="Transformable.js.html">Transformable.js</a>, <a href="Transformable.js.html#line316">line 316</a>
+            </span>
+        </p>
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div class='columns method-parameter'>
+        <div class="column is-2"><label>Returns:</label></div>
+        <div class="column is-10">
+            
+                    
+
+<div class="columns">
+    
+    <div class='param-desc column is-7'>A vector with the value for each axis</div>
+    
+    
+    <div class='column is-5 has-text-left'>
+        <label>Type: </label>
+        
+<span class="param-type">Array.&lt;number></span>
+|
+
+<span class="param-type">vec3</span>
+
+
+    </div>
+    
+</div>
+
+                
+        </div>
+    </div>
+
+
+
+
+</div>
+            
+                <div class="member">
+
+    
+    <h4 class="name" id="getPosition">
+        
+        <span class="code-name">
+            getPosition<span class="signature">()</span><span class="type-signature"> &rarr; {Array.&lt;number>|vec3}</span>
+        </span>
+    </h4>
+    
+
+    
+    
+    <div class="description">
+        Return relative position
+    </div>
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+    <dt class="inherited-from">Inherited From:</dt>
+    <dd class="inherited-from"><ul class="dummy"><li>
+        <a href="Transformable.html#getPosition">Transformable#getPosition</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    
+
+    
+
+    
+
+    
+        <p class="tag-source">
+            <a href="Transformable.js.html" class="button">View Source</a>
+            <span>
+                <a href="Transformable.js.html">Transformable.js</a>, <a href="Transformable.js.html#line325">line 325</a>
+            </span>
+        </p>
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div class='columns method-parameter'>
+        <div class="column is-2"><label>Returns:</label></div>
+        <div class="column is-10">
+            
+                    
+
+<div class="columns">
+    
+    <div class='param-desc column is-7'>A vector with the value for each axis</div>
+    
+    
+    <div class='column is-5 has-text-left'>
+        <label>Type: </label>
+        
+<span class="param-type">Array.&lt;number></span>
+|
+
+<span class="param-type">vec3</span>
+
+
+    </div>
+    
+</div>
+
+                
+        </div>
+    </div>
+
+
+
+
+</div>
+            
+                <div class="member">
+
+    
+    <h4 class="name" id="getRotation">
+        
+        <span class="code-name">
+            getRotation<span class="signature">()</span><span class="type-signature"> &rarr; {Array.&lt;number>}</span>
+        </span>
+    </h4>
+    
+
+    
+    
+    <div class="description">
+        Return the rotation in degrees
+    </div>
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+    <dt class="inherited-from">Inherited From:</dt>
+    <dd class="inherited-from"><ul class="dummy"><li>
+        <a href="Transformable.html#getRotation">Transformable#getRotation</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    
+
+    
+
+    
+    <dt class="tag-todo">To Do:</dt>
+    <dd class="tag-todo">
+        <ul>
+            <li>Implement this function</li>
+        </ul>
+    </dd>
+    
+
+    
+        <p class="tag-source">
+            <a href="Transformable.js.html" class="button">View Source</a>
+            <span>
+                <a href="Transformable.js.html">Transformable.js</a>, <a href="Transformable.js.html#line335">line 335</a>
+            </span>
+        </p>
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div class='columns method-parameter'>
+        <div class="column is-2"><label>Returns:</label></div>
+        <div class="column is-10">
+            
+                    
+
+<div class="columns">
+    
+    <div class='param-desc column is-7'>A vector with the value for each axis in degrees</div>
+    
+    
+    <div class='column is-5 has-text-left'>
+        <label>Type: </label>
+        
+<span class="param-type">Array.&lt;number></span>
+
+
+    </div>
+    
+</div>
+
+                
+        </div>
+    </div>
+
+
+
+
+</div>
+            
+                <div class="member">
+
+    
+    <h4 class="name" id="getScale">
+        
+        <span class="code-name">
+            getScale<span class="signature">()</span><span class="type-signature"> &rarr; {Array.&lt;number>|vec3}</span>
+        </span>
+    </h4>
+    
+
+    
+    
+    <div class="description">
+        Return the scale
+    </div>
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+    <dt class="inherited-from">Inherited From:</dt>
+    <dd class="inherited-from"><ul class="dummy"><li>
+        <a href="Transformable.html#getScale">Transformable#getScale</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    
+
+    
+
+    
+
+    
+        <p class="tag-source">
+            <a href="Transformable.js.html" class="button">View Source</a>
+            <span>
+                <a href="Transformable.js.html">Transformable.js</a>, <a href="Transformable.js.html#line344">line 344</a>
+            </span>
+        </p>
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div class='columns method-parameter'>
+        <div class="column is-2"><label>Returns:</label></div>
+        <div class="column is-10">
+            
+                    
+
+<div class="columns">
+    
+    <div class='param-desc column is-7'>A vector with the value for each axis</div>
+    
+    
+    <div class='column is-5 has-text-left'>
+        <label>Type: </label>
+        
+<span class="param-type">Array.&lt;number></span>
+|
+
+<span class="param-type">vec3</span>
+
+
+    </div>
+    
+</div>
+
+                
+        </div>
+    </div>
+
+
+
+
+</div>
+            
+                <div class="member">
+
+    
+    <h4 class="name" id="getTransformationMatrix">
+        
+        <span class="code-name">
+            getTransformationMatrix<span class="signature">()</span><span class="type-signature"> &rarr; {Array.&lt;number>|mat4}</span>
+        </span>
+    </h4>
+    
+
+    
+    
+    <div class="description">
+        Return computed matrix
+    </div>
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+    <dt class="inherited-from">Inherited From:</dt>
+    <dd class="inherited-from"><ul class="dummy"><li>
+        <a href="Transformable.html#getTransformationMatrix">Transformable#getTransformationMatrix</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    
+
+    
+
+    
+
+    
+        <p class="tag-source">
+            <a href="Transformable.js.html" class="button">View Source</a>
+            <span>
+                <a href="Transformable.js.html">Transformable.js</a>, <a href="Transformable.js.html#line298">line 298</a>
+            </span>
+        </p>
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div class='columns method-parameter'>
+        <div class="column is-2"><label>Returns:</label></div>
+        <div class="column is-10">
+            
+                    
+
+<div class="columns">
+    
+    <div class='param-desc column is-7'>A reference to the object's matrix</div>
+    
+    
+    <div class='column is-5 has-text-left'>
+        <label>Type: </label>
+        
+<span class="param-type">Array.&lt;number></span>
+|
+
+<span class="param-type">mat4</span>
+
+
+    </div>
+    
+</div>
+
+                
+        </div>
+    </div>
+
+
+
+
+</div>
+            
+                <div class="member">
+
+    
+    <h4 class="name" id="isEnabled">
+        
+        <span class="code-name">
+            isEnabled<span class="signature">()</span><span class="type-signature"> &rarr; {boolean}</span>
+        </span>
+    </h4>
+    
+
+    
+    
+    <div class="description">
+        Get state
+    </div>
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    
+
+    
+
+    
+
+    
+        <p class="tag-source">
+            <a href="Scene_Node.js.html" class="button">View Source</a>
+            <span>
+                <a href="Scene_Node.js.html">Scene/Node.js</a>, <a href="Scene_Node.js.html#line208">line 208</a>
+            </span>
+        </p>
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div class='columns method-parameter'>
+        <div class="column is-2"><label>Returns:</label></div>
+        <div class="column is-10">
+            
+                    
+
+<div class="columns">
+    
+    <div class='param-desc column is-7'>True if the node is enabled, otherwise false</div>
+    
+    
+    <div class='column is-5 has-text-left'>
+        <label>Type: </label>
+        
+<span class="param-type">boolean</span>
+
+
+    </div>
+    
+</div>
+
+                
+        </div>
+    </div>
+
+
+
+
+</div>
+            
+                <div class="member">
+
+    
+    <h4 class="name" id="isRoot">
+        
+        <span class="code-name">
+            isRoot<span class="signature">()</span><span class="type-signature"> &rarr; {boolean}</span>
+        </span>
+    </h4>
+    
+
+    
+    
+    <div class="description">
+        Indicates if the current node is the scene's root
+    </div>
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    
+
+    
+
+    
+
+    
+        <p class="tag-source">
+            <a href="Scene_Node.js.html" class="button">View Source</a>
+            <span>
+                <a href="Scene_Node.js.html">Scene/Node.js</a>, <a href="Scene_Node.js.html#line217">line 217</a>
+            </span>
+        </p>
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div class='columns method-parameter'>
+        <div class="column is-2"><label>Returns:</label></div>
+        <div class="column is-10">
+            
+                    
+
+<div class="columns">
+    
+    <div class='param-desc column is-7'>True if it's the root node, otherwise false</div>
+    
+    
+    <div class='column is-5 has-text-left'>
+        <label>Type: </label>
+        
+<span class="param-type">boolean</span>
+
+
+    </div>
+    
+</div>
+
+                
+        </div>
+    </div>
+
+
+
+
+</div>
+            
+                <div class="member">
+
+    
+    <h4 class="name" id="lookAt">
+        
+        <span class="code-name">
+            lookAt<span class="signature">(position, up)</span><span class="type-signature"> &rarr; {<a href="Transformable.html">Transformable</a>}</span>
+        </span>
+    </h4>
+    
+
+    
+    
+    <div class="description">
+        Look at the given position
+    </div>
+    
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        
+<tr class="deep-level-0">
+  
+      <td class="name"><code>position</code></td>
+  
+
+  <td class="type">
+  
+      
+<span class="param-type">Array.&lt;number></span>
+|
+
+<span class="param-type">Float32Array</span>
+|
+
+<span class="param-type">Float64Array</span>
+
+
+  
+  </td>
+
+  
+
+  
+
+  <td class="description last">An array with value for each axis</td>
+</tr>
+
+
+    
+
+        
+<tr class="deep-level-0">
+  
+      <td class="name"><code>up</code></td>
+  
+
+  <td class="type">
+  
+      
+<span class="param-type">Array.&lt;number></span>
+|
+
+<span class="param-type">Float32Array</span>
+|
+
+<span class="param-type">Float64Array</span>
+
+
+  
+  </td>
+
+  
+
+  
+
+  <td class="description last">An array with value for each axis</td>
+</tr>
+
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+    <dt class="inherited-from">Inherited From:</dt>
+    <dd class="inherited-from"><ul class="dummy"><li>
+        <a href="Transformable.html#lookAt">Transformable#lookAt</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    
+
+    
+
+    
+
+    
+        <p class="tag-source">
+            <a href="Transformable.js.html" class="button">View Source</a>
+            <span>
+                <a href="Transformable.js.html">Transformable.js</a>, <a href="Transformable.js.html#line89">line 89</a>
+            </span>
+        </p>
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div class='columns method-parameter'>
+        <div class="column is-2"><label>Returns:</label></div>
+        <div class="column is-10">
+            
+                    
+
+<div class="columns">
+    
+    <div class='param-desc column is-7'>A reference to the instance</div>
+    
+    
+    <div class='column is-5 has-text-left'>
+        <label>Type: </label>
+        
+<span class="param-type"><a href="Transformable.html">Transformable</a></span>
+
+
+    </div>
+    
+</div>
+
+                
+        </div>
+    </div>
+
+
+
+
+</div>
+            
+                <div class="member">
+
+    
+    <h4 class="name" id="removeChild">
+        
+        <span class="code-name">
+            removeChild<span class="signature">(node)</span><span class="type-signature"> &rarr; {boolean}</span>
+        </span>
+    </h4>
+    
+
+    
+    
+    <div class="description">
+        Remove a child from the node
+    </div>
+    
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        
+<tr class="deep-level-0">
+  
+      <td class="name"><code>node</code></td>
+  
+
+  <td class="type">
+  
+      
+<span class="param-type"><a href="Node.html">Node</a></span>
+
+
+  
+  </td>
+
+  
+
+  
+
+  <td class="description last">A Node instance</td>
+</tr>
+
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    
+
+    
+
+    
+
+    
+        <p class="tag-source">
+            <a href="Scene_Node.js.html" class="button">View Source</a>
+            <span>
+                <a href="Scene_Node.js.html">Scene/Node.js</a>, <a href="Scene_Node.js.html#line133">line 133</a>
+            </span>
+        </p>
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div class='columns method-parameter'>
+        <div class="column is-2"><label>Returns:</label></div>
+        <div class="column is-10">
+            
+                    
+
+<div class="columns">
+    
+    <div class='param-desc column is-7'>True if the operation is a success</div>
+    
+    
+    <div class='column is-5 has-text-left'>
+        <label>Type: </label>
+        
+<span class="param-type">boolean</span>
+
+
+    </div>
+    
+</div>
+
+                
+        </div>
+    </div>
+
+
+
+
+</div>
+            
+                <div class="member">
+
+    
+    <h4 class="name" id="setName">
+        
+        <span class="code-name">
+            setName<span class="signature">(name)</span><span class="type-signature"> &rarr; {<a href="Node.html">Node</a>}</span>
+        </span>
+    </h4>
+    
+
+    
+    
+    <div class="description">
+        Set the name to easily retrieve it later
+    </div>
+    
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        
+<tr class="deep-level-0">
+  
+      <td class="name"><code>name</code></td>
+  
+
+  <td class="type">
+  
+      
+<span class="param-type">string</span>
+
+
+  
+  </td>
+
+  
+
+  
+
+  <td class="description last">A string</td>
+</tr>
+
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    
+
+    
+
+    
+
+    
+        <p class="tag-source">
+            <a href="Scene_Node.js.html" class="button">View Source</a>
+            <span>
+                <a href="Scene_Node.js.html">Scene/Node.js</a>, <a href="Scene_Node.js.html#line151">line 151</a>
+            </span>
+        </p>
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div class='columns method-parameter'>
+        <div class="column is-2"><label>Returns:</label></div>
+        <div class="column is-10">
+            
+                    
+
+<div class="columns">
+    
+    <div class='param-desc column is-7'>A reference to the instance</div>
+    
+    
+    <div class='column is-5 has-text-left'>
+        <label>Type: </label>
+        
+<span class="param-type"><a href="Node.html">Node</a></span>
+
+
+    </div>
+    
+</div>
+
+                
+        </div>
+    </div>
+
+
+
+
+</div>
+            
+                <div class="member">
+
+    
+    <h4 class="name" id="setOrigin">
+        
+        <span class="code-name">
+            setOrigin<span class="signature">(x, y<span class="signature-attributes">nullable</span>, z<span class="signature-attributes">nullable</span>)</span><span class="type-signature"> &rarr; {<a href="Transformable.html">Transformable</a>}</span>
+        </span>
+    </h4>
+    
+
+    
+    
+    <div class="description">
+        Set origin
+    </div>
+    
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Attributes</th>
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        
+<tr class="deep-level-0">
+  
+      <td class="name"><code>x</code></td>
+  
+
+  <td class="type">
+  
+      
+<span class="param-type">number</span>
+|
+
+<span class="param-type">Array.&lt;number></span>
+
+
+  
+  </td>
+
+  
+      <td class="attributes">
+      
+
+      
+
+      
+      </td>
+  
+
+  
+
+  <td class="description last">Origin on X or an array with origin on each axis</td>
+</tr>
+
+
+    
+
+        
+<tr class="deep-level-0">
+  
+      <td class="name"><code>y</code></td>
+  
+
+  <td class="type">
+  
+      
+<span class="param-type">number</span>
+
+
+  
+  </td>
+
+  
+      <td class="attributes">
+      
+
+      
+          &lt;nullable><br>
+      
+
+      
+      </td>
+  
+
+  
+
+  <td class="description last">Origin on Y</td>
+</tr>
+
+
+    
+
+        
+<tr class="deep-level-0">
+  
+      <td class="name"><code>z</code></td>
+  
+
+  <td class="type">
+  
+      
+<span class="param-type">number</span>
+
+
+  
+  </td>
+
+  
+      <td class="attributes">
+      
+
+      
+          &lt;nullable><br>
+      
+
+      
+      </td>
+  
+
+  
+
+  <td class="description last">Origin on Z</td>
+</tr>
+
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+    <dt class="inherited-from">Inherited From:</dt>
+    <dd class="inherited-from"><ul class="dummy"><li>
+        <a href="Transformable.html#setOrigin">Transformable#setOrigin</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    
+
+    
+
+    
+
+    
+        <p class="tag-source">
+            <a href="Transformable.js.html" class="button">View Source</a>
+            <span>
+                <a href="Transformable.js.html">Transformable.js</a>, <a href="Transformable.js.html#line146">line 146</a>
+            </span>
+        </p>
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div class='columns method-parameter'>
+        <div class="column is-2"><label>Returns:</label></div>
+        <div class="column is-10">
+            
+                    
+
+<div class="columns">
+    
+    <div class='param-desc column is-7'>A reference to the instance</div>
+    
+    
+    <div class='column is-5 has-text-left'>
+        <label>Type: </label>
+        
+<span class="param-type"><a href="Transformable.html">Transformable</a></span>
+
+
+    </div>
+    
+</div>
+
+                
+        </div>
+    </div>
+
+
+
+
+</div>
+            
+                <div class="member">
+
+    
+    <h4 class="name" id="setPosition">
+        
+        <span class="code-name">
+            setPosition<span class="signature">(x, y<span class="signature-attributes">nullable</span>, z<span class="signature-attributes">nullable</span>)</span><span class="type-signature"> &rarr; {<a href="Transformable.html">Transformable</a>}</span>
+        </span>
+    </h4>
+    
+
+    
+    
+    <div class="description">
+        Set position
+    </div>
+    
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Attributes</th>
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        
+<tr class="deep-level-0">
+  
+      <td class="name"><code>x</code></td>
+  
+
+  <td class="type">
+  
+      
+<span class="param-type">number</span>
+|
+
+<span class="param-type">Array.&lt;number></span>
+
+
+  
+  </td>
+
+  
+      <td class="attributes">
+      
+
+      
+
+      
+      </td>
+  
+
+  
+
+  <td class="description last">Position on X or an array with position on each axis</td>
+</tr>
+
+
+    
+
+        
+<tr class="deep-level-0">
+  
+      <td class="name"><code>y</code></td>
+  
+
+  <td class="type">
+  
+      
+<span class="param-type">number</span>
+
+
+  
+  </td>
+
+  
+      <td class="attributes">
+      
+
+      
+          &lt;nullable><br>
+      
+
+      
+      </td>
+  
+
+  
+
+  <td class="description last">Position on Y</td>
+</tr>
+
+
+    
+
+        
+<tr class="deep-level-0">
+  
+      <td class="name"><code>z</code></td>
+  
+
+  <td class="type">
+  
+      
+<span class="param-type">number</span>
+
+
+  
+  </td>
+
+  
+      <td class="attributes">
+      
+
+      
+          &lt;nullable><br>
+      
+
+      
+      </td>
+  
+
+  
+
+  <td class="description last">Position on Z</td>
+</tr>
+
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+    <dt class="inherited-from">Inherited From:</dt>
+    <dd class="inherited-from"><ul class="dummy"><li>
+        <a href="Transformable.html#setPosition">Transformable#setPosition</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    
+
+    
+
+    
+
+    
+        <p class="tag-source">
+            <a href="Transformable.js.html" class="button">View Source</a>
+            <span>
+                <a href="Transformable.js.html">Transformable.js</a>, <a href="Transformable.js.html#line166">line 166</a>
+            </span>
+        </p>
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div class='columns method-parameter'>
+        <div class="column is-2"><label>Returns:</label></div>
+        <div class="column is-10">
+            
+                    
+
+<div class="columns">
+    
+    <div class='param-desc column is-7'>A reference to the instance</div>
+    
+    
+    <div class='column is-5 has-text-left'>
+        <label>Type: </label>
+        
+<span class="param-type"><a href="Transformable.html">Transformable</a></span>
+
+
+    </div>
+    
+</div>
+
+                
+        </div>
+    </div>
+
+
+
+
+</div>
+            
+                <div class="member">
+
+    
+    <h4 class="name" id="setRotation">
+        
+        <span class="code-name">
+            setRotation<span class="signature">(x, y<span class="signature-attributes">nullable</span>, z<span class="signature-attributes">nullable</span>)</span><span class="type-signature"> &rarr; {<a href="Transformable.html">Transformable</a>}</span>
+        </span>
+    </h4>
+    
+
+    
+    
+    <div class="description">
+        Set rotation using values in degrees
+    </div>
+    
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Attributes</th>
+        
+
+        
+        <th>Default</th>
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        
+<tr class="deep-level-0">
+  
+      <td class="name"><code>x</code></td>
+  
+
+  <td class="type">
+  
+      
+<span class="param-type">number</span>
+|
+
+<span class="param-type">Array.&lt;number></span>
+
+
+  
+  </td>
+
+  
+      <td class="attributes">
+      
+
+      
+
+      
+      </td>
+  
+
+  
+      <td class="default">
+      
+      </td>
+  
+
+  <td class="description last">Rotation on X in degrees or an array with rotation on each axis</td>
+</tr>
+
+
+    
+
+        
+<tr class="deep-level-0">
+  
+      <td class="name"><code>y</code></td>
+  
+
+  <td class="type">
+  
+      
+<span class="param-type">number</span>
+
+
+  
+  </td>
+
+  
+      <td class="attributes">
+      
+
+      
+          &lt;nullable><br>
+      
+
+      
+      </td>
+  
+
+  
+      <td class="default">
+      
+          0
+      
+      </td>
+  
+
+  <td class="description last">Rotation on Y in degrees</td>
+</tr>
+
+
+    
+
+        
+<tr class="deep-level-0">
+  
+      <td class="name"><code>z</code></td>
+  
+
+  <td class="type">
+  
+      
+<span class="param-type">number</span>
+
+
+  
+  </td>
+
+  
+      <td class="attributes">
+      
+
+      
+          &lt;nullable><br>
+      
+
+      
+      </td>
+  
+
+  
+      <td class="default">
+      
+          0
+      
+      </td>
+  
+
+  <td class="description last">Rotation on Z in degrees</td>
+</tr>
+
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+    <dt class="inherited-from">Inherited From:</dt>
+    <dd class="inherited-from"><ul class="dummy"><li>
+        <a href="Transformable.html#setRotation">Transformable#setRotation</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    
+
+    
+
+    
+
+    
+        <p class="tag-source">
+            <a href="Transformable.js.html" class="button">View Source</a>
+            <span>
+                <a href="Transformable.js.html">Transformable.js</a>, <a href="Transformable.js.html#line186">line 186</a>
+            </span>
+        </p>
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div class='columns method-parameter'>
+        <div class="column is-2"><label>Returns:</label></div>
+        <div class="column is-10">
+            
+                    
+
+<div class="columns">
+    
+    <div class='param-desc column is-7'>A reference to the instance</div>
+    
+    
+    <div class='column is-5 has-text-left'>
+        <label>Type: </label>
+        
+<span class="param-type"><a href="Transformable.html">Transformable</a></span>
+
+
+    </div>
+    
+</div>
+
+                
+        </div>
+    </div>
+
+
+
+
+</div>
+            
+                <div class="member">
+
+    
+    <h4 class="name" id="setRotationFromMatrix">
+        
+        <span class="code-name">
+            setRotationFromMatrix<span class="signature">(matrix)</span><span class="type-signature"> &rarr; {<a href="Transformable.html">Transformable</a>}</span>
+        </span>
+    </h4>
+    
+
+    
+    
+    <div class="description">
+        Set rotation from a rotation matrix
+    </div>
+    
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        
+<tr class="deep-level-0">
+  
+      <td class="name"><code>matrix</code></td>
+  
+
+  <td class="type">
+  
+      
+<span class="param-type">mat4</span>
+
+
+  
+  </td>
+
+  
+
+  
+
+  <td class="description last">A Matrix</td>
+</tr>
+
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+    <dt class="inherited-from">Inherited From:</dt>
+    <dd class="inherited-from"><ul class="dummy"><li>
+        <a href="Transformable.html#setRotationFromMatrix">Transformable#setRotationFromMatrix</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    
+
+    
+
+    
+
+    
+        <p class="tag-source">
+            <a href="Transformable.js.html" class="button">View Source</a>
+            <span>
+                <a href="Transformable.js.html">Transformable.js</a>, <a href="Transformable.js.html#line231">line 231</a>
+            </span>
+        </p>
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div class='columns method-parameter'>
+        <div class="column is-2"><label>Returns:</label></div>
+        <div class="column is-10">
+            
+                    
+
+<div class="columns">
+    
+    <div class='param-desc column is-7'>A reference to the instance</div>
+    
+    
+    <div class='column is-5 has-text-left'>
+        <label>Type: </label>
+        
+<span class="param-type"><a href="Transformable.html">Transformable</a></span>
+
+
+    </div>
+    
+</div>
+
+                
+        </div>
+    </div>
+
+
+
+
+</div>
+            
+                <div class="member">
+
+    
+    <h4 class="name" id="setRotationFromQuaternion">
+        
+        <span class="code-name">
+            setRotationFromQuaternion<span class="signature">(quaternion)</span><span class="type-signature"> &rarr; {<a href="Transformable.html">Transformable</a>}</span>
+        </span>
+    </h4>
+    
+
+    
+    
+    <div class="description">
+        Set rotation from a quaternion
+    </div>
+    
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        
+<tr class="deep-level-0">
+  
+      <td class="name"><code>quaternion</code></td>
+  
+
+  <td class="type">
+  
+      
+<span class="param-type">quat</span>
+
+
+  
+  </td>
+
+  
+
+  
+
+  <td class="description last">A quaternion</td>
+</tr>
+
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+    <dt class="inherited-from">Inherited From:</dt>
+    <dd class="inherited-from"><ul class="dummy"><li>
+        <a href="Transformable.html#setRotationFromQuaternion">Transformable#setRotationFromQuaternion</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    
+
+    
+
+    
+
+    
+        <p class="tag-source">
+            <a href="Transformable.js.html" class="button">View Source</a>
+            <span>
+                <a href="Transformable.js.html">Transformable.js</a>, <a href="Transformable.js.html#line216">line 216</a>
+            </span>
+        </p>
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div class='columns method-parameter'>
+        <div class="column is-2"><label>Returns:</label></div>
+        <div class="column is-10">
+            
+                    
+
+<div class="columns">
+    
+    <div class='param-desc column is-7'>A reference to the instance</div>
+    
+    
+    <div class='column is-5 has-text-left'>
+        <label>Type: </label>
+        
+<span class="param-type"><a href="Transformable.html">Transformable</a></span>
+
+
+    </div>
+    
+</div>
+
+                
+        </div>
+    </div>
+
+
+
+
+</div>
+            
+                <div class="member">
+
+    
+    <h4 class="name" id="setScale">
+        
+        <span class="code-name">
+            setScale<span class="signature">(x, y<span class="signature-attributes">nullable</span>, z<span class="signature-attributes">nullable</span>)</span><span class="type-signature"> &rarr; {<a href="Transformable.html">Transformable</a>}</span>
+        </span>
+    </h4>
+    
+
+    
+    
+    <div class="description">
+        Set scale
+    </div>
+    
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Attributes</th>
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        
+<tr class="deep-level-0">
+  
+      <td class="name"><code>x</code></td>
+  
+
+  <td class="type">
+  
+      
+<span class="param-type">number</span>
+|
+
+<span class="param-type">Array.&lt;number></span>
+
+
+  
+  </td>
+
+  
+      <td class="attributes">
+      
+
+      
+
+      
+      </td>
+  
+
+  
+
+  <td class="description last">Scale on X or an array with scale on each axis</td>
+</tr>
+
+
+    
+
+        
+<tr class="deep-level-0">
+  
+      <td class="name"><code>y</code></td>
+  
+
+  <td class="type">
+  
+      
+<span class="param-type">number</span>
+
+
+  
+  </td>
+
+  
+      <td class="attributes">
+      
+
+      
+          &lt;nullable><br>
+      
+
+      
+      </td>
+  
+
+  
+
+  <td class="description last">Scale on Y</td>
+</tr>
+
+
+    
+
+        
+<tr class="deep-level-0">
+  
+      <td class="name"><code>z</code></td>
+  
+
+  <td class="type">
+  
+      
+<span class="param-type">number</span>
+
+
+  
+  </td>
+
+  
+      <td class="attributes">
+      
+
+      
+          &lt;nullable><br>
+      
+
+      
+      </td>
+  
+
+  
+
+  <td class="description last">Scale on Z</td>
+</tr>
+
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+    <dt class="inherited-from">Inherited From:</dt>
+    <dd class="inherited-from"><ul class="dummy"><li>
+        <a href="Transformable.html#setScale">Transformable#setScale</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    
+
+    
+
+    
+
+    
+        <p class="tag-source">
+            <a href="Transformable.js.html" class="button">View Source</a>
+            <span>
+                <a href="Transformable.js.html">Transformable.js</a>, <a href="Transformable.js.html#line248">line 248</a>
+            </span>
+        </p>
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div class='columns method-parameter'>
+        <div class="column is-2"><label>Returns:</label></div>
+        <div class="column is-10">
+            
+                    
+
+<div class="columns">
+    
+    <div class='param-desc column is-7'>A reference to the instance</div>
+    
+    
+    <div class='column is-5 has-text-left'>
+        <label>Type: </label>
+        
+<span class="param-type"><a href="Transformable.html">Transformable</a></span>
+
+
+    </div>
+    
+</div>
+
+                
+        </div>
+    </div>
+
+
+
+
+</div>
+            
+                <div class="member">
+
+    
+    <h4 class="name" id="update">
+        
+        <span class="code-name">
+            update<span class="signature">(deltaTime, forceUpdate<span class="signature-attributes">nullable</span>)</span><span class="type-signature"> &rarr; {boolean}</span>
+        </span>
+    </h4>
+    
+
+    
+    
+    <div class="description">
+        Update the node and his children
+    </div>
+    
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Attributes</th>
+        
+
+        
+        <th>Default</th>
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        
+<tr class="deep-level-0">
+  
+      <td class="name"><code>deltaTime</code></td>
+  
+
+  <td class="type">
+  
+      
+<span class="param-type">number</span>
+
+
+  
+  </td>
+
+  
+      <td class="attributes">
+      
+
+      
+
+      
+      </td>
+  
+
+  
+      <td class="default">
+      
+      </td>
+  
+
+  <td class="description last">A floating value representing time elapsed between two frames</td>
+</tr>
+
+
+    
+
+        
+<tr class="deep-level-0">
+  
+      <td class="name"><code>forceUpdate</code></td>
+  
+
+  <td class="type">
+  
+      
+<span class="param-type">boolean</span>
+
+
+  
+  </td>
+
+  
+      <td class="attributes">
+      
+
+      
+          &lt;nullable><br>
+      
+
+      
+      </td>
+  
+
+  
+      <td class="default">
+      
+          false
+      
+      </td>
+  
+
+  <td class="description last">Set to true to force an update</td>
+</tr>
+
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    
+
+    
+
+    
+
+    
+        <p class="tag-source">
+            <a href="Scene_Node.js.html" class="button">View Source</a>
+            <span>
+                <a href="Scene_Node.js.html">Scene/Node.js</a>, <a href="Scene_Node.js.html#line164">line 164</a>
+            </span>
+        </p>
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div class='columns method-parameter'>
+        <div class="column is-2"><label>Returns:</label></div>
+        <div class="column is-10">
+            
+                    
+
+<div class="columns">
+    
+    <div class='param-desc column is-7'>True if the node has been updated</div>
+    
+    
+    <div class='column is-5 has-text-left'>
+        <label>Type: </label>
+        
+<span class="param-type">boolean</span>
+
+
+    </div>
+    
+</div>
+
+                
+        </div>
+    </div>
+
+
+
+
+</div>
+            
+                <div class="member">
+
+    
+    <h4 class="name" id="visit">
+        
+        <span class="code-name">
+            visit<span class="signature">(renderTarget)</span><span class="type-signature"> &rarr; {boolean}</span>
+        </span>
+    </h4>
+    
+
+    
+    
+    <div class="description">
+        Visit the node and his children
+    </div>
+    
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        
+<tr class="deep-level-0">
+  
+      <td class="name"><code>renderTarget</code></td>
+  
+
+  <td class="type">
+  
+      
+<span class="param-type"><a href="RenderTarget.html">RenderTarget</a></span>
+
+
+  
+  </td>
+
+  
+
+  
+
+  <td class="description last">Renderer who called this method</td>
+</tr>
+
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    
+
+    
+
+    
+
+    
+        <p class="tag-source">
+            <a href="Scene_Node.js.html" class="button">View Source</a>
+            <span>
+                <a href="Scene_Node.js.html">Scene/Node.js</a>, <a href="Scene_Node.js.html#line181">line 181</a>
+            </span>
+        </p>
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div class='columns method-parameter'>
+        <div class="column is-2"><label>Returns:</label></div>
+        <div class="column is-10">
+            
+                    
+
+<div class="columns">
+    
+    <div class='param-desc column is-7'>True if visit was successful, otherwise false</div>
+    
+    
+    <div class='column is-5 has-text-left'>
+        <label>Type: </label>
+        
+<span class="param-type">boolean</span>
+
+
+    </div>
+    
+</div>
+
+                
+        </div>
+    </div>
+
+
+
+
+</div>
+            
+            </div>
+        </div>
+    
+
+    
+
+    
+</article>
+
+</section>
+
+
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+<footer class="footer">
+    <div class="content has-text-centered">
+        <p>Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Sat Feb 02 2019 17:23:42 GMT+0100 (heure normale d’Europe centrale)</p>
+        <p class="sidebar-created-by">
+            <a href="https://github.com/SoftwareBrothers/better-docs" target="_blank">BetterDocs theme</a> provided with <i class="fas fa-heart"></i> by 
+            <a href="http://softwarebrothers.co" target="_blank">SoftwareBrothers</a>
+        </p>
+    </div>
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/app.min.js"></script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

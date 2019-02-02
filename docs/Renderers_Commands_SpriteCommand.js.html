@@ -1,0 +1,297 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Renderers/Commands/SpriteCommand.js</title>
+
+    <script src="scripts/prettify/prettify.js"></script>
+    <script src="scripts/prettify/lang-css.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link href="https://fonts.googleapis.com/css?family=Muli:100,400,700|Oswald:300|Inconsolata,700" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+    <link type="text/css" rel="stylesheet" href="https://jmblog.github.io/color-themes-for-google-code-prettify/themes/tomorrow-night.min.css">
+    <link type="text/css" rel="stylesheet" href="styles/app.min.css">
+</head>
+
+<body>
+    <div id="stickyNavbarOverlay"></div>
+    <div class="top-navbar">
+        <div class="container">
+            <nav class="navbar" role="navigation" aria-label="main navigation">
+                <div class="navbar-brand">
+                    
+                     
+                        <h1 class="navbar-item">LemonJS Documentation</h1>
+                    
+                    <a id="hamburger" role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
+                        <span aria-hidden="true"></span>
+                        <span aria-hidden="true"></span>
+                        <span aria-hidden="true"></span>
+                    </a>
+                </div>
+                 
+                <div class="navbar-menu">
+                    <div class="navbar-end">
+                    
+                        <div class="navbar-item">
+                            <a href="https://github.com/Donorhan/Lemon-JS" target="_blank">Github</a>
+                        </div>
+                    
+                    </div>
+                </div>
+                
+            </nav>
+        </div>
+    </div>
+    <div class="container">
+        <div class="columns">
+            <div class="column is-3" id="sidebarNav">
+                <div class="sidebar">
+                    <nav>
+                        <h2><a href="index.html">Home</a></h2><div class="category"></div><div class="category"><h2>Core</h2><h3>Classes</h3><ul><li><a href="BlendMode.html">BlendMode</a></li><li><a href="Color.html">Color</a></li><li><a href="Context.html">Context</a></li><li><a href="ContextResource.html">ContextResource</a></li><li><a href="Img.html">Img</a></li><li><a href="StateBlock.html">StateBlock</a></li></ul></div><div class="category"><h2>Geometry</h2><h3>Classes</h3><ul><li><a href="Box.html">Box</a></li><li><a href="Frustum.html">Frustum</a></li><li><a href="Geometry.html">Geometry</a></li><li><a href="Plane.html">Plane</a></li><li><a href="Ray.html">Ray</a></li><li><a href="Transformable.html">Transformable</a></li><li><a href="VertexElement.html">VertexElement</a></li><li><a href="VertexFormat.html">VertexFormat</a></li></ul></div><div class="category"><h2>WebGL</h2><h3>Classes</h3><ul><li><a href="BufferData.html">BufferData</a></li><li><a href="Cache.html">Cache</a></li><li><a href="Instances.html">Instances</a></li><li><a href="TypesConverter.html">TypesConverter</a></li><li><a href="WebGL.html">WebGL</a></li></ul></div><div class="category"><h2>Scene</h2><h3>Classes</h3><ul><li><a href="Camera.html">Camera</a></li></ul></div><div class="category"><h2>Culling</h2><h3>Classes</h3><ul><li><a href="Culler.html">Culler</a></li><li><a href="CullingManager.html">CullingManager</a></li><li><a href="FrustumCuller.html">FrustumCuller</a></li></ul></div><div class="category"><h2>Types</h2><h3>Classes</h3><ul><li><a href="DepthFunction.html">DepthFunction</a></li><li><a href="DrawingMode.html">DrawingMode</a></li><li><a href="FaceCulling.html">FaceCulling</a></li><li><a href="StencilFunction.html">StencilFunction</a></li><li><a href="StencilOperation.html">StencilOperation</a></li><li><a href="Type.html">Type</a></li></ul></div><div class="category"><h2>Lights</h2><h3>Classes</h3><ul><li><a href="DirectionalLight.html">DirectionalLight</a></li><li><a href="Light.html">Light</a></li><li><a href="PointLight.html">PointLight</a></li><li><a href="SpotLight.html">SpotLight</a></li></ul></div><div class="category"><h2>Drawables</h2><h3>Classes</h3><ul><li><a href="Drawable.html">Drawable</a></li><li><a href="Mesh.html">Mesh</a></li><li><a href="Model.html">Model</a></li><li><a href="Skybox.html">Skybox</a></li><li><a href="Sprite.html">Sprite</a></li></ul></div><div class="category"><h2>Loaders</h2><h3>Classes</h3><ul><li><a href="FileLoader.html">FileLoader</a></li><li><a href="ModelLoader.html">ModelLoader</a></li></ul></div><div class="category"><h2>Material</h2><h3>Classes</h3><ul><li><a href="Material.html">Material</a></li><li><a href="Pass.html">Pass</a></li><li><a href="PassParameter.html">PassParameter</a></li></ul></div><div class="category"><h2>Rendering</h2><h3>Classes</h3><ul><li><a href="MeshCommand.html">MeshCommand</a></li><li><a href="RenderAPI.html">RenderAPI</a></li><li><a href="RenderCanvas.html">RenderCanvas</a></li><li><a href="RenderCommand.html">RenderCommand</a></li><li><a href="RenderTarget.html">RenderTarget</a></li><li><a href="RenderTask.html">RenderTask</a></li><li><a href="RenderTexture.html">RenderTexture</a></li><li><a href="SkyboxCommand.html">SkyboxCommand</a></li><li><a href="SpriteCommand.html">SpriteCommand</a></li></ul></div><div class="category"><h2>Scene management</h2><h3>Classes</h3><ul><li><a href="Node.html">Node</a></li><li><a href="Scene.html">Scene</a></li></ul></div><div class="category"><h2>Shaders</h2><h3>Classes</h3><ul><li><a href="PostEffect.html">PostEffect</a></li><li><a href="Program.html">Program</a></li><li><a href="ProgramElement.html">ProgramElement</a></li><li><a href="ProgramLibrary.html">ProgramLibrary</a></li></ul></div><div class="category"><h2>Textures</h2><h3>Classes</h3><ul><li><a href="Texture.html">Texture</a></li><li><a href="TextureCube.html">TextureCube</a></li><li><a href="TextureInterface.html">TextureInterface</a></li><li><a href="TextureVideo.html">TextureVideo</a></li></ul></div><div class="category"><h2>Math</h2><h3>Global</h3><ul><li><a href="global.html#multiplyWithMat4">multiplyWithMat4</a></li><li><a href="global.html#project">project</a></li><li><a href="global.html#unproject">unproject</a></li></ul></div>
+                    </nav>
+                </div>
+            </div>
+            <div class="column is-9-desktop">
+                <div class="content" id="main-content-wrapper">
+                    <header class="page-title">
+                        <p>Source</p>
+                        <h1>Renderers/Commands/SpriteCommand.js</h1>
+                    </header>
+                    
+                    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import { DepthFunction, DrawingMode } from '../../StateBlock';
+import Geometry from '../../Geometry';
+import { Program } from '../../Program';
+import RenderCommand from './RenderCommand';
+import TextureVideo from '../../Textures/TextureVideo';
+import Type from '../../Types';
+
+/**
+ * Draw sprites
+ *
+ * @category Rendering
+ * @extends {RenderCommand}
+ */
+class SpriteCommand extends RenderCommand {
+    /**
+     * Constructor
+     *
+     * @param {Sprite} sprite A Sprite instance
+     */
+    constructor(sprite) {
+        super();
+
+        /**
+         * The Sprite instance to draw
+         *
+         * @type {Sprite}
+         * @private
+         */
+        this.sprite = sprite;
+    }
+
+    /**
+     * Execute the command
+     *
+     * @param {RenderAPI} renderAPI RenderAPI instance used to process the commands
+     */
+    execute(renderAPI) {
+        SpriteCommand.draw(renderAPI, this.sprite);
+    }
+
+    /**
+     * Draw the given sprite
+     *
+     * @param {RenderAPI} renderAPI RenderAPI instance used to process the commands
+     * @param {Sprite} sprite Sprite instance to draw
+     */
+    static draw(renderAPI, sprite) {
+        const spriteTexture = sprite.getTexture();
+        if (!spriteTexture.isReady()) {
+            return;
+        }
+
+        // Use custom or default program
+        let program = sprite.getCustomProgram();
+        if (!program) {
+            if (SpriteCommand.isDefaultProgramLoaded()) {
+                program = SpriteCommand.sharedProgram;
+            } else {
+                return;
+            }
+        }
+
+        // Program.
+        const programCode = renderAPI.setProgram(program);
+        if (programCode === -1) {
+            return;
+        }
+
+        const spriteRect = sprite.getTextureRect();
+        const spriteSize = sprite.getSize();
+
+        // Must send/update shared uniforms
+        if (programCode === 1) {
+            renderAPI.setUniform(program, 'uCamera', Type.Matrix, renderAPI.getActiveCamera().getViewProjectionMatrix());
+        }
+
+        // Send uniforms
+        renderAPI.setUniform(program, 'uModel', Type.Matrix, sprite.getTransformationMatrix());
+
+        // States and apparence
+        renderAPI.setBlendMode(sprite.getBlendMode());
+        renderAPI.setDepthState(true, true, DepthFunction.Less);
+        renderAPI.bindTexture(0, spriteTexture);
+
+        // Set visible area
+        let uvs = null;
+        if (spriteTexture instanceof TextureVideo) {
+            uvs = new Float32Array([0, 1, 0, 0, 1, 1, 1, 0]);
+        } else {
+            const textureSize = spriteTexture.getImage().getSize();
+
+            const x1 = spriteRect[0] / textureSize[0];
+            const y1 = (spriteRect[1] + spriteRect[3]) / textureSize[1];
+            let x2 = (spriteRect[0] + spriteRect[2]) / textureSize[0];
+            let y2 = spriteRect[1] / textureSize[1];
+
+            if (spriteRect[2] === 0 &amp;&amp; spriteRect[3] === 0) {
+                x2 = 1.0;
+                y2 = 1.0;
+            }
+
+            uvs = new Float32Array([x1, y1, x1, y2, x2, y1, x2, y2]);
+        }
+        SpriteCommand.sharedGeometry.setTextureUVs(uvs);
+
+        // Set color
+        const spriteColor = sprite.getColor();
+        const colors = new Float32Array([
+            spriteColor.r, spriteColor.g, spriteColor.b, spriteColor.a,
+            spriteColor.r, spriteColor.g, spriteColor.b, spriteColor.a,
+            spriteColor.r, spriteColor.g, spriteColor.b, spriteColor.a,
+            spriteColor.r, spriteColor.g, spriteColor.b, spriteColor.a,
+        ]);
+        SpriteCommand.sharedGeometry.setColors(colors);
+
+        // Set positions
+        const positions = new Float32Array([
+            -spriteSize[0], -spriteSize[1], 0,
+            -spriteSize[0], spriteSize[1], 0,
+            spriteSize[0], -spriteSize[1], 0,
+            spriteSize[0], spriteSize[1], 0,
+        ]);
+        SpriteCommand.sharedGeometry.setPositions(positions);
+
+        // Bind geometry
+        renderAPI.setGeometry(SpriteCommand.sharedGeometry);
+
+        // Draw object
+        renderAPI.drawIndexedPrimitives(DrawingMode.TrianglesStrip, 0, 4);
+    }
+
+    /**
+     * Check if the default program is ready, otherwise the function load it
+     *
+     * @return {boolean} Return true if the default program is loaded
+     */
+    static isDefaultProgramLoaded() {
+        // Everything is ok?
+        if (SpriteCommand.sharedProgram.isReady()) {
+            return true;
+        }
+
+        const vertexShader = `
+        uniform mat4 uCamera;
+        uniform mat4 uModel;
+        attribute vec4 aPosition;
+        attribute vec4 aColor;
+        attribute vec2 aTexCoord;
+        varying vec4 vColor;
+        varying vec2 vUV;
+
+        void main() {
+            gl_Position = (uCamera * uModel) * aPosition;
+            vColor      = aColor;
+            vUV         = aTexCoord;
+        }`;
+
+        const fragmentShader = `
+        uniform lowp sampler2D texture;
+        varying lowp vec4 vColor;
+        varying mediump vec2 vUV;
+
+        void main() {
+            gl_FragColor = texture2D(texture, vUV) * vColor;
+        }`;
+        SpriteCommand.sharedProgram.loadFromData(vertexShader, fragmentShader);
+
+        return false;
+    }
+
+    /**
+     * Indicates if the command concern an opaque element
+     *
+     * @return {boolean} True if command must be in the opaque queue
+     */
+    isOpaque() {
+        return false;
+    }
+}
+
+/**
+ * Default geometry for sprite rendering
+ *
+ * @type {Geometry}
+ * @private
+ */
+SpriteCommand.sharedGeometry = Geometry.createRectangle(0.5, 0.5);
+
+/**
+ * Default program for sprite rendering
+ *
+ * @type {Program}
+ * @private
+ */
+SpriteCommand.sharedProgram = new Program();
+
+export default SpriteCommand;
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+<footer class="footer">
+    <div class="content has-text-centered">
+        <p>Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Sat Feb 02 2019 17:23:42 GMT+0100 (heure normale d’Europe centrale)</p>
+        <p class="sidebar-created-by">
+            <a href="https://github.com/SoftwareBrothers/better-docs" target="_blank">BetterDocs theme</a> provided with <i class="fas fa-heart"></i> by 
+            <a href="http://softwarebrothers.co" target="_blank">SoftwareBrothers</a>
+        </p>
+    </div>
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/app.min.js"></script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>
