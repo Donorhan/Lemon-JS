@@ -32,7 +32,7 @@ Note: The goal of this project is to stay simple to make people understand and e
 - Batching
 
 ### Installation
-- Download [the latest version](https://github.com/Donorhan/Lemon-JS/releases) of LemonJS or install it from NPM
+- Download [the latest version](https://github.com/Donorhan/Lemon-JS/releases) of LemonJS or install it with `npm install @dono/lemon-js`
 - Copy "shaders" folder to your project to get default shaders
 - Enjoy!
 
@@ -79,7 +79,7 @@ function applicationLoop(deltatime) {
 }
 ```
 
-The result [can be found here](https://www.dorhan.fr/Demos/Lemon/exemples/01-Cube).
+The result [can be found here](https://www.dorhan.fr/Demos/Lemon/01-Cube/index.html).
 
 ### How to contribute
 - Clone this repository
