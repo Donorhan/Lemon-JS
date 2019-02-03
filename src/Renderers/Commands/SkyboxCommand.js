@@ -105,7 +105,7 @@ class SkyboxCommand extends RenderCommand {
         uniform mat4 projection;
         uniform mat4 view;
         uniform mat4 uModel;
-        uniform mat4 uModel;
+
         attribute vec4 aPosition;
         attribute vec4 aColor;
         varying vec4 vColor;
@@ -121,6 +121,7 @@ class SkyboxCommand extends RenderCommand {
         uniform lowp samplerCube skybox;
         varying lowp vec4 vColor;
         varying mediump vec4 vUV;
+
         void main() {
             gl_FragColor = textureCube(skybox, vUV.xyz) * vColor;
         }`;

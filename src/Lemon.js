@@ -1,5 +1,7 @@
 export { default as Camera } from './Camera';
 export { default as Color } from './Color';
+export { default as CullingManager } from './Extra/Culling/CullingManager';
+export { default as FrustumCuller } from './Extra/Culling/FrustumCuller';
 export { default as PostEffect } from './Extra/PostEffect';
 export { default as ProgramLibrary } from './Extra/ProgramLibrary';
 export { default as Geometry } from './Geometry';
@@ -16,5 +18,7 @@ export { default as RenderCanvas } from './Renderers/RenderCanvas';
 export { default as Scene } from './Scene/Scene';
 export { DrawingMode } from './StateBlock';
 export { default as Texture } from './Textures/Texture';
+export { default as TextureCube } from './Textures/TextureCube';
+export { default as TextureVideo } from './Textures/TextureVideo';
 export { default as Transformable } from './Transformable';
 export { default as Type } from './Types';

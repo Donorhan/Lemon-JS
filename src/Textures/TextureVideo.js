@@ -9,8 +9,10 @@ import TextureInterface from './TextureInterface';
 class TextureVideo extends TextureInterface {
     /**
      * Constructor
+     *
+     * @param {string} path Path to the video file
      */
-    constructor() {
+    constructor(path = null) {
         super();
 
         /**
@@ -19,6 +21,10 @@ class TextureVideo extends TextureInterface {
          * @private
          */
         this.data = document.createElement('video');
+
+        if (path) {
+            this.loadFromFile(path);
+        }
     }
 
     /**
@@ -34,7 +40,9 @@ class TextureVideo extends TextureInterface {
 
         // Load
         this.data.preload = 'auto';
+        this.data.crossOrigin = 'anonymous';
         this.data.src = path;
+        this.data.muted = 'muted';
     }
 
     /**
@@ -49,6 +57,15 @@ class TextureVideo extends TextureInterface {
      */
     play() {
         this.data.play();
+    }
+
+    /**
+     * Set video's playback speed
+     *
+     * @param {number} [value] 0.5 is half speed, 1.0 is normal speed, 2.0 is double speed
+     */
+    setSpeed(value = 1.0) {
+        this.data.playbackRate = value;
     }
 
     /**
