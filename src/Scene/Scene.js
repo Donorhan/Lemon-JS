@@ -22,11 +22,16 @@ class Scene {
     /**
      * Add a node element to the scene
      *
-     * @param {Node} node A Node instance
+     * @param {Node|Node[]} nodes A Node instance
      * @return {Scene} A reference to the instance
      */
-    add(node) {
-        this.root.addChild(node);
+    add(nodes) {
+        if (nodes instanceof Array) {
+            this.root.addChildren(nodes);
+        } else {
+            this.root.addChild(nodes);
+        }
+
         return this;
     }
 
