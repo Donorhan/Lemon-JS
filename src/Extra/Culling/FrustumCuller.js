@@ -20,50 +20,55 @@ class FrustumCuller extends Culler {
          * @private
          */
         this.frustum = new Frustum();
+
+        /**
+         * An array with visible nodes
+         *
+         * @type {Node[]}
+         * @private
+         */
+        this.nodes = [];
     }
 
     /**
      * Execute culling
      *
-     * @param {Scene} scene A Scene instance
+     * @param {Node} node A Node instance
      * @param {Camera} camera A Camera instance
-     * @param {?boolean} overwriteCullingState Set to true to ignore previous culling values
+     * @return {Node[]} An array of visibles Node
      */
-    execute(scene, camera, overwriteCullingState = false) {
-        if (!this.enabled) {
-            return;
-        }
-
+    execute(node, camera) {
         // Compute frustum
         this.frustum.fromMatrix(camera.getViewProjectionMatrix());
 
         // Culling time!
-        this.cullNode(scene.getRoot(), overwriteCullingState, true);
+        this.nodes = [];
+        this.cullNode(node, true);
+
+        return this.nodes;
     }
 
     /**
-     * Visit a node and his children
+     * Visits a node and his children
      *
      * @param {Node} node A Node instance to visit
-     * @param {boolean} overwriteCullingState Set to true to ignore previous culling values
      * @param {boolean} isRootNode True for the root node
      */
-    /* eslint no-param-reassign: ["error", { "props": false }] */
-    cullNode(node, overwriteCullingState = false, isRootNode = false) {
+    cullNode(node, isRootNode = false) {
         if (node.isEnabled()) {
-            if (!overwriteCullingState && node.culled) {
-                return;
-            }
+            const culled = !isRootNode && !this.frustum.containsBox(node.getBoundingBox());
 
-            // Update culling state
-            node.culled = !isRootNode && !this.frustum.containsBox(node.getBoundingBox());
-
-            // Continue visit
-            if (!node.culled) {
-                const children = node.getChildren();
-                for (let i = 0; i < children.length; i += 1) {
-                    this.cullNode(children[i], overwriteCullingState, false);
+            // Continue the visit
+            if (!culled) {
+                // Preserve the node in the scene
+                if (!isRootNode) {
+                    this.nodes.push(node);
                 }
+
+                const children = node.getChildren();
+                children.forEach((child) => {
+                    this.cullNode(child, false);
+                });
             }
         }
     }

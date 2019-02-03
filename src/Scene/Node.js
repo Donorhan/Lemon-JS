@@ -34,16 +34,6 @@ class Node extends Transformable {
         this.children = [];
 
         /**
-         * A culled element will not be drawn/sent to the renderer
-         *
-         * Warning: This attribute is set by Cullers automatically
-         *
-         * @type {boolean}
-         * @public
-         */
-        this.culled = false;
-
-        /**
          * An enabled element will be drawn/sent to the renderer
          *
          * @type {boolean}
@@ -100,11 +90,20 @@ class Node extends Transformable {
      */
     /* eslint no-param-reassign: ["error", { "props": false }] */
     addChildren(nodes) {
-        for (const node in nodes) {
+        nodes.forEach((node) => {
             this.addChild(node);
-        }
+        });
 
         return this;
+    }
+
+    /**
+     * Force add children without setting parent node, carefully use this one.
+     *
+     * @param {Node[]} nodes An array of nodes
+     */
+    setChildren(nodes) {
+        this.children = nodes;
     }
 
     /**
@@ -191,11 +190,9 @@ class Node extends Transformable {
      * Visit the node and his children
      *
      * @param {RenderTarget} renderTarget Renderer who called this method
-     * @return {boolean} True if visit was successful, otherwise false
+     * @return {boolean} True if visiting was successful, otherwise false
      */
-    visit() {
-        return !this.culled && this.enabled;
-    }
+    visit() { return true; }
 
     /**
      * Return Node's bounding Box
@@ -209,7 +206,7 @@ class Node extends Transformable {
     /**
      * Return Node's children
      *
-     * @return {Array.<Node>} An array of Node
+     * @return {Node[]} An array of Node
      */
     getChildren() {
         return this.children;

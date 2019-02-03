@@ -29,11 +29,19 @@ class Culler {
     /**
      * Execute culling
      *
-     * @param {Scene} scene A Scene instance
+     * @param {Node} node A Node instance
      * @param {Camera} camera A Camera instance
-     * @param {?boolean} overwriteCullingState Set to true to ignore previous culling values
      */
-    execute(scene, camera, overwriteCullingState = false) { }
+    execute(node, camera) { }
+
+    /**
+     * Indicates culler's state
+     *
+     * @return {boolean} value True if the culler is enable, otherwise
+     */
+    isEnabled() {
+        return this.enabled;
+    }
 }
 
 export default Culler;
