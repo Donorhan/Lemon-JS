@@ -23,7 +23,7 @@ class Mesh extends Drawable {
          * @type {Geometry}
          * @private
          */
-        this.geometry = geometry;
+        this.geometry = null;
 
         /**
          * Material
@@ -40,6 +40,10 @@ class Mesh extends Drawable {
          * @private
          */
         this.program = program;
+
+        if (geometry) {
+            this.setGeometry(geometry);
+        }
     }
 
     /**
@@ -106,7 +110,16 @@ class Mesh extends Drawable {
     }
 
     /**
-     * Return a reference to the program use by this mesh
+     * Returns a reference to the Material used by this mesh
+     *
+     * @return {Material} A Material instance
+     */
+    getMaterial() {
+        return this.material;
+    }
+
+    /**
+     * Returns a reference to the program used by this mesh
      *
      * @return {Program} A Program instance
      */

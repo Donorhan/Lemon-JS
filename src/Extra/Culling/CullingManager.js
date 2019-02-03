@@ -1,4 +1,5 @@
 import FrustumCuller from './FrustumCuller';
+import Node from '../../Scene/Node';
 
 /**
  * Culling manager
@@ -48,15 +49,26 @@ class CullingManager {
     /**
      * Execute culling
      *
-     * @param {Scene} scene A Scene instance
+     * @param {Node} node A Node instance
      * @param {Camera} camera A Camera instance
+     * @return {Node[]} An array of Nodes
      */
-    execute(scene, camera) {
+    execute(rootNode, camera) {
         let i = 0;
+
+        let newRootNode = rootNode;
         for (const culler of this.cullers.values()) {
-            culler.execute(scene, camera, (i === 0));
+            if (culler.isEnabled()) {
+                const nodes = culler.execute(newRootNode, camera, i === 0);
+
+                newRootNode = new Node('root');
+                newRootNode.setChildren(nodes);
+            }
+
             i += 1;
         }
+
+        return newRootNode.getChildren();
     }
 }
 

@@ -64,6 +64,11 @@ class Material {
      */
     createPass(techniqueIndex = 0, parameters = []) {
         const pass = new Pass(parameters);
+
+        if (techniqueIndex >= this.techniques.length) {
+            this.techniques[techniqueIndex] = [];
+        }
+
         this.techniques[techniqueIndex].push(pass);
 
         return pass;
