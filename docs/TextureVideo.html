@@ -71,7 +71,7 @@
 
 <header>
     
-        <h2><span class="attribs"><span class="type-signature"></span></span>TextureVideo<span class="signature">()</span><span class="type-signature"></span></h2>
+        <h2><span class="attribs"><span class="type-signature"></span></span>TextureVideo<span class="signature">(path)</span><span class="type-signature"></span></h2>
         
             <div class="class-description">A texture to display video</div>
         
@@ -91,7 +91,7 @@
     <h4 class="name" id="TextureVideo">
         
         <span class="code-name">
-            new TextureVideo<span class="signature">()</span><span class="type-signature"></span>
+            new TextureVideo<span class="signature">(path)</span><span class="type-signature"></span>
         </span>
     </h4>
     
@@ -110,6 +110,64 @@
 
 
 
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+        <th>Default</th>
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        
+<tr class="deep-level-0">
+  
+      <td class="name"><code>path</code></td>
+  
+
+  <td class="type">
+  
+      
+<span class="param-type">string</span>
+
+
+  
+  </td>
+
+  
+
+  
+      <td class="default">
+      
+          null
+      
+      </td>
+  
+
+  <td class="description last">Path to the video file</td>
+</tr>
+
+
+    
+    </tbody>
+</table>
 
 
 
@@ -379,86 +437,6 @@
 
 </div>
             
-                <div class="member">
-
-    <span class="method-parameter is-pulled-right">
-        <label>Type:</label>
-        
-<span class="param-type">number</span>
-
-
-    </span>
-
-<h4 class="name" id="UID">
-    
-    <span class="code-name">
-        UID
-    </span>
-</h4>
-
-
-
-
-<div class="description">
-    Unique identifier
-</div>
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-    <dt class="inherited-from">Inherited From:</dt>
-    <dd class="inherited-from"><ul class="dummy"><li>
-        <a href="ContextResource.html#UID">ContextResource#UID</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    
-
-    
-
-    
-
-    
-        <p class="tag-source">
-            <a href="ContextResource.js.html" class="button">View Source</a>
-            <span>
-                <a href="ContextResource.js.html">ContextResource.js</a>, <a href="ContextResource.js.html#line19">line 19</a>
-            </span>
-        </p>
-    
-</dl>
-
-
-
-
-
-</div>
-            
             </div>
         </div>
     
@@ -533,7 +511,7 @@
         <p class="tag-source">
             <a href="Textures_TextureVideo.js.html" class="button">View Source</a>
             <span>
-                <a href="Textures_TextureVideo.js.html">Textures/TextureVideo.js</a>, <a href="Textures_TextureVideo.js.html#line59">line 59</a>
+                <a href="Textures_TextureVideo.js.html">Textures/TextureVideo.js</a>, <a href="Textures_TextureVideo.js.html#line76">line 76</a>
             </span>
         </p>
     
@@ -565,129 +543,6 @@
 <div class="columns">
     
     <div class='param-desc column is-7'>The duration property returns the length of the current audio/video, in seconds</div>
-    
-    
-    <div class='column is-5 has-text-left'>
-        <label>Type: </label>
-        
-<span class="param-type">number</span>
-
-
-    </div>
-    
-</div>
-
-                
-        </div>
-    </div>
-
-
-
-
-</div>
-            
-                <div class="member">
-
-    
-    <h4 class="name" id="getUID">
-        
-        <span class="code-name">
-            getUID<span class="signature">()</span><span class="type-signature"> &rarr; {number}</span>
-        </span>
-    </h4>
-    
-
-    
-    
-    <div class="description">
-        Get unique ID
-    </div>
-    
-
-
-
-
-
-
-
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-    <dt class="inherited-from">Inherited From:</dt>
-    <dd class="inherited-from"><ul class="dummy"><li>
-        <a href="ContextResource.html#getUID">ContextResource#getUID</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    
-
-    
-
-    
-
-    
-        <p class="tag-source">
-            <a href="ContextResource.js.html" class="button">View Source</a>
-            <span>
-                <a href="ContextResource.js.html">ContextResource.js</a>, <a href="ContextResource.js.html#line29">line 29</a>
-            </span>
-        </p>
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    <div class='columns method-parameter'>
-        <div class="column is-2"><label>Returns:</label></div>
-        <div class="column is-10">
-            
-                    
-
-<div class="columns">
-    
-    <div class='param-desc column is-7'>An unsigned integer</div>
     
     
     <div class='column is-5 has-text-left'>
@@ -774,7 +629,7 @@
         <p class="tag-source">
             <a href="Textures_TextureVideo.js.html" class="button">View Source</a>
             <span>
-                <a href="Textures_TextureVideo.js.html">Textures/TextureVideo.js</a>, <a href="Textures_TextureVideo.js.html#line68">line 68</a>
+                <a href="Textures_TextureVideo.js.html">Textures/TextureVideo.js</a>, <a href="Textures_TextureVideo.js.html#line85">line 85</a>
             </span>
         </p>
     
@@ -1434,7 +1289,7 @@
         <p class="tag-source">
             <a href="Textures_TextureVideo.js.html" class="button">View Source</a>
             <span>
-                <a href="Textures_TextureVideo.js.html">Textures/TextureVideo.js</a>, <a href="Textures_TextureVideo.js.html#line29">line 29</a>
+                <a href="Textures_TextureVideo.js.html">Textures/TextureVideo.js</a>, <a href="Textures_TextureVideo.js.html#line35">line 35</a>
             </span>
         </p>
     
@@ -1527,7 +1382,7 @@
         <p class="tag-source">
             <a href="Textures_TextureVideo.js.html" class="button">View Source</a>
             <span>
-                <a href="Textures_TextureVideo.js.html">Textures/TextureVideo.js</a>, <a href="Textures_TextureVideo.js.html#line43">line 43</a>
+                <a href="Textures_TextureVideo.js.html">Textures/TextureVideo.js</a>, <a href="Textures_TextureVideo.js.html#line51">line 51</a>
             </span>
         </p>
     
@@ -1620,7 +1475,170 @@
         <p class="tag-source">
             <a href="Textures_TextureVideo.js.html" class="button">View Source</a>
             <span>
-                <a href="Textures_TextureVideo.js.html">Textures/TextureVideo.js</a>, <a href="Textures_TextureVideo.js.html#line50">line 50</a>
+                <a href="Textures_TextureVideo.js.html">Textures/TextureVideo.js</a>, <a href="Textures_TextureVideo.js.html#line58">line 58</a>
+            </span>
+        </p>
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+            
+                <div class="member">
+
+    
+    <h4 class="name" id="setSpeed">
+        
+        <span class="code-name">
+            setSpeed<span class="signature">(value<span class="signature-attributes">opt</span>)</span><span class="type-signature"></span>
+        </span>
+    </h4>
+    
+
+    
+    
+    <div class="description">
+        Set video's playback speed
+    </div>
+    
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Attributes</th>
+        
+
+        
+        <th>Default</th>
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        
+<tr class="deep-level-0">
+  
+      <td class="name"><code>value</code></td>
+  
+
+  <td class="type">
+  
+      
+<span class="param-type">number</span>
+
+
+  
+  </td>
+
+  
+      <td class="attributes">
+      
+          &lt;optional><br>
+      
+
+      
+
+      
+      </td>
+  
+
+  
+      <td class="default">
+      
+          1
+      
+      </td>
+  
+
+  <td class="description last">0.5 is half speed, 1.0 is normal speed, 2.0 is double speed</td>
+</tr>
+
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    
+
+    
+
+    
+
+    
+        <p class="tag-source">
+            <a href="Textures_TextureVideo.js.html" class="button">View Source</a>
+            <span>
+                <a href="Textures_TextureVideo.js.html">Textures/TextureVideo.js</a>, <a href="Textures_TextureVideo.js.html#line67">line 67</a>
             </span>
         </p>
     
@@ -1817,7 +1835,7 @@
 
 <footer class="footer">
     <div class="content has-text-centered">
-        <p>Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Sat Feb 02 2019 17:23:43 GMT+0100 (heure normale d’Europe centrale)</p>
+        <p>Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Sun Feb 03 2019 16:54:21 GMT+0100 (heure normale d’Europe centrale)</p>
         <p class="sidebar-created-by">
             <a href="https://github.com/SoftwareBrothers/better-docs" target="_blank">BetterDocs theme</a> provided with <i class="fas fa-heart"></i> by 
             <a href="http://softwarebrothers.co" target="_blank">SoftwareBrothers</a>

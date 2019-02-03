@@ -205,10 +205,10 @@
                 <div class="member">
 
     
-    <h4 class="name" id="execute">
+    <h4 class="name" id="cullNode">
         
         <span class="code-name">
-            execute<span class="signature">(scene, camera, overwriteCullingState<span class="signature-attributes">nullable</span>)</span><span class="type-signature"></span>
+            cullNode<span class="signature">(node, isRootNode)</span><span class="type-signature"></span>
         </span>
     </h4>
     
@@ -216,7 +216,7 @@
     
     
     <div class="description">
-        Execute culling
+        Visits a node and his children
     </div>
     
 
@@ -241,8 +241,6 @@
         <th>Type</th>
 
         
-        <th>Attributes</th>
-        
 
         
         <th>Default</th>
@@ -258,26 +256,18 @@
         
 <tr class="deep-level-0">
   
-      <td class="name"><code>scene</code></td>
+      <td class="name"><code>node</code></td>
   
 
   <td class="type">
   
       
-<span class="param-type"><a href="Scene.html">Scene</a></span>
+<span class="param-type"><a href="Node.html">Node</a></span>
 
 
   
   </td>
 
-  
-      <td class="attributes">
-      
-
-      
-
-      
-      </td>
   
 
   
@@ -286,7 +276,7 @@
       </td>
   
 
-  <td class="description last">A Scene instance</td>
+  <td class="description last">A Node instance to visit</td>
 </tr>
 
 
@@ -295,44 +285,7 @@
         
 <tr class="deep-level-0">
   
-      <td class="name"><code>camera</code></td>
-  
-
-  <td class="type">
-  
-      
-<span class="param-type"><a href="Camera.html">Camera</a></span>
-
-
-  
-  </td>
-
-  
-      <td class="attributes">
-      
-
-      
-
-      
-      </td>
-  
-
-  
-      <td class="default">
-      
-      </td>
-  
-
-  <td class="description last">A Camera instance</td>
-</tr>
-
-
-    
-
-        
-<tr class="deep-level-0">
-  
-      <td class="name"><code>overwriteCullingState</code></td>
+      <td class="name"><code>isRootNode</code></td>
   
 
   <td class="type">
@@ -345,16 +298,6 @@
   </td>
 
   
-      <td class="attributes">
-      
-
-      
-          &lt;nullable><br>
-      
-
-      
-      </td>
-  
 
   
       <td class="default">
@@ -364,7 +307,7 @@
       </td>
   
 
-  <td class="description last">Set to true to ignore previous culling values</td>
+  <td class="description last">True for the root node</td>
 </tr>
 
 
@@ -411,7 +354,7 @@
         <p class="tag-source">
             <a href="Extra_Culling_FrustumCuller.js.html" class="button">View Source</a>
             <span>
-                <a href="Extra_Culling_FrustumCuller.js.html">Extra/Culling/FrustumCuller.js</a>, <a href="Extra_Culling_FrustumCuller.js.html#line32">line 32</a>
+                <a href="Extra_Culling_FrustumCuller.js.html">Extra/Culling/FrustumCuller.js</a>, <a href="Extra_Culling_FrustumCuller.js.html#line57">line 57</a>
             </span>
         </p>
     
@@ -439,6 +382,199 @@
 
 </div>
             
+                <div class="member">
+
+    
+    <h4 class="name" id="execute">
+        
+        <span class="code-name">
+            execute<span class="signature">(node, camera)</span><span class="type-signature"> &rarr; {Array.&lt;<a href="Node.html">Node</a>>}</span>
+        </span>
+    </h4>
+    
+
+    
+    
+    <div class="description">
+        Execute culling
+    </div>
+    
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        
+<tr class="deep-level-0">
+  
+      <td class="name"><code>node</code></td>
+  
+
+  <td class="type">
+  
+      
+<span class="param-type"><a href="Node.html">Node</a></span>
+
+
+  
+  </td>
+
+  
+
+  
+
+  <td class="description last">A Node instance</td>
+</tr>
+
+
+    
+
+        
+<tr class="deep-level-0">
+  
+      <td class="name"><code>camera</code></td>
+  
+
+  <td class="type">
+  
+      
+<span class="param-type"><a href="Camera.html">Camera</a></span>
+
+
+  
+  </td>
+
+  
+
+  
+
+  <td class="description last">A Camera instance</td>
+</tr>
+
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    
+
+    
+
+    
+
+    
+        <p class="tag-source">
+            <a href="Extra_Culling_FrustumCuller.js.html" class="button">View Source</a>
+            <span>
+                <a href="Extra_Culling_FrustumCuller.js.html">Extra/Culling/FrustumCuller.js</a>, <a href="Extra_Culling_FrustumCuller.js.html#line40">line 40</a>
+            </span>
+        </p>
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div class='columns method-parameter'>
+        <div class="column is-2"><label>Returns:</label></div>
+        <div class="column is-10">
+            
+                    
+
+<div class="columns">
+    
+    <div class='param-desc column is-7'>An array of visibles Node</div>
+    
+    
+    <div class='column is-5 has-text-left'>
+        <label>Type: </label>
+        
+<span class="param-type">Array.&lt;<a href="Node.html">Node</a>></span>
+
+
+    </div>
+    
+</div>
+
+                
+        </div>
+    </div>
+
+
+
+
+</div>
+            
             </div>
         </div>
     
@@ -460,7 +596,7 @@
 
 <footer class="footer">
     <div class="content has-text-centered">
-        <p>Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Sat Feb 02 2019 17:23:42 GMT+0100 (heure normale d’Europe centrale)</p>
+        <p>Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Sun Feb 03 2019 16:54:21 GMT+0100 (heure normale d’Europe centrale)</p>
         <p class="sidebar-created-by">
             <a href="https://github.com/SoftwareBrothers/better-docs" target="_blank">BetterDocs theme</a> provided with <i class="fas fa-heart"></i> by 
             <a href="http://softwarebrothers.co" target="_blank">SoftwareBrothers</a>
