@@ -150,6 +150,7 @@ class WebGL extends RenderAPI {
         if (needUpdate) {
             let imageSize = [0, 0];
 
+            // Unflip textures
             gl.pixelStorei(WebGLConst.GL_UNPACK_FLIP_Y_WEBGL, true);
 
             // Upload to the GPU
@@ -183,7 +184,7 @@ class WebGL extends RenderAPI {
                 gl.generateMipmap(WebGLConst.GL_TEXTURE_2D);
             }
         } else if (isTextureVideo) {
-            // Video need to be updated continuously
+            // Video needs to be updated continuously
             gl.texImage2D(WebGLConst.GL_TEXTURE_2D, 0, WebGLConst.GL_RGBA, WebGLConst.GL_RGBA, WebGLConst.GL_PIXEL_UNSIGNED_BYTE, texture.getVideoData());
         }
 

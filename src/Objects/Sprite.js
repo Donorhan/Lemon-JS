@@ -13,8 +13,10 @@ import SpriteCommand from '../Renderers/Commands/SpriteCommand';
 class Sprite extends Drawable {
     /**
      * Constructor
+     *
+     * @param {TextureInterface} [texture] Can be a Texture or a TextureVideo
      */
-    constructor() {
+    constructor(texture = null) {
         super();
 
         /**
@@ -65,7 +67,7 @@ class Sprite extends Drawable {
          * @type {TextureInterface}
          * @private
          */
-        this.texture = null;
+        this.texture = texture;
     }
 
     /**
@@ -86,10 +88,10 @@ class Sprite extends Drawable {
      * @param {number} r Red color in the range [0-255]
      * @param {number} g Green color in the range [0-255]
      * @param {number} b Blue color in the range [0-255]
-     * @param {number=} a Opacity in the range [0-255]
+     * @param {number} [a] Opacity in the range [0-255]
      * @return {Sprite} A reference to the instance
      */
-    setColor(r, g, b, a) {
+    setColor(r, g, b, a = 255) {
         this.color.set(r, g, b, a);
 
         return this;

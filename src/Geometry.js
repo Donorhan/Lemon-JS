@@ -226,12 +226,12 @@ class Geometry extends ContextResource {
     /**
      * Create a cube
      *
-     * @param {number} width Width
-     * @param {number} height Height
-     * @param {number} depth Depth
+     * @param {number} [width] Width
+     * @param {number} [height] Height
+     * @param {number} [depth] Depth
      * @return {Geometry} A Geometry instance
      */
-    static createCube(width, height, depth) {
+    static createCube(width = 1, height = 1, depth = 1) {
         const geometry = new Geometry();
 
         // Set format
