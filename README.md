@@ -5,13 +5,16 @@ An accessible rendering engine in Javascript.
 Note: The goal of this project is to stay simple to make people understand and experiment with 3D rendering
 
 ### Demonstrations
- - [A simple cube](https://www.dorhan.fr/Demos/Lemon/exemples/01-Cube)
- - [Billboard sprites](https://www.dorhan.fr/Demos/Lemon/exemples/02-Sprites)
- - [A 3D model](https://www.dorhan.fr/Demos/Lemon/exemples/03-Model)
- - [Scene management](https://www.dorhan.fr/Demos/Lemon/exemples/04-Scene)
- - [Lights](https://www.dorhan.fr/Demos/Lemon/exemples/05-Lights)
- - [Make blob using shaders](https://www.dorhan.fr/Demos/Lemon/exemples/06-Shaders)
- - [Post processing stack](https://www.dorhan.fr/Demos/Lemon/exemples/07-PostProcessing)
+ - [A simple cube](https://www.dorhan.fr/Demos/Lemon/01-Cube/index.html)
+ - [Billboard sprites](https://www.dorhan.fr/Demos/Lemon/02-Sprites/index.html)
+ - [A 3D model](https://www.dorhan.fr/Demos/Lemon/03-Model/index.html)
+ - [Scene management](https://www.dorhan.fr/Demos/Lemon/04-Scene/index.html)
+ - [Lights](https://www.dorhan.fr/Demos/Lemon/05-Lights/index.html)
+ - [Make blob using shaders](https://www.dorhan.fr/Demos/Lemon/06-Shaders/index.html)
+ - [Post processing stack](https://www.dorhan.fr/Demos/Lemon/07-PostProcessing/index.html)
+ - [Using a Skybox](https://www.dorhan.fr/Demos/Lemon/08-Skybox/index.html)
+ - [Use video as a texture](https://www.dorhan.fr/Demos/Lemon/09-Video/index.html)
+ - [Hide out of screens objects](https://www.dorhan.fr/Demos/Lemon/10-Culling/index.html)
 
 ### Features
 - Access to the low level API
