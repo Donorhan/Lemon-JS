@@ -20,7 +20,7 @@ class Node extends Transformable {
         /**
          * Bounding box
          *
-         * @type {Array.<Node>}
+         * @type {Box}
          * @private
          */
         this.boundingBox = new Box();
@@ -28,7 +28,7 @@ class Node extends Transformable {
         /**
          * Node's children
          *
-         * @type {Array.<Node>}
+         * @type {Node[]}
          * @private
          */
         this.children = [];
@@ -77,7 +77,7 @@ class Node extends Transformable {
     /* eslint no-param-reassign: ["error", { "props": false }] */
     addChild(node) {
         if (node === this) {
-            return null;
+            throw Error('Unable to add a Node as a child of himself');
         }
 
         // Detach node from his previous parent
@@ -88,6 +88,21 @@ class Node extends Transformable {
         // Add as a child
         this.children.push(node);
         node.parent = this;
+
+        return this;
+    }
+
+    /**
+     * Add children to the node
+     *
+     * @param {Node[]} nodes An array of Node
+     * @return {Node} A reference to the instance
+     */
+    /* eslint no-param-reassign: ["error", { "props": false }] */
+    addChildren(nodes) {
+        for (const node in nodes) {
+            this.addChild(node);
+        }
 
         return this;
     }
@@ -179,7 +194,7 @@ class Node extends Transformable {
      * @return {boolean} True if visit was successful, otherwise false
      */
     visit() {
-        return (!this.culled && this.enabled);
+        return !this.culled && this.enabled;
     }
 
     /**
@@ -215,7 +230,7 @@ class Node extends Transformable {
      * @return {boolean} True if it's the root node, otherwise false
      */
     isRoot() {
-        return (this.parent === null);
+        return this.parent === null;
     }
 }
 
