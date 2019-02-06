@@ -14,6 +14,7 @@ module.exports = {
         skybox: path.join(__dirname, examplesPath, '08-Skybox'),
         video: path.join(__dirname, examplesPath, '09-Video'),
         culling: path.join(__dirname, examplesPath, '10-Culling'),
+        material: path.join(__dirname, examplesPath, '11-Material'),
     },
     output: {
         path: path.join(__dirname, examplesPath, 'build'),

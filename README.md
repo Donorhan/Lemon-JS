@@ -15,6 +15,7 @@ Note: The goal of this project is to stay simple to make people understand and e
  - [Using a Skybox](https://www.dorhan.fr/Demos/Lemon/08-Skybox/index.html)
  - [Use video as a texture](https://www.dorhan.fr/Demos/Lemon/09-Video/index.html)
  - [Hide out of screens objects](https://www.dorhan.fr/Demos/Lemon/10-Culling/index.html)
+ - [Using Materials](https://www.dorhan.fr/Demos/Lemon/11-Material/index.html)
 
 ### Features
 - Access to the low level API
@@ -39,8 +40,20 @@ Note: The goal of this project is to stay simple to make people understand and e
 ### The Hello world of 3D : A cube
 
 ```javascript
+import {
+  ProgramLibrary,
+  RenderCanvas,
+  Camera,
+  Mesh,
+  Scene,
+  PointLight,
+  Geometry,
+  Material,
+  Color
+} from "@dono/lemon-js";
+
 // Use the ProgramLibrary helper to build a shader with lights and texture support
-ProgramLibrary.load('DefaultShader', 'default.vert', 'default.frag', ['USE_LIGHT', 'USE_TEXTURE']);
+ProgramLibrary.loadFromFile('DefaultShader', './shaders/GLSL/default.vert', './shaders/GLSL/default.frag', ['USE_LIGHT', 'USE_TEXTURE']);
 
 // Create a new renderer using HTML identifier
 const renderer = new RenderCanvas("simulation");
@@ -56,7 +69,7 @@ const scene = new Scene();
 // Now we can create our first cube
 const cube = new Mesh(
     Geometry.createCube(0.5, 0.5, 0.5),
-    Material.create('default'),
+    Material.Create('default'),
     ProgramLibrary.get('DefaultShader'),
 );
 scene.add(cube);
@@ -68,7 +81,15 @@ scene.add(light);
 ```
 
 ```javascript
-function applicationLoop(deltatime) {
+let previous = 0;
+let deltatime = 0;
+const applicationLoop = (timestamp) => {
+    requestAnimationFrame(applicationLoop);
+
+    // Calculate elapsed time between two frames
+    deltatime = timestamp - previous;
+    previous = timestamp;
+
     // Update scene …
     scene.update(deltatime);
 
@@ -76,7 +97,8 @@ function applicationLoop(deltatime) {
     renderer.clear(new Color(30, 30, 30));
     renderer.render(scene, camera);
     renderer.display();
-}
+};
+requestAnimationFrame(applicationLoop);
 ```
 
 The result [can be found here](https://www.dorhan.fr/Demos/Lemon/01-Cube/index.html).

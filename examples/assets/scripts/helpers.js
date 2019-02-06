@@ -1,10 +1,5 @@
-import ProgramLibrary from '../../../src/Extra/ProgramLibrary';
-
 // Animation's method.
 window.requestAnimationFrame = window.requestAnimationFrame || window.mozRequestAnimationFrame || window.webkitRequestAnimationFrame || window.msRequestAnimationFrame;
-
-// Set path to shaders.
-ProgramLibrary.folderPath = '../../shaders/GLSL/';
 
 // Render the scene.
 export default (callback) => {

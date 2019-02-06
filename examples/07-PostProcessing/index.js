@@ -18,6 +18,7 @@ class App {
     }
 
     init() {
+        // Useful to show a model
         ProgramLibrary.loadFromFile('PhongShader', '../../shaders/GLSL/default.vert', '../../shaders/GLSL/default.frag', ['USE_TEXTURE', 'USE_LIGHT']);
 
         this.renderer = new RenderCanvas('simulation');
@@ -42,7 +43,7 @@ class App {
 
         // Create a post-effect
         const program = new Program();
-        program.loadFromFiles('../assets/shaders/effect1-VS.txt', '../assets/shaders/effect1-FS.txt');
+        program.loadFromFiles('./shaders/vertex.txt', './shaders/fragment.txt');
 
         // Prepare post-effect.
         this.postEffect = new PostEffect(program);

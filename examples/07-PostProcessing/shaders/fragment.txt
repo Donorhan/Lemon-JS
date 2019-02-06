@@ -28,6 +28,5 @@ void main ()
     mediump vec4 col2 = texture2D(texture, vUV + vec2(lineNoise * 0.05 * rng(5.0), 0.0));
     mediump vec4 col3 = texture2D(texture, vUV - vec2(lineNoise * 0.05 * rng(1.0), 0.0));
 
-
     gl_FragColor = vec4(vec3(col1.x, col2.y, col3.z) + noise, 1.0);
 }
