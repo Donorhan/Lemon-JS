@@ -1,7 +1,7 @@
 {
   "name": "@dono/lemon-js",
   "description": "Javascript rendering library",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "author": "Donovan Orhan <dono.orhan@gmail.com>",
   "main": "src/Lemon.js",
   "homepage": "https://donorhan.github.io/Lemon-JS",
