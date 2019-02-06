@@ -38,6 +38,9 @@ class ProgramLibrary {
 
         // Chunck variables
         const chunkPatterns = /include\[([^\]]*)\]/g;
+        const folderExtractorRegex = /(.*)[/\\]/;
+        const fragmentFolderPath = vertexShaderFile.match(folderExtractorRegex)[1] || '';
+        const vertexFolderPath = vertexShaderFile.match(folderExtractorRegex)[1] || '';
 
         // Prepare cache
         ProgramLibrary.cache[name] = {
@@ -61,7 +64,8 @@ class ProgramLibrary {
 
                     if (!ProgramLibrary.chunks[chunkPath]) {
                         ProgramLibrary.chunks[chunkPath] = { data: '', ready: false };
-                        waitingChunks.push(FileLoader.load(`${ProgramLibrary.folderPath}${chunkPath}`, chunkPath));
+                        const folder = type === ProgramLibrary.Target.Vertex ? vertexFolderPath : fragmentFolderPath;
+                        waitingChunks.push(FileLoader.load(`${folder}/${chunkPath}`, chunkPath));
                     }
                 }
 
@@ -201,13 +205,6 @@ ProgramLibrary.cache = [];
  * @type {Array.<{data: string, ready: boolean}>}
  */
 ProgramLibrary.chunks = [];
-
-/**
- * Path to the folder with shaders
- *
- * @type {string}
- */
-ProgramLibrary.folderPath = '../shaders/';
 
 /**
  * Shaders

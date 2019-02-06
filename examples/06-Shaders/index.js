@@ -1,5 +1,5 @@
 import {
-    Camera, Color, Geometry, Material, Mesh, PointLight, Program, ProgramLibrary, RenderCanvas, Scene, Type,
+    Camera, Color, Geometry, Material, Mesh, PointLight, Program, RenderCanvas, Scene, Type,
 } from '../../src/Lemon';
 import startRenderingLoop from '../assets/scripts/helpers';
 
@@ -27,7 +27,7 @@ class App {
 
         // Shaders/program to use
         this.customProgram = new Program();
-        this.customProgram.loadFromFiles('../assets/shaders/effect2-VS.txt', '../assets/shaders/effect2-FS.txt');
+        this.customProgram.loadFromFiles('./shaders/vertex.txt', './shaders/fragment.txt');
 
         this.createCubes();
 
